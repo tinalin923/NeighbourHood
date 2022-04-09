@@ -1,0 +1,24 @@
+{
+    "python.linting.enabled": false,
+    "python.analysis.extraPaths": [
+        "./modules"
+    ],
+    "files.autoSave": "onFocusChange",
+    "workbench.editor.highlightModifiedTabs":true,
+    "editor.fontFamily": "Consolas, 'Courier New', monospace",
+    "editor.cursorStyle":"line",
+    "editor.cursorBlinking": "solid",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "eslint.validate": ["javascript"],
+    
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+      
+}
+
+
