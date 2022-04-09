@@ -1,3 +1,3 @@
-let x=[1, 2, 3];
-x="";
+let x = [1, 2, 3];
+x = '';
 console.log(x);
