@@ -4,7 +4,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: {
-    index: path.resolve(__dirname, 'src/index.js'),
+    index: path.resolve(__dirname, 'src/index.jsx'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -26,12 +26,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env'],
+            presets: ['@babel/preset-react', '@babel/preset-env'],
           },
         },
       },
