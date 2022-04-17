@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    .switch_btn{
+        border: none;
+        width:33px;
+        height:33px;
+        border-radius: 100%;
+        background-color: #f0f0f5;
+        cursor:pointer;
+    }
+}
+.switch{
+    position: absolute;
+    right: 30px;
+    width: 60px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #dbd8d895;
+    display: flex;
+    align-items: center;
+    animation-name: changeoff;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    @keyframes changeoff{
+        from {background-color: #0339a5d4;
+            border: 2px solid #0545c4e9;}
+        to {background-color: #dbd8d895;
+            border: 2px solid #dbd8d8;}
+    }
+    .switch_btn{
+        animation-name: turnoff;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+        @keyframes turnoff{
+            from {transform: translateX(100%);
+                box-shadow: -1px 1px 3px #dbd8d895;
+            }
+            to {transform: translateX(0%);
+                box-shadow: -1px 1px 3px #613407;}
+        }
+    }
+}
+.switch_on{
+    position: absolute;
+    right: 30px;
+    width: 60px;
+    height: 30px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    animation-name: changeon;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    @keyframes changeon{
+        from {background-color: #dbd8d895;
+            border: 2px solid #dbd8d8;}
+        to {background-color: #0339a5d4;
+            border: 2px solid #0545c4e9;}
+    }
+    .switch_btn{
+        animation-name: turnon;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+        @keyframes turnon{
+            from {transform: translateX(0%);
+                box-shadow: -1px 1px 3px #dbd8d895;}
+            to {transform: translateX(100%);
+                box-shadow: -1px 1px 3px #0339a5d4;}
+        }
+    }
+}
