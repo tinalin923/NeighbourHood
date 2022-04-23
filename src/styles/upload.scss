@@ -1,0 +1,28 @@
+.upload_btn_file{
+    display: block;
+    border:2px solid black;
+    border-radius: 100%;
+    background-color: black;
+    opacity: 0.5;
+    width:60px;
+    height: 60px;
+    &:hover{
+        opacity: 1;
+    }
+    &:hover>svg{
+        transform: translate(-1px, -1px);
+    }
+    
+}
+
+.upload_btn_input{
+    display: none;
+}
+
+line{
+    stroke: white;
+    stroke-width: 5px;
+    border-radius: 2px;
+    stroke-linecap: round;
+}
+

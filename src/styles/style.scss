@@ -1,0 +1,11 @@
+@import './mixins.scss';
+@import './switch.scss';
+@import './main.scss';
+@import 'upload';
+@import 'addblock';
+
+
+#file_input_btn{
+    @include d-flex(column, center, center);
+    // border: 1px solid red;
+}
