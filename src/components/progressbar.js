@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useStorage from '../hooks/useStorage.js';
 
-// eslint-disable-next-line react/prop-types
-const ProgressBar = ({ file }) => {
+const ProgressBar = (props) => {
+  // eslint-disable-next-line react/prop-types
+  const { file, setFile } = props;
   const { url, progress } = useStorage(file);
-  // eslint-disable-next-line no-console
-  console.log(url, progress);
-  return <div className="bar">progress</div>;
+  useEffect(() => {
+    if (url) {
+      setFile(null);
+    }
+  }, [url, setFile]);
+  return (
+    <div className="bar" style={{ width: `${progress}%` }}>
+      {progress.toFixed()} %
+    </div>
+  );
 };
 export default ProgressBar;

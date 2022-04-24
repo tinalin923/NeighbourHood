@@ -1,6 +1,6 @@
 import { getAnalytics } from 'firebase/analytics';
-import { initializeApp } from 'firebase/app';
 
+import { initializeApp } from 'firebase/app';
 // for images
 import { getStorage } from 'firebase/storage';
 // database

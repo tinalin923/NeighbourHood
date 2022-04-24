@@ -39,5 +39,6 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'max-classes-per-file': ['error', 3],
+    'no-console': 'off',
   },
 };

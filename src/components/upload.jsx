@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ProgressBar from './progressbar.js';
 
 const UpLoadForm = () => {
@@ -19,10 +18,10 @@ const UpLoadForm = () => {
   };
   return (
     <>
-      <label htmlFor="file" className="upload_btn_file">
+      <label htmlFor="file" className="upload_btn">
         <svg width="60" height="60">
-          <line x1="28" y1="18" x2="28" y2="38" />
-          <line x1="18" y1="28" x2="38" y2="28" />
+          <line x1="29" y1="19" x2="29" y2="39" />
+          <line x1="19" y1="29" x2="39" y2="29" />
         </svg>
         <input
           id="file"

@@ -1,28 +1,29 @@
-.upload_btn_file{
+.upload_btn{
     display: block;
-    border:2px solid black;
+    border:1px solid #d6d3d3df;
     border-radius: 100%;
-    background-color: black;
-    opacity: 0.5;
     width:60px;
     height: 60px;
     &:hover{
-        opacity: 1;
+        background-color: black;
+        border:1px solid black;
     }
-    &:hover>svg{
-        transform: translate(-1px, -1px);
-    }
-    
+    &:hover>svg>line{
+        stroke: white;
+    } 
+}
+
+line{
+    stroke: #d6d3d3df;
+    stroke-width: 5px;
+    border-radius: 2px;
+    stroke-linecap: round;
 }
 
 .upload_btn_input{
     display: none;
 }
 
-line{
-    stroke: white;
-    stroke-width: 5px;
-    border-radius: 2px;
-    stroke-linecap: round;
+.upload_btn_output{
+    width:80%;
 }
-
