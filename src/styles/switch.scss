@@ -8,8 +8,8 @@ $btnbst:#613407;
 
 
 .switch_btn{
-    border: none;
     @include w-h(33px,33px);
+    border: none;
     border-radius: 100%;
     background-color: $btn;
     cursor:pointer;
@@ -17,6 +17,7 @@ $btnbst:#613407;
 
 .switch{
     position: absolute;
+    top: 30px;
     right: 30px;
     @include w-h(60px,30px);
     border-radius: 15px;
@@ -47,10 +48,9 @@ $btnbst:#613407;
 }
 .switch_on{
     position: absolute;
+    top: 30px;
     right: 30px;
     @include w-h(60px,30px);
-    // width: 60px;
-    // height: 30px;
     border-radius: 15px;
     display: flex;
     align-items: center;
