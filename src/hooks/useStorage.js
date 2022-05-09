@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import {
-  projectStorage,
-  projectFirestore,
-} from '../firebase/firebaseConfig.js';
+import { projectStorage, db } from '../firebase/firebaseConfig.js';
 
 const useStorage = (file) => {
   const [progress, setProgress] = useState(0);
@@ -15,7 +12,7 @@ const useStorage = (file) => {
     // create a reference of the file with full path
     const storageRef = ref(projectStorage, file.name);
     // make a reference to a collection we wnat to save
-    const coversCollectionRef = collection(projectFirestore, 'covers');
+    const coversCollectionRef = collection(db, 'covers');
     // set the funciton of adding doc into the collection
     function addNewDocument(dUrl) {
       try {
@@ -46,6 +43,7 @@ const useStorage = (file) => {
         // 'snapshot' is a prop of uploadTask
         getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
           setUrl(downloadUrl);
+          console.log(downloadUrl);
           addNewDocument(downloadUrl);
         });
       }

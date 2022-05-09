@@ -1,27 +1,23 @@
-.upload_btn{
-    display: block;
-    border:1px solid #d6d3d3df;
-    border-radius: 100%;
-    width:60px;
-    height: 60px;
-    &:hover{
-        background-color: black;
-        border:1px solid black;
-    }
-    &:hover>svg>line{
-        stroke: white;
-    } 
-}
+// .upload_btn{
+//     display: block;
+//     border:1px solid #d6d3d3df;
+//     border-radius: 100%;
+//     width:60px;
+//     height: 60px;
+//     &:hover{
+//         background-color: black;
+//         border:1px solid black;
+//     }
+//     &:hover>svg>line{
+//         stroke: white;
+//     } 
+// }
 
 line{
     stroke: #d6d3d3df;
     stroke-width: 5px;
     border-radius: 2px;
     stroke-linecap: round;
-}
-
-.upload_btn_input{
-    display: none;
 }
 
 .upload_btn_output{

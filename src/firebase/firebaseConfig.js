@@ -1,10 +1,10 @@
-import { getAnalytics } from 'firebase/analytics';
-
 import { initializeApp } from 'firebase/app';
+// auth
+import { getAuth, connectAuthEmulator } from 'firebase/auth';
+// database
+import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
 // for images
 import { getStorage } from 'firebase/storage';
-// database
-import { getFirestore } from 'firebase/firestore';
 
 // firebase configuration
 const firebaseConfig = {
@@ -19,10 +19,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// eslint-disable-next-line no-unused-vars
-const analytics = getAnalytics(app);
+const auth = getAuth(app);
+connectAuthEmulator(auth, 'http://localhost:9099');
+const db = getFirestore(app);
+// const projectFirestore = getFirestore(app);
+connectFirestoreEmulator(db, 'localhost', 8080);
 
 const projectStorage = getStorage(app);
-const projectFirestore = getFirestore(app);
-
-export { projectStorage, projectFirestore };
+export { auth, db, projectStorage };
