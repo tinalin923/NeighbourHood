@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { initializeApp } from 'firebase/app';
 // auth
 import { getAuth, connectAuthEmulator } from 'firebase/auth';
@@ -7,15 +8,6 @@ import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 // firebase configuration
-const firebaseConfig = {
-  apiKey: 'AIzaSyDb4shKSNi24JzP2ZfY6j2li4sl1kLZeeQ',
-  authDomain: 'neighbourhood-2022.firebaseapp.com',
-  projectId: 'neighbourhood-2022',
-  storageBucket: 'neighbourhood-2022.appspot.com',
-  messagingSenderId: '681192954977',
-  appId: '1:681192954977:web:dea9c119f6632772a41e20',
-  measurementId: 'G-BFHJET0E4L',
-};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
