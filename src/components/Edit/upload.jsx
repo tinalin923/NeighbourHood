@@ -27,7 +27,7 @@ const UploadForm = () => {
   const [error, setError] = useState(null);
 
   const types = ['image/jpeg', 'image/png'];
-  const handleImageUpload = async (e) => {
+  const handleImageUpload = (e) => {
     const imageFile = e.target.files[0];
     if (imageFile && types.includes(imageFile.type)) {
       setError(null);
@@ -40,7 +40,7 @@ const UploadForm = () => {
       maxWidthOrHeight: 1080,
     };
     try {
-      const compressedFile = await imageCompression(imageFile, options);
+      const compressedFile = imageCompression(imageFile, options);
       setFile(compressedFile);
     } catch (err) {
       console.log(err);

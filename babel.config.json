@@ -3,6 +3,6 @@
         "@babel/preset-react", 
         "@babel/preset-env"
     ],
-    "plugins": ["babel-plugin-styled-components"]
+    "plugins": ["babel-plugin-styled-components", "macros"]
 
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import useFirestore from '../hooks/useFirestore.js';
+import useFirestore from '../../hooks/useFirestore.js';
 
 const UploadImage = () => {
   const { docs } = useFirestore('covers');

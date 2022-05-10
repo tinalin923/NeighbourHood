@@ -5,7 +5,10 @@ $bcbt:#ebfbff;
 $btn:#f1f5f0;
 $btnbsf:#028546;
 $btnbst:#613407;
-
+$position:absolute;
+$top:120px;
+$right: 30px;
+$br:15px;
 
 .switch_btn{
     @include w-h(33px,33px);
@@ -16,11 +19,11 @@ $btnbst:#613407;
 }
 
 .switch{
-    position: absolute;
-    top: 30px;
-    right: 30px;
+    position: $position;
+    top: $top;
+    right: $right;
     @include w-h(60px,30px);
-    border-radius: 15px;
+    border-radius: $br;
     background-color: $bcf;
     display: flex;
     align-items: center;
@@ -47,11 +50,11 @@ $btnbst:#613407;
     }
 }
 .switch_on{
-    position: absolute;
-    top: 30px;
-    right: 30px;
+    position: $position;
+    top: $top;
+    right: $right;
     @include w-h(60px,30px);
-    border-radius: 15px;
+    border-radius: $br;
     display: flex;
     align-items: center;
     animation-name: changeon;

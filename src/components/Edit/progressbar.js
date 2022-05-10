@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import useStorage from '../hooks/useStorage.js';
+import useStorage from '../../hooks/useStorage.js';
 
 const ProgressBar = (props) => {
   // eslint-disable-next-line react/prop-types
