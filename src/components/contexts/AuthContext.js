@@ -20,9 +20,11 @@ export const useAuthState = () => useContext(AuthContext);
 export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
   const signup = (email, password) =>
-    signInWithEmailAndPassword(auth, email, password);
-  const login = (email, password) =>
     createUserWithEmailAndPassword(auth, email, password);
+
+  const login = (email, password) =>
+    signInWithEmailAndPassword(auth, email, password);
+
   const logout = () => signOut(auth);
 
   useEffect(() => {

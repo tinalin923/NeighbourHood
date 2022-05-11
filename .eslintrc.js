@@ -40,5 +40,12 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'max-classes-per-file': ['error', 3],
     'no-console': 'off',
+    'react/jsx-no-bind': [
+      1,
+      {
+        ignoreDOMComponents: true,
+        allowFunctions: true,
+      },
+    ],
   },
 };
