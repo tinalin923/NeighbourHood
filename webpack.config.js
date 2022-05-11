@@ -1,5 +1,10 @@
+/* eslint-disable function-paren-newline */
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const dotenv = require('dotenv').config({ path: `${__dirname}/.env` });
+
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   mode: 'development',
@@ -55,6 +60,12 @@ module.exports = {
       title: 'NeighbourHood',
       filename: 'index.html',
       template: 'src/template.html',
+    }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(dotenv.parsed),
+      'process.env.NODE_ENV': JSON.stringify(
+        isDevelopment ? 'development' : 'production'
+      ),
     }),
   ],
 };
