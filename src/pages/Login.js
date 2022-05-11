@@ -1,39 +1,68 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 import { useAuthState } from '../components/contexts/AuthContext.js';
 import Header from '../components/Header/Header.js';
+import Background from '../assets/images/toa-heftiba-nrSzRUWqmoI-unsplash.jpg';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0px;
+    height: 100%;
+    background-image: url(${Background});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+`;
 
 const Form = styled.form`
   width: 400px;
-  margin: 120px auto;
+  margin: 80px auto;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 const Block = styled.div`
-  margin-top: 25px;
+  margin-top: 20px;
   width: 300px;
   border-radius: 25px;
-  background-color: #ffffff26;
+  background-color: #d4d6dd;
+  opacity: 0.8;
 `;
 const Input = styled.input`
   height: 53px;
   padding: 10px;
   border: none;
   outline: none;
-  opcacity: transp arent;
+  background: transparent;
+  color: #16181d;
 `;
 const icon = {
   position: 'relative',
   left: '5px',
   top: '8px',
   padding: '9px 8px',
-  // transition: '0.3s',
-  opacity: '0.5',
+  opacity: '0.8',
 };
+
+const Button = styled.button`
+  margin-top: 25px;
+  width: 300px;
+  border-radius: 25px;
+  height: 53px;
+  padding: 10px;
+  border: none;
+  outline: none;
+  background: #fcd856;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+`;
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -59,6 +88,7 @@ const Login = () => {
   }
   return (
     <>
+      <GlobalStyle />
       <Header />
       <Form>
         <Block>
@@ -67,15 +97,20 @@ const Login = () => {
         </Block>
         <Block>
           <FontAwesomeIcon icon={solid('envelope')} style={icon} />
-          <Input ref={emailRef} placeholder="Email" required />
+          <Input type="email" ref={emailRef} placeholder="Email" required />
         </Block>
         <Block>
           <FontAwesomeIcon icon={solid('lock')} style={icon} />
-          <Input ref={passwordRef} placeholder="Password" required />
+          <Input
+            type="password"
+            ref={passwordRef}
+            placeholder="Password"
+            required
+          />
         </Block>
-        <button type="submit" onClick={handleSubmit} disabled={loading}>
-          GET STARTED
-        </button>
+        <Button type="submit" onClick={() => handleSubmit()} disabled={loading}>
+          Get Started
+        </Button>
       </Form>
     </>
   );

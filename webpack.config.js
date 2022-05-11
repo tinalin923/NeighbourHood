@@ -49,7 +49,7 @@ module.exports = {
         type: 'asset/resource',
       },
       {
-        test: /\.(woff|woff2|svg|eot|ttf)$/,
+        test: /\.(woff|woff2|eot|ttf)$/,
         type: 'asset/resource',
       },
     ],

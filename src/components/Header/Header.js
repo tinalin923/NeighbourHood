@@ -9,14 +9,15 @@ const Top = styled.div`
   justify-content: space-between;
   border-bottom: 1px solid #dddbd1;
   height: 80px;
-  background-color: #363945;
-  opacity: 0.5;
+  // background-color: #363945;
+  opacity: 0.4;
 `;
 const Title = styled.p`
+  margin-left: 10px;
   text-decoration: none;
   font-family: 'TESLA Regular';
   font-size: 1.2rem;
-  color: #fff;
+  color: #363945;
 `;
 const Button = styled.button`
   margin: 0px 10px;
@@ -40,7 +41,7 @@ const Header = () => {
     <>
       <Top>
         <Title as={Link} to="/">
-          NEIGHBOURHOOD
+          NEIGHBoURHooD
         </Title>
         <div>
           <Button as={Link} to="/login">
