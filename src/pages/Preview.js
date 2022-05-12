@@ -1,5 +1,5 @@
 import React from 'react';
 
-const NoneEditing = () => <div>NoneEditing</div>;
+const Preview = () => <div>Preview</div>;
 
-export default NoneEditing;
+export default Preview;

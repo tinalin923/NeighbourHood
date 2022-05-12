@@ -35,7 +35,7 @@ const Button = styled.button`
   }
 `;
 
-const Header = () => {
+const Navigation = () => {
   const { currentUser, logout } = useAuthState();
   const navigate = useNavigate();
   const handleLogout = async () => {
@@ -71,4 +71,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navigation;

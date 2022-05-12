@@ -1,13 +1,13 @@
 import React from 'react';
-import UploadForm from '../components/Edit/upload.jsx';
-import Btn from '../components/Edit/addblock.jsx';
-import Switch from '../components/Edit/switch.jsx';
-import UploadImage from '../components/Edit/image.jsx';
-import Header from '../components/Header/Header.js';
+import UploadForm from '../components/Edit/Upload.jsx';
+import Btn from '../components/Edit/Addblock.jsx';
+import Switch from '../components/Edit/Switch.jsx';
+import UploadImage from '../components/Edit/Image.jsx';
+import Navigation from '../components/Header/Navigation.js';
 
 const Editing = () => (
   <>
-    <Header />
+    <Navigation />
     <p>請點選以新增封面</p>
     <UploadForm />
     <UploadImage />

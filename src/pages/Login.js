@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 import { useAuthState } from '../components/contexts/AuthContext.js';
-import Header from '../components/Header/Header.js';
+import Navigation from '../components/Header/Navigation.js';
 import Background from '../assets/images/toa-heftiba-nrSzRUWqmoI-unsplash.jpg';
 
 const GlobalStyle = createGlobalStyle`
@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   width: 400px;
   margin: 80px auto;
   display: flex;
@@ -76,13 +76,12 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const villageRef = useRef('');
   const emailRef = useRef('');
   const passwordRef = useRef('');
   const { login } = useAuthState();
 
-  async function handleSubmit() {
-    console.log('hihi');
+  async function handleSubmit(e) {
+    e.preventDefault();
     setLoading(true);
     setError('');
     try {
@@ -100,12 +99,8 @@ const Login = () => {
   return (
     <>
       <GlobalStyle />
-      <Header />
+      <Navigation />
       <Form>
-        <Block>
-          <FontAwesomeIcon icon={solid('house-chimney-user')} style={icon} />
-          <Input ref={villageRef} placeholder="Village" required />
-        </Block>
         <Block>
           <FontAwesomeIcon icon={solid('envelope')} style={icon} />
           <Input type="email" ref={emailRef} placeholder="Email" required />

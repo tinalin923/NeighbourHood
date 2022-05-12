@@ -1,13 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { AuthContextProvider } from './components/contexts/AuthContext.js';
+import PrivateRoute from './components/PrivateRoute.js';
+import Editing from './pages/Editing.js';
 import Landing from './pages/Landing.js';
 import Login from './pages/Login.js';
-import Signup from './pages/Signup.js';
-import Editing from './pages/Editing.js';
 import Preview from './pages/Preview.js';
-import { AuthContextProvider } from './components/contexts/AuthContext.js';
-import ProtectedRoute from './components/contexts/ProtectedRoute.js';
-
+import Signup from './pages/Signup.js';
 import './styles/style.scss';
 
 const App = () => (
@@ -18,9 +17,9 @@ const App = () => (
         <Route
           path="editing"
           element={
-            <ProtectedRoute>
+            <PrivateRoute>
               <Editing />
-            </ProtectedRoute>
+            </PrivateRoute>
           }
         />
         <Route path="preview" element={<Preview />} />

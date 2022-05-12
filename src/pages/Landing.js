@@ -1,9 +1,9 @@
 import React from 'react';
-import Header from '../components/Header/Header.js';
+import Navigation from '../components/Header/Navigation.js';
 
 const Landing = () => (
   <>
-    <Header />
+    <Navigation />
     <div> welcome!</div>
   </>
 );
