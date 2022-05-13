@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   width: 400px;
   margin: 80px auto;
   display: flex;
@@ -73,7 +73,6 @@ const Login = () => {
   const { login } = useAuthState();
 
   async function handleSubmit() {
-    console.log('hihi');
     setLoading(true);
     try {
       const userCredential = await login(
