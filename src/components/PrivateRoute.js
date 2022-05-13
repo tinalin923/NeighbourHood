@@ -5,10 +5,7 @@ import { useAuthState } from './contexts/AuthContext.js';
 // eslint-disable-next-line react/prop-types
 const PrivateRoute = ({ childern }) => {
   const { currentUser } = useAuthState();
-  if (!currentUser) {
-    return <Navigate to="/login" replace />;
-  }
-  return childern;
+  return currentUser ? childern : <Navigate to="/login" replace />;
 };
 
 export default PrivateRoute;
