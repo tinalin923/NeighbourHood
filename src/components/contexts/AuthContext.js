@@ -19,7 +19,7 @@ export const useAuthState = () => useContext(AuthContext);
 // eslint-disable-next-line react/prop-types
 export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
-  const [loading, setLoading] = useState(true);
+  const [load, setLoad] = useState(true);
   const signup = (email, password) =>
     createUserWithEmailAndPassword(auth, email, password);
 
@@ -32,12 +32,13 @@ export const AuthContextProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setCurrentUser(user);
-        setLoading(false);
+        setLoad(false);
         const { uid } = user;
         console.log(uid);
       } else {
         setCurrentUser();
         console.log('you logged out');
+        setLoad(false);
       }
     });
     return unsubscribe;
@@ -55,7 +56,7 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {!load && children}
     </AuthContext.Provider>
   );
 };
