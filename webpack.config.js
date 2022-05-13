@@ -1,7 +1,7 @@
 /* eslint-disable function-paren-newline */
-const webpack = require('webpack');
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const dotenv = require('dotenv').config({ path: `${__dirname}/.env` });
 
 const isDevelopment = process.env.NODE_ENV !== 'production';

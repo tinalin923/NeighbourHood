@@ -1,9 +1,9 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAuthState } from './AuthContext.js';
+import { useAuthState } from './contexts/AuthContext.js';
 
 // eslint-disable-next-line react/prop-types
-const ProtectedRoute = ({ childern }) => {
+const PrivateRoute = ({ childern }) => {
   const { currentUser } = useAuthState();
   if (!currentUser) {
     return <Navigate to="/login" replace />;
@@ -11,4 +11,4 @@ const ProtectedRoute = ({ childern }) => {
   return childern;
 };
 
-export default ProtectedRoute;
+export default PrivateRoute;

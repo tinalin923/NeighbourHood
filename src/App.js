@@ -6,7 +6,7 @@ import Signup from './pages/Signup.js';
 import Editing from './pages/Editing.js';
 import Preview from './pages/Preview.js';
 import { AuthContextProvider } from './components/contexts/AuthContext.js';
-import ProtectedRoute from './components/contexts/ProtectedRoute.js';
+import PrivateRoute from './components/PrivateRoute.js';
 
 import './styles/style.scss';
 
@@ -18,9 +18,9 @@ const App = () => (
         <Route
           path="editing"
           element={
-            <ProtectedRoute>
+            <PrivateRoute>
               <Editing />
-            </ProtectedRoute>
+            </PrivateRoute>
           }
         />
         <Route path="preview" element={<Preview />} />
