@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
-import '../../assets/fonts/fonts.scss';
+import React from 'react';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import '../../assets/fonts/fonts.scss';
+import { useAuthState } from '../contexts/AuthContext.js';
 
 const Top = styled.div`
   display: flex;
@@ -35,8 +36,16 @@ const Button = styled.button`
 `;
 
 const Header = () => {
-  // eslint-disable-next-line no-unused-vars
-  const [Login, setLogin] = useState(true);
+  const { currentUser, logout } = useAuthState();
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/');
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
       <Top>
@@ -44,9 +53,14 @@ const Header = () => {
           NEIGHBoURHooD
         </Title>
         <div>
-          <Button as={Link} to="/login">
-            {Login ? '登出' : '登入'}
-          </Button>
+          {currentUser ? (
+            // eslint-disable-next-line react/jsx-no-bind
+            <Button onClick={handleLogout}>登出</Button>
+          ) : (
+            <Button as={Link} to="/login">
+              登入
+            </Button>
+          )}
           <Button as={Link} to="/signup">
             註冊
           </Button>

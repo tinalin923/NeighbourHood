@@ -1,28 +1,14 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Landing from './pages/Landing.js';
 import Login from './pages/Login.js';
 import Signup from './pages/Signup.js';
 import Editing from './pages/Editing.js';
 import Preview from './pages/Preview.js';
-import {
-  AuthContextProvider,
-  useAuthState,
-} from './components/contexts/AuthContext.js';
+import { AuthContextProvider } from './components/contexts/AuthContext.js';
+import ProtectedRoute from './components/contexts/ProtectedRoute.js';
 
 import './styles/style.scss';
-
-// eslint-disable-next-line react/prop-types
-const ProtectedRoute = ({ childern }) => {
-  const { currentUser } = useAuthState();
-  if (!currentUser) return <Navigate to="/login" replace />;
-  return childern;
-};
 
 const App = () => (
   <Router>

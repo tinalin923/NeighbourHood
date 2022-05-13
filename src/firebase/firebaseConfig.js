@@ -2,11 +2,9 @@ import { initializeApp } from 'firebase/app';
 // auth
 import { getAuth } from 'firebase/auth';
 // import { connectAuthEmulator, getAuth } from 'firebase/auth';
-
 // database
 import { getFirestore } from 'firebase/firestore';
 // import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
-
 // for images
 import { getStorage } from 'firebase/storage';
 

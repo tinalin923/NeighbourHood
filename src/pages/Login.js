@@ -9,7 +9,7 @@ import Header from '../components/Header/Header.js';
 import Background from '../assets/images/toa-heftiba-nrSzRUWqmoI-unsplash.jpg';
 
 const GlobalStyle = createGlobalStyle`
-  body {
+  html, body {
     margin: 0px;
     height: 100%;
     background-image: url(${Background});
@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Form = styled.form`
+const Form = styled.div`
   width: 400px;
   margin: 80px auto;
   display: flex;
@@ -49,6 +49,10 @@ const icon = {
   padding: '9px 8px',
   opacity: '0.8',
 };
+const Err = styled.div`
+  color: red;
+  font-weight: bold;
+`;
 
 const Button = styled.button`
   margin-top: 25px;
@@ -59,13 +63,18 @@ const Button = styled.button`
   border: none;
   outline: none;
   background: #fcd856;
+  opacity: 0.9;
   color: white;
   font-weight: bold;
   cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
   const villageRef = useRef('');
   const emailRef = useRef('');
@@ -73,7 +82,9 @@ const Login = () => {
   const { login } = useAuthState();
 
   async function handleSubmit() {
+    console.log('hihi');
     setLoading(true);
+    setError('');
     try {
       const userCredential = await login(
         emailRef.current.value,
@@ -82,7 +93,7 @@ const Login = () => {
       console.log(userCredential);
       navigate('/editing');
     } catch (err) {
-      console.log(err);
+      setError(err.message);
     }
     setLoading(false);
   }
@@ -108,7 +119,8 @@ const Login = () => {
             required
           />
         </Block>
-        <Button type="submit" onClick={() => handleSubmit()} disabled={loading}>
+        {error && <Err>{error}</Err>}
+        <Button type="submit" onClick={handleSubmit} disabled={loading}>
           Get Started
         </Button>
       </Form>
