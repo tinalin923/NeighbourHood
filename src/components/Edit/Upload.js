@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import imageCompression from 'browser-image-compression';
 import styled from 'styled-components';
-import ProgressBar from './progressbar.js';
+import ProgressBar from './Progressbar.js';
 
 const Label = styled.label`
   display: block;

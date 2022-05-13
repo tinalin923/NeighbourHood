@@ -1,8 +1,8 @@
 import React from 'react';
-import UploadForm from '../components/Edit/upload.jsx';
-import Btn from '../components/Edit/addblock.jsx';
-import Switch from '../components/Edit/switch.jsx';
-import UploadImage from '../components/Edit/image.jsx';
+import UploadForm from '../components/Edit/Upload.js';
+import Btn from '../components/Edit/Addblock.js';
+import Switch from '../components/Edit/Switch.js';
+import UploadImage from '../components/Edit/Image.js';
 import Header from '../components/Header/Header.js';
 
 const Editing = () => (
