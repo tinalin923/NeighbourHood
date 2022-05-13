@@ -74,7 +74,7 @@ const Button = styled.button`
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [errorLogin, setErrorLogin] = useState('');
   const navigate = useNavigate();
   const villageRef = useRef('');
   const emailRef = useRef('');
@@ -84,7 +84,7 @@ const Login = () => {
   async function handleSubmit() {
     console.log('hihi');
     setLoading(true);
-    setError('');
+    setErrorLogin('');
     try {
       const userCredential = await login(
         emailRef.current.value,
@@ -93,7 +93,7 @@ const Login = () => {
       console.log(userCredential);
       navigate('/editing');
     } catch (err) {
-      setError(err.message);
+      setErrorLogin(err.message);
     }
     setLoading(false);
   }
@@ -119,7 +119,7 @@ const Login = () => {
             required
           />
         </Block>
-        {error && <Err>{error}</Err>}
+        {errorLogin && <Err>{errorLogin}</Err>}
         <Button type="submit" onClick={handleSubmit} disabled={loading}>
           Get Started
         </Button>
