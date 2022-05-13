@@ -14,9 +14,7 @@ import {
   AuthContextProvider,
   useAuthState,
 } from './components/contexts/AuthContext.js';
-
 import './styles/style.scss';
-
 // eslint-disable-next-line react/prop-types
 const ProtectedRoute = ({ childern }) => {
   const { currentUser } = useAuthState();

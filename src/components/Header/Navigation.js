@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { useAuthState } from '../contexts/AuthContext.js';
 import '../../assets/fonts/fonts.scss';
+import { useAuthState } from '../contexts/AuthContext.js';
 
 const Top = styled.div`
   display: flex;
@@ -35,10 +35,9 @@ const Button = styled.button`
   }
 `;
 
-const Header = () => {
-  const navigate = useNavigate();
+const Navigation = () => {
   const { currentUser, logout } = useAuthState();
-  // eslint-disable-next-line no-unused-vars
+  const navigate = useNavigate();
   const handleLogout = async () => {
     try {
       await logout();
@@ -54,9 +53,14 @@ const Header = () => {
           NEIGHBoURHooD
         </Title>
         <div>
-          <Button as={Link} to="/login">
-            {currentUser ? '登出' : '登入'}
-          </Button>
+          {currentUser ? (
+            // eslint-disable-next-line react/jsx-no-bind
+            <Button onClick={handleLogout}>登出</Button>
+          ) : (
+            <Button as={Link} to="/login">
+              登入
+            </Button>
+          )}
           <Button as={Link} to="/signup">
             註冊
           </Button>
@@ -67,4 +71,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navigation;
