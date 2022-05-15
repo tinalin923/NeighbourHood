@@ -12,16 +12,25 @@ import React, {
   useState,
 } from 'react';
 import { auth } from '../../firebase/firebaseConfig.js';
+import createUserData from '../../firebase/firestore/user.js';
 
 export const AuthContext = createContext();
 export const useAuthState = () => useContext(AuthContext);
 
 // eslint-disable-next-line react/prop-types
 export const AuthContextProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUid, setCurrentUid] = useState();
   const [load, setLoad] = useState(true);
-  const signup = (email, password) =>
-    createUserWithEmailAndPassword(auth, email, password);
+
+  const signup = async (email, password, villageName) => {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const { uid } = userCredential.user;
+    return createUserData(uid, email, villageName);
+  };
 
   const login = (email, password) =>
     signInWithEmailAndPassword(auth, email, password);
@@ -31,12 +40,11 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setCurrentUser(user);
-        setLoad(false);
         const { uid } = user;
-        console.log(uid);
+        setCurrentUid(uid);
+        setLoad(false);
       } else {
-        setCurrentUser();
+        setCurrentUid(null);
         console.log('you logged out');
         setLoad(false);
       }
@@ -46,12 +54,12 @@ export const AuthContextProvider = ({ children }) => {
 
   const value = useMemo(
     () => ({
-      currentUser,
+      currentUid,
       signup,
       login,
       logout,
     }),
-    [currentUser]
+    [currentUid]
   );
 
   return (

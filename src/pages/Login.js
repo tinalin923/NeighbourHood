@@ -67,23 +67,22 @@ const Button = styled.button`
   color: white;
   font-weight: bold;
   cursor: pointer;
-  &:hover {
+  :hover {
     opacity: 1;
   }
 `;
 
 const Login = () => {
-  const [loading, setLoading] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false);
   const [errorLogin, setErrorLogin] = useState('');
   const navigate = useNavigate();
-  const villageRef = useRef('');
   const emailRef = useRef('');
   const passwordRef = useRef('');
   const { login } = useAuthState();
 
   async function handleSubmit() {
     console.log('hihi');
-    setLoading(true);
+    setLoginLoading(true);
     setErrorLogin('');
     try {
       const userCredential = await login(
@@ -95,17 +94,13 @@ const Login = () => {
     } catch (err) {
       setErrorLogin(err.message);
     }
-    setLoading(false);
+    setLoginLoading(false);
   }
   return (
     <>
       <GlobalStyle />
       <Header />
       <Form>
-        <Block>
-          <FontAwesomeIcon icon={solid('house-chimney-user')} style={icon} />
-          <Input ref={villageRef} placeholder="Village" required />
-        </Block>
         <Block>
           <FontAwesomeIcon icon={solid('envelope')} style={icon} />
           <Input type="email" ref={emailRef} placeholder="Email" required />
@@ -120,7 +115,7 @@ const Login = () => {
           />
         </Block>
         {errorLogin && <Err>{errorLogin}</Err>}
-        <Button type="submit" onClick={handleSubmit} disabled={loading}>
+        <Button type="submit" onClick={handleSubmit} disabled={loginLoading}>
           Get Started
         </Button>
       </Form>

@@ -6,6 +6,8 @@ node_modules
 .husky
 dist
 .env
+.firebase
+.github
 
 # firebase emulators
 database-debug.log*
