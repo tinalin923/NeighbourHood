@@ -11,6 +11,7 @@ export const EditContextProvider = ({ children }) => {
 
   const toggleEditMode = () => {
     const editMode = !state.isEditMode;
+
     dispatch({
       type: 'TOGGLE_EDITMODE',
       payload: {
@@ -19,19 +20,30 @@ export const EditContextProvider = ({ children }) => {
     });
   };
 
-  const setHeroImage = (imageUrl) => {
+  const setHeroImage = (heroImageUrl) => {
     dispatch({
       type: 'SET_HEROIMAGE',
       payload: {
-        heroImage: imageUrl,
+        heroImage: heroImageUrl,
+      },
+    });
+  };
+
+  const setChiefAvator = (avatorUrl) => {
+    dispatch({
+      type: 'SET_CHIEF_AVATOR',
+      payload: {
+        chiefAvator: avatorUrl,
       },
     });
   };
   const value = {
     isEditMode: state.isEditMode,
     heroImage: state.heroImage,
+    chiefAvator: state.chiefAvator,
     toggleEditMode,
     setHeroImage,
+    setChiefAvator,
   };
 
   return <EditContext.Provider value={value}>{children}</EditContext.Provider>;

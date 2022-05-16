@@ -4,9 +4,9 @@ export const initialEditState = {
   chiefAvator: '',
   chiefName: '',
   chiefInfo: '',
-  villageImageList: '',
+  villageImageList: [],
   villageInfo: '',
-  blockList: '',
+  blockList: [],
 };
 
 const editReducer = (state, action) => {
@@ -18,7 +18,7 @@ const editReducer = (state, action) => {
     case 'SET_HEROIMAGE':
       return { ...state, heroImage: payload.heroImage };
     case 'SET_CHIEF_AVATOR':
-      return { ...state, isEditMode: !payload };
+      return { ...state, chiefAvator: payload.chiefAvator };
     case 'SET_CHIEF_NAME':
       return { ...state, isEditMode: !payload };
     case 'SET_CHIEF_INFO':

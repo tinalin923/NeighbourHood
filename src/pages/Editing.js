@@ -4,14 +4,18 @@ import HeroImageBlock from '../components/Edit/HeroImageBlock.js';
 import UploadImage from '../components/Edit/Image.js';
 import Switch from '../components/Edit/Switch.js';
 import Header from '../components/Header/Header.js';
+import ChiefIntroBlock from '../blocks/ChiefIntroBlock.js';
+import VillageIntroBlock from '../blocks/VillageIntroBlock.js';
 
 const Editing = () => (
   <>
     <Header />
     <HeroImageBlock />
     <UploadImage />
-    <Btn />
     <Switch />
+    <ChiefIntroBlock />
+    <VillageIntroBlock />
+    <Btn />
   </>
 );
 

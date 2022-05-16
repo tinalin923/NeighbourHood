@@ -30,7 +30,11 @@ module.exports = {
     'react/function-component-definition': [
       1,
       {
-        namedComponents: 'arrow-function',
+        namedComponents: [
+          'function-declaration',
+          'function-expression',
+          'arrow-function',
+        ],
         unnamedComponents: 'arrow-function',
       },
     ],

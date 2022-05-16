@@ -5,7 +5,7 @@ $bcbt:#ebfbff;
 $btn:#f1f5f0;
 $btnbsf:#028546;
 $btnbst:#613407;
-$position:absolute;
+$position:fixed;      
 $top:120px;
 $right: 30px;
 $br:15px;
@@ -16,9 +16,11 @@ $br:15px;
     border-radius: 100%;
     background-color: $btn;
     cursor:pointer;
+    z-index: 99;
 }
 
 .switch{
+    z-index: 99;
     position: $position;
     top: $top;
     right: $right;
@@ -50,6 +52,7 @@ $br:15px;
     }
 }
 .switch_on{
+    z-index: 99;
     position: $position;
     top: $top;
     right: $right;
