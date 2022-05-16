@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';

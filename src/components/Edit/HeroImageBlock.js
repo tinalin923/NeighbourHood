@@ -6,11 +6,14 @@ import compressImage from '../../utils/imageCompress.js';
 import { useEditState } from '../contexts/EditContext.js';
 
 const InputBlock = styled.label`
-  margin: 40px auto;
+  z-index: 2;
+  position: absolute;
+  top: 50vh;
+  left: 40vw;
   width: 20%;
+  min-height: 140px;
   border: 4px solid #8d92a5;
   border-radius: 40px;
-  height: 140px;
   :hover {
     background-color: #8d92a5;
   }
@@ -30,16 +33,27 @@ const P = styled.p`
   color: #8d92a5;
 `;
 
+const Error = styled.p`
+  position: absolute;
+  top: 40vh;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  color: red;
+`;
+
 const IconContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 10px auto;
-  background-color: white;
-  opacity: 0.5;
   width: 40px;
   height: 40px;
   border-radius: 100%;
+  background-color: white;
+  opacity: 0.5;
 `;
 
 const icon = {
@@ -51,23 +65,18 @@ const Input = styled.input`
   display: none;
 `;
 
-const OriginalHeroImage = styled.img`
+const HeroImage = styled.img`
+  position: absolute;
   width: 100vw;
   height: 100vh;
-  position: absolute;
-  top: 80px;
-  z-index: -2;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: linear-gradient(-35deg, #e80c7a, #e85d2d);
 `;
 
 const HeroImageBlock = () => {
   const { isEditMode, heroImage, setHeroImage } = useEditState();
-  // const [imageUrl, setImageUrl] = useState('');
   const [heroImageError, setHeroImageError] = useState('');
-  // const [coverContainerStyle, setCoverContainerStyle] = useState('');
   const fileInput = useRef();
   const handleImageUpload = async () => {
     const imageFile = fileInput.current.files[0];
@@ -86,25 +95,10 @@ const HeroImageBlock = () => {
     // URL.revokeObjectURL(compressedImageURL);  加了會讓我無法呈現出來
   };
 
-  // useEffect(() => {
-  //   opacity: `${isEditMode ? '0.7' : '1'}`,
-  //   let coverStyle;
-  //   if (heroImage) {
-  //     console.log(heroImage);
-  //     coverStyle = {
-  //       opacity: `${isEditMode ? '0.7' : '1'}`,
-  //     };
-  //   }
-  //   console.log(heroImage);
-  //   coverStyle = {
-  //   };
-  //   setCoverContainerStyle(coverStyle);
-  // }, [heroImage, isEditMode]);
-
   return (
     <>
       <InputBlock style={{ display: isEditMode ? 'block' : 'none' }}>
-        {heroImage ? <P>選擇其他照片</P> : <P>點選以新增封面</P>}
+        {heroImage ? <P>選擇其他圖片</P> : <P>點選以新增圖片</P>}
         <IconContainer>
           <FontAwesomeIcon icon={solid('plus')} style={icon} />
         </IconContainer>
@@ -116,27 +110,24 @@ const HeroImageBlock = () => {
           onChange={handleImageUpload}
         />
       </InputBlock>
-      <div id="upload_btn_output">
+      <div id="upload_output">
         {heroImageError && (
-          <div className="upload_btn_error">{heroImageError}</div>
+          <Error style={{ display: isEditMode ? 'block' : 'none' }}>
+            {heroImageError}
+          </Error>
         )}
-        {/* {file && <div className="upload_btn_filename">{file.name}</div>} */}
-        {/* {file && <ProgressBar file={file} setFile={setFile} />} */}
-        {!heroImage && (
-          <OriginalHeroImage style={{ opacity: isEditMode ? '0.7' : '1' }} />
-        )}
-        {heroImage && (
-          <NewHeroImage
-            url={heroImage}
-            style={{ opacity: isEditMode ? '0.7' : '1' }}
-          />
-        )}
+        <HeroImage
+          style={{
+            backgroundImage: heroImage
+              ? `url(${heroImage})`
+              : 'linear-gradient(-45deg, #fcd856, #bdbbb1)',
+            opacity: isEditMode ? '0.7' : '1',
+            top: isEditMode ? '80px' : '0px',
+          }}
+        />
       </div>
     </>
   );
 };
-const NewHeroImage = styled(OriginalHeroImage)`
-  z-index: -1;
-  background-image: url(${(prop) => prop.url});
-`;
+
 export default HeroImageBlock;
