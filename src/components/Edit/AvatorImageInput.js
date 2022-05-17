@@ -2,15 +2,32 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
-import compressImage from '../../utils/imageCompress.js';
 import { useEditState } from '../contexts/EditContext.js';
+import compressImage from '../../utils/imageCompress.js';
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ChiefAvatorImage = styled.img`
+  height: 50vh;
+  width: 30vw;
+  aspect-ratio: 3/4;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  @media (max-width: 600px) {
+    width: 60vw;
+  }
+`;
 
 const InputBlock = styled.label`
-  z-index: 2;
-  position: absolute;
-  top: 50vh;
-  left: 40vw;
-  width: 20%;
+  position: relative;
+  top: -30vh;
+  min-width: 20%;
   min-height: 140px;
   border: 4px solid #8d92a5;
   border-radius: 40px;
@@ -34,8 +51,8 @@ const P = styled.p`
 `;
 
 const Error = styled.p`
-  position: absolute;
-  top: 40vh;
+  position: relative;
+  top: 18vh;
   right: 0;
   left: 0;
   margin: auto;
@@ -64,61 +81,47 @@ const icon = {
 const Input = styled.input`
   display: none;
 `;
-const PlaceHolder = styled.div`
-  width: 100vw;
-  height: 100vh;
-`;
 
-const HeroImage = styled.img`
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-`;
-
-const HeroImageBlock = () => {
-  const { isEditMode, heroImage, setHeroImage } = useEditState();
-  const [heroImageError, setHeroImageError] = useState('');
+const AvatorImageBlock = () => {
+  const { isEditMode, chiefAvator, setChiefAvator } = useEditState();
+  const [chiefAvatorError, setChiefAvatorError] = useState('');
   const fileInput = useRef();
   const handleImageUpload = async () => {
     const imageFile = fileInput.current.files[0];
     const imageFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
     if (imageFile && imageFileTypes.includes(imageFile.type)) {
-      setHeroImageError(null);
+      setChiefAvatorError(null);
     } else {
-      setHeroImageError('請選擇照片檔案(.jpeg 或 .png)');
+      setChiefAvatorError('請選擇照片檔案(.jpeg 或 .png)');
     }
     // compressedImage 為一Blob物件
     const compressedImage = await compressImage(imageFile, 1080);
     console.log(compressedImage);
     const compressedImageURL = URL.createObjectURL(compressedImage);
     //  compressedImageURL為一 blob+localhost開頭的url
-    setHeroImage(compressedImageURL);
+    setChiefAvator(compressedImageURL);
     // URL.revokeObjectURL(compressedImageURL);  加了會讓我無法呈現出來
   };
 
   return (
-    <>
-      <PlaceHolder id="upload_output">
-        {heroImageError && (
-          <Error style={{ display: isEditMode ? 'block' : 'none' }}>
-            {heroImageError}
-          </Error>
-        )}
-        <HeroImage
-          style={{
-            backgroundImage: heroImage
-              ? `url(${heroImage})`
-              : 'linear-gradient(-45deg, #fcd856, #bdbbb1)',
-            opacity: isEditMode ? '0.7' : '1',
-            top: isEditMode ? '80px' : '0px',
-          }}
-        />
-      </PlaceHolder>
+    <Wrapper>
+      {chiefAvatorError && (
+        <Error style={{ display: isEditMode ? 'block' : 'none' }}>
+          {chiefAvatorError}
+        </Error>
+      )}
+      <ChiefAvatorImage
+        style={{
+          backgroundImage: chiefAvator
+            ? `url(${chiefAvator})`
+            : 'linear-gradient(-45deg, #fcd856, #bdbbb1)',
+          opacity: isEditMode ? '0.7' : '1',
+          // top: isEditMode ? '80px' : '0px',
+        }}
+      />
+
       <InputBlock style={{ display: isEditMode ? 'block' : 'none' }}>
-        {heroImage ? <P>選擇其他圖片</P> : <P>點選以新增圖片</P>}
+        {chiefAvator ? <P>選擇其他圖片</P> : <P>點選以新增圖片</P>}
         <IconContainer>
           <FontAwesomeIcon icon={solid('plus')} style={icon} />
         </IconContainer>
@@ -130,8 +133,8 @@ const HeroImageBlock = () => {
           onChange={handleImageUpload}
         />
       </InputBlock>
-    </>
+    </Wrapper>
   );
 };
 
-export default HeroImageBlock;
+export default AvatorImageBlock;

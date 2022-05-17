@@ -37,13 +37,34 @@ export const EditContextProvider = ({ children }) => {
       },
     });
   };
+
+  const setChiefName = (chiefName) => {
+    dispatch({
+      type: 'SET_CHIEF_NAME',
+      payload: {
+        chiefName,
+      },
+    });
+  };
+  const setChiefInfo = (chiefInfo) => {
+    dispatch({
+      type: 'SET_CHIEF_INFO',
+      payload: {
+        chiefInfo,
+      },
+    });
+  };
   const value = {
     isEditMode: state.isEditMode,
     heroImage: state.heroImage,
     chiefAvator: state.chiefAvator,
+    chiefName: state.chiefName,
+    chiefInfo: state.chiefInfo,
     toggleEditMode,
     setHeroImage,
     setChiefAvator,
+    setChiefName,
+    setChiefInfo,
   };
 
   return <EditContext.Provider value={value}>{children}</EditContext.Provider>;

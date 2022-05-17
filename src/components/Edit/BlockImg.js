@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ImgArea = styled.div`
-  margin: 3vh 5vw;
+  margin-top: 3vh;
   height: 70vh;
   width: 35vw;
   display: block;

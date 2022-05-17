@@ -3,7 +3,7 @@ import BlockImg from '../components/Edit/BlockImg.js';
 import BlockInfo from '../components/Edit/BlockInfo.js';
 import BlockMain from '../components/Edit/BlockMain.js';
 import BlockTitle from '../components/Edit/BlockTitle.js';
-import SingleImageBlock from '../components/Edit/SingleImageInput.js';
+import VillageImageBlock from '../components/Edit/VillageImageInput.js';
 
 export default function VillageIntroBlock() {
   return (
@@ -12,7 +12,7 @@ export default function VillageIntroBlock() {
       <BlockMain>
         <BlockInfo />
         <BlockImg>
-          <SingleImageBlock />
+          <VillageImageBlock />
         </BlockImg>
       </BlockMain>
     </>

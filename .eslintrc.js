@@ -49,6 +49,7 @@ module.exports = {
       {
         ignoreDOMComponents: true,
         allowFunctions: true,
+        allowArrowFunctions: true,
       },
     ],
   },

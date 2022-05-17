@@ -37,7 +37,7 @@ const Button = styled.button`
 `;
 
 const Header = () => {
-  const { currentUser, logout } = useAuthState();
+  const { currentUid, logout } = useAuthState();
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
@@ -54,7 +54,7 @@ const Header = () => {
           NEIGHBoURHooD
         </Title>
         <div>
-          {currentUser ? (
+          {currentUid ? (
             // eslint-disable-next-line react/jsx-no-bind
             <Button onClick={handleLogout}>登出</Button>
           ) : (

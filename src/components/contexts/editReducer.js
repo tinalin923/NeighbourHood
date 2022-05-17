@@ -20,9 +20,9 @@ const editReducer = (state, action) => {
     case 'SET_CHIEF_AVATOR':
       return { ...state, chiefAvator: payload.chiefAvator };
     case 'SET_CHIEF_NAME':
-      return { ...state, isEditMode: !payload };
+      return { ...state, chiefName: payload.chiefName };
     case 'SET_CHIEF_INFO':
-      return { ...state, isEditMode: !payload };
+      return { ...state, chiefInfo: payload.chiefInfo };
     case 'SET_VILLAGE_IMAGE_LIST':
       return { ...state, isEditMode: !payload };
     case 'SET_VILLAGE_INFO':

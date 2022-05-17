@@ -3,7 +3,7 @@ import useFirestore from '../../hooks/useFirestore.js';
 
 const UploadImage = () => {
   const { docs } = useFirestore('covers');
-  console.log(docs[0]);
+  // console.log(docs[0]);
   return (
     <div>
       {

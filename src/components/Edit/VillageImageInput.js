@@ -81,7 +81,7 @@ const Input = styled.input`
   display: none;
 `;
 
-const SingleImageBlock = () => {
+const VillageImageBlock = () => {
   const { isEditMode, chiefAvator, setChiefAvator } = useEditState();
   const [chiefAvatorError, setChiefAvatorError] = useState('');
   const fileInput = useRef();
@@ -136,4 +136,4 @@ const SingleImageBlock = () => {
   );
 };
 
-export default SingleImageBlock;
+export default VillageImageBlock;
