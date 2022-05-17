@@ -8,6 +8,7 @@ import VillageImageBlock from '../components/Edit/VillageImageInput.js';
 export default function VillageIntroBlock() {
   return (
     <>
+      <div name="2" />
       <BlockTitle>村里介紹</BlockTitle>
       <BlockMain>
         <BlockInfo />

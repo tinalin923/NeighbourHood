@@ -54,17 +54,30 @@ export const EditContextProvider = ({ children }) => {
       },
     });
   };
+
+  const addScrollList = (id) => {
+    const newScrollList = state.scrollList.concat({ id, title: 'newBlock' });
+    console.log(newScrollList);
+    dispatch({
+      type: 'ADD_SCROLL_LIST',
+      payload: {
+        scrollList: newScrollList,
+      },
+    });
+  };
   const value = {
     isEditMode: state.isEditMode,
     heroImage: state.heroImage,
     chiefAvator: state.chiefAvator,
     chiefName: state.chiefName,
     chiefInfo: state.chiefInfo,
+    scrollList: state.scrollList,
     toggleEditMode,
     setHeroImage,
     setChiefAvator,
     setChiefName,
     setChiefInfo,
+    addScrollList,
   };
 
   return <EditContext.Provider value={value}>{children}</EditContext.Provider>;

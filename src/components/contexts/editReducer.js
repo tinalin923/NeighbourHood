@@ -6,7 +6,16 @@ export const initialEditState = {
   chiefInfo: '',
   villageImageList: [],
   villageInfo: '',
-  blockList: [],
+  blockList: [
+    { id: '0', title: '' },
+    { id: '1', title: 'chiefIntro' },
+    { id: '2', title: 'villageIntro' },
+  ],
+  scrollList: [
+    { id: '0', title: '平安里' },
+    { id: '1', title: '里長介紹' },
+    { id: '2', title: '村里介紹' },
+  ],
 };
 
 const editReducer = (state, action) => {
@@ -31,6 +40,8 @@ const editReducer = (state, action) => {
       return { ...state, isEditMode: !payload };
     case 'DELETE_BLOCK_LIST':
       return { ...state, isEditMode: !payload };
+    case 'ADD_SCROLL_LIST':
+      return { ...state, scrollList: payload.scrollList };
     default:
       throw new Error(`No case for type ${type} found in editRedcer`);
   }

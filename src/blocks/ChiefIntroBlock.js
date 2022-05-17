@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useEditState } from '../components/contexts/EditContext.js';
 import BlockImg from '../components/Edit/BlockImg.js';
@@ -29,13 +29,13 @@ export default function ChiefIntroBlock() {
 
   return (
     <>
+      <div name="1" />
       <BlockTitle>里長介紹</BlockTitle>
       <BlockMain>
         <BlockImg>
           <AvatorImageBlock />
           <Name
             type="text"
-            // ref={nameRef}
             placeholder="里長姓名"
             value={chiefName}
             style={{
@@ -44,7 +44,6 @@ export default function ChiefIntroBlock() {
             }}
             readOnly={!isEditMode}
             onChange={(e) => setChiefName(e.target.value)}
-            // onBlur={blurHandle}
           />
         </BlockImg>
         <BlockInfo />

@@ -1,6 +1,6 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import compressImage from '../utils/imageCompress.js';
 import { useEditState } from '../components/contexts/EditContext.js';
@@ -90,11 +90,13 @@ const Title = styled.h1`
 const HeroImageBlock = () => {
   const [villageName, setVillageName] = useState();
   const { currentUid } = useAuthState();
-  const getVillageName = async () => {
-    const vName = await getFirestoreData(currentUid);
-    setVillageName(vName);
-  };
-  getVillageName();
+  useEffect(() => {
+    const getVillageName = async () => {
+      const vName = await getFirestoreData(currentUid);
+      setVillageName(vName);
+    };
+    getVillageName();
+  }, [currentUid]);
 
   const { isEditMode, heroImage, setHeroImage } = useEditState();
   const [heroImageError, setHeroImageError] = useState('');
@@ -125,6 +127,7 @@ const HeroImageBlock = () => {
           </Error>
         )}
         <HeroImage
+          name="0"
           style={{
             backgroundImage: heroImage
               ? `url(${heroImage})`
