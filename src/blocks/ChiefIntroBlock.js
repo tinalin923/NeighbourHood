@@ -2,11 +2,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useEditState } from '../components/contexts/EditContext.js';
-import BlockImg from '../components/Edit/BlockImg.js';
-import BlockInfo from '../components/Edit/BlockInfo.js';
-import BlockMain from '../components/Edit/BlockMain.js';
-import BlockTitle from '../components/Edit/BlockTitle.js';
 import AvatorImageBlock from '../components/Edit/AvatorImageInput.js';
+import TextInfo from '../components/Edit/TextInfo.js';
+import { Title, Main, ImgArea } from '../styles/styledComponents/block.js';
 
 const Name = styled.input`
   margin-top: 10px;
@@ -28,11 +26,10 @@ export default function ChiefIntroBlock() {
   // };
 
   return (
-    <>
-      <div name="1" />
-      <BlockTitle>里長介紹</BlockTitle>
-      <BlockMain>
-        <BlockImg>
+    <div name="1">
+      <Title>里長介紹</Title>
+      <Main>
+        <ImgArea>
           <AvatorImageBlock />
           <Name
             type="text"
@@ -45,9 +42,10 @@ export default function ChiefIntroBlock() {
             readOnly={!isEditMode}
             onChange={(e) => setChiefName(e.target.value)}
           />
-        </BlockImg>
-        <BlockInfo />
-      </BlockMain>
-    </>
+        </ImgArea>
+        <TextInfo />
+        {/* <TextInfo  placeholder={}, width, height, value, setValue/> */}
+      </Main>
+    </div>
   );
 }

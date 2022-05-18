@@ -1,11 +1,12 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link as RouteLink, useNavigate } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import Background from '../assets/images/toa-heftiba-nrSzRUWqmoI-unsplash.jpg';
 import { useAuthState } from '../components/contexts/AuthContext.js';
 import Header from '../components/Header/Header.js';
+import { Button } from '../styles/styledComponents/button.js';
 
 const GlobalStyle = createGlobalStyle`
   html, body {
@@ -51,24 +52,6 @@ const icon = {
 const Err = styled.div`
   color: red;
   font-weight: bold;
-`;
-
-const Button = styled.button`
-  margin-top: 25px;
-  width: 300px;
-  border-radius: 25px;
-  height: 53px;
-  padding: 10px;
-  border: none;
-  outline: none;
-  background: #fcd856;
-  opacity: 0.9;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  :hover {
-    opacity: 1;
-  }
 `;
 
 const P = styled.p`
@@ -133,7 +116,7 @@ const Signup = () => {
         <Button type="submit" onClick={handleSubmit} disabled={signupLoading}>
           註冊
         </Button>
-        <P as={Link} to="/login">
+        <P as={RouteLink} to="/login">
           已經有帳戶？前往登入
         </P>
       </Form>

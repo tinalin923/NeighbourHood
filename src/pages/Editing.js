@@ -6,6 +6,7 @@ import Header from '../components/Header/Header.js';
 import ChiefIntroBlock from '../blocks/ChiefIntroBlock.js';
 import VillageIntroBlock from '../blocks/VillageIntroBlock.js';
 import ScrollList from '../components/Edit/ScrollList.js';
+import EventBlock from '../components/Edit/EventBlock.js';
 
 const Editing = () => (
   <>
@@ -15,6 +16,7 @@ const Editing = () => (
     <Switch />
     <ChiefIntroBlock />
     <VillageIntroBlock name="2" />
+    <EventBlock />
     <hr />
     <Btn />
   </>

@@ -8,7 +8,7 @@ import Landing from './pages/Landing.js';
 import Login from './pages/Login.js';
 import Preview from './pages/Preview.js';
 import Signup from './pages/Signup.js';
-import './styles/style.scss';
+import './styles/scss/style.scss';
 
 const App = () => (
   <Router>

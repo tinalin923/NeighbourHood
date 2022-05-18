@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { Button } from '../styles/styledComponents/button.js';
 
 import { useAuthState } from '../components/contexts/AuthContext.js';
 import Header from '../components/Header/Header.js';
@@ -52,24 +53,6 @@ const icon = {
 const Err = styled.div`
   color: red;
   font-weight: bold;
-`;
-
-const Button = styled.button`
-  margin-top: 25px;
-  width: 300px;
-  border-radius: 25px;
-  height: 53px;
-  padding: 10px;
-  border: none;
-  outline: none;
-  background: #fcd856;
-  opacity: 0.9;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  :hover {
-    opacity: 1;
-  }
 `;
 
 const Login = () => {

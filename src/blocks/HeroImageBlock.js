@@ -99,7 +99,7 @@ const HeroImageBlock = () => {
   }, [currentUid]);
 
   const { isEditMode, heroImage, setHeroImage } = useEditState();
-  const [heroImageError, setHeroImageError] = useState('');
+  const [heroImageError, setHeroImageError] = useState(null);
   const fileInput = useRef();
   const handleImageUpload = async () => {
     const imageFile = fileInput.current.files[0];

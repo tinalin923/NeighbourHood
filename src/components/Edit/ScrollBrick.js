@@ -2,12 +2,23 @@
 import React from 'react';
 import { Link } from 'react-scroll';
 import styled from 'styled-components';
+import { useEditState } from '../contexts/EditContext.js';
 
 const Brick = styled.div`
   display: flex;
   margin: 5px 0px;
+  cursor: pointer;
   :hover :nth-child(1) {
     border: 2px solid #363945;
+  }
+  :hover :nth-child(2) {
+    opacity: 0.9;
+  }
+  &.active {
+    div:nth-of-type(odd) {
+      border: 2px solid #fcd856;
+      background-color: #fcd856;
+    }
   }
 `;
 
@@ -20,16 +31,22 @@ const BrickIcon = styled.div`
 
 const BrickText = styled.div`
   width: 60px;
-  font-size: 10px;
+  font-size: 0.7rem;
   color: #363945;
   opacity: 0;
-  :hover {
-    opacity: 0.9;
-  }
 `;
 export default function ScrollBrick({ to, title }) {
+  const { isEditMode } = useEditState();
   return (
-    <Brick as={Link} to={to} spy smooth duration={500}>
+    <Brick
+      as={Link}
+      to={to}
+      spy
+      smooth
+      duration={400}
+      offset={isEditMode ? -60 : 0}
+      isDynamic
+    >
       <BrickIcon />
       <BrickText>&nbsp;&nbsp;{title}</BrickText>
     </Brick>
