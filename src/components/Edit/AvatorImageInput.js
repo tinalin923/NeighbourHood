@@ -84,7 +84,8 @@ const Input = styled.input`
 
 const AvatorImageBlock = () => {
   const { isEditMode, chiefAvator, setChiefAvator } = useEditState();
-  const [chiefAvatorError, setChiefAvatorError] = useState('');
+  const [temporaryChiefAvator, setTemporaryChiefAvator] = useState(chiefAvator);
+  const [chiefAvatorError, setChiefAvatorError] = useState(null);
   const fileInput = useRef();
   const handleImageUpload = async () => {
     const imageFile = fileInput.current.files[0];
@@ -96,11 +97,12 @@ const AvatorImageBlock = () => {
     }
     // compressedImage 為一Blob物件
     const compressedImage = await compressImage(imageFile, 1080);
-    console.log(compressedImage);
+    console.log(compressedImage.name);
+    setChiefAvator(compressedImage);
+
     const compressedImageURL = URL.createObjectURL(compressedImage);
     //  compressedImageURL為一 blob+localhost開頭的url
-    setChiefAvator(compressedImageURL);
-    // URL.revokeObjectURL(compressedImageURL);  加了會讓我無法呈現出來
+    setTemporaryChiefAvator(compressedImageURL);
   };
 
   return (
@@ -112,8 +114,8 @@ const AvatorImageBlock = () => {
       )}
       <ChiefAvatorImage
         style={{
-          backgroundImage: chiefAvator
-            ? `url(${chiefAvator})`
+          backgroundImage: temporaryChiefAvator
+            ? `url(${temporaryChiefAvator})`
             : 'linear-gradient(-45deg, #fcd856, #bdbbb1)',
           opacity: isEditMode ? '0.7' : '1',
           // top: isEditMode ? '80px' : '0px',
@@ -121,7 +123,7 @@ const AvatorImageBlock = () => {
       />
 
       <InputBlock style={{ display: isEditMode ? 'block' : 'none' }}>
-        {chiefAvator ? <P>選擇其他圖片</P> : <P>點選以新增圖片</P>}
+        {temporaryChiefAvator ? <P>選擇其他圖片</P> : <P>點選以新增圖片</P>}
         <IconContainer>
           <FontAwesomeIcon icon={solid('plus')} style={icon} />
         </IconContainer>

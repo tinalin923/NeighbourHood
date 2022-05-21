@@ -10,7 +10,7 @@ export const Button = styled.button`
   border: none;
   outline: none;
   background: ${primaryYellow};
-  opacity: 0.9;
+  opacity: 0.7;
   color: white;
   font-weight: bold;
   cursor: pointer;

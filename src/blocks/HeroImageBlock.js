@@ -1,11 +1,12 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import compressImage from '../utils/imageCompress.js';
-import { useEditState } from '../components/contexts/EditContext.js';
-import getFirestoreData from '../hooks/getFirestoreData.js';
 import { useAuthState } from '../components/contexts/AuthContext.js';
+import { useEditState } from '../components/contexts/EditContext.js';
+import { getFirestoreData } from '../hooks/firebase/useFirestoreData.js';
+import { getStorageImages } from '../hooks/firebase/useStorageData.js';
+import compressImage from '../utils/imageCompress.js';
 
 const InputBlock = styled.label`
   z-index: 2;
@@ -90,16 +91,26 @@ const Title = styled.h1`
 const HeroImageBlock = () => {
   const [villageName, setVillageName] = useState();
   const { currentUid } = useAuthState();
-  useEffect(() => {
-    const getVillageName = async () => {
-      const vName = await getFirestoreData(currentUid);
-      setVillageName(vName);
-    };
-    getVillageName();
-  }, [currentUid]);
-
   const { isEditMode, heroImage, setHeroImage } = useEditState();
+  const [temporaryHeroImageUrl, setTemporaryHeroImageUrl] = useState(heroImage);
+  console.log(currentUid); // 為何我修改其他區塊 這邊會一直被觸發
+
+  useEffect(() => {
+    async function getVillageNameandHero() {
+      const userDatas = await getFirestoreData(currentUid);
+      setVillageName(userDatas.village);
+
+      if (!(heroImage instanceof Blob) && heroImage) {
+        getStorageImages(heroImage).then((storedUrl) => {
+          setTemporaryHeroImageUrl(storedUrl);
+        });
+      }
+    }
+    getVillageNameandHero();
+  }, [currentUid, heroImage]);
+
   const [heroImageError, setHeroImageError] = useState(null);
+
   const fileInput = useRef();
   const handleImageUpload = async () => {
     const imageFile = fileInput.current.files[0];
@@ -111,10 +122,12 @@ const HeroImageBlock = () => {
     }
     // compressedImage 為一Blob物件
     const compressedImage = await compressImage(imageFile, 1080);
-    console.log(compressedImage);
+    // 要上傳到firestorage需要blob檔
+    setHeroImage(compressedImage);
+    // 將blob檔轉為blob url, 做即時呈現
     const compressedImageURL = URL.createObjectURL(compressedImage);
     //  compressedImageURL為一 blob+localhost開頭的url
-    setHeroImage(compressedImageURL);
+    setTemporaryHeroImageUrl(compressedImageURL);
     // URL.revokeObjectURL(compressedImageURL);  加了會讓我無法呈現出來
   };
 
@@ -129,8 +142,8 @@ const HeroImageBlock = () => {
         <HeroImage
           name="0"
           style={{
-            backgroundImage: heroImage
-              ? `url(${heroImage})`
+            backgroundImage: temporaryHeroImageUrl
+              ? `url(${temporaryHeroImageUrl})`
               : 'linear-gradient(-45deg, #fcd856, #bdbbb1)',
             opacity: isEditMode ? '0.7' : '1',
             top: isEditMode ? '80px' : '0px',
@@ -139,7 +152,7 @@ const HeroImageBlock = () => {
       </PlaceHolder>
       <Title style={{ top: isEditMode ? '51%' : '50%' }}>{villageName}</Title>
       <InputBlock style={{ display: isEditMode ? 'block' : 'none' }}>
-        {heroImage ? <P>選擇其他圖片</P> : <P>點選以新增圖片</P>}
+        {temporaryHeroImageUrl ? <P>選擇其他圖片</P> : <P>點選以新增圖片</P>}
         <IconContainer>
           <FontAwesomeIcon icon={solid('plus')} style={icon} />
         </IconContainer>
@@ -147,8 +160,7 @@ const HeroImageBlock = () => {
           ref={fileInput}
           type="file"
           accept=".jpg, .png, .jpeg"
-          // eslint-disable-next-line react/jsx-no-bind
-          onChange={handleImageUpload}
+          onChange={() => handleImageUpload()}
         />
       </InputBlock>
     </>

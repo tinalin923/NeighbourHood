@@ -2,7 +2,6 @@
 import React from 'react';
 import { Link } from 'react-scroll';
 import styled from 'styled-components';
-import { useEditState } from '../contexts/EditContext.js';
 
 const Brick = styled.div`
   display: flex;
@@ -12,10 +11,10 @@ const Brick = styled.div`
     border: 2px solid #363945;
   }
   :hover :nth-child(2) {
-    opacity: 0.9;
+    opacity: 1;
   }
   &.active {
-    div:nth-of-type(odd) {
+    div:nth-of-type(1) {
       border: 2px solid #fcd856;
       background-color: #fcd856;
     }
@@ -36,17 +35,8 @@ const BrickText = styled.div`
   opacity: 0;
 `;
 export default function ScrollBrick({ to, title }) {
-  const { isEditMode } = useEditState();
   return (
-    <Brick
-      as={Link}
-      to={to}
-      spy
-      smooth
-      duration={400}
-      offset={isEditMode ? -60 : 0}
-      isDynamic
-    >
+    <Brick as={Link} to={to} spy smooth duration={400} isDynamic>
       <BrickIcon />
       <BrickText>&nbsp;&nbsp;{title}</BrickText>
     </Brick>

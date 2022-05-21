@@ -12,7 +12,7 @@ import React, {
   useState,
 } from 'react';
 import { auth } from '../../firebase/firebaseConfig.js';
-import createUserData from '../../firebase/firestore/user.js';
+import createInitialUserDatas from '../../hooks/firebase/user.js';
 
 export const AuthContext = createContext();
 export const useAuthState = () => useContext(AuthContext);
@@ -23,13 +23,15 @@ export const AuthContextProvider = ({ children }) => {
   const [load, setLoad] = useState(true);
 
   const signup = async (email, password, villageName) => {
+    // write into firebase auth
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
     const { uid } = userCredential.user;
-    return createUserData(uid, email, villageName);
+    // write into firestore
+    return createInitialUserDatas(uid, email, villageName);
   };
 
   const login = (email, password) =>

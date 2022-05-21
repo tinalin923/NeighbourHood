@@ -7,6 +7,8 @@ import Background from '../assets/images/toa-heftiba-nrSzRUWqmoI-unsplash.jpg';
 import { useAuthState } from '../components/contexts/AuthContext.js';
 import Header from '../components/Header/Header.js';
 import { Button } from '../styles/styledComponents/button.js';
+import { getFirestoreData } from '../hooks/firebase/useFirestoreData.js';
+import { useEditState } from '../components/contexts/EditContext.js';
 
 const GlobalStyle = createGlobalStyle`
   html, body {
@@ -72,7 +74,7 @@ const Signup = () => {
   const emailRef = useRef('');
   const passwordRef = useRef('');
   const { signup } = useAuthState();
-
+  const { setScrollList } = useEditState();
   async function handleSubmit() {
     setSignupLoading(true);
     setSignError('');
@@ -83,7 +85,11 @@ const Signup = () => {
         villageRef.current.value
       );
       console.log(userCredential);
-      navigate('/login');
+      // const currentUid = userCredential.user.uid;
+      const storedUserDatas = await getFirestoreData(userCredential);
+      console.log(storedUserDatas.scrollList);
+      setScrollList(storedUserDatas.scrollList);
+      navigate('/editing');
     } catch (err) {
       console.log(err);
       setSignError(err.message);
