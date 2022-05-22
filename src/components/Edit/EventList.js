@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
-import { useEditState } from '../contexts/EditContext.js';
 import {
   primaryYellow,
   secondaryGray,
 } from '../../styles/styledComponents/color.js';
+import { useEditState } from '../contexts/EditContext.js';
 
 export default function EventBlock() {
   const containerVariants = {
@@ -62,35 +62,27 @@ export default function EventBlock() {
       },
     },
   };
-  // const Datas = [
-  //   { id: 1, title: '垃圾車時間', details: '明天下午五點才會來' },
-  //   {
-  //     id: 2,
-  //     title: '捐血活動',
-  //     details:
-  //       '在永康公園前的空地，欲參加者，請勿熬夜，並記得攜帶健保卡，感謝配合。',
-  //   },
-  //   {
-  //     id: 3,
-  //     title: '公益音樂會',
-  //     details:
-  //       '將於晚上六點開始，地點在大安森林公園看臺，疫情期間請盡量保持安全距離，並戴好口罩。',
-  //   },
-  // ];
 
   const { announceList } = useEditState();
 
   const [activeItem, setActiveItem] = useState(0);
   const handleClick = (id) => {
     if (id === activeItem) {
-      setActiveItem(0);
+      setActiveItem(null);
     } else {
       setActiveItem(id);
     }
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', width: '85%' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '85%',
+        height: 'auto',
+      }}
+    >
       {announceList.map(({ id, title, picture, details }) => (
         <motion.button
           variants={containerVariants}

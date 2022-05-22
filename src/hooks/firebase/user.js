@@ -14,6 +14,7 @@ const createInitialUserDatas = async (uid, email, villageName) => {
       { id: '2', title: '村里介紹' },
       { id: '3', title: '公佈欄' },
     ],
+    announceList: [],
   };
   await setDoc(doc(db, 'users', uid), initialUserDatas);
   return uid;

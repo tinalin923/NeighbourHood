@@ -77,7 +77,7 @@ const Login = () => {
     setChiefInfo,
     setHeroImage,
     setChiefAvator,
-    // setScrollList,
+    setScrollList,
     addAnnounceList,
   } = useEditState();
 
@@ -92,7 +92,7 @@ const Login = () => {
       const currentUid = userCredential.user.uid;
       const storedUserDatas = await getFirestoreData(currentUid);
       console.log(storedUserDatas.scrollList);
-      // setScrollList(storedUserDatas.scrollList);
+      setScrollList(storedUserDatas.scrollList);
 
       if (storedUserDatas.published) {
         setChiefName(storedUserDatas.chiefName);

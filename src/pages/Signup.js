@@ -79,14 +79,14 @@ const Signup = () => {
     setSignupLoading(true);
     setSignError('');
     try {
-      const userCredential = await signup(
+      const userId = await signup(
         emailRef.current.value,
         passwordRef.current.value,
         villageRef.current.value
       );
-      console.log(userCredential);
+      console.log(userId);
       // const currentUid = userCredential.user.uid;
-      const storedUserDatas = await getFirestoreData(userCredential);
+      const storedUserDatas = await getFirestoreData(userId);
       console.log(storedUserDatas.scrollList);
       setScrollList(storedUserDatas.scrollList);
       navigate('/editing');
