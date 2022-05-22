@@ -14,7 +14,15 @@ const createInitialUserDatas = async (uid, email, villageName) => {
       { id: '2', title: '村里介紹' },
       { id: '3', title: '公佈欄' },
     ],
-    announceList: [],
+    announceList: [
+      {
+        id: '0',
+        title: '打疫苗',
+        picture: '',
+        details:
+          '今天在活動中心可以打默德納疫苗，第三劑以內，皆可領取一袋衛生紙。',
+      },
+    ],
   };
   await setDoc(doc(db, 'users', uid), initialUserDatas);
   return uid;

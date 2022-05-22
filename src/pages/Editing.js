@@ -4,7 +4,7 @@ import ChiefIntroBlock from '../blocks/ChiefIntroBlock.js';
 import HeroImageBlock from '../blocks/HeroImageBlock.js';
 import VillageIntroBlock from '../blocks/VillageIntroBlock.js';
 import { useEditState } from '../components/contexts/EditContext.js';
-import Btn from '../components/Edit/Addblock.js';
+// import Btn from '../components/Edit/Addblock.js';
 import ScrollList from '../components/Edit/ScrollList.js';
 import Switch from '../components/Edit/Switch.js';
 import Header from '../components/Header/Header.js';
@@ -24,8 +24,8 @@ const Editing = () => {
       <BulletinBlock />
       {isEditMode && <EditBullitinBlock />}
       <hr />
-      <Btn />
-      <UploadBtn />
+      {/* <Btn /> */}
+      {isEditMode && <UploadBtn />}
     </>
   );
 };

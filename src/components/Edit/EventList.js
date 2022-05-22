@@ -1,3 +1,5 @@
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import {
@@ -5,6 +7,15 @@ import {
   secondaryGray,
 } from '../../styles/styledComponents/color.js';
 import { useEditState } from '../contexts/EditContext.js';
+
+const icon = {
+  position: 'relative',
+  right: '0',
+  color: '#939393',
+  '&:hover': {
+    color: '#535353',
+  },
+};
 
 export default function EventBlock() {
   const containerVariants = {
@@ -62,9 +73,7 @@ export default function EventBlock() {
       },
     },
   };
-
-  const { announceList } = useEditState();
-
+  const { isEditMode, announceList, deleteAnnounceList } = useEditState();
   const [activeItem, setActiveItem] = useState(0);
   const handleClick = (id) => {
     if (id === activeItem) {
@@ -84,37 +93,70 @@ export default function EventBlock() {
       }}
     >
       {announceList.map(({ id, title, picture, details }) => (
-        <motion.button
-          variants={containerVariants}
-          animate={activeItem === id ? 'visible' : 'hidden'}
-          whileHover={{
-            background: `${primaryYellow}`,
-            transition: { duration: 0.1 },
-          }}
+        <div
           style={{
-            margin: '15px 0px',
-            outline: 'none',
-            border: 'none',
-            borderRadius: '10px',
-            padding: '10px 30px',
-            background: `${secondaryGray}`,
-            fontSize: '1.5rem',
-            color: '#ffffff',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
           }}
-          type="button"
-          onClick={() => handleClick(id)}
-          key={id}
         >
-          <div style={{ padding: '10px 0px' }}>{title}</div>
-          <motion.div
-            variants={eventVariants}
+          <motion.button
+            variants={containerVariants}
             animate={activeItem === id ? 'visible' : 'hidden'}
-            style={{ textAlign: 'left', color: '#000' }}
+            whileHover={{
+              background: `${primaryYellow}`,
+              transition: { duration: 0.1 },
+            }}
+            style={{
+              margin: '15px 0px',
+              outline: 'none',
+              border: 'none',
+              borderRadius: '10px',
+              padding: '10px 30px',
+              background: `${secondaryGray}`,
+              fontSize: '1.5rem',
+              color: '#ffffff',
+              flex: 'auto',
+            }}
+            type="button"
+            onClick={() => handleClick(id)}
+            key={id}
           >
-            {picture} <br />
-            {details}
-          </motion.div>
-        </motion.button>
+            <div
+              style={{
+                padding: '10px 0px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <div />
+              <div>{title}</div>
+            </div>
+            <motion.div
+              variants={eventVariants}
+              animate={activeItem === id ? 'visible' : 'hidden'}
+              style={{ textAlign: 'left', color: '#000' }}
+            >
+              {picture} <br />
+              {details}
+            </motion.div>
+          </motion.button>
+          <button
+            type="button"
+            onClick={() => deleteAnnounceList(id)}
+            style={{
+              outline: 'none',
+              border: 'none',
+              width: '30px',
+              height: '30px',
+              background: 'none',
+              display: isEditMode ? 'block' : 'none',
+            }}
+          >
+            <FontAwesomeIcon icon={solid('trash')} style={icon} />
+          </button>
+        </div>
       ))}
     </div>
   );

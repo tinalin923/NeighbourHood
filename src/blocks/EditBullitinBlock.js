@@ -42,7 +42,7 @@ export default function EditBullitinBlock() {
           <SecondaryBtn
             disabled={announceTitle === ''}
             type="button"
-            onClick={handleClick}
+            onClick={() => handleClick()}
           >
             點擊新增公告
           </SecondaryBtn>

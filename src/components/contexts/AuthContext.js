@@ -13,6 +13,7 @@ import React, {
 } from 'react';
 import { auth } from '../../firebase/firebaseConfig.js';
 import createInitialUserDatas from '../../hooks/firebase/user.js';
+import { useEditState } from './EditContext.js';
 
 export const AuthContext = createContext();
 export const useAuthState = () => useContext(AuthContext);
@@ -21,6 +22,7 @@ export const useAuthState = () => useContext(AuthContext);
 export const AuthContextProvider = ({ children }) => {
   const [currentUid, setCurrentUid] = useState();
   const [load, setLoad] = useState(true);
+  const { getUserDatas } = useEditState();
 
   const signup = async (email, password, villageName) => {
     // write into firebase auth
@@ -43,7 +45,9 @@ export const AuthContextProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid } = user;
+        getUserDatas(uid);
         setCurrentUid(uid);
+        console.log('get firebase');
         setLoad(false);
       } else {
         setCurrentUid(null);
@@ -52,7 +56,8 @@ export const AuthContextProvider = ({ children }) => {
       }
     });
     return unsubscribe;
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // 不懂為何會建議我要放setUserDatas；如果都不放[]，則會一直get firebase
 
   const value = useMemo(
     () => ({

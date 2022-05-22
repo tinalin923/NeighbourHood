@@ -12,8 +12,8 @@ import './styles/scss/style.scss';
 
 const App = () => (
   <Router>
-    <AuthContextProvider>
-      <EditContextProvider>
+    <EditContextProvider>
+      <AuthContextProvider>
         <Routes>
           <Route index element={<Landing />} />
           <Route
@@ -29,8 +29,8 @@ const App = () => (
           <Route path="signup" element={<Signup />} />
           <Route path="*" element={<p>There is nothing here: 404!</p>} />
         </Routes>
-      </EditContextProvider>
-    </AuthContextProvider>
+      </AuthContextProvider>
+    </EditContextProvider>
   </Router>
 );
 

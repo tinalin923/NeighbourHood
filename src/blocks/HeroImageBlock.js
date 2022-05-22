@@ -27,7 +27,6 @@ const InputBlock = styled.label`
     color: white;
   }
 `;
-
 const P = styled.p`
   margin-top: 20px;
   padding: 10px;
@@ -35,7 +34,6 @@ const P = styled.p`
   font-weight: bold;
   color: #8d92a5;
 `;
-
 const Error = styled.p`
   position: absolute;
   top: 40vh;
@@ -46,7 +44,6 @@ const Error = styled.p`
   text-align: center;
   color: red;
 `;
-
 const IconContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -58,12 +55,10 @@ const IconContainer = styled.div`
   background-color: white;
   opacity: 0.5;
 `;
-
 const icon = {
   position: 'relative',
   opacity: '0.8',
 };
-
 const Input = styled.input`
   display: none;
 `;
@@ -71,7 +66,6 @@ const PlaceHolder = styled.div`
   width: 100vw;
   height: 100vh;
 `;
-
 const HeroImage = styled.img`
   position: absolute;
   width: 100vw;
@@ -121,7 +115,7 @@ const HeroImageBlock = () => {
       setHeroImageError('請選擇照片檔案(.jpeg 或 .png)');
     }
     // compressedImage 為一Blob物件
-    const compressedImage = await compressImage(imageFile, 1080);
+    const compressedImage = await compressImage(imageFile, 1960);
     // 要上傳到firestorage需要blob檔
     setHeroImage(compressedImage);
     // 將blob檔轉為blob url, 做即時呈現

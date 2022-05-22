@@ -1,9 +1,10 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useEditState } from '../contexts/EditContext.js';
 import compressImage from '../../utils/imageCompress.js';
+import { getStorageImages } from '../../hooks/firebase/useStorageData.js';
 
 const Wrapper = styled.div`
   display: flex;
@@ -82,11 +83,26 @@ const Input = styled.input`
   display: none;
 `;
 
-const AvatorImageBlock = () => {
+const AvatorImageInput = () => {
   const { isEditMode, chiefAvator, setChiefAvator } = useEditState();
   const [temporaryChiefAvator, setTemporaryChiefAvator] = useState(chiefAvator);
   const [chiefAvatorError, setChiefAvatorError] = useState(null);
   const fileInput = useRef();
+
+  useEffect(() => {
+    async function getChiefAvatorImage() {
+      // const userDatas = await getFirestoreData(currentUid);
+      // setVillageName(userDatas.village);
+
+      if (!(chiefAvator instanceof Blob) && chiefAvator) {
+        getStorageImages(chiefAvator).then((storedUrl) => {
+          setTemporaryChiefAvator(storedUrl);
+        });
+      }
+    }
+    getChiefAvatorImage();
+  }, [chiefAvator]);
+
   const handleImageUpload = async () => {
     const imageFile = fileInput.current.files[0];
     const imageFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
@@ -96,7 +112,7 @@ const AvatorImageBlock = () => {
       setChiefAvatorError('請選擇照片檔案(.jpeg 或 .png)');
     }
     // compressedImage 為一Blob物件
-    const compressedImage = await compressImage(imageFile, 1080);
+    const compressedImage = await compressImage(imageFile, 1280);
     console.log(compressedImage.name);
     setChiefAvator(compressedImage);
 
@@ -139,4 +155,4 @@ const AvatorImageBlock = () => {
   );
 };
 
-export default AvatorImageBlock;
+export default AvatorImageInput;

@@ -1,6 +1,8 @@
+/* eslint-disable function-paren-newline */
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, { createContext, useContext, useReducer } from 'react';
 import editReducer, { initialEditState } from './editReducer.js';
+import { getFirestoreData } from '../../hooks/firebase/useFirestoreData.js';
 
 const EditContext = createContext(initialEditState);
 export const useEditState = () => useContext(EditContext);
@@ -8,6 +10,7 @@ export const useEditState = () => useContext(EditContext);
 // eslint-disable-next-line react/prop-types
 export const EditContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(editReducer, initialEditState);
+
   const toggleEditMode = () => {
     const editMode = !state.isEditMode;
 
@@ -76,9 +79,27 @@ export const EditContextProvider = ({ children }) => {
       },
     });
   };
-  const addAnnounceList = (id, title, details) => {
-    const newAnnounceList = state.announceList.concat({ id, title, details });
-    console.log(newAnnounceList);
+
+  const setAnnounceList = (array) => {
+    let newAnnounceList = [];
+    array.forEach(({ id, title, details }) => {
+      newAnnounceList = newAnnounceList.concat({ id, title, details });
+    });
+    dispatch({
+      type: 'SET_ANNOUNCE_LIST',
+      payload: {
+        announceList: newAnnounceList,
+      },
+    });
+  };
+
+  const addAnnounceList = (id, title, picture, details) => {
+    const newAnnounceList = state.announceList.concat({
+      id,
+      title,
+      picture,
+      details,
+    });
     dispatch({
       type: 'ADD_ANNOUNCE_LIST',
       payload: {
@@ -87,7 +108,36 @@ export const EditContextProvider = ({ children }) => {
     });
   };
 
+  const deleteAnnounceList = (id) => {
+    const announceList = state.announceList.filter(
+      (announce) => announce.id !== id
+    );
+    dispatch({
+      type: 'DELETE_ANNOUNCE_LIST',
+      payload: {
+        announceList,
+      },
+    });
+  };
+
+  const getUserDatas = async (currentUid) => {
+    const currentUserDatas = await getFirestoreData(currentUid);
+    setScrollList(currentUserDatas.scrollList);
+    setChiefName(currentUserDatas.chiefName);
+    setChiefInfo(currentUserDatas.chiefInfo);
+    setHeroImage(currentUserDatas.heroImage);
+    setChiefAvator(currentUserDatas.chiefAvator);
+    setAnnounceList(currentUserDatas.announceList);
+    // dispatch({
+    //   type: 'SET_USER_DATA',
+    //   payload: {
+    //     userDatas: currentUserDatas,
+    //   },
+    // });
+  };
+
   const value = {
+    userDatas: state.userDatas,
     published: state.published,
     isEditMode: state.isEditMode,
     heroImage: state.heroImage,
@@ -96,6 +146,7 @@ export const EditContextProvider = ({ children }) => {
     chiefInfo: state.chiefInfo,
     scrollList: state.scrollList,
     announceList: state.announceList,
+    getUserDatas,
     toggleEditMode,
     setHeroImage,
     setChiefAvator,
@@ -103,7 +154,9 @@ export const EditContextProvider = ({ children }) => {
     setChiefInfo,
     setScrollList,
     addScrollList,
+    setAnnounceList,
     addAnnounceList,
+    deleteAnnounceList,
   };
 
   return <EditContext.Provider value={value}>{children}</EditContext.Provider>;
