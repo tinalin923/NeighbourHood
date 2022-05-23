@@ -16,14 +16,16 @@ export default function UploadBtn() {
     announceList,
   } = useEditState();
 
-  const userImages = [heroImage, chiefAvator];
+  const userImages = [heroImage, chiefAvator, announceList.picture];
+  console.log(announceList.picture);
+  console.log(heroImage);
   const userDatas = {
     published,
     chiefName,
     chiefInfo,
     announceList,
-    heroImage: `${currentUid}/${heroImage?.name}`,
-    chiefAvator: `${currentUid}/${chiefAvator?.name}`,
+    heroImage: heroImage ? `${currentUid}/${heroImage.name}` : '',
+    chiefAvator: chiefAvator ? `${currentUid}/${chiefAvator.name}` : '',
   };
 
   const handleClick = () => {

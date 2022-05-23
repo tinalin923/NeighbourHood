@@ -22,7 +22,7 @@ export const useAuthState = () => useContext(AuthContext);
 export const AuthContextProvider = ({ children }) => {
   const [currentUid, setCurrentUid] = useState();
   const [load, setLoad] = useState(true);
-  const { getUserDatas } = useEditState();
+  const { getUserDatasFromFirestore } = useEditState();
 
   const signup = async (email, password, villageName) => {
     // write into firebase auth
@@ -45,7 +45,7 @@ export const AuthContextProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid } = user;
-        getUserDatas(uid);
+        getUserDatasFromFirestore(uid);
         setCurrentUid(uid);
         console.log('get firebase');
         setLoad(false);

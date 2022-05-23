@@ -79,10 +79,6 @@ const icon = {
   opacity: '0.8',
 };
 
-const Input = styled.input`
-  display: none;
-`;
-
 const AvatorImageInput = () => {
   const { isEditMode, chiefAvator, setChiefAvator } = useEditState();
   const [temporaryChiefAvator, setTemporaryChiefAvator] = useState(chiefAvator);
@@ -143,12 +139,13 @@ const AvatorImageInput = () => {
         <IconContainer>
           <FontAwesomeIcon icon={solid('plus')} style={icon} />
         </IconContainer>
-        <Input
+        <input
           ref={fileInput}
           type="file"
           accept=".jpg, .png, .jpeg"
           // eslint-disable-next-line react/jsx-no-bind
           onChange={handleImageUpload}
+          style={{ display: 'none' }}
         />
       </InputBlock>
     </Wrapper>

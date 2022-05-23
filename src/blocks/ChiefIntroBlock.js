@@ -12,7 +12,7 @@ import {
 } from '../styles/styledComponents/blockComponents.js';
 
 export default function ChiefIntroBlock() {
-  const { chiefName, setChiefName, chiefInfo, setChiefInfo } = useEditState();
+  const { introductionTextData, setIntroductionTextData } = useEditState();
 
   return (
     <Block name="1">
@@ -21,16 +21,18 @@ export default function ChiefIntroBlock() {
         <ImgArea>
           <AvatorImageInput />
           <InputInfo
+            name="chiefName"
             placeholder="里長姓名"
-            value={chiefName}
-            setValue={setChiefName}
+            value={introductionTextData}
+            setValue={setIntroductionTextData}
             top="-19vh"
           />
         </ImgArea>
         <TextInfo
+          name="chiefInfo"
           placeholder="請輸入介紹內容"
-          value={chiefInfo}
-          setValue={setChiefInfo}
+          value={introductionTextData}
+          setValue={setIntroductionTextData}
         />
       </Main>
     </Block>

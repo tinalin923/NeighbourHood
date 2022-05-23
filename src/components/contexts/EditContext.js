@@ -1,6 +1,6 @@
 /* eslint-disable function-paren-newline */
 /* eslint-disable react/jsx-no-constructed-context-values */
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useReducer, useState } from 'react';
 import editReducer, { initialEditState } from './editReducer.js';
 import { getFirestoreData } from '../../hooks/firebase/useFirestoreData.js';
 
@@ -10,6 +10,9 @@ export const useEditState = () => useContext(EditContext);
 // eslint-disable-next-line react/prop-types
 export const EditContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(editReducer, initialEditState);
+  // for controlled input component(not in reducer)
+  const [introductionTextData, setIntroductionTextData] = useState([]);
+  const [villageName, setVillageName] = useState('');
 
   const toggleEditMode = () => {
     const editMode = !state.isEditMode;
@@ -40,22 +43,22 @@ export const EditContextProvider = ({ children }) => {
     });
   };
 
-  const setChiefName = (chiefName) => {
-    dispatch({
-      type: 'SET_CHIEF_NAME',
-      payload: {
-        chiefName,
-      },
-    });
-  };
-  const setChiefInfo = (chiefInfo) => {
-    dispatch({
-      type: 'SET_CHIEF_INFO',
-      payload: {
-        chiefInfo,
-      },
-    });
-  };
+  // const setChiefName = (chiefName) => {
+  //   dispatch({
+  //     type: 'SET_CHIEF_NAME',
+  //     payload: {
+  //       chiefName,
+  //     },
+  //   });
+  // };
+  // const setChiefInfo = (chiefInfo) => {
+  //   dispatch({
+  //     type: 'SET_CHIEF_INFO',
+  //     payload: {
+  //       chiefInfo,
+  //     },
+  //   });
+  // };
   const setScrollList = (array) => {
     let newScrollList = [];
     array.forEach(({ id, title }) => {
@@ -120,11 +123,12 @@ export const EditContextProvider = ({ children }) => {
     });
   };
 
-  const getUserDatas = async (currentUid) => {
+  const getUserDatasFromFirestore = async (currentUid) => {
     const currentUserDatas = await getFirestoreData(currentUid);
     setScrollList(currentUserDatas.scrollList);
-    setChiefName(currentUserDatas.chiefName);
-    setChiefInfo(currentUserDatas.chiefInfo);
+    setIntroductionTextData(currentUserDatas.introductionTextData);
+    setVillageName(currentUserDatas.village);
+    // setChiefInfo(currentUserDatas.chiefInfo);
     setHeroImage(currentUserDatas.heroImage);
     setChiefAvator(currentUserDatas.chiefAvator);
     setAnnounceList(currentUserDatas.announceList);
@@ -137,21 +141,23 @@ export const EditContextProvider = ({ children }) => {
   };
 
   const value = {
-    userDatas: state.userDatas,
     published: state.published,
     isEditMode: state.isEditMode,
     heroImage: state.heroImage,
     chiefAvator: state.chiefAvator,
-    chiefName: state.chiefName,
-    chiefInfo: state.chiefInfo,
+    introductionTextData,
+    villageName,
+    // chiefName: state.chiefName,
+    // chiefInfo: state.chiefInfo,
     scrollList: state.scrollList,
     announceList: state.announceList,
-    getUserDatas,
+    getUserDatasFromFirestore,
     toggleEditMode,
     setHeroImage,
     setChiefAvator,
-    setChiefName,
-    setChiefInfo,
+    setIntroductionTextData,
+    // setChiefName,
+    // setChiefInfo,
     setScrollList,
     addScrollList,
     setAnnounceList,

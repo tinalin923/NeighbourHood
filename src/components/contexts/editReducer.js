@@ -1,13 +1,10 @@
 export const initialEditState = {
-  userDatas: '',
   published: false,
   isEditMode: true,
   heroImage: '',
   chiefAvator: '',
-  chiefName: '',
-  chiefInfo: '',
+  introductionTextData: [],
   villageImageList: [],
-  villageInfo: '',
   scrollList: [],
   blockList: [
     { id: '0', title: 'heroImage' },
@@ -38,23 +35,22 @@ export const initialEditState = {
 const editReducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
-    // case 'SET_USER_DATA':
-    //   return { ...state, userDatas: payload.userDatas };
+    case 'SET_TEXT_INTRODUCTION':
+      return { ...state, introductionTextData: payload.introductionTextData };
     case 'TOGGLE_EDITMODE':
-      console.log('change');
       return { ...state, isEditMode: payload.isEditMode };
     case 'SET_HEROIMAGE':
       return { ...state, heroImage: payload.heroImage };
     case 'SET_CHIEF_AVATOR':
       return { ...state, chiefAvator: payload.chiefAvator };
-    case 'SET_CHIEF_NAME':
-      return { ...state, chiefName: payload.chiefName };
-    case 'SET_CHIEF_INFO':
-      return { ...state, chiefInfo: payload.chiefInfo };
+    // case 'SET_CHIEF_NAME':
+    //   return { ...state, chiefName: payload.chiefName };
+    // case 'SET_CHIEF_INFO':
+    //   return { ...state, chiefInfo: payload.chiefInfo };
     case 'SET_VILLAGE_IMAGE_LIST':
       return { ...state, isEditMode: !payload };
-    case 'SET_VILLAGE_INFO':
-      return { ...state, isEditMode: !payload };
+    // case 'SET_VILLAGE_INFO':
+    //   return { ...state, isEditMode: !payload };
     case 'SET_SCROLL_LIST':
       return { ...state, scrollList: payload.scrollList };
     case 'ADD_SCROLL_LIST':

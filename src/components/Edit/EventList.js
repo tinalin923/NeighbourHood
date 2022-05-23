@@ -17,7 +17,7 @@ const icon = {
   },
 };
 
-export default function EventBlock() {
+export default function EventList() {
   const containerVariants = {
     hidden: {
       scale: 1,
@@ -94,6 +94,7 @@ export default function EventBlock() {
     >
       {announceList.map(({ id, title, picture, details }) => (
         <div
+          key={id}
           style={{
             display: 'flex',
             justifyContent: 'space-between',
@@ -120,7 +121,6 @@ export default function EventBlock() {
             }}
             type="button"
             onClick={() => handleClick(id)}
-            key={id}
           >
             <div
               style={{

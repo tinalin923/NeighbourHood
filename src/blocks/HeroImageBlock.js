@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useAuthState } from '../components/contexts/AuthContext.js';
 import { useEditState } from '../components/contexts/EditContext.js';
-import { getFirestoreData } from '../hooks/firebase/useFirestoreData.js';
 import { getStorageImages } from '../hooks/firebase/useStorageData.js';
 import compressImage from '../utils/imageCompress.js';
 
@@ -83,24 +82,20 @@ const Title = styled.h1`
 `;
 
 const HeroImageBlock = () => {
-  const [villageName, setVillageName] = useState();
   const { currentUid } = useAuthState();
-  const { isEditMode, heroImage, setHeroImage } = useEditState();
+  const { isEditMode, heroImage, setHeroImage, villageName } = useEditState();
   const [temporaryHeroImageUrl, setTemporaryHeroImageUrl] = useState(heroImage);
   console.log(currentUid); // 為何我修改其他區塊 這邊會一直被觸發
 
   useEffect(() => {
-    async function getVillageNameandHero() {
-      const userDatas = await getFirestoreData(currentUid);
-      setVillageName(userDatas.village);
-
+    async function getHero() {
       if (!(heroImage instanceof Blob) && heroImage) {
         getStorageImages(heroImage).then((storedUrl) => {
           setTemporaryHeroImageUrl(storedUrl);
         });
       }
     }
-    getVillageNameandHero();
+    getHero();
   }, [currentUid, heroImage]);
 
   const [heroImageError, setHeroImageError] = useState(null);

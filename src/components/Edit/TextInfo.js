@@ -14,6 +14,7 @@ const Text = styled.textarea`
 `;
 // 此RWD方式只根據第一次載入時的螢幕大小
 export default function TextInfo({
+  name,
   placeholder,
   width,
   height,
@@ -39,9 +40,10 @@ export default function TextInfo({
   // const style = { ...commonStyle, ...responsiveStyle };
   return (
     <Text
+      name={name}
       placeholder={placeholder}
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
+      value={value?.name}
+      onChange={(e) => setValue({ [name]: e.target.value })}
       style={commonStyle}
       readOnly={!isEditMode}
     />

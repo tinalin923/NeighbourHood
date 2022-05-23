@@ -1,29 +1,25 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import styled from 'styled-components';
 import { useEditState } from '../contexts/EditContext.js';
 
-const Input = styled.input`
-  margin: 10px auto;
-  position: relative;
-  width: 80%;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 1.2rem;
-  text-align: center;
-  outline: none;
-`;
-
-const InputInfo = ({ placeholder, value, setValue, width, top }) => {
+const InputInfo = ({ name, placeholder, value, setValue, width, top }) => {
   const { isEditMode } = useEditState();
 
   return (
-    <Input
+    <input
+      name={name}
       type="text"
       placeholder={placeholder}
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
+      value={value?.name}
+      onChange={(e) => setValue({ [name]: e.target.value })}
       style={{
+        margin: '10px auto',
+        position: 'relative',
+        padding: '8px',
+        fontWeight: 'bold',
+        fontSize: '1.2rem',
+        textAlign: 'center',
+        outline: 'none',
         width: width || '80%',
         top: isEditMode ? `${top}` || '0vh' : '0vh',
         border: isEditMode ? '2px solid gray' : 'none',

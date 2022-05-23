@@ -5,6 +5,12 @@ const createInitialUserDatas = async (uid, email, villageName) => {
   const initialUserDatas = {
     published: false,
     village: villageName,
+    // introductionTextData: [
+    //   { chiefName: '' },
+    //   { chiefInfo: '' },
+    //   { villageInfo: '' },
+    // ],
+
     email,
     createdAt: serverTimestamp(),
     uid,
