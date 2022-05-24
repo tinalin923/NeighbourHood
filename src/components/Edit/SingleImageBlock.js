@@ -144,7 +144,7 @@ const SingleImageBlock = ({ name }) => {
     //     announceImage: `${currentUid}/announceImage/${compressedImage?.name}`,
     //   }));
     // } else {
-    setImageList((prev) => ({ ...prev, compressedImage }));
+    setImageList((prev) => [...prev, `${compressedImage}`]);
     setImagePathList((prev) => ({
       ...prev,
       [name]: `${currentUid}/${compressedImage?.name}`,

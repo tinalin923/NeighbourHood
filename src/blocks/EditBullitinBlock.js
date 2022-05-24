@@ -136,27 +136,27 @@ export default function EditBullitinBlock() {
   // 送出公告，再加進整體列表
   const handleClick = () => {
     console.log(announcePicture);
-    console.log(state.temporary);
-    console.log(state.temporary.name);
-    setImageList((prev) => ({ ...prev, announcePicture }));
+    console.log(state.temporaryUrl);
+    console.log(state.temporaryUrl?.name);
+    setImageList((prev) => [...prev, `${announcePicture}`]);
     addAnnounceList(
       announceList.length.toString(),
       announceTitle,
       announceDetails,
-      `${currentUid}/${announcePicture.name}}`
+      `${currentUid}/${announcePicture.name}`
     );
     addAnnouncePresentList(
       announceList.length.toString(),
       announceTitle,
       announceDetails,
-      state.temporary
+      state.temporaryUrl
     );
     // 輸入歸零
     setAnnounceTitle('');
     setAnnounceDetails('');
     setAnnouncePicture('');
     dispatch({
-      type: 'SET_TEMPORARY',
+      type: 'SET_TEMPORARY_URL',
       payload: { temporaryUrl: '' },
     });
   };
@@ -186,8 +186,8 @@ export default function EditBullitinBlock() {
         >
           <Image
             style={{
-              backgroundImage: state.temporary
-                ? `url(${state.temporary})`
+              backgroundImage: state.temporaryUrl
+                ? `url(${state.temporaryUrl})`
                 : `linear-gradient(90deg, ${secondaryGray}, ${secondaryYellow})`,
               opacity: isEditMode ? '0.7' : '1',
             }}
@@ -209,7 +209,7 @@ export default function EditBullitinBlock() {
                 onChange={handleChange}
                 style={{ display: 'none' }}
               />
-              {state.temporary ? <P>選擇其他圖片</P> : <P>新增圖片</P>}
+              {state.temporaryUrl ? <P>選擇其他圖片</P> : <P>新增圖片</P>}
             </InputBtn>
           </Image>
 

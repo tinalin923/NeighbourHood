@@ -108,7 +108,7 @@ const HeroImageBlock = () => {
     const compressedImage = await compressImage(imageFile, 1960);
     console.log(compressedImage);
     // 要上傳到firestorage需要blob檔
-    setImageList((prev) => ({ ...prev, compressedImage }));
+    setImageList((prev) => [...prev, `${compressedImage}`]);
     setImagePathList((prev) => ({
       ...prev,
       heroImage: `${currentUid}/${compressedImage?.name}`,
