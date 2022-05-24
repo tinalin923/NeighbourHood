@@ -1,8 +1,7 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
-import React, { useState, useEffect } from 'react';
-import { getStorageImages } from '../../hooks/firebase/useStorageData.js';
+import React, { useState } from 'react';
 import {
   primaryYellow,
   secondaryGray,
@@ -76,26 +75,13 @@ export default function EventList() {
   };
   const {
     isEditMode,
-    currentUserDatas,
-    announceList,
-    addAnnounceList,
+    announcePresentList,
     deleteAnnounceList,
+    deleteAnnouncePresentList,
   } = useEditState();
   const [activeItem, setActiveItem] = useState(0);
 
-  useEffect(() => {
-    currentUserDatas.announceList.forEach((announce) => {
-      getStorageImages(announce.picture).then((storedUrl) => {
-        addAnnounceList(
-          announce.id,
-          announce.title,
-          announce.details,
-          storedUrl
-        );
-      });
-    });
-  });
-
+  // for 動畫
   const handleClick = (id) => {
     if (id === activeItem) {
       setActiveItem(null);
@@ -113,7 +99,7 @@ export default function EventList() {
         height: 'auto',
       }}
     >
-      {announceList.map(({ id, title, details, picture }) => (
+      {announcePresentList.map(({ id, title, details, picture }) => (
         <div
           key={id}
           style={{
@@ -157,15 +143,15 @@ export default function EventList() {
           </motion.button>
           <button
             type="button"
-            onClick={() => deleteAnnounceList(id)}
+            onClick={() => {
+              deleteAnnouncePresentList(id);
+              deleteAnnounceList(id);
+            }}
             style={{
-              outline: 'none',
-              border: 'none',
               width: '28px',
               height: '28px',
               background: 'none',
               display: isEditMode ? 'block' : 'none',
-              cursor: 'pointer',
             }}
           >
             <FontAwesomeIcon icon={solid('trash')} style={icon} />

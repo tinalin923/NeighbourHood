@@ -10,6 +10,12 @@ input, textarea {
     border-radius: 10px;
 }
 
+button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
 .container{
     color: #8e8c7a ;
     h1{
@@ -23,3 +29,4 @@ input, textarea {
     @include d-flex(column, center, center);
     @include w-h(100%, 100vh);
 }
+

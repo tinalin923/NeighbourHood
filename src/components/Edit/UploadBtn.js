@@ -26,6 +26,7 @@ export default function UploadBtn() {
   };
 
   const handleClick = () => {
+    console.log(imageList);
     console.log(userDatas);
     console.log(introductionTextData);
     if (!introductionTextData) {

@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useReducer, useState } from 'react';
 import editReducer, { initialEditState } from './editReducer.js';
 import { getFirestoreData } from '../../hooks/firebase/useFirestoreData.js';
+import { getStorageImages } from '../../hooks/firebase/useStorageData.js';
 
 const EditContext = createContext(initialEditState);
 export const useEditState = () => useContext(EditContext);
@@ -145,7 +146,28 @@ export const EditContextProvider = ({ children }) => {
     setIntroductionTextData(userDatas.introductionTextData);
     setImagePathList(userDatas.imagePathList);
     setVillageName(userDatas.village);
-    setAnnounceList(currentUserDatas.announceList);
+    setAnnounceList(userDatas.announceList);
+    let array = [];
+    userDatas.announceList.forEach((announce) => {
+      if (!announce.picture) {
+        array = array.concat({
+          id: announce.id,
+          title: announce.title,
+          details: announce.details,
+          picture: '',
+        });
+      } else {
+        getStorageImages(announce.picture).then((storedUrl) => {
+          array = array.concat({
+            id: announce.id,
+            title: announce.title,
+            details: announce.details,
+            picture: storedUrl,
+          });
+        });
+      }
+    });
+    setAnnouncePresentList(array);
   };
 
   const value = {

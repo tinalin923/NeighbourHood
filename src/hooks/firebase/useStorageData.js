@@ -20,9 +20,10 @@ export function getStorageImages(fullPath) {
 }
 
 export const upLoadStorageImages = (currentUid, userImages) => {
-  // 因為是由物件堆成的一陣列，所以要取values
-  const ImagesBlob = Object.values(userImages);
-  ImagesBlob.forEach((ImageBlob) => {
+  // // 因為是由物件堆成的一陣列，所以要取values (太複雜所以先放棄key的設定)
+  // const ImagesBlob = Object.values(userImages);
+  // console.log(ImagesBlob);
+  userImages.forEach((ImageBlob) => {
     if (!ImageBlob) return;
     // 指向屬於該使用者的folder
     const storageRef = ref(projectStorage, `${currentUid}/${ImageBlob.name}`);

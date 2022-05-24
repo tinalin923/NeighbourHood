@@ -70,15 +70,15 @@ const icon = {
 };
 
 const initialState = {
-  temporary: '',
+  temporaryUrl: '',
   error: '',
 };
 
 const imageReducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
-    case 'SET_TEMPORARY':
-      return { ...state, temporary: payload.temporary };
+    case 'SET_TEMPORARY_URL':
+      return { ...state, temporaryUrl: payload.temporaryUrl };
     case 'SET_ERROR':
       return { ...state, error: payload.error };
     default:
@@ -87,22 +87,19 @@ const imageReducer = (state, action) => {
 };
 
 export default function EditBullitinBlock() {
-  const { announceList, addAnnounceList } = useEditState();
+  const { announceList, addAnnounceList, addAnnouncePresentList } =
+    useEditState();
   const [announceTitle, setAnnounceTitle] = useState('');
   const [announceDetails, setAnnounceDetails] = useState('');
   // eslint-disable-next-line no-unused-vars
-  // const [announcePicture, setAnnouncePicture] = useState('');
+  // 為圖片BLOB檔
+  const [announcePicture, setAnnouncePicture] = useState('');
+
   // for imageBlock
   const [state, dispatch] = useReducer(imageReducer, initialState);
   const fileInput = useRef();
   const { currentUid } = useAuthState();
-  const {
-    isEditMode,
-    imageList,
-    imagePathList,
-    setImageList,
-    setImagePathList,
-  } = useEditState();
+  const { isEditMode, setImageList } = useEditState();
 
   // 選擇照片
   const handleChange = async () => {
@@ -116,43 +113,39 @@ export default function EditBullitinBlock() {
         payload: { error: '請選擇照片檔案(.jpeg 或 .png)' },
       });
     }
-    const compressedImage = await compressImage(imageFile, 1024);
-    if (!imageList.announceImage) {
-      setImageList((prev) => ({
-        ...prev,
-        announceImage: [compressedImage],
-      }));
-    } else {
-      const newImageArray = imageList.announceImage.concat(compressedImage);
-      setImageList((prev) => ({
-        ...prev,
-        announceImage: newImageArray,
-      }));
-    }
-    if (!imagePathList.announceImage) {
-      setImagePathList((prev) => ({
-        ...prev,
-        announceImage: [`${currentUid}/announceImage/${compressedImage.name}`],
-      }));
-    } else {
-      const newPathArray = imagePathList.announceImage.concat(
-        `${currentUid}/announceImage/${compressedImage?.name}`
-      );
-      setImagePathList((prev) => ({
-        ...prev,
-        announceImage: newPathArray,
-      }));
-    }
+    const compressedImage = await compressImage(imageFile, 1280);
+    setAnnouncePicture(compressedImage);
+    // if (!imageList.announceImage) {
+    //   setImageList((prev) => ({
+    //     ...prev,
+    //     announceImage: [compressedImage],
+    //   }));
+    // } else {
+    //   const newImageArray = imageList.announceImage.concat(compressedImage);
+    //   setImageList((prev) => ({
+    //     ...prev,
+    //     announceImage: newImageArray,
+    //   }));
+    // }
     const compressedImageURL = URL.createObjectURL(compressedImage);
     dispatch({
-      type: 'SET_TEMPORARY',
-      payload: { temporary: compressedImageURL },
+      type: 'SET_TEMPORARY_URL',
+      payload: { temporaryUrl: compressedImageURL },
     });
   };
-  // 送出公告
+  // 送出公告，再加進整體列表
   const handleClick = () => {
+    console.log(announcePicture);
     console.log(state.temporary);
+    console.log(state.temporary.name);
+    setImageList((prev) => ({ ...prev, announcePicture }));
     addAnnounceList(
+      announceList.length.toString(),
+      announceTitle,
+      announceDetails,
+      `${currentUid}/${announcePicture.name}}`
+    );
+    addAnnouncePresentList(
       announceList.length.toString(),
       announceTitle,
       announceDetails,
@@ -161,9 +154,10 @@ export default function EditBullitinBlock() {
     // 輸入歸零
     setAnnounceTitle('');
     setAnnounceDetails('');
+    setAnnouncePicture('');
     dispatch({
       type: 'SET_TEMPORARY',
-      payload: { temporary: '' },
+      payload: { temporaryUrl: '' },
     });
   };
 
