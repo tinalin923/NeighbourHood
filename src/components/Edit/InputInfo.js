@@ -11,7 +11,9 @@ const InputInfo = ({ name, placeholder, value, setValue, width, top }) => {
       type="text"
       placeholder={placeholder}
       value={value?.name}
-      onChange={(e) => setValue({ [name]: e.target.value })}
+      onChange={(e) =>
+        setValue((prev) => ({ ...prev, [name]: e.target.value }))
+      }
       style={{
         margin: '10px auto',
         position: 'relative',

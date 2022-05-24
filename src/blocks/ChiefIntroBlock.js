@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { useEditState } from '../components/contexts/EditContext.js';
-import AvatorImageInput from '../components/Edit/AvatorImageInput.js';
+import SingleImageInput from '../components/Edit/SingleImageBlock.js';
 import TextInfo from '../components/Edit/TextInfo.js';
 import InputInfo from '../components/Edit/InputInfo.js';
 import {
@@ -19,13 +19,12 @@ export default function ChiefIntroBlock() {
       <Title>里長介紹</Title>
       <Main>
         <ImgArea>
-          <AvatorImageInput />
+          <SingleImageInput name="chiefAvator" />
           <InputInfo
             name="chiefName"
             placeholder="里長姓名"
             value={introductionTextData}
             setValue={setIntroductionTextData}
-            top="-19vh"
           />
         </ImgArea>
         <TextInfo

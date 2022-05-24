@@ -1,6 +1,5 @@
 import React from 'react';
 import TextInfo from '../components/Edit/TextInfo.js';
-import VillageImageBlock from '../components/Edit/VillageImageInput.js';
 import {
   Block,
   Title,
@@ -8,6 +7,7 @@ import {
   ImgArea,
 } from '../styles/styledComponents/blockComponents.js';
 import { useEditState } from '../components/contexts/EditContext.js';
+import SingleImageBlock from '../components/Edit/SingleImageBlock.js';
 
 export default function VillageIntroBlock() {
   const { introductionTextData, setIntroductionTextData } = useEditState();
@@ -23,7 +23,7 @@ export default function VillageIntroBlock() {
           setValue={setIntroductionTextData}
         />
         <ImgArea>
-          <VillageImageBlock />
+          <SingleImageBlock name="villageImage" />
         </ImgArea>
       </Main>
     </Block>

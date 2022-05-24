@@ -1,10 +1,23 @@
 export const initialEditState = {
   published: false,
   isEditMode: true,
-  heroImage: '',
-  chiefAvator: '',
-  introductionTextData: [],
-  villageImageList: [],
+  introductionTextData: [
+    { chiefName: '' },
+    { chiefInfo: '' },
+    { villageInfo: '' },
+  ],
+  imagePathList: [
+    { heroImage: '' },
+    { chiefAvator: '' },
+    { villageImageList: [] },
+    { announceImage: [] },
+  ],
+  imageList: [
+    { heroImage: '' },
+    { chiefAvator: '' },
+    { villageList: [] },
+    { announceImage: [] },
+  ],
   scrollList: [],
   blockList: [
     { id: '0', title: 'heroImage' },
@@ -12,14 +25,15 @@ export const initialEditState = {
     { id: '2', title: 'villageIntro' },
     { id: '3', title: 'bulletin' },
   ],
-  announceList: [],
+  announceList: [{ id: '', title: '', details: '', picture: '' }], // picture: path
+  announcePresentList: [{ id: '', title: '', details: '', picture: '' }], // picture: url
   eventList: [
     {
       id: 0,
       date: '',
-      title: '垃圾車時間',
+      title: '',
       picture: '',
-      details: '明天下午五點才會來',
+      details: '',
     },
     {
       id: 1,
@@ -39,18 +53,6 @@ const editReducer = (state, action) => {
       return { ...state, introductionTextData: payload.introductionTextData };
     case 'TOGGLE_EDITMODE':
       return { ...state, isEditMode: payload.isEditMode };
-    case 'SET_HEROIMAGE':
-      return { ...state, heroImage: payload.heroImage };
-    case 'SET_CHIEF_AVATOR':
-      return { ...state, chiefAvator: payload.chiefAvator };
-    // case 'SET_CHIEF_NAME':
-    //   return { ...state, chiefName: payload.chiefName };
-    // case 'SET_CHIEF_INFO':
-    //   return { ...state, chiefInfo: payload.chiefInfo };
-    case 'SET_VILLAGE_IMAGE_LIST':
-      return { ...state, isEditMode: !payload };
-    // case 'SET_VILLAGE_INFO':
-    //   return { ...state, isEditMode: !payload };
     case 'SET_SCROLL_LIST':
       return { ...state, scrollList: payload.scrollList };
     case 'ADD_SCROLL_LIST':
@@ -65,6 +67,12 @@ const editReducer = (state, action) => {
       return { ...state, announceList: payload.announceList };
     case 'DELETE_ANNOUNCE_LIST':
       return { ...state, announceList: payload.announceList };
+    case 'SET_ANNOUNCE_PRESENT_LIST':
+      return { ...state, announcePresentList: payload.announcePresentList };
+    case 'ADD_ANNOUNCE_PRESENT_LIST':
+      return { ...state, announcePresentList: payload.announcePresentList };
+    case 'DELETE_ANNOUNCE_PRESENT_LIST':
+      return { ...state, announcePresentList: payload.announcePresentList };
 
     default:
       throw new Error(`No case for type ${type} found in editRedcer`);

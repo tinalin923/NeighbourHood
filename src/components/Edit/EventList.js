@@ -1,7 +1,8 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getStorageImages } from '../../hooks/firebase/useStorageData.js';
 import {
   primaryYellow,
   secondaryGray,
@@ -73,8 +74,28 @@ export default function EventList() {
       },
     },
   };
-  const { isEditMode, announceList, deleteAnnounceList } = useEditState();
+  const {
+    isEditMode,
+    currentUserDatas,
+    announceList,
+    addAnnounceList,
+    deleteAnnounceList,
+  } = useEditState();
   const [activeItem, setActiveItem] = useState(0);
+
+  useEffect(() => {
+    currentUserDatas.announceList.forEach((announce) => {
+      getStorageImages(announce.picture).then((storedUrl) => {
+        addAnnounceList(
+          announce.id,
+          announce.title,
+          announce.details,
+          storedUrl
+        );
+      });
+    });
+  });
+
   const handleClick = (id) => {
     if (id === activeItem) {
       setActiveItem(null);
@@ -92,7 +113,7 @@ export default function EventList() {
         height: 'auto',
       }}
     >
-      {announceList.map(({ id, title, picture, details }) => (
+      {announceList.map(({ id, title, details, picture }) => (
         <div
           key={id}
           style={{
@@ -109,37 +130,29 @@ export default function EventList() {
               transition: { duration: 0.1 },
             }}
             style={{
-              margin: '15px 0px',
+              flex: 'none',
+              width: isEditMode ? '92%' : '99%',
+              margin: '16px 0px',
               outline: 'none',
               border: 'none',
               borderRadius: '10px',
-              padding: '10px 30px',
+              padding: '8px 20px',
               background: `${secondaryGray}`,
               fontSize: '1.5rem',
               color: '#ffffff',
-              flex: 'auto',
             }}
             type="button"
             onClick={() => handleClick(id)}
           >
-            <div
-              style={{
-                padding: '10px 0px',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}
-            >
-              <div />
-              <div>{title}</div>
-            </div>
+            <div style={{ textAlign: 'right' }}>{title}</div>
             <motion.div
               variants={eventVariants}
               animate={activeItem === id ? 'visible' : 'hidden'}
               style={{ textAlign: 'left', color: '#000' }}
             >
-              {picture} <br />
               {details}
+              <br />
+              {picture && <img src={picture} alt="announceImage" />}
             </motion.div>
           </motion.button>
           <button
@@ -148,10 +161,11 @@ export default function EventList() {
             style={{
               outline: 'none',
               border: 'none',
-              width: '30px',
-              height: '30px',
+              width: '28px',
+              height: '28px',
               background: 'none',
               display: isEditMode ? 'block' : 'none',
+              cursor: 'pointer',
             }}
           >
             <FontAwesomeIcon icon={solid('trash')} style={icon} />

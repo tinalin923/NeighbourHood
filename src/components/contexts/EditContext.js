@@ -12,8 +12,11 @@ export const EditContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(editReducer, initialEditState);
   // for controlled input component(not in reducer)
   const [introductionTextData, setIntroductionTextData] = useState([]);
+  const [imagePathList, setImagePathList] = useState([]);
+  // for upload to firestorage
+  const [imageList, setImageList] = useState([]);
   const [villageName, setVillageName] = useState('');
-
+  const [currentUserDatas, setCurrentUserDatas] = useState('');
   const toggleEditMode = () => {
     const editMode = !state.isEditMode;
 
@@ -24,41 +27,6 @@ export const EditContextProvider = ({ children }) => {
       },
     });
   };
-
-  const setHeroImage = (heroImageUrl) => {
-    dispatch({
-      type: 'SET_HEROIMAGE',
-      payload: {
-        heroImage: heroImageUrl,
-      },
-    });
-  };
-
-  const setChiefAvator = (avatorUrl) => {
-    dispatch({
-      type: 'SET_CHIEF_AVATOR',
-      payload: {
-        chiefAvator: avatorUrl,
-      },
-    });
-  };
-
-  // const setChiefName = (chiefName) => {
-  //   dispatch({
-  //     type: 'SET_CHIEF_NAME',
-  //     payload: {
-  //       chiefName,
-  //     },
-  //   });
-  // };
-  // const setChiefInfo = (chiefInfo) => {
-  //   dispatch({
-  //     type: 'SET_CHIEF_INFO',
-  //     payload: {
-  //       chiefInfo,
-  //     },
-  //   });
-  // };
   const setScrollList = (array) => {
     let newScrollList = [];
     array.forEach(({ id, title }) => {
@@ -82,11 +50,10 @@ export const EditContextProvider = ({ children }) => {
       },
     });
   };
-
   const setAnnounceList = (array) => {
     let newAnnounceList = [];
-    array.forEach(({ id, title, details }) => {
-      newAnnounceList = newAnnounceList.concat({ id, title, details });
+    array.forEach(({ id, title, details, picture }) => {
+      newAnnounceList = newAnnounceList.concat({ id, title, details, picture });
     });
     dispatch({
       type: 'SET_ANNOUNCE_LIST',
@@ -96,13 +63,14 @@ export const EditContextProvider = ({ children }) => {
     });
   };
 
-  const addAnnounceList = (id, title, picture, details) => {
+  const addAnnounceList = (id, title, details, picture) => {
     const newAnnounceList = state.announceList.concat({
       id,
       title,
-      picture,
       details,
+      picture,
     });
+    console.log(newAnnounceList);
     dispatch({
       type: 'ADD_ANNOUNCE_LIST',
       payload: {
@@ -123,46 +91,87 @@ export const EditContextProvider = ({ children }) => {
     });
   };
 
+  const setAnnouncePresentList = (array) => {
+    let newAnnouncePresentList = [];
+    array.forEach(({ id, title, details, picture }) => {
+      newAnnouncePresentList = newAnnouncePresentList.concat({
+        id,
+        title,
+        details,
+        picture,
+      });
+    });
+    dispatch({
+      type: 'SET_ANNOUNCE_PRESENT_LIST',
+      payload: {
+        announcePresentList: newAnnouncePresentList,
+      },
+    });
+  };
+
+  const addAnnouncePresentList = (id, title, details, picture) => {
+    const newAnnouncePresentList = state.announcePresentList.concat({
+      id,
+      title,
+      details,
+      picture,
+    });
+    console.log(newAnnouncePresentList);
+    dispatch({
+      type: 'ADD_ANNOUNCE_PRESENT_LIST',
+      payload: {
+        announcePresentList: newAnnouncePresentList,
+      },
+    });
+  };
+
+  const deleteAnnouncePresentList = (id) => {
+    const announcePresentList = state.announcePresentList.filter(
+      (announce) => announce.id !== id
+    );
+    dispatch({
+      type: 'DELETE_ANNOUNCE_PRESENT_LIST',
+      payload: {
+        announcePresentList,
+      },
+    });
+  };
+
   const getUserDatasFromFirestore = async (currentUid) => {
-    const currentUserDatas = await getFirestoreData(currentUid);
-    setScrollList(currentUserDatas.scrollList);
-    setIntroductionTextData(currentUserDatas.introductionTextData);
-    setVillageName(currentUserDatas.village);
-    // setChiefInfo(currentUserDatas.chiefInfo);
-    setHeroImage(currentUserDatas.heroImage);
-    setChiefAvator(currentUserDatas.chiefAvator);
+    const userDatas = await getFirestoreData(currentUid);
+    console.log(userDatas);
+    setCurrentUserDatas(userDatas);
+    setScrollList(userDatas.scrollList);
+    setIntroductionTextData(userDatas.introductionTextData);
+    setImagePathList(userDatas.imagePathList);
+    setVillageName(userDatas.village);
     setAnnounceList(currentUserDatas.announceList);
-    // dispatch({
-    //   type: 'SET_USER_DATA',
-    //   payload: {
-    //     userDatas: currentUserDatas,
-    //   },
-    // });
   };
 
   const value = {
     published: state.published,
     isEditMode: state.isEditMode,
-    heroImage: state.heroImage,
-    chiefAvator: state.chiefAvator,
+    currentUserDatas,
     introductionTextData,
+    imagePathList,
+    imageList,
     villageName,
-    // chiefName: state.chiefName,
-    // chiefInfo: state.chiefInfo,
     scrollList: state.scrollList,
     announceList: state.announceList,
+    announcePresentList: state.announcePresentList,
     getUserDatasFromFirestore,
     toggleEditMode,
-    setHeroImage,
-    setChiefAvator,
     setIntroductionTextData,
-    // setChiefName,
-    // setChiefInfo,
+    setImagePathList,
+    setImageList,
     setScrollList,
     addScrollList,
     setAnnounceList,
     addAnnounceList,
     deleteAnnounceList,
+    setAnnouncePresentList,
+    addAnnouncePresentList,
+    deleteAnnouncePresentList,
   };
 
   return <EditContext.Provider value={value}>{children}</EditContext.Provider>;

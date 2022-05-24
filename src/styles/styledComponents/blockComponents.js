@@ -17,7 +17,7 @@ export const Title = styled.div`
 export const Main = styled.div`
   display: flex;
   flex-direction: row;
-  min-height: 90vh;
+  min-height: 50vh;
   height: auto;
   justify-content: center;
   align-items: flex-start;
@@ -26,7 +26,8 @@ export const Main = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    height: 160vh;
+    min-height: 40vh;
+    padding: 0;
   }
 `;
 
@@ -54,4 +55,15 @@ export const SecondaryBtn = styled.button`
   :hover {
     opacity: 1;
   }
+`;
+
+export const Error = styled.p`
+  margin: 8% auto;
+  border: 4px solid red;
+  padding: 4px;
+  width: 50%;
+  text-align: center;
+  background-color: red;
+  color: white;
+  font-size: 0.8rem;
 `;

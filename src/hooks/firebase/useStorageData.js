@@ -20,16 +20,14 @@ export function getStorageImages(fullPath) {
 }
 
 export const upLoadStorageImages = (currentUid, userImages) => {
-  userImages.forEach((userImage) => {
-    // console.log(userImage);
-    // console.log(userImage.name);
-
-    if (!userImage) return;
+  // 因為是由物件堆成的一陣列，所以要取values
+  const ImagesBlob = Object.values(userImages);
+  ImagesBlob.forEach((ImageBlob) => {
+    if (!ImageBlob) return;
     // 指向屬於該使用者的folder
-    const storageRef = ref(projectStorage, `${currentUid}/${userImage.name}`);
+    const storageRef = ref(projectStorage, `${currentUid}/${ImageBlob.name}`);
     // 'file' comes from the Blob or File API
-    uploadBytes(storageRef, userImage).then((snapshot) => {
-      console.log(snapshot.ref.name);
+    uploadBytes(storageRef, ImageBlob).then((snapshot) => {
       console.log(snapshot.ref.fullPath);
       console.log('Uploaded a blob or file!');
     });

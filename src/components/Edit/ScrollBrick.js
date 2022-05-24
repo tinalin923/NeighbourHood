@@ -2,28 +2,32 @@
 import React from 'react';
 import { Link } from 'react-scroll';
 import styled from 'styled-components';
+import {
+  primaryGray,
+  primaryYellow,
+} from '../../styles/styledComponents/color.js';
 
 const Brick = styled.div`
   display: flex;
   margin: 5px 0px;
   cursor: pointer;
   :hover :nth-child(1) {
-    border: 2px solid #363945;
+    border: 2px solid ${primaryGray};
   }
   :hover :nth-child(2) {
     opacity: 1;
   }
   &.active {
     div:nth-of-type(1) {
-      border: 2px solid #fcd856;
-      background-color: #fcd856;
+      border: 2px solid ${primaryYellow};
+      background-color: ${primaryYellow};
     }
   }
 `;
 
 const BrickIcon = styled.div`
-  border: 1px solid #363945;
-  background-color: #363945;
+  border: 1px solid ${primaryGray};
+  background-color: ${primaryGray};
   height: 20px;
   width: 2px;
 `;
@@ -31,7 +35,7 @@ const BrickIcon = styled.div`
 const BrickText = styled.div`
   width: 60px;
   font-size: 0.7rem;
-  color: #363945;
+  color: ${primaryGray};
   opacity: 0;
 `;
 export default function ScrollBrick({ to, title }) {

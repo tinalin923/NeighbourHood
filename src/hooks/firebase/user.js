@@ -10,7 +10,6 @@ const createInitialUserDatas = async (uid, email, villageName) => {
     //   { chiefInfo: '' },
     //   { villageInfo: '' },
     // ],
-
     email,
     createdAt: serverTimestamp(),
     uid,
@@ -23,7 +22,7 @@ const createInitialUserDatas = async (uid, email, villageName) => {
     announceList: [
       {
         id: '0',
-        title: '打疫苗',
+        title: '範例',
         picture: '',
         details:
           '今天在活動中心可以打默德納疫苗，第三劑以內，皆可領取一袋衛生紙。',
