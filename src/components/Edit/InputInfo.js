@@ -10,7 +10,7 @@ const InputInfo = ({ name, placeholder, value, setValue, width, top }) => {
       name={name}
       type="text"
       placeholder={placeholder}
-      value={value?.name}
+      value={value ? value[name] : ''}
       onChange={(e) =>
         setValue((prev) => ({ ...prev, [name]: e.target.value }))
       }

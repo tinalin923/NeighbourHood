@@ -1,12 +1,14 @@
+/* eslint-disable no-await-in-loop */
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   primaryYellow,
   secondaryGray,
 } from '../../styles/styledComponents/color.js';
 import { useEditState } from '../contexts/EditContext.js';
+import { getStorageImages } from '../../hooks/firebase/useStorage.js';
 
 const icon = {
   position: 'relative',
@@ -75,11 +77,55 @@ export default function EventList() {
   };
   const {
     isEditMode,
+    imageList,
+    announceList,
     announcePresentList,
+    setAnnouncePresentList,
     deleteAnnounceList,
     deleteAnnouncePresentList,
   } = useEditState();
   const [activeItem, setActiveItem] = useState(0);
+
+  useEffect(() => {
+    // 防止還未上傳到storage的圖片被讀取
+    console.log(imageList.length);
+    if (imageList.length !== 0) {
+      console.log('不要讀取未上傳的圖片');
+      return;
+    }
+    if (!announceList[0]?.id) {
+      console.log('bye');
+      return;
+    }
+    async function changeAnnounceListToPresent(List) {
+      let array = [];
+      // eslint-disable-next-line no-restricted-syntax
+      for (const announce of List) {
+        const storedUrl = await getStorageImages(announce.picture);
+        if (!storedUrl) {
+          array = array.concat({
+            id: announce.id,
+            title: announce.title,
+            details: announce.details,
+            picture: '',
+          });
+        } else {
+          array = array.concat({
+            id: announce.id,
+            title: announce.title,
+            details: announce.details,
+            picture: storedUrl,
+          });
+        }
+      }
+      console.log(array);
+      console.log('1');
+      setAnnouncePresentList(array);
+    }
+    console.log(announceList);
+    changeAnnounceListToPresent(announceList);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [announceList]);
 
   // for 動畫
   const handleClick = (id) => {
@@ -124,7 +170,7 @@ export default function EventList() {
               borderRadius: '10px',
               padding: '8px 20px',
               background: `${secondaryGray}`,
-              fontSize: '1.5rem',
+              fontSize: '1.4rem',
               color: '#ffffff',
             }}
             type="button"
@@ -134,7 +180,7 @@ export default function EventList() {
             <motion.div
               variants={eventVariants}
               animate={activeItem === id ? 'visible' : 'hidden'}
-              style={{ textAlign: 'left', color: '#000' }}
+              style={{ textAlign: 'left', fontSize: '1.1rem', color: '#000' }}
             >
               {details}
               <br />

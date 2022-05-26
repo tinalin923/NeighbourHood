@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
-import { uploadFirestoreData } from '../../hooks/firebase/useFirestoreData.js';
-import { upLoadStorageImages } from '../../hooks/firebase/useStorageData.js';
+/* eslint-disable prettier/prettier */
+/* eslint-disable function-paren-newline */
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { uploadFirestoreData } from '../../hooks/firebase/useFirestore.js';
+import { upLoadStorageImages } from '../../hooks/firebase/useStorage.js';
+import { TextError } from '../../styles/styledComponents/blockComponents.js';
 import { useAuthState } from '../contexts/AuthContext.js';
 import { useEditState } from '../contexts/EditContext.js';
-import { Error } from '../../styles/styledComponents/blockComponents.js';
 
 export default function UploadBtn() {
   const [uploading, setUploading] = useState(false);
@@ -17,6 +20,7 @@ export default function UploadBtn() {
     imagePathList,
     announceList,
   } = useEditState();
+  const navigate = useNavigate();
 
   const userDatas = {
     published,
@@ -37,28 +41,62 @@ export default function UploadBtn() {
       setUploadError('請選擇至少一張照片');
       return;
     }
+
     setUploading(true);
-    if (published) {
-      uploadFirestoreData(currentUid, userDatas);
-      const result = upLoadStorageImages(currentUid, imageList);
-      console.log(result);
-      // 需要merge，因為之前在註冊的時候就創建了各自的document
-      setUploading(false);
-      console.log(3);
+    if (imageList.length === 0) {
+      if (published) {
+        uploadFirestoreData(currentUid, userDatas).then((result) => {
+          console.log(result);
+          setUploading(false);
+          console.log(5);
+          navigate(0);
+        });
+      } else {
+        uploadFirestoreData(currentUid, { ...userDatas, published: true }).then(
+          (result) => {
+            console.log(result);
+            setUploading(false);
+            console.log(6);
+            navigate(0);
+          }
+        );
+      }
+    } else if (published) {
+      const promise1 = uploadFirestoreData(currentUid, userDatas);
+      console.log(promise1);
+      // if (imageList.length === 0){promise2 =}
+      const promise2 = upLoadStorageImages(currentUid, imageList);
+      console.log(promise2);
+      Promise.all([promise1, promise2]).then((result) => {
+        console.log(result);
+        setUploading(false);
+        navigate(0);
+        console.log(3);
+      });
     } else {
-      uploadFirestoreData(currentUid, {
+      const promise1 = uploadFirestoreData(currentUid, {
         ...userDatas,
         published: true,
       });
-      upLoadStorageImages(currentUid, imageList);
-      setUploading(false);
+      const promise2 = upLoadStorageImages(currentUid, imageList);
+      Promise.all([promise1, promise2]).then((result) => {
+        console.log(result);
+        setUploading(false);
+        navigate(0);
+        console.log(4);
+        setUploading(false);
+      });
     }
   };
+  // for ui
+  useEffect(() => {
+    setUploadError(null);
+  }, [introductionTextData, imagePathList]);
 
   return (
     <div style={{ margin: '0 auto', textAlign: 'center' }}>
       {uploadError && (
-        <Error
+        <TextError
           style={{
             display: isEditMode ? 'block' : 'none',
             margin: '8px auto',
@@ -66,11 +104,19 @@ export default function UploadBtn() {
           }}
         >
           {uploadError}
-        </Error>
+        </TextError>
       )}
-      <button disabled={uploading} type="button" onClick={() => handleClick()}>
-        儲存檔案
-      </button>
+      {uploading ? (
+        <p>正在上傳中...</p>
+      ) : (
+        <button
+          disabled={uploading}
+          type="button"
+          onClick={() => handleClick()}
+        >
+          儲存檔案
+        </button>
+      )}
     </div>
   );
 }

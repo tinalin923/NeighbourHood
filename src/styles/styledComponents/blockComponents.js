@@ -57,13 +57,23 @@ export const SecondaryBtn = styled.button`
   }
 `;
 
-export const Error = styled.p`
+export const ImageError = styled.p`
   margin: 8% auto;
-  border: 4px solid red;
+  border: 2px solid #e87191;
   padding: 4px;
   width: 50%;
   text-align: center;
-  background-color: red;
+  background-color: #e87191;
   color: white;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+`;
+
+export const TextError = styled.p`
+  margin: 4px auto;
+  border: 2px solid #e87191;
+  padding: 4px;
+  width: 150px;
+  text-align: center;
+  color: #e87191;
+  font-size: 0.9rem;
 `;

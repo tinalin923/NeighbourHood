@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useReducer, useRef } from 'react';
 import styled from 'styled-components';
-import { getStorageImages } from '../../hooks/firebase/useStorageData.js';
-import { Error } from '../../styles/styledComponents/blockComponents.js';
+import { getStorageImages } from '../../hooks/firebase/useStorage.js';
+import { ImageError } from '../../styles/styledComponents/blockComponents.js';
 import {
   secondaryGray,
   secondaryYellow,
@@ -11,10 +12,6 @@ import {
 import compressImage from '../../utils/imageCompress.js';
 import { useAuthState } from '../contexts/AuthContext.js';
 import { useEditState } from '../contexts/EditContext.js';
-
-// const Wrapper = styled.div`
-//
-// `;
 
 const Image = styled.div`
   margin: 0 auto;
@@ -93,19 +90,22 @@ const SingleImageBlock = ({ name }) => {
   const {
     published,
     isEditMode,
-    // imageList,
     setImageList,
     imagePathList,
     setImagePathList,
   } = useEditState();
 
   useEffect(() => {
+    if (!published) {
+      return;
+    }
     if (!imagePathList?.[name]) {
       console.log('bye');
       return;
     }
-    if (!published) return;
-    // if (name === 'announceImage') return;
+    if (state.temporary) {
+      return;
+    }
     getStorageImages(imagePathList[name])
       .then((storedUrl) => {
         console.log('get');
@@ -117,7 +117,7 @@ const SingleImageBlock = ({ name }) => {
       .catch((e) => {
         console.log(e);
       });
-  });
+  }, [currentUid, published]);
 
   const handleChange = async () => {
     const imageFile = fileInput.current.files[0];
@@ -133,18 +133,7 @@ const SingleImageBlock = ({ name }) => {
     // compressedImage 為一Blob物件
     const compressedImage = await compressImage(imageFile, 1024);
     // 要上傳到firestorage需要blob檔
-
-    // if (name === 'announceImage') {
-    //   setImageList((prev) => ({
-    //     ...prev,
-    //     announceImage: imageList.announceImage.concat(compressedImage),
-    //   }));
-    //   setImagePathList((prev) => ({
-    //     ...prev,
-    //     announceImage: `${currentUid}/announceImage/${compressedImage?.name}`,
-    //   }));
-    // } else {
-    setImageList((prev) => [...prev, `${compressedImage}`]);
+    setImageList((prev) => [...prev, compressedImage]);
     setImagePathList((prev) => ({
       ...prev,
       [name]: `${currentUid}/${compressedImage?.name}`,
@@ -170,9 +159,9 @@ const SingleImageBlock = ({ name }) => {
       }}
     >
       {state.error && (
-        <Error style={{ display: isEditMode ? 'block' : 'none' }}>
+        <ImageError style={{ display: isEditMode ? 'block' : 'none' }}>
           {state.error}
-        </Error>
+        </ImageError>
       )}
       <InputBtn style={{ display: isEditMode ? 'block' : 'none' }}>
         <IconContainer>

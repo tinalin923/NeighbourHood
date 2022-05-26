@@ -1,25 +1,25 @@
 /* eslint-disable function-paren-newline */
-import React, { useState, useReducer, useRef } from 'react';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useReducer, useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useAuthState } from '../components/contexts/AuthContext.js';
 import { useEditState } from '../components/contexts/EditContext.js';
 import TextInfoForEdit from '../components/Edit/TextInfoForEdit.js';
 import {
   Block,
+  ImageError,
+  TextError,
   Main,
-  Title,
   SecondaryBtn,
-  Error,
+  Title,
 } from '../styles/styledComponents/blockComponents.js';
-
 // for imageBlock
 import {
   secondaryGray,
   secondaryYellow,
 } from '../styles/styledComponents/color.js';
 import compressImage from '../utils/imageCompress.js';
-import { useAuthState } from '../components/contexts/AuthContext.js';
 
 const Image = styled.div`
   margin: 0 auto;
@@ -87,10 +87,11 @@ const imageReducer = (state, action) => {
 };
 
 export default function EditBullitinBlock() {
-  const { announceList, addAnnounceList, addAnnouncePresentList } =
-    useEditState();
+  const { addAnnounceList, addAnnouncePresentList } = useEditState();
   const [announceTitle, setAnnounceTitle] = useState('');
   const [announceDetails, setAnnounceDetails] = useState('');
+  const [announceError, setAnnounceError] = useState('');
+  const id = (Math.floor(Math.random() * 10000) + 1).toString();
   // eslint-disable-next-line no-unused-vars
   // 為圖片BLOB檔
   const [announcePicture, setAnnouncePicture] = useState('');
@@ -115,18 +116,6 @@ export default function EditBullitinBlock() {
     }
     const compressedImage = await compressImage(imageFile, 1280);
     setAnnouncePicture(compressedImage);
-    // if (!imageList.announceImage) {
-    //   setImageList((prev) => ({
-    //     ...prev,
-    //     announceImage: [compressedImage],
-    //   }));
-    // } else {
-    //   const newImageArray = imageList.announceImage.concat(compressedImage);
-    //   setImageList((prev) => ({
-    //     ...prev,
-    //     announceImage: newImageArray,
-    //   }));
-    // }
     const compressedImageURL = URL.createObjectURL(compressedImage);
     dispatch({
       type: 'SET_TEMPORARY_URL',
@@ -135,22 +124,30 @@ export default function EditBullitinBlock() {
   };
   // 送出公告，再加進整體列表
   const handleClick = () => {
-    console.log(announcePicture);
-    console.log(state.temporaryUrl);
-    console.log(state.temporaryUrl?.name);
-    setImageList((prev) => [...prev, `${announcePicture}`]);
-    addAnnounceList(
-      announceList.length.toString(),
-      announceTitle,
-      announceDetails,
-      `${currentUid}/${announcePicture.name}`
-    );
-    addAnnouncePresentList(
-      announceList.length.toString(),
-      announceTitle,
-      announceDetails,
-      state.temporaryUrl
-    );
+    if (!announceTitle) {
+      setAnnounceError('請輸入公告標題');
+      return;
+    }
+    // 沒有選擇照片就不加入路徑
+    if (!announcePicture) {
+      addAnnounceList(id, announceTitle, announceDetails, '');
+      console.log('2');
+      addAnnouncePresentList(id, announceTitle, announceDetails, '');
+    } else {
+      setImageList((prev) => [...prev, announcePicture]);
+      addAnnounceList(
+        id,
+        announceTitle,
+        announceDetails,
+        `${currentUid}/${announcePicture.name}`
+      );
+      addAnnouncePresentList(
+        id,
+        announceTitle,
+        announceDetails,
+        state.temporaryUrl
+      );
+    }
     // 輸入歸零
     setAnnounceTitle('');
     setAnnounceDetails('');
@@ -160,6 +157,11 @@ export default function EditBullitinBlock() {
       payload: { temporaryUrl: '' },
     });
   };
+
+  // for ui
+  useEffect(() => {
+    setAnnounceError('');
+  }, [announceTitle]);
 
   return (
     <Block>
@@ -193,9 +195,9 @@ export default function EditBullitinBlock() {
             }}
           >
             {state.error && (
-              <Error style={{ display: isEditMode ? 'block' : 'none' }}>
+              <ImageError style={{ display: isEditMode ? 'block' : 'none' }}>
                 {state.error}
-              </Error>
+              </ImageError>
             )}
             <InputBtn style={{ display: isEditMode ? 'block' : 'none' }}>
               <IconContainer>
@@ -212,9 +214,9 @@ export default function EditBullitinBlock() {
               {state.temporaryUrl ? <P>選擇其他圖片</P> : <P>新增圖片</P>}
             </InputBtn>
           </Image>
-
+          {announceError && <TextError>{announceError}</TextError>}
           <SecondaryBtn
-            disabled={announceTitle === ''}
+            // disabled={announceTitle === ''}
             type="button"
             onClick={() => handleClick()}
           >

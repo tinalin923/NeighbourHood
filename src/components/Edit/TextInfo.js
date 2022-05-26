@@ -22,6 +22,7 @@ export default function TextInfo({
   setValue,
 }) {
   const { isEditMode } = useEditState();
+  // const []
   const commonStyle = {
     height: height || '60vh',
     width: width || '80%',
@@ -42,7 +43,7 @@ export default function TextInfo({
     <Text
       name={name}
       placeholder={placeholder}
-      value={value?.name}
+      value={value ? value[name] : ''}
       onChange={(e) =>
         setValue((prev) => ({ ...prev, [name]: e.target.value }))
       }

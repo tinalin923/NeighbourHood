@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import { useEditState } from '../components/contexts/EditContext.js';
 import SingleImageInput from '../components/Edit/SingleImageBlock.js';
 import TextInfo from '../components/Edit/TextInfo.js';

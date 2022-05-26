@@ -4,8 +4,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useAuthState } from '../components/contexts/AuthContext.js';
 import { useEditState } from '../components/contexts/EditContext.js';
-import { getStorageImages } from '../hooks/firebase/useStorageData.js';
-import { Error } from '../styles/styledComponents/blockComponents.js';
+import { getStorageImages } from '../hooks/firebase/useStorage.js';
+import { ImageError } from '../styles/styledComponents/blockComponents.js';
 import compressImage from '../utils/imageCompress.js';
 
 const InputBlock = styled.label`
@@ -81,20 +81,30 @@ const HeroImageBlock = () => {
 
   // 載入時要觸發的效果
   useEffect(() => {
-    if (!imagePathList?.heroImage) {
-      console.log('bye');
+    console.log('hero');
+    if (!published) {
+      console.log('還沒上傳過不用讀取');
       return;
     }
-    if (!published) return;
+    if (!imagePathList?.heroImage) {
+      console.log('有上傳過但沒有照片');
+      return;
+    }
+    if (temporaryHeroImageUrl) {
+      console.log('已經有照片了');
+      return;
+    }
+    console.log('want to get url');
     getStorageImages(imagePathList.heroImage)
       .then((storedUrl) => {
-        console.log('get');
+        console.log('get from firestorage');
         setTemporaryHeroImageUrl(storedUrl);
       })
       .catch((e) => {
         console.log(e);
       });
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUid, published]);
 
   const handleChange = async () => {
     const imageFile = fileInput.current.files[0];
@@ -108,7 +118,7 @@ const HeroImageBlock = () => {
     const compressedImage = await compressImage(imageFile, 1960);
     console.log(compressedImage);
     // 要上傳到firestorage需要blob檔
-    setImageList((prev) => [...prev, `${compressedImage}`]);
+    setImageList((prev) => [...prev, compressedImage]);
     setImagePathList((prev) => ({
       ...prev,
       heroImage: `${currentUid}/${compressedImage?.name}`,
@@ -134,9 +144,9 @@ const HeroImageBlock = () => {
           }}
         >
           {heroImageError && (
-            <Error style={{ display: isEditMode ? 'block' : 'none' }}>
+            <ImageError style={{ display: isEditMode ? 'block' : 'none' }}>
               {heroImageError}
-            </Error>
+            </ImageError>
           )}
         </HeroImage>
       </PlaceHolder>

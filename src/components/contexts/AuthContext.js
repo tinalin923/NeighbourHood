@@ -12,7 +12,8 @@ import React, {
   useState,
 } from 'react';
 import { auth } from '../../firebase/firebaseConfig.js';
-import createInitialUserDatas from '../../hooks/firebase/user.js';
+import createInitialUserDatas from '../../hooks/firebase/createUser.js';
+import { getFirestoreData } from '../../hooks/firebase/useFirestore.js';
 import { useEditState } from './EditContext.js';
 
 export const AuthContext = createContext();
@@ -20,9 +21,9 @@ export const useAuthState = () => useContext(AuthContext);
 
 // eslint-disable-next-line react/prop-types
 export const AuthContextProvider = ({ children }) => {
+  const { getDatasToContext } = useEditState();
   const [currentUid, setCurrentUid] = useState();
   const [load, setLoad] = useState(true);
-  const { getUserDatasFromFirestore } = useEditState();
 
   const signup = async (email, password, villageName) => {
     // write into firebase auth
@@ -41,13 +42,42 @@ export const AuthContextProvider = ({ children }) => {
 
   const logout = () => signOut(auth);
 
+  // async function restoreAnnounceList(announceList) {
+  //   let array = [];
+  //   // eslint-disable-next-line no-restricted-syntax
+  //   for (const announce of announceList) {
+  //     // eslint-disable-next-line no-await-in-loop
+  //     const storedUrl = await getStorageImages(announce.picture);
+  //     if (!storedUrl) {
+  //       array = array.concat({
+  //         id: announce.id,
+  //         title: announce.title,
+  //         details: announce.details,
+  //         picture: '',
+  //       });
+  //     } else {
+  //       array = array.concat({
+  //         id: announce.id,
+  //         title: announce.title,
+  //         details: announce.details,
+  //         picture: storedUrl,
+  //       });
+  //     }
+  //   }
+  //   console.log(array);
+  //   return array;
+  // }
+
+  async function start(uid) {
+    const userDatas = await getFirestoreData(uid);
+    getDatasToContext(userDatas);
+  }
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid } = user;
-        getUserDatasFromFirestore(uid);
         setCurrentUid(uid);
-        console.log('get firebase');
+        start(uid);
         setLoad(false);
       } else {
         setCurrentUid(null);

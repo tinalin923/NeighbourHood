@@ -10,7 +10,11 @@ export const getFirestoreData = async (userUid) => {
 export const uploadFirestoreData = (currentUid, userDatas) => {
   console.log(2);
   console.log(userDatas);
-  const userRef = doc(db, 'users', currentUid);
-  // 需要merge，因為之前在註冊的時候就創建了各自的document
-  setDoc(userRef, userDatas, { merge: true });
+  return new Promise((resolve, reject) => {
+    const userRef = doc(db, 'users', currentUid);
+    setDoc(userRef, userDatas, { merge: true });
+    resolve('success');
+    reject(new Error('something wrong with upload images'));
+  });
 };
+// 需要merge，因為之前在註冊的時候就創建了各自的document

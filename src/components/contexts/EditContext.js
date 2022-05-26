@@ -2,8 +2,6 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, { createContext, useContext, useReducer, useState } from 'react';
 import editReducer, { initialEditState } from './editReducer.js';
-import { getFirestoreData } from '../../hooks/firebase/useFirestoreData.js';
-import { getStorageImages } from '../../hooks/firebase/useStorageData.js';
 
 const EditContext = createContext(initialEditState);
 export const useEditState = () => useContext(EditContext);
@@ -14,13 +12,14 @@ export const EditContextProvider = ({ children }) => {
   // for controlled input component(not in reducer)
   const [introductionTextData, setIntroductionTextData] = useState([]);
   const [imagePathList, setImagePathList] = useState([]);
+  const [published, setPublished] = useState('');
   // for upload to firestorage
   const [imageList, setImageList] = useState([]);
   const [villageName, setVillageName] = useState('');
   const [currentUserDatas, setCurrentUserDatas] = useState('');
+
   const toggleEditMode = () => {
     const editMode = !state.isEditMode;
-
     dispatch({
       type: 'TOGGLE_EDITMODE',
       payload: {
@@ -138,40 +137,18 @@ export const EditContextProvider = ({ children }) => {
     });
   };
 
-  const getUserDatasFromFirestore = async (currentUid) => {
-    const userDatas = await getFirestoreData(currentUid);
-    console.log(userDatas);
-    setCurrentUserDatas(userDatas);
-    setScrollList(userDatas.scrollList);
-    setIntroductionTextData(userDatas.introductionTextData);
-    setImagePathList(userDatas.imagePathList);
-    setVillageName(userDatas.village);
-    setAnnounceList(userDatas.announceList);
-    let array = [];
-    userDatas.announceList.forEach((announce) => {
-      if (!announce.picture) {
-        array = array.concat({
-          id: announce.id,
-          title: announce.title,
-          details: announce.details,
-          picture: '',
-        });
-      } else {
-        getStorageImages(announce.picture).then((storedUrl) => {
-          array = array.concat({
-            id: announce.id,
-            title: announce.title,
-            details: announce.details,
-            picture: storedUrl,
-          });
-        });
-      }
-    });
-    setAnnouncePresentList(array);
+  const getDatasToContext = (userDatasFromFirbase) => {
+    setPublished(userDatasFromFirbase.published);
+    setAnnounceList(userDatasFromFirbase.announceList);
+    setScrollList(userDatasFromFirbase.scrollList);
+    setCurrentUserDatas(userDatasFromFirbase);
+    setIntroductionTextData(userDatasFromFirbase.introductionTextData);
+    setImagePathList(userDatasFromFirbase.imagePathList);
+    setVillageName(userDatasFromFirbase.village);
   };
 
   const value = {
-    published: state.published,
+    published,
     isEditMode: state.isEditMode,
     currentUserDatas,
     introductionTextData,
@@ -181,8 +158,11 @@ export const EditContextProvider = ({ children }) => {
     scrollList: state.scrollList,
     announceList: state.announceList,
     announcePresentList: state.announcePresentList,
-    getUserDatasFromFirestore,
+    getDatasToContext,
+    setPublished,
     toggleEditMode,
+    setCurrentUserDatas,
+    setVillageName,
     setIntroductionTextData,
     setImagePathList,
     setImageList,
