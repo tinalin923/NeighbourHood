@@ -25,7 +25,7 @@ export const AuthContextProvider = ({ children }) => {
   const [currentUid, setCurrentUid] = useState();
   const [load, setLoad] = useState(true);
 
-  const signup = async (email, password, villageName) => {
+  const signup = async (email, password, city, village) => {
     // write into firebase auth
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -34,7 +34,7 @@ export const AuthContextProvider = ({ children }) => {
     );
     const { uid } = userCredential.user;
     // write into firestore
-    return createInitialUserDatas(uid, email, villageName);
+    return createInitialUserDatas(uid, email, city, village);
   };
 
   const login = (email, password) =>

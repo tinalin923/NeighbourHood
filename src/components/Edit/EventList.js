@@ -2,13 +2,14 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { getStorageImages } from '../../hooks/firebase/useStorage.js';
 import {
   primaryYellow,
   secondaryGray,
 } from '../../styles/styledComponents/color.js';
 import { useEditState } from '../contexts/EditContext.js';
-import { getStorageImages } from '../../hooks/firebase/useStorage.js';
+import ImagePresent from './ImagePresent.js';
 
 const icon = {
   position: 'relative',
@@ -20,6 +21,30 @@ const icon = {
 };
 
 export default function EventList() {
+  const {
+    isEditMode,
+    imageList,
+    announceList,
+    announcePresentList,
+    setAnnouncePresentList,
+    deleteAnnounceList,
+    deleteAnnouncePresentList,
+  } = useEditState();
+  const [activeItem, setActiveItem] = useState(0);
+
+  const wholeButtonStyle = {
+    flex: 'none',
+    width: isEditMode ? '92%' : '99%',
+    margin: '16px 0px',
+    outline: 'none',
+    border: 'none',
+    borderRadius: '4px',
+    padding: '8px 20px',
+    background: `${secondaryGray}`,
+    fontSize: '1.4rem',
+    color: '#ffffff',
+  };
+
   const containerVariants = {
     hidden: {
       scale: 1,
@@ -46,7 +71,6 @@ export default function EventList() {
       },
     },
   };
-
   const eventVariants = {
     hidden: {
       height: '0px',
@@ -54,11 +78,7 @@ export default function EventList() {
       y: '2vh',
       transition: {
         type: 'tween',
-        // type: 'spring',
-        // mass: 0.4,
-        // damping: 8,
         duration: 0.1,
-        // ease: 'easeOut',
       },
     },
     visible: {
@@ -67,24 +87,11 @@ export default function EventList() {
       y: '0',
       transition: {
         type: 'tween',
-        // type: 'spring',
-        // mass: 0.4,
-        // damping: 8,
         duration: 0.2,
         delay: 0.2,
       },
     },
   };
-  const {
-    isEditMode,
-    imageList,
-    announceList,
-    announcePresentList,
-    setAnnouncePresentList,
-    deleteAnnounceList,
-    deleteAnnouncePresentList,
-  } = useEditState();
-  const [activeItem, setActiveItem] = useState(0);
 
   useEffect(() => {
     // 防止還未上傳到storage的圖片被讀取
@@ -155,36 +162,29 @@ export default function EventList() {
           }}
         >
           <motion.button
+            type="button"
+            onClick={() => handleClick(id)}
             variants={containerVariants}
             animate={activeItem === id ? 'visible' : 'hidden'}
             whileHover={{
               background: `${primaryYellow}`,
               transition: { duration: 0.1 },
             }}
-            style={{
-              flex: 'none',
-              width: isEditMode ? '92%' : '99%',
-              margin: '16px 0px',
-              outline: 'none',
-              border: 'none',
-              borderRadius: '10px',
-              padding: '8px 20px',
-              background: `${secondaryGray}`,
-              fontSize: '1.4rem',
-              color: '#ffffff',
-            }}
-            type="button"
-            onClick={() => handleClick(id)}
+            style={wholeButtonStyle}
           >
-            <div style={{ textAlign: 'right' }}>{title}</div>
+            <div style={{ textAlign: 'left', fontWeight: 'bold' }}>{title}</div>
             <motion.div
               variants={eventVariants}
               animate={activeItem === id ? 'visible' : 'hidden'}
-              style={{ textAlign: 'left', fontSize: '1.1rem', color: '#000' }}
+              style={{
+                textAlign: 'left',
+                fontSize: '1.1rem',
+                overflow: 'hidden',
+              }}
             >
               {details}
               <br />
-              {picture && <img src={picture} alt="announceImage" />}
+              {picture && <ImagePresent name="announceImage" src={picture} />}
             </motion.div>
           </motion.button>
           <button

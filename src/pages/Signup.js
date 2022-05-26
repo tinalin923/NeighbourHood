@@ -7,6 +7,7 @@ import Background from '../assets/images/toa-heftiba-nrSzRUWqmoI-unsplash.jpg';
 import { useAuthState } from '../components/contexts/AuthContext.js';
 import Header from '../components/Header/Header.js';
 import { Button } from '../styles/styledComponents/button.js';
+import cityOption from '../utils/city.js';
 
 const GlobalStyle = createGlobalStyle`
   html, body {
@@ -64,10 +65,32 @@ const P = styled.p`
   }
 `;
 
+const Select = styled.select`
+  height: 53px;
+  width: 240px;
+  padding: 10px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #16181d;
+  // appearance: none;
+`;
+
+const Option = styled.option`
+  background-color: transparent;
+  color: #16181d;
+  appearance: none;
+  &:hover {
+    background-color: transparent;
+  }
+`;
+
 const Signup = () => {
   const [signupLoading, setSignupLoading] = useState(false);
   const [signError, setSignError] = useState('');
+  const [city, setCity] = useState('');
   const navigate = useNavigate();
+
   const villageRef = useRef('');
   const emailRef = useRef('');
   const passwordRef = useRef('');
@@ -79,13 +102,10 @@ const Signup = () => {
       const userId = await signup(
         emailRef.current.value,
         passwordRef.current.value,
+        city,
         villageRef.current.value
       );
       console.log(userId);
-      // const currentUid = userCredential.user.uid;
-      // const storedUserDatas = await getFirestoreData(userId);
-      // console.log(storedUserDatas.scrollList);
-      // setScrollList(storedUserDatas.scrollList);
       navigate('/editing');
     } catch (err) {
       console.log(err);
@@ -98,6 +118,22 @@ const Signup = () => {
       <GlobalStyle />
       <Header />
       <Form>
+        <Block>
+          <FontAwesomeIcon icon={solid('city')} style={icon} />
+          <Select
+            required
+            value={city}
+            onChange={(e) => {
+              setCity(e.target.value);
+            }}
+          >
+            {cityOption.map((option) => (
+              <Option key={option.value} value={option.value}>
+                {option.label}
+              </Option>
+            ))}
+          </Select>
+        </Block>
         <Block>
           <FontAwesomeIcon icon={solid('house-chimney-user')} style={icon} />
           <Input ref={villageRef} placeholder="村里名" required />

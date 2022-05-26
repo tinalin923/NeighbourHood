@@ -8,7 +8,8 @@ export const Block = styled.div`
   height: auto;
 `;
 export const Title = styled.div`
-  padding: 15px 0px;
+  margin-top: 24px;
+  padding: 12px 0px;
   height: 10vh;
   text-align: center;
   font-size: 1.5rem;

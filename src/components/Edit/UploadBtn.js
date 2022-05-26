@@ -2,6 +2,7 @@
 /* eslint-disable function-paren-newline */
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BeatLoader from 'react-spinners/BeatLoader';
 import { uploadFirestoreData } from '../../hooks/firebase/useFirestore.js';
 import { upLoadStorageImages } from '../../hooks/firebase/useStorage.js';
 import { TextError } from '../../styles/styledComponents/blockComponents.js';
@@ -45,6 +46,7 @@ export default function UploadBtn() {
     setUploading(true);
     if (imageList.length === 0) {
       if (published) {
+        console.log(userDatas);
         uploadFirestoreData(currentUid, userDatas).then((result) => {
           console.log(result);
           setUploading(false);
@@ -64,7 +66,6 @@ export default function UploadBtn() {
     } else if (published) {
       const promise1 = uploadFirestoreData(currentUid, userDatas);
       console.log(promise1);
-      // if (imageList.length === 0){promise2 =}
       const promise2 = upLoadStorageImages(currentUid, imageList);
       console.log(promise2);
       Promise.all([promise1, promise2]).then((result) => {
@@ -94,7 +95,7 @@ export default function UploadBtn() {
   }, [introductionTextData, imagePathList]);
 
   return (
-    <div style={{ margin: '0 auto', textAlign: 'center' }}>
+    <div style={{ margin: '20px auto', textAlign: 'center' }}>
       {uploadError && (
         <TextError
           style={{
@@ -106,8 +107,17 @@ export default function UploadBtn() {
           {uploadError}
         </TextError>
       )}
+
       {uploading ? (
-        <p>正在上傳中...</p>
+        <>
+          <BeatLoader
+            size={15}
+            color="#e87191"
+            loading={uploading}
+            speedMultiplier={0.5}
+          />
+          <p>上傳中，完成後將重新導向頁面</p>
+        </>
       ) : (
         <button
           disabled={uploading}
