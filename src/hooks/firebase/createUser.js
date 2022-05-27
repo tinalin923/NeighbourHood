@@ -26,6 +26,7 @@ const createInitialUserDatas = async (uid, email, city, village) => {
     ],
   };
   await setDoc(doc(db, 'users', uid), initialUserDatas);
+  // await setDoc(doc(db, 'neighbours', uid), initialUserDatas);
   return uid;
 };
 

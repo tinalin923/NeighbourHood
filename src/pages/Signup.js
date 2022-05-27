@@ -1,6 +1,6 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link as RouteLink, useNavigate } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import Background from '../assets/images/toa-heftiba-nrSzRUWqmoI-unsplash.jpg';
@@ -51,14 +51,20 @@ const icon = {
   opacity: '0.8',
 };
 const Err = styled.div`
-  color: red;
-  font-weight: bold;
+  margin-top: 12px;
+  padding: 4px;
+  background-color: red;
+  opacity: 0.8;
+  color: #f5f5f5;
 `;
 
 const P = styled.p`
-  margin-top: 10px;
+  margin: 8px;
   text-decoration: none;
-  color: white;
+  border-radius: 4px;
+  padding: 4px;
+  font-weight: bold;
+  color: #0078bf;
   font-size: 0.8rem;
   :hover {
     color: black;
@@ -87,7 +93,7 @@ const Option = styled.option`
 
 const Signup = () => {
   const [signupLoading, setSignupLoading] = useState(false);
-  const [signError, setSignError] = useState('');
+  const [signupError, setSignupError] = useState('');
   const [city, setCity] = useState('');
   const navigate = useNavigate();
 
@@ -95,9 +101,14 @@ const Signup = () => {
   const emailRef = useRef('');
   const passwordRef = useRef('');
   const { signup } = useAuthState();
+
+  useEffect(() => {
+    setSignupError('');
+  }, [emailRef, passwordRef]);
+
   async function handleSubmit() {
     setSignupLoading(true);
-    setSignError('');
+    setSignupError('');
     try {
       const userId = await signup(
         emailRef.current.value,
@@ -107,9 +118,17 @@ const Signup = () => {
       );
       console.log(userId);
       navigate('/editing');
-    } catch (err) {
-      console.log(err);
-      setSignError(err.message);
+    } catch (error) {
+      console.log(error.code);
+      if (error.code === 'auth/invalid-email') {
+        setSignupError('請輸入正確信箱格式');
+      } else if (error.code === 'auth/invalid-password') {
+        setSignupError('請輸入至少六個字元的密碼');
+      } else if (error.code === 'auth/email-already-exists') {
+        setSignupError('此信箱已被註冊');
+      } else {
+        setSignupError(error.message);
+      }
     }
     setSignupLoading(false);
   }
@@ -151,7 +170,7 @@ const Signup = () => {
             required
           />
         </Block>
-        {signError && <Err>{signError}</Err>}
+        {signupError && <Err>{signupError}</Err>}
         <Button type="submit" onClick={handleSubmit} disabled={signupLoading}>
           註冊
         </Button>

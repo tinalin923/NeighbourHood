@@ -51,13 +51,19 @@ const icon = {
   opacity: '0.8',
 };
 const Err = styled.div`
-  color: red;
-  font-weight: bold;
+  margin-top: 12px;
+  padding: 4px;
+  background-color: red;
+  opacity: 0.8;
+  color: #f5f5f5;
 `;
 const P = styled.p`
-  margin-top: 10px;
+  margin: 8px;
   text-decoration: none;
-  color: white;
+  border-radius: 4px;
+  padding: 4px;
+  font-weight: bold;
+  color: #0078bf;
   font-size: 0.8rem;
   :hover {
     color: black;
@@ -71,14 +77,6 @@ const Login = () => {
   const emailRef = useRef('');
   const passwordRef = useRef('');
   const { login } = useAuthState();
-  // const {
-  //   setChiefName,
-  //   setChiefInfo,
-  //   setHeroImage,
-  //   setChiefAvator,
-  //   setScrollList,
-  //   setAnnounceList,
-  // } = useEditState();
 
   async function handleSubmit() {
     setLoginLoading(true);
@@ -89,21 +87,17 @@ const Login = () => {
         passwordRef.current.value
       );
       console.log(userCredential);
-      // const currentUid = userCredential.user.uid;
-      // const storedUserDatas = await getFirestoreData(currentUid);
-      // console.log(storedUserDatas.scrollList);
-      // setScrollList(storedUserDatas.scrollList);
-
-      // if (storedUserDatas.published) {
-      //   setChiefName(storedUserDatas.chiefName);
-      //   setChiefInfo(storedUserDatas.chiefInfo);
-      //   setHeroImage(storedUserDatas.heroImage);
-      //   setChiefAvator(storedUserDatas.chiefAvator);
-      //   setAnnounceList(storedUserDatas.announceList);
-      // }
       navigate('/editing');
-    } catch (err) {
-      setErrorLogin(err.message);
+    } catch (error) {
+      if (error.code === 'auth/invalid-email') {
+        setErrorLogin('請輸入正確信箱格式');
+      } else if (error.code === 'auth/wrong-password') {
+        setErrorLogin('輸入密碼錯誤');
+      } else if (error.code === 'auth/user-not-found') {
+        setErrorLogin('尚未註冊');
+      } else {
+        setErrorLogin(error.message);
+      }
     }
     setLoginLoading(false);
   }
