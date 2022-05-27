@@ -15,7 +15,7 @@ export const EditContextProvider = ({ children }) => {
   const [published, setPublished] = useState('');
   // for upload to firestorage
   const [imageList, setImageList] = useState([]);
-  const [villageName, setVillageName] = useState('');
+  const [village, setVillage] = useState('');
   const [currentUserDatas, setCurrentUserDatas] = useState('');
 
   const toggleEditMode = () => {
@@ -144,7 +144,7 @@ export const EditContextProvider = ({ children }) => {
     setCurrentUserDatas(userDatasFromFirbase);
     setIntroductionTextData(userDatasFromFirbase.introductionTextData);
     setImagePathList(userDatasFromFirbase.imagePathList);
-    setVillageName(userDatasFromFirbase.village);
+    setVillage(userDatasFromFirbase.villageName);
   };
 
   const value = {
@@ -154,7 +154,7 @@ export const EditContextProvider = ({ children }) => {
     introductionTextData,
     imagePathList,
     imageList,
-    villageName,
+    village,
     scrollList: state.scrollList,
     announceList: state.announceList,
     announcePresentList: state.announcePresentList,
@@ -162,7 +162,7 @@ export const EditContextProvider = ({ children }) => {
     setPublished,
     toggleEditMode,
     setCurrentUserDatas,
-    setVillageName,
+    setVillage,
     setIntroductionTextData,
     setImagePathList,
     setImageList,

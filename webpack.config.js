@@ -60,6 +60,7 @@ module.exports = {
       title: 'NeighbourHood',
       filename: 'index.html',
       template: 'src/template.html',
+      base: '/',
     }),
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(dotenv.parsed),

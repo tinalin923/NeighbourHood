@@ -73,7 +73,7 @@ const HeroImageBlock = () => {
     setImageList,
     imagePathList,
     setImagePathList,
-    villageName,
+    village,
   } = useEditState();
   const [temporaryHeroImageUrl, setTemporaryHeroImageUrl] = useState();
   const [heroImageError, setHeroImageError] = useState(null);
@@ -150,7 +150,7 @@ const HeroImageBlock = () => {
           )}
         </HeroImage>
       </PlaceHolder>
-      <Title style={{ top: isEditMode ? '51%' : '50%' }}>{villageName}</Title>
+      <Title style={{ top: isEditMode ? '51%' : '50%' }}>{village}</Title>
       <InputBlock style={{ display: isEditMode ? 'block' : 'none' }}>
         <IconContainer>
           <FontAwesomeIcon icon={solid('plus')} style={icon} />

@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable function-paren-newline */
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { generatePath, useNavigate } from 'react-router-dom';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { uploadFirestoreData } from '../../hooks/firebase/useFirestore.js';
 import { upLoadStorageImages } from '../../hooks/firebase/useStorage.js';
@@ -10,10 +10,13 @@ import { useAuthState } from '../contexts/AuthContext.js';
 import { useEditState } from '../contexts/EditContext.js';
 
 export default function UploadBtn() {
+  const navigate = useNavigate();
+
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
   const { currentUid } = useAuthState();
   const {
+    // currentUserDatas,
     published,
     isEditMode,
     introductionTextData,
@@ -21,7 +24,6 @@ export default function UploadBtn() {
     imagePathList,
     announceList,
   } = useEditState();
-  const navigate = useNavigate();
 
   const userDatas = {
     published,
@@ -34,6 +36,9 @@ export default function UploadBtn() {
     console.log(imageList);
     console.log(userDatas);
     console.log(introductionTextData);
+    const villagePath = generatePath('/total/:uid', {
+      uid: currentUid,
+    });
     if (!introductionTextData) {
       setUploadError('請至少填寫里長介紹');
       return;
@@ -51,7 +56,8 @@ export default function UploadBtn() {
           console.log(result);
           setUploading(false);
           console.log(5);
-          navigate(0);
+          // navigate(0);
+          navigate(villagePath);
         });
       } else {
         uploadFirestoreData(currentUid, { ...userDatas, published: true }).then(
@@ -59,7 +65,8 @@ export default function UploadBtn() {
             console.log(result);
             setUploading(false);
             console.log(6);
-            navigate(0);
+            // navigate(0);
+            navigate(villagePath);
           }
         );
       }
@@ -71,8 +78,9 @@ export default function UploadBtn() {
       Promise.all([promise1, promise2]).then((result) => {
         console.log(result);
         setUploading(false);
-        navigate(0);
+        // navigate(0);
         console.log(3);
+        navigate(villagePath);
       });
     } else {
       const promise1 = uploadFirestoreData(currentUid, {
@@ -83,9 +91,10 @@ export default function UploadBtn() {
       Promise.all([promise1, promise2]).then((result) => {
         console.log(result);
         setUploading(false);
-        navigate(0);
+        // navigate(0);
         console.log(4);
         setUploading(false);
+        navigate(villagePath);
       });
     }
   };

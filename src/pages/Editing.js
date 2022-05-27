@@ -9,6 +9,7 @@ import ScrollList from '../components/Edit/ScrollList.js';
 import Switch from '../components/Edit/Switch.js';
 import Header from '../components/Header/Header.js';
 import EditBullitinBlock from '../blocks/EditBullitinBlock.js';
+import ActivityBlock from '../blocks/ActivityBlock.js';
 import UploadBtn from '../components/Edit/UploadBtn.js';
 
 const Editing = () => {
@@ -25,6 +26,7 @@ const Editing = () => {
       {isEditMode && <EditBullitinBlock />}
       <hr />
       {/* <Btn /> */}
+      <ActivityBlock />
       {isEditMode && <UploadBtn />}
     </>
   );

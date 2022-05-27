@@ -2,6 +2,7 @@ const cityOption = [
   {
     label: '基隆市',
     value: '基隆市',
+    english: 'keelung',
   },
   {
     label: '新北市',
