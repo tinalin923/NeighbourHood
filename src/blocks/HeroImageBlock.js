@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useAuthState } from '../components/contexts/AuthContext.js';
 import { useEditState } from '../components/contexts/EditContext.js';
-import { getStorageImages } from '../hooks/firebase/useStorage.js';
+import { getStorageImages } from '../firebase/useStorage.js';
 import { ImageError } from '../styles/styledComponents/blockComponents.js';
 import compressImage from '../utils/imageCompress.js';
 

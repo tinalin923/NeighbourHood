@@ -3,10 +3,10 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
-import { getStorageImages } from '../../hooks/firebase/useStorage.js';
+import { getStorageImages } from '../../firebase/useStorage.js';
 import {
   primaryYellow,
-  secondaryGray,
+  // secondaryGray,
 } from '../../styles/styledComponents/color.js';
 import { useEditState } from '../contexts/EditContext.js';
 import ImagePresent from './ImagePresent.js';
@@ -40,7 +40,7 @@ export default function EventList() {
     border: 'none',
     borderRadius: '4px',
     padding: '8px 20px',
-    background: `${secondaryGray}`,
+    background: '#363636',
     fontSize: '1.4rem',
     color: '#ffffff',
   };

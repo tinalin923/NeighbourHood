@@ -3,7 +3,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useReducer, useRef } from 'react';
 import styled from 'styled-components';
-import { getStorageImages } from '../../hooks/firebase/useStorage.js';
+import { getStorageImages } from '../../firebase/useStorage.js';
 import { ImageError } from '../../styles/styledComponents/blockComponents.js';
 import {
   secondaryGray,

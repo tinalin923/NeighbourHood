@@ -1,5 +1,5 @@
 import React from 'react';
-import EventList from '../components/Edit/EventList.js';
+import AnnounceList from '../components/Edit/AnnounceList.js';
 import {
   Block,
   Main,
@@ -11,7 +11,7 @@ export default function BulletinBlock() {
     <Block name="3">
       <Title>公佈欄</Title>
       <Main>
-        <EventList />
+        <AnnounceList />
       </Main>
     </Block>
   );

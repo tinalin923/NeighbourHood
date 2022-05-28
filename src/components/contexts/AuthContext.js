@@ -11,12 +11,12 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import createInitialUserDatas from '../../firebase/createUser.js';
 import { auth } from '../../firebase/firebaseConfig.js';
-import createInitialUserDatas from '../../hooks/firebase/createUser.js';
 import {
   getFirestoreUserData,
   getFirestoreVillageData,
-} from '../../hooks/firebase/useFirestore.js';
+} from '../../firebase/useFirestore.js';
 import { useEditState } from './EditContext.js';
 
 export const AuthContext = createContext();
@@ -86,6 +86,7 @@ export const AuthContextProvider = ({ children }) => {
       setLoad(false);
     }
     start(currentVillageId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentVillageId]);
 
   useEffect(() => {

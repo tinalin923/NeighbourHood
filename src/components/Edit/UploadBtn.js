@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { generatePath, useNavigate } from 'react-router-dom';
 import BeatLoader from 'react-spinners/BeatLoader';
-import { uploadFirestoreVillageData } from '../../hooks/firebase/useFirestore.js';
-import { upLoadStorageImages } from '../../hooks/firebase/useStorage.js';
+import { uploadFirestoreVillageData } from '../../firebase/useFirestore.js';
+import { upLoadStorageImages } from '../../firebase/useStorage.js';
 import { TextError } from '../../styles/styledComponents/blockComponents.js';
 import { useAuthState } from '../contexts/AuthContext.js';
 import { useEditState } from '../contexts/EditContext.js';

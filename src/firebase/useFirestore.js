@@ -1,5 +1,5 @@
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
-import { db, totalRef } from '../../firebase/firebaseConfig.js';
+import { db, totalRef } from './firebaseConfig.js';
 
 export const getFirestoreTotalCount = async () => {
   console.log(totalRef);
@@ -15,7 +15,6 @@ export const updateFirestoreTotalCount = async (count) => {
 };
 
 export const getFirestoreUserData = async (userUid) => {
-  // if (!userUid) return;
   console.log(userUid);
   const docRef = doc(db, 'users', userUid);
   const docSnap = await getDoc(docRef);
@@ -25,7 +24,6 @@ export const getFirestoreUserData = async (userUid) => {
 export const getFirestoreVillageData = async (villageId) => {
   const docRef = doc(db, 'villages', villageId.toString());
   const docSnap = await getDoc(docRef);
-  // console.log(docSnap.data());
   return docSnap.data();
 };
 

@@ -1,5 +1,5 @@
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
-import { db } from '../../firebase/firebaseConfig.js';
+import { db } from './firebaseConfig.js';
 import {
   getFirestoreTotalCount,
   updateFirestoreTotalCount,
