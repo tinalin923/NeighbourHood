@@ -3,11 +3,9 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { getStorageImages } from '../../firebase/useStorage.js';
-import {
-  primaryYellow,
-  // secondaryGray,
-} from '../../styles/styledComponents/color.js';
+import { thirdGray } from '../../styles/styledComponents/color.js';
 import { useEditState } from '../contexts/EditContext.js';
 import ImagePresent from './ImagePresent.js';
 
@@ -15,10 +13,17 @@ const icon = {
   position: 'relative',
   right: '0',
   color: '#939393',
-  '&:hover': {
-    color: '#535353',
-  },
 };
+
+const Button = styled.button`
+  width: 28px;
+  height: 28px;
+  background: none;
+  opacity: 0.5;
+  &: hover {
+    opacity: 1;
+  }
+`;
 
 export default function EventList() {
   const {
@@ -30,7 +35,7 @@ export default function EventList() {
     deleteAnnounceList,
     deleteAnnouncePresentList,
   } = useEditState();
-  const [activeItem, setActiveItem] = useState(0);
+  const [activeAnnounceItem, setActiveAnnounceItem] = useState(0);
 
   const wholeButtonStyle = {
     flex: 'none',
@@ -40,7 +45,7 @@ export default function EventList() {
     border: 'none',
     borderRadius: '4px',
     padding: '8px 20px',
-    background: '#363636',
+    background: `${thirdGray}`,
     fontSize: '1.4rem',
     color: '#ffffff',
   };
@@ -136,10 +141,10 @@ export default function EventList() {
 
   // for 動畫
   const handleClick = (id) => {
-    if (id === activeItem) {
-      setActiveItem(null);
+    if (id === activeAnnounceItem) {
+      setActiveAnnounceItem(null);
     } else {
-      setActiveItem(id);
+      setActiveAnnounceItem(id);
     }
   };
 
@@ -165,43 +170,45 @@ export default function EventList() {
             type="button"
             onClick={() => handleClick(id)}
             variants={containerVariants}
-            animate={activeItem === id ? 'visible' : 'hidden'}
+            animate={activeAnnounceItem === id ? 'visible' : 'hidden'}
             whileHover={{
-              background: `${primaryYellow}`,
+              background: '#edf2fb',
               transition: { duration: 0.1 },
             }}
             style={wholeButtonStyle}
           >
-            <div style={{ textAlign: 'left', fontWeight: 'bold' }}>{title}</div>
+            <div
+              style={{
+                marginTop: '12px',
+                textAlign: 'left',
+              }}
+            >
+              <h4>{title}</h4>
+            </div>
             <motion.div
               variants={eventVariants}
-              animate={activeItem === id ? 'visible' : 'hidden'}
+              animate={activeAnnounceItem === id ? 'visible' : 'hidden'}
               style={{
+                margin: '12px',
                 textAlign: 'left',
-                fontSize: '1.1rem',
                 overflow: 'hidden',
               }}
             >
-              {details}
+              <h6>{details}</h6>
               <br />
               {picture && <ImagePresent name="announceImage" src={picture} />}
             </motion.div>
           </motion.button>
-          <button
+          <Button
             type="button"
             onClick={() => {
               deleteAnnouncePresentList(id);
               deleteAnnounceList(id);
             }}
-            style={{
-              width: '28px',
-              height: '28px',
-              background: 'none',
-              display: isEditMode ? 'block' : 'none',
-            }}
+            style={{ display: isEditMode ? 'block' : 'none' }}
           >
             <FontAwesomeIcon icon={solid('trash')} style={icon} />
-          </button>
+          </Button>
         </div>
       ))}
     </div>

@@ -7,7 +7,7 @@ import { getStorageImages } from '../../firebase/useStorage.js';
 import { ImageError } from '../../styles/styledComponents/blockComponents.js';
 import {
   secondaryGray,
-  secondaryYellow,
+  thirdGray,
 } from '../../styles/styledComponents/color.js';
 import compressImage from '../../utils/imageCompress.js';
 import { useAuthState } from '../contexts/AuthContext.js';
@@ -154,7 +154,7 @@ const SingleImageBlock = ({ name }) => {
       style={{
         backgroundImage: state.temporary
           ? `url(${state.temporary})`
-          : `linear-gradient(90deg, ${secondaryGray}, ${secondaryYellow})`,
+          : `linear-gradient(90deg, ${secondaryGray}, ${thirdGray})`,
         opacity: isEditMode ? '0.7' : '1',
       }}
     >

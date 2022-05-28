@@ -1,7 +1,7 @@
 /* eslint-disable function-paren-newline */
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useReducer, useRef, useState, useEffect } from 'react';
+import React, { useEffect, useReducer, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useAuthState } from '../components/contexts/AuthContext.js';
 import { useEditState } from '../components/contexts/EditContext.js';
@@ -9,16 +9,13 @@ import TextInfoForEdit from '../components/Edit/TextInfoForEdit.js';
 import {
   Block,
   ImageError,
-  TextError,
   Main,
   SecondaryBtn,
+  TextError,
   Title,
 } from '../styles/styledComponents/blockComponents.js';
 // for imageBlock
-import {
-  secondaryGray,
-  secondaryYellow,
-} from '../styles/styledComponents/color.js';
+import { secondaryGray, thirdGray } from '../styles/styledComponents/color.js';
 import compressImage from '../utils/imageCompress.js';
 
 const Image = styled.div`
@@ -190,7 +187,7 @@ export default function EditBullitinBlock() {
             style={{
               backgroundImage: state.temporaryUrl
                 ? `url(${state.temporaryUrl})`
-                : `linear-gradient(90deg, ${secondaryGray}, ${secondaryYellow})`,
+                : `linear-gradient(90deg, ${secondaryGray}, ${thirdGray})`,
               opacity: isEditMode ? '0.7' : '1',
             }}
           >

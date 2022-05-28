@@ -7,6 +7,7 @@ import { useEditState } from '../components/contexts/EditContext.js';
 import { getStorageImages } from '../firebase/useStorage.js';
 import { ImageError } from '../styles/styledComponents/blockComponents.js';
 import compressImage from '../utils/imageCompress.js';
+import { secondaryGray, thirdGray } from '../styles/styledComponents/color.js';
 
 const InputBlock = styled.label`
   z-index: 2;
@@ -138,7 +139,7 @@ const HeroImageBlock = () => {
           style={{
             backgroundImage: temporaryHeroImageUrl
               ? `url(${temporaryHeroImageUrl})`
-              : 'linear-gradient(-45deg, #fcd856, #bdbbb1)',
+              : `linear-gradient(90deg, ${secondaryGray}, ${thirdGray})`,
             opacity: isEditMode ? '0.7' : '1',
             top: isEditMode ? '80px' : '0px',
           }}
