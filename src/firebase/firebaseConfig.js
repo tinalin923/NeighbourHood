@@ -4,7 +4,7 @@ import { getAuth } from 'firebase/auth';
 // import { connectAuthEmulator, getAuth } from 'firebase/auth';
 
 // database
-import { getFirestore, collection } from 'firebase/firestore';
+import { getFirestore, doc, collection } from 'firebase/firestore';
 // import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
 
 // for images
@@ -29,8 +29,17 @@ const auth = getAuth(app);
 
 const db = getFirestore(app);
 // connectFirestoreEmulator(db, 'localhost', 8080);
+const totalRef = doc(db, 'total', 'totalCount');
 const usersCollection = collection(db, 'users');
+const villageCollection = collection(db, 'villages');
 
 const projectStorage = getStorage(app);
 
-export { db, auth, usersCollection, projectStorage };
+export {
+  db,
+  auth,
+  totalRef,
+  usersCollection,
+  villageCollection,
+  projectStorage,
+};

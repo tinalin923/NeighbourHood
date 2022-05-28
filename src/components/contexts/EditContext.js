@@ -13,10 +13,10 @@ export const EditContextProvider = ({ children }) => {
   const [introductionTextData, setIntroductionTextData] = useState([]);
   const [imagePathList, setImagePathList] = useState([]);
   const [published, setPublished] = useState('');
-  // for upload to firestorage
-  const [imageList, setImageList] = useState([]);
   const [village, setVillage] = useState('');
   const [currentUserDatas, setCurrentUserDatas] = useState('');
+  // for upload to firestorage
+  const [imageList, setImageList] = useState([]);
 
   const toggleEditMode = () => {
     const editMode = !state.isEditMode;
@@ -28,6 +28,7 @@ export const EditContextProvider = ({ children }) => {
     });
   };
   const setScrollList = (array) => {
+    if (!array) return;
     let newScrollList = [];
     array.forEach(({ id, title }) => {
       newScrollList = newScrollList.concat({ id, title });
@@ -51,6 +52,7 @@ export const EditContextProvider = ({ children }) => {
     });
   };
   const setAnnounceList = (array) => {
+    if (!array) return;
     let newAnnounceList = [];
     array.forEach(({ id, title, details, picture }) => {
       newAnnounceList = newAnnounceList.concat({ id, title, details, picture });
@@ -136,15 +138,104 @@ export const EditContextProvider = ({ children }) => {
       },
     });
   };
+  const setActivityList = (array) => {
+    if (!array) return;
+    let newActivityList = [];
+    array.forEach(({ id, title, details, picture }) => {
+      newActivityList = newActivityList.concat({ id, title, details, picture });
+    });
+    dispatch({
+      type: 'SET_ACTIVITY_LIST',
+      payload: {
+        activityList: newActivityList,
+      },
+    });
+  };
+
+  const addActivityList = (id, title, details, picture) => {
+    const newActivityList = state.activityList.concat({
+      id,
+      title,
+      details,
+      picture,
+    });
+    console.log(newActivityList);
+    dispatch({
+      type: 'ADD_ACTIVITY_LIST',
+      payload: {
+        activityList: newActivityList,
+      },
+    });
+  };
+
+  const deleteActivityList = (id) => {
+    const activityList = state.activityList.filter(
+      (activity) => activity.id !== id
+    );
+    dispatch({
+      type: 'DELETE_ACTIVITY_LIST',
+      payload: {
+        activityList,
+      },
+    });
+  };
+
+  const setActivityPresentList = (array) => {
+    if (!array) return;
+    let newActivityPresentList = [];
+    array.forEach(({ id, title, details, picture }) => {
+      newActivityPresentList = newActivityPresentList.concat({
+        id,
+        title,
+        details,
+        picture,
+      });
+    });
+    dispatch({
+      type: 'SET_ACTIVITY_PRESENT_LIST',
+      payload: {
+        activityPresentList: newActivityPresentList,
+      },
+    });
+  };
+
+  const addActivityPresentList = (id, title, details, picture) => {
+    const newActivityPresentList = state.activityPresentList.concat({
+      id,
+      title,
+      details,
+      picture,
+    });
+    console.log(newActivityPresentList);
+    dispatch({
+      type: 'ADD_ACTIVITY_PRESENT_LIST',
+      payload: {
+        activityPresentList: newActivityPresentList,
+      },
+    });
+  };
+
+  const deleteActivityPresentList = (id) => {
+    const activityPresentList = state.activityPresentList.filter(
+      (activity) => activity.id !== id
+    );
+    dispatch({
+      type: 'DELETE_ACTIVITY_PRESENT_LIST',
+      payload: {
+        activityPresentList,
+      },
+    });
+  };
 
   const getDatasToContext = (userDatasFromFirbase) => {
-    setPublished(userDatasFromFirbase.published);
-    setAnnounceList(userDatasFromFirbase.announceList);
-    setScrollList(userDatasFromFirbase.scrollList);
+    setPublished(userDatasFromFirbase?.published);
+    setAnnounceList(userDatasFromFirbase?.announceList);
+    setActivityList(userDatasFromFirbase?.activityList);
+    setScrollList(userDatasFromFirbase?.scrollList);
     setCurrentUserDatas(userDatasFromFirbase);
-    setIntroductionTextData(userDatasFromFirbase.introductionTextData);
-    setImagePathList(userDatasFromFirbase.imagePathList);
-    setVillage(userDatasFromFirbase.villageName);
+    setIntroductionTextData(userDatasFromFirbase?.introductionTextData);
+    setImagePathList(userDatasFromFirbase?.imagePathList);
+    setVillage(userDatasFromFirbase?.villageName);
   };
 
   const value = {
@@ -158,6 +249,8 @@ export const EditContextProvider = ({ children }) => {
     scrollList: state.scrollList,
     announceList: state.announceList,
     announcePresentList: state.announcePresentList,
+    activityList: state.activityList,
+    activityPresentList: state.activityPresentList,
     getDatasToContext,
     setPublished,
     toggleEditMode,
@@ -174,6 +267,12 @@ export const EditContextProvider = ({ children }) => {
     setAnnouncePresentList,
     addAnnouncePresentList,
     deleteAnnouncePresentList,
+    setActivityList,
+    addActivityList,
+    deleteActivityList,
+    setActivityPresentList,
+    addActivityPresentList,
+    deleteActivityPresentList,
   };
 
   return <EditContext.Provider value={value}>{children}</EditContext.Provider>;

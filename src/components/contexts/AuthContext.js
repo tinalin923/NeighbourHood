@@ -13,7 +13,10 @@ import React, {
 } from 'react';
 import { auth } from '../../firebase/firebaseConfig.js';
 import createInitialUserDatas from '../../hooks/firebase/createUser.js';
-import { getFirestoreData } from '../../hooks/firebase/useFirestore.js';
+import {
+  getFirestoreUserData,
+  getFirestoreVillageData,
+} from '../../hooks/firebase/useFirestore.js';
 import { useEditState } from './EditContext.js';
 
 export const AuthContext = createContext();
@@ -23,6 +26,7 @@ export const useAuthState = () => useContext(AuthContext);
 export const AuthContextProvider = ({ children }) => {
   const { getDatasToContext } = useEditState();
   const [currentUid, setCurrentUid] = useState();
+  const [currentVillageId, setCurrentVillageUid] = useState();
   const [load, setLoad] = useState(true);
 
   const signup = async (email, password, city, village) => {
@@ -67,18 +71,29 @@ export const AuthContextProvider = ({ children }) => {
   //   console.log(array);
   //   return array;
   // }
-
-  async function start(uid) {
-    const userDatas = await getFirestoreData(uid);
-    getDatasToContext(userDatas);
+  async function getVillageId(uid) {
+    const data = await getFirestoreUserData(uid);
+    console.log(data);
+    setCurrentVillageUid(data?.villageId);
   }
+
+  useEffect(() => {
+    console.log(currentVillageId);
+    if (!currentVillageId) return;
+    async function start(villageId) {
+      const villageDatas = await getFirestoreVillageData(villageId);
+      await getDatasToContext(villageDatas);
+      setLoad(false);
+    }
+    start(currentVillageId);
+  }, [currentVillageId]);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid } = user;
         setCurrentUid(uid);
-        start(uid);
-        setLoad(false);
+        getVillageId(uid);
       } else {
         setCurrentUid(null);
         console.log('you logged out');

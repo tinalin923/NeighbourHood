@@ -110,13 +110,13 @@ const Signup = () => {
     setSignupLoading(true);
     setSignupError('');
     try {
-      const userId = await signup(
+      const { userId, villageId } = await signup(
         emailRef.current.value,
         passwordRef.current.value,
         city,
         villageRef.current.value
       );
-      console.log(userId);
+      console.log(`${userId}, ${villageId}`);
       navigate('/editing');
     } catch (error) {
       console.log(error.code);
@@ -126,6 +126,8 @@ const Signup = () => {
         setSignupError('請輸入至少六個字元的密碼');
       } else if (error.code === 'auth/email-already-exists') {
         setSignupError('此信箱已被註冊');
+      } else if (error.code === 'auth/email-already-in-use') {
+        setSignupError('此帳戶已被使用');
       } else {
         setSignupError(error.message);
       }
