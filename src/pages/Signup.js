@@ -94,7 +94,7 @@ const Option = styled.option`
 const Signup = () => {
   const [signupLoading, setSignupLoading] = useState(false);
   const [signupError, setSignupError] = useState('');
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState('基隆市');
   const navigate = useNavigate();
 
   const villageRef = useRef('');
@@ -109,15 +109,16 @@ const Signup = () => {
   async function handleSubmit() {
     setSignupLoading(true);
     setSignupError('');
+    console.log(city);
     try {
-      const { userId, villageId } = await signup(
+      const { uid, newVillageId } = await signup(
         emailRef.current.value,
         passwordRef.current.value,
         city,
         villageRef.current.value
       );
-      console.log(`${userId}, ${villageId}`);
-      navigate('/editing');
+      console.log(`${uid}, ${newVillageId}`);
+      navigate('/');
     } catch (error) {
       console.log(error.code);
       if (error.code === 'auth/invalid-email') {
@@ -146,6 +147,7 @@ const Signup = () => {
             value={city}
             onChange={(e) => {
               setCity(e.target.value);
+              console.log(e.target.value);
             }}
           >
             {cityOption.map((option) => (

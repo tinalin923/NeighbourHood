@@ -67,7 +67,7 @@ const Title = styled.h1`
 `;
 
 const HeroImageBlock = () => {
-  const { currentUid } = useAuthState();
+  const { currentVillageId } = useAuthState();
   const {
     published,
     isEditMode,
@@ -105,7 +105,7 @@ const HeroImageBlock = () => {
         console.log(e);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentUid, published]);
+  }, [currentVillageId, published]);
 
   const handleChange = async () => {
     const imageFile = fileInput.current.files[0];
@@ -122,7 +122,7 @@ const HeroImageBlock = () => {
     setImageList((prev) => [...prev, compressedImage]);
     setImagePathList((prev) => ({
       ...prev,
-      heroImage: `${currentUid}/${compressedImage?.name}`,
+      heroImage: `${currentVillageId}/${compressedImage?.name}`,
     }));
     // 將blob檔轉為blob url, 做即時呈現
     const compressedImageURL = URL.createObjectURL(compressedImage);

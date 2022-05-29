@@ -117,6 +117,7 @@ export default function ActivityList() {
             }}
           >
             <ImagePresent name="activityImage" src={picture} />
+            <h4>{title}</h4>
             <motion.div
               variants={eventVariants}
               animate={activeActivityItem === id ? 'visible' : 'hidden'}
@@ -126,7 +127,6 @@ export default function ActivityList() {
                 overflow: 'hidden',
               }}
             >
-              <h4>{title}</h4>
               <h6>{details}</h6>
             </motion.div>
             <Button

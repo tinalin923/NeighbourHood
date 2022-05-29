@@ -87,7 +87,7 @@ const Login = () => {
         passwordRef.current.value
       );
       console.log(userCredential);
-      navigate('/editing');
+      navigate('/');
     } catch (error) {
       if (error.code === 'auth/invalid-email') {
         setErrorLogin('請輸入正確信箱格式');

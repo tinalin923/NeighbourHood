@@ -113,8 +113,7 @@ export default function EventList() {
       let array = [];
       // eslint-disable-next-line no-restricted-syntax
       for (const announce of List) {
-        const storedUrl = await getStorageImages(announce.picture);
-        if (!storedUrl) {
+        if (!announce.picture) {
           array = array.concat({
             id: announce.id,
             title: announce.title,
@@ -122,6 +121,8 @@ export default function EventList() {
             picture: '',
           });
         } else {
+          const storedUrl = await getStorageImages(announce.picture);
+          console.log(storedUrl);
           array = array.concat({
             id: announce.id,
             title: announce.title,

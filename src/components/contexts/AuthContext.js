@@ -4,33 +4,24 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth';
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import createInitialUserDatas from '../../firebase/createUser.js';
 import { auth } from '../../firebase/firebaseConfig.js';
-import {
-  getFirestoreUserData,
-  getFirestoreVillageData,
-} from '../../firebase/useFirestore.js';
-import { useEditState } from './EditContext.js';
+
+// import { useEditState } from './EditContext.js';
 
 export const AuthContext = createContext();
 export const useAuthState = () => useContext(AuthContext);
 
 // eslint-disable-next-line react/prop-types
 export const AuthContextProvider = ({ children }) => {
-  const { getDatasToContext } = useEditState();
   const [currentUid, setCurrentUid] = useState();
-  const [currentVillageId, setCurrentVillageUid] = useState();
+  const [currentVillageId, setCurrentVillageId] = useState();
   const [load, setLoad] = useState(true);
 
   const signup = async (email, password, city, village) => {
     // write into firebase auth
+    console.log(city);
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
@@ -38,7 +29,15 @@ export const AuthContextProvider = ({ children }) => {
     );
     const { uid } = userCredential.user;
     // write into firestore
-    return createInitialUserDatas(uid, email, city, village);
+    const newVillageId = await createInitialUserDatas(
+      uid,
+      email,
+      city,
+      village
+    );
+    console.log(newVillageId);
+    setCurrentVillageId(newVillageId);
+    return { uid, newVillageId };
   };
 
   const login = (email, password) =>
@@ -71,30 +70,13 @@ export const AuthContextProvider = ({ children }) => {
   //   console.log(array);
   //   return array;
   // }
-  async function getVillageId(uid) {
-    const data = await getFirestoreUserData(uid);
-    console.log(data);
-    setCurrentVillageUid(data?.villageId);
-  }
-
-  useEffect(() => {
-    console.log(currentVillageId);
-    if (!currentVillageId) return;
-    async function start(villageId) {
-      const villageDatas = await getFirestoreVillageData(villageId);
-      await getDatasToContext(villageDatas);
-      setLoad(false);
-    }
-    start(currentVillageId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentVillageId]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid } = user;
         setCurrentUid(uid);
-        getVillageId(uid);
+        setLoad(false);
       } else {
         setCurrentUid(null);
         console.log('you logged out');
@@ -105,15 +87,14 @@ export const AuthContextProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // 不懂為何會建議我要放setUserDatas；如果都不放[]，則會一直get firebase
 
-  const value = useMemo(
-    () => ({
-      currentUid,
-      signup,
-      login,
-      logout,
-    }),
-    [currentUid]
-  );
+  // eslint-disable-next-line react/jsx-no-constructed-context-values
+  const value = {
+    currentUid,
+    currentVillageId,
+    signup,
+    login,
+    logout,
+  };
 
   return (
     <AuthContext.Provider value={value}>

@@ -86,7 +86,7 @@ const imageReducer = (state, action) => {
 const SingleImageBlock = ({ name }) => {
   const [state, dispatch] = useReducer(imageReducer, initialState);
   const fileInput = useRef();
-  const { currentUid } = useAuthState();
+  const { currentVillageId } = useAuthState();
   const {
     published,
     isEditMode,
@@ -117,7 +117,7 @@ const SingleImageBlock = ({ name }) => {
       .catch((e) => {
         console.log(e);
       });
-  }, [currentUid, published]);
+  }, [currentVillageId, published]);
 
   const handleChange = async () => {
     const imageFile = fileInput.current.files[0];
@@ -136,7 +136,7 @@ const SingleImageBlock = ({ name }) => {
     setImageList((prev) => [...prev, compressedImage]);
     setImagePathList((prev) => ({
       ...prev,
-      [name]: `${currentUid}/${compressedImage?.name}`,
+      [name]: `${currentVillageId}/${compressedImage?.name}`,
     }));
     // }
 
