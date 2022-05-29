@@ -4,7 +4,7 @@ import { useEditState } from '../contexts/EditContext.js';
 import ScrollBrick from './ScrollBrick.js';
 
 const BrickContainer = styled.div`
-  z-index: 99;
+  z-index: 2;
   position: fixed;
   top: 50vh;
   left: 6vw;

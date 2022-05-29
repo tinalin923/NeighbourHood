@@ -160,12 +160,13 @@ export default function EditArea({
       setImageError('請選擇照片檔案(.jpeg 或 .png)');
     }
   };
-  // 送出公告，產生新公告id
+  // 送出項目，產生新id
   const handleClick = () => {
     if (!state.title) {
-      setError('請輸入公告標題');
+      setError(`請輸入${name}標題`);
       return;
     }
+    setImageError(null);
     setId((Math.floor(Math.random() * 10000) + 1).toString());
   };
   // for 上傳到總表

@@ -23,17 +23,14 @@ const Editing = () => {
   const { currentUid, setCurrentVillageId } = useAuthState();
   const [editPageLoading, setEditPageLoading] = useState(true);
 
-  async function startToEdit(villageId) {
-    const villageDatas = await getFirestoreVillageData(villageId);
-    await getDatasToContext(villageDatas);
-    setEditPageLoading(false);
-  }
-
   async function getVillageId(uid) {
     const data = await getFirestoreUserData(uid);
     console.log(data);
-    await startToEdit(data?.villageId);
-    setCurrentVillageId(data.villageId);
+    const { villageId } = data;
+    setCurrentVillageId(villageId);
+    const villageDatas = await getFirestoreVillageData(villageId);
+    await getDatasToContext(villageDatas);
+    setEditPageLoading(false);
   }
 
   useEffect(() => {
@@ -45,7 +42,7 @@ const Editing = () => {
   return (
     <>
       <Header />
-      {editPageLoading && <p>載入中...</p>}
+      {editPageLoading && <p>資料載入中...</p>}
       <HeroImageBlock />
       <ScrollList />
       <Switch />

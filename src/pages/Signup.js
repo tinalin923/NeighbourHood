@@ -109,7 +109,6 @@ const Signup = () => {
   async function handleSubmit() {
     setSignupLoading(true);
     setSignupError('');
-    console.log(city);
     try {
       const { uid, newVillageId } = await signup(
         emailRef.current.value,

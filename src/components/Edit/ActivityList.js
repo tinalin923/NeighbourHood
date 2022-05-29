@@ -1,19 +1,14 @@
+/* eslint-disable function-paren-newline */
 /* eslint-disable no-await-in-loop */
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { getStorageImages } from '../../firebase/useStorage.js';
 import { useEditState } from '../contexts/EditContext.js';
 import ActiveCard from './ActiveCard.js';
-import ImagePresent from './ImagePresent.js';
-import { getStorageImages } from '../../firebase/useStorage.js';
-
-const icon = {
-  position: 'relative',
-  right: '0',
-  color: '#939393',
-};
+// import ImagePresent from './ImagePresent.js';
 
 const Button = styled.button`
   width: 28px;
@@ -22,6 +17,17 @@ const Button = styled.button`
   opacity: 0.5;
   &: hover {
     opacity: 1;
+  }
+`;
+
+const Image = styled.img`
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 560/500;
+  object-fit: cover;
+  object-position: 50% 10%;
+  @media (max-width: 600px) {
+    aspect-ratio: 345/400;
   }
 `;
 
@@ -52,8 +58,7 @@ export default function ActivityList() {
       let array = [];
       // eslint-disable-next-line no-restricted-syntax
       for (const activity of List) {
-        const storedUrl = await getStorageImages(activity.picture);
-        if (!storedUrl) {
+        if (!activity.picture) {
           array = array.concat({
             id: activity.id,
             title: activity.title,
@@ -61,6 +66,7 @@ export default function ActivityList() {
             picture: '',
           });
         } else {
+          const storedUrl = await getStorageImages(activity.picture);
           array = array.concat({
             id: activity.id,
             title: activity.title,
@@ -78,6 +84,14 @@ export default function ActivityList() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activityList]);
 
+  const handleClick = (id) => {
+    console.log(id);
+    if (id === activeActivityItem) {
+      setActiveActivityItem(null);
+    } else {
+      setActiveActivityItem(id);
+    }
+  };
   const eventVariants = {
     hidden: {
       height: '0px',
@@ -101,50 +115,67 @@ export default function ActivityList() {
   };
   return (
     <>
-      {activityPresentList.map(({ id, title, picture, details }) => (
-        <div
-          key={id}
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'flex-end',
-          }}
-        >
-          <motion.div
-            layoutId={id}
-            onClick={() => {
-              setActiveActivityItem(id);
-            }}
-          >
-            <ImagePresent name="activityImage" src={picture} />
-            <h4>{title}</h4>
-            <motion.div
-              variants={eventVariants}
-              animate={activeActivityItem === id ? 'visible' : 'hidden'}
-              style={{
-                margin: '12px',
-                textAlign: 'left',
-                overflow: 'hidden',
-              }}
-            >
-              <h6>{details}</h6>
+      <ul
+        style={{
+          display: 'grid',
+          gridGap: '1em',
+          gridAutoRows: 'minmax(300px, auto)',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+          width: '100%',
+        }}
+      >
+        {activityPresentList.map((activity) => (
+          <li key={activity.id}>
+            <motion.div layoutId={activity.id}>
+              <motion.div layoutId={activity.id}>
+                <Image
+                  alt={activity.title}
+                  src={activity.picture}
+                  onClick={() => {
+                    handleClick(activity.id);
+                  }}
+                />
+                <div
+                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                >
+                  <h4>{activity.title}</h4>
+                  <Button
+                    type="button"
+                    onClick={() => {
+                      deleteActivityPresentList(activity.id);
+                      deleteActivityList(activity.id);
+                    }}
+                    style={{ display: isEditMode ? 'block' : 'none' }}
+                  >
+                    <FontAwesomeIcon icon={solid('trash')} />
+                  </Button>
+                </div>
+              </motion.div>
+              <motion.div
+                variants={eventVariants}
+                animate={
+                  activeActivityItem === activity.id ? 'visible' : 'hidden'
+                }
+                style={{
+                  margin: '12px',
+                  textAlign: 'left',
+                  overflow: 'hidden',
+                }}
+              >
+                <h6>{activity.details}</h6>
+              </motion.div>
             </motion.div>
-            <Button
-              type="button"
-              onClick={() => {
-                deleteActivityPresentList(id);
-                deleteActivityList(id);
-              }}
-              style={{ display: isEditMode ? 'block' : 'none' }}
-            >
-              <FontAwesomeIcon icon={solid('trash')} style={icon} />
-            </Button>
-          </motion.div>
-        </div>
-      ))}
+          </li>
+        ))}
+      </ul>
       <AnimatePresence>
         {activeActivityItem && (
-          <ActiveCard activity={activityPresentList[activeActivityItem]} />
+          <ActiveCard
+            activity={activityPresentList.filter(
+              (activity) => activity.id === activeActivityItem
+            )}
+            setActive={setActiveActivityItem}
+          />
         )}
       </AnimatePresence>
     </>
