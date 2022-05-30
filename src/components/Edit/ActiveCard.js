@@ -26,7 +26,7 @@ const OpenImageContainer = styled(motion.div)`
   max-height: 65%;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  // overflow: hidden;
+  overflow: hidden;
 
   @media (min-width: 600px) {
     border-top-left-radius: 0px;
@@ -50,7 +50,7 @@ const Text = styled(motion.div)`
   word-break: break-word;
   overflow-x: hidden;
   overflow-y: auto;
-  height: 200px;
+  height: 180px;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -115,7 +115,6 @@ export default function ActiveCard({ activity, setActive }) {
           width: '70%',
           maxWidth: '80%',
           maxHeight: '90%',
-          border: '1px solid red',
           display: 'flex',
           alignItems: 'center',
         }}
