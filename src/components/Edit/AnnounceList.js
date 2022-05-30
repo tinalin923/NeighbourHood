@@ -47,7 +47,7 @@ export default function EventList() {
     padding: '8px 20px',
     background: `${thirdGray}`,
     fontSize: '1.4rem',
-    color: '#ffffff',
+    color: '#363b48',
   };
 
   const containerVariants = {

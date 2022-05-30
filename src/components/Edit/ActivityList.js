@@ -41,10 +41,13 @@ export default function ActivityList() {
     deleteActivityList,
     deleteActivityPresentList,
   } = useEditState();
-  const [activeActivityItem, setActiveActivityItem] = useState(null);
-
+  const [selectedId, setSelectedId] = useState(null);
+  console.log('activity1');
+  console.log(activityPresentList);
   useEffect(() => {
     // 防止還未上傳到storage的圖片被讀取
+    console.log('activity2');
+
     console.log(imageList.length);
     if (imageList.length !== 0) {
       console.log('不要讀取未上傳的圖片');
@@ -86,33 +89,31 @@ export default function ActivityList() {
 
   const handleClick = (id) => {
     console.log(id);
-    if (id === activeActivityItem) {
-      setActiveActivityItem(null);
+    if (id === selectedId) {
+      setSelectedId(null);
     } else {
-      setActiveActivityItem(id);
+      setSelectedId(id);
     }
   };
-  const eventVariants = {
-    hidden: {
-      height: '0px',
-      opacity: 0,
-      y: '2vh',
-      transition: {
-        type: 'tween',
-        duration: 0.1,
-      },
-    },
-    visible: {
-      height: 'auto',
-      opacity: 1,
-      y: '0',
-      transition: {
-        type: 'tween',
-        duration: 0.2,
-        delay: 0.2,
-      },
-    },
-  };
+  // const eventVariants = {
+  //   hidden: {
+  //     height: '0px',
+  //     opacity: 0,
+  //     transition: {
+  //       type: 'tween',
+  //       duration: 0.1,
+  //     },
+  //   },
+  //   visible: {
+  //     height: 'auto',
+  //     opacity: 1,
+  //     transition: {
+  //       type: 'tween',
+  //       duration: 0.2,
+  //       delay: 0.2,
+  //     },
+  //   },
+  // };
   return (
     <>
       <ul
@@ -122,59 +123,51 @@ export default function ActivityList() {
           gridAutoRows: 'minmax(300px, auto)',
           gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
           width: '100%',
+          padding: '12px',
         }}
       >
-        {activityPresentList.map((activity) => (
-          <li key={activity.id}>
-            <motion.div layoutId={activity.id}>
-              <motion.div layoutId={activity.id}>
+        {activityPresentList.map(({ id, title, picture }) => (
+          <li key={id}>
+            <motion.div layoutId={`activity-${id}`}>
+              <motion.div layoutId={`image-${id}`}>
                 <Image
-                  alt={activity.title}
-                  src={activity.picture}
+                  alt={title}
+                  src={picture}
                   onClick={() => {
-                    handleClick(activity.id);
+                    handleClick(id);
                   }}
                 />
-                <div
-                  style={{ display: 'flex', justifyContent: 'space-between' }}
-                >
-                  <h4>{activity.title}</h4>
-                  <Button
-                    type="button"
-                    onClick={() => {
-                      deleteActivityPresentList(activity.id);
-                      deleteActivityList(activity.id);
-                    }}
-                    style={{ display: isEditMode ? 'block' : 'none' }}
-                  >
-                    <FontAwesomeIcon icon={solid('trash')} />
-                  </Button>
-                </div>
               </motion.div>
+
               <motion.div
-                variants={eventVariants}
-                animate={
-                  activeActivityItem === activity.id ? 'visible' : 'hidden'
-                }
-                style={{
-                  margin: '12px',
-                  textAlign: 'left',
-                  overflow: 'hidden',
-                }}
+                layoutId={`title-${id}`}
+                style={{ display: 'flex', justifyContent: 'space-between' }}
               >
-                <h6>{activity.details}</h6>
+                <div>
+                  <h4>{title}</h4>
+                </div>
+                <Button
+                  type="button"
+                  onClick={() => {
+                    deleteActivityPresentList(id);
+                    deleteActivityList(id);
+                  }}
+                  style={{ display: isEditMode ? 'block' : 'none' }}
+                >
+                  <FontAwesomeIcon icon={solid('trash')} />
+                </Button>
               </motion.div>
             </motion.div>
           </li>
         ))}
       </ul>
-      <AnimatePresence>
-        {activeActivityItem && (
+      <AnimatePresence initial={false}>
+        {selectedId && (
           <ActiveCard
             activity={activityPresentList.filter(
-              (activity) => activity.id === activeActivityItem
+              (activity) => activity.id === selectedId
             )}
-            setActive={setActiveActivityItem}
+            setActive={setSelectedId}
           />
         )}
       </AnimatePresence>

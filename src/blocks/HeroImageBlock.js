@@ -65,7 +65,6 @@ const Title = styled.h1`
   font-size: 3rem;
   color: white;
 `;
-
 const HeroImageBlock = () => {
   const { currentVillageId } = useAuthState();
   const {
@@ -79,6 +78,7 @@ const HeroImageBlock = () => {
   const [temporaryHeroImageUrl, setTemporaryHeroImageUrl] = useState();
   const [heroImageError, setHeroImageError] = useState(null);
   const fileInput = useRef();
+  console.log('hero refresh');
 
   // 載入時要觸發的效果
   useEffect(() => {
