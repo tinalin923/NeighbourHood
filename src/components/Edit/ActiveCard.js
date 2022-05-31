@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const CardContainer = styled(motion.div)`
   width: 100%;
-  max-height: 90vh;
+  max-height: 92vh;
   position: relative;
   margin: auto;
   border-radius: 20px;
@@ -17,13 +17,13 @@ const CardContainer = styled(motion.div)`
   @media (min-width: 600px) {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: flex-end;
+    justify-content: space-between;
   }
 `;
 
 const OpenImageContainer = styled(motion.div)`
-  max-width: 100%;
-  max-height: 65%;
+  // max-width: 100%;
+  max-height: 45vh;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   overflow: hidden;
@@ -31,27 +31,27 @@ const OpenImageContainer = styled(motion.div)`
   @media (min-width: 600px) {
     border-top-left-radius: 0px;
     border-bottom-right-radius: 20px;
+    max-height: 100%;
     max-width: 60%;
   }
 `;
 const TextContainer = styled.div`
-  max-height: 40%;
+  max-height: 50vh;
+  padding: 8px;
+  overflow: hidden;
   @media (min-width: 600px) {
+    max-height: 100%;
     width: 40%;
   }
 `;
 
 const Title = styled(motion.div)`
-  padding: 4px;
   word-break: break-word;
-`;
-const Text = styled(motion.div)`
-  padding: 8px;
-  word-break: break-word;
-  overflow-x: hidden;
-  overflow-y: auto;
-  height: 180px;
-
+  max-height: 10vh;
+  overflow: auto;
+  @media (min-width: 600px) {
+    max-height: 12vh;
+  }
   &::-webkit-scrollbar {
     width: 8px;
   }
@@ -73,6 +73,15 @@ const Text = styled(motion.div)`
 
   &::-webkit-scrollbar-track {
     box-shadow: transparent;
+  }
+`;
+const Text = styled(Title)`
+  margin: 16px 8px;
+  max-height: 32vh;
+
+  @media (min-width: 600px) {
+    margin: 24px 8px;
+    max-height: 70vh;
   }
 `;
 
@@ -112,11 +121,11 @@ export default function ActiveCard({ activity, setActive }) {
           top: '50%',
           transform: 'translateY(-50%)',
           zIndex: '2',
-          width: '70%',
-          maxWidth: '80%',
-          maxHeight: '90%',
-          display: 'flex',
-          alignItems: 'center',
+          width: '80%',
+          maxWidth: '1100px',
+          // height: '85%',
+          // display: 'flex',
+          // alignItems: 'center',
         }}
       >
         <CardContainer // card-content
