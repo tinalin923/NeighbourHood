@@ -6,7 +6,6 @@ import { useEditState } from '../contexts/EditContext.js';
 const Text = styled.textarea`
   margin: 1vh 3vw;
   padding: 10px;
-  overflow: auto;
   @media (max-width: 600px) {
     margin-top: 5vh;
     width: 70vw;

@@ -43,17 +43,16 @@ const Editing = () => {
     <>
       <Header />
       {editPageLoading && <p>資料載入中...</p>}
-      <HeroImageBlock />
+      <HeroImageBlock name="0" />
       <ScrollList />
       <Switch />
-      <ChiefIntroBlock />
-      <VillageIntroBlock />
-      <BulletinBlock />
+      <BulletinBlock name="1" />
       {isEditMode && <EditBullitinBlock1 />}
-      <hr />
-      {/* <Btn /> */}
-      <ActivityBlock />
+      <ActivityBlock name="2" />
       {isEditMode && <EditActivityBlock />}
+      <VillageIntroBlock name="3" />
+      <ChiefIntroBlock name="4" />
+      <hr />
       {isEditMode && <UploadBtn />}
     </>
   );

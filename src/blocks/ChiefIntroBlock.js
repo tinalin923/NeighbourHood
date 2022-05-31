@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { useEditState } from '../components/contexts/EditContext.js';
 import SingleImageInput from '../components/Edit/SingleImageBlock.js';
 import TextInfo from '../components/Edit/TextInfo.js';
@@ -11,11 +12,11 @@ import {
   Title,
 } from '../styles/styledComponents/blockComponents.js';
 
-export default function ChiefIntroBlock() {
+function ChiefIntroBlock({ name }) {
   const { introductionTextData, setIntroductionTextData } = useEditState();
 
   return (
-    <Block name="1">
+    <Block name={name}>
       <Title>里長介紹</Title>
       <Main>
         <ImgArea>
@@ -37,3 +38,8 @@ export default function ChiefIntroBlock() {
     </Block>
   );
 }
+
+ChiefIntroBlock.propTypes = {
+  name: PropTypes.number.isRequired,
+};
+export default ChiefIntroBlock;

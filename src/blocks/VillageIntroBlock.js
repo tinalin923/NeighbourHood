@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextInfo from '../components/Edit/TextInfo.js';
 import {
   Block,
@@ -9,11 +10,11 @@ import {
 import { useEditState } from '../components/contexts/EditContext.js';
 import SingleImageBlock from '../components/Edit/SingleImageBlock.js';
 
-export default function VillageIntroBlock() {
+function VillageIntroBlock({ name }) {
   const { introductionTextData, setIntroductionTextData } = useEditState();
 
   return (
-    <Block name="2">
+    <Block name={name}>
       <Title>村里介紹</Title>
       <Main>
         <TextInfo
@@ -29,3 +30,7 @@ export default function VillageIntroBlock() {
     </Block>
   );
 }
+VillageIntroBlock.propTypes = {
+  name: PropTypes.number.isRequired,
+};
+export default VillageIntroBlock;

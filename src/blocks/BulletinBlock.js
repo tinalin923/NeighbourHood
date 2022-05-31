@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import AnnounceList from '../components/Edit/AnnounceList.js';
 import {
   Block,
@@ -6,9 +7,9 @@ import {
   Title,
 } from '../styles/styledComponents/blockComponents.js';
 
-export default function BulletinBlock() {
+function BulletinBlock({ name }) {
   return (
-    <Block name="3">
+    <Block name={name}>
       <Title>公佈欄</Title>
       <Main>
         <AnnounceList />
@@ -16,3 +17,9 @@ export default function BulletinBlock() {
     </Block>
   );
 }
+
+BulletinBlock.propTypes = {
+  name: PropTypes.number.isRequired,
+};
+
+export default BulletinBlock;

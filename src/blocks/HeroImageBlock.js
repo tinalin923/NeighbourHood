@@ -1,6 +1,7 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useAuthState } from '../components/contexts/AuthContext.js';
 import { useEditState } from '../components/contexts/EditContext.js';
@@ -65,7 +66,7 @@ const Title = styled.h1`
   font-size: 3rem;
   color: white;
 `;
-const HeroImageBlock = () => {
+const HeroImageBlock = ({ name }) => {
   const { currentVillageId } = useAuthState();
   const {
     published,
@@ -135,7 +136,7 @@ const HeroImageBlock = () => {
     <>
       <PlaceHolder id="upload_output">
         <HeroImage
-          name="0"
+          name={name}
           style={{
             backgroundImage: temporaryHeroImageUrl
               ? `url(${temporaryHeroImageUrl})`
@@ -168,5 +169,7 @@ const HeroImageBlock = () => {
     </>
   );
 };
-
+HeroImageBlock.propTypes = {
+  name: PropTypes.number.isRequired,
+};
 export default HeroImageBlock;

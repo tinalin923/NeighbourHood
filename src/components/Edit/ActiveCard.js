@@ -12,7 +12,6 @@ const CardContainer = styled(motion.div)`
   border-radius: 20px;
   display: block;
   background: #363636;
-  color: #f5f5f5;
 
   @media (min-width: 600px) {
     display: flex;
@@ -39,6 +38,7 @@ const TextContainer = styled.div`
   max-height: 50vh;
   padding: 8px;
   overflow: hidden;
+
   @media (min-width: 600px) {
     max-height: 100%;
     width: 40%;
@@ -47,7 +47,7 @@ const TextContainer = styled.div`
 
 const Title = styled(motion.div)`
   word-break: break-word;
-  max-height: 10vh;
+  max-height: 11vh;
   overflow: auto;
   @media (min-width: 600px) {
     max-height: 12vh;
@@ -78,7 +78,9 @@ const Title = styled(motion.div)`
 const Text = styled(Title)`
   margin: 16px 8px;
   max-height: 32vh;
-
+  && {
+    color: #f5f5f5;
+  }
   @media (min-width: 600px) {
     margin: 24px 8px;
     max-height: 70vh;
@@ -142,7 +144,7 @@ export default function ActiveCard({ activity, setActive }) {
           </OpenImageContainer>
           <TextContainer>
             <Title layoutId={`title-${id}`}>
-              <h3>{title}</h3>
+              <h3 style={{ color: '#f5f5f5' }}>{title}</h3>
             </Title>
             <Text animate>{details}</Text>
           </TextContainer>

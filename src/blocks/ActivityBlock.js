@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Block,
   Title,
@@ -6,9 +7,9 @@ import {
 } from '../styles/styledComponents/blockComponents.js';
 import ActivityList from '../components/Edit/ActivityList.js';
 
-function ActivityBlock() {
+function ActivityBlock({ name }) {
   return (
-    <Block name="4">
+    <Block name={name}>
       <Title>活動</Title>
       <Main>
         <ActivityList />
@@ -16,5 +17,7 @@ function ActivityBlock() {
     </Block>
   );
 }
-
+ActivityBlock.propTypes = {
+  name: PropTypes.number.isRequired,
+};
 export default ActivityBlock;
