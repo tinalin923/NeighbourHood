@@ -143,7 +143,7 @@ export default function EditArea({
   // for imageBlock
   const fileInput = useRef();
   const { currentVillageId } = useAuthState();
-  const { isEditMode, setImageList } = useEditState();
+  const { editMode, setImageList } = useEditState();
 
   // 選擇照片
   const handleChange = async () => {
@@ -227,15 +227,15 @@ export default function EditArea({
               backgroundImage: state.temporaryUrl
                 ? `url(${state.temporaryUrl})`
                 : `linear-gradient(90deg, ${secondaryGray}, ${thirdGray})`,
-              opacity: isEditMode ? '0.7' : '1',
+              opacity: editMode ? '0.7' : '1',
             }}
           >
             {state.imageError && (
-              <ImageError style={{ display: isEditMode ? 'block' : 'none' }}>
+              <ImageError style={{ display: editMode ? 'block' : 'none' }}>
                 {state.imageError}
               </ImageError>
             )}
-            <InputBtn style={{ display: isEditMode ? 'block' : 'none' }}>
+            <InputBtn style={{ display: editMode ? 'block' : 'none' }}>
               <IconContainer>
                 <FontAwesomeIcon icon={solid('plus')} style={icon} />
               </IconContainer>

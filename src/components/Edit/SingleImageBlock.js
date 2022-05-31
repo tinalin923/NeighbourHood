@@ -87,13 +87,8 @@ const SingleImageBlock = ({ name }) => {
   const [state, dispatch] = useReducer(imageReducer, initialState);
   const fileInput = useRef();
   const { currentVillageId } = useAuthState();
-  const {
-    published,
-    isEditMode,
-    setImageList,
-    imagePathList,
-    setImagePathList,
-  } = useEditState();
+  const { published, editMode, setImageList, imagePathList, setImagePathList } =
+    useEditState();
 
   useEffect(() => {
     if (!published) {
@@ -155,15 +150,15 @@ const SingleImageBlock = ({ name }) => {
         backgroundImage: state.temporary
           ? `url(${state.temporary})`
           : `linear-gradient(90deg, ${secondaryGray}, ${thirdGray})`,
-        opacity: isEditMode ? '0.7' : '1',
+        opacity: editMode ? '0.7' : '1',
       }}
     >
       {state.error && (
-        <ImageError style={{ display: isEditMode ? 'block' : 'none' }}>
+        <ImageError style={{ display: editMode ? 'block' : 'none' }}>
           {state.error}
         </ImageError>
       )}
-      <InputBtn style={{ display: isEditMode ? 'block' : 'none' }}>
+      <InputBtn style={{ display: editMode ? 'block' : 'none' }}>
         <IconContainer>
           <FontAwesomeIcon icon={solid('plus')} style={icon} />
         </IconContainer>

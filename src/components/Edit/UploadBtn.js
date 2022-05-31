@@ -17,7 +17,7 @@ export default function UploadBtn() {
     // currentUserDatas,
     village,
     published,
-    isEditMode,
+    editMode,
     introductionTextData,
     imageList,
     imagePathList,
@@ -124,7 +124,7 @@ export default function UploadBtn() {
       {uploadError && (
         <TextError
           style={{
-            display: isEditMode ? 'block' : 'none',
+            display: editMode ? 'block' : 'none',
             margin: '8px auto',
             width: '200px',
           }}

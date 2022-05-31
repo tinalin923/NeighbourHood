@@ -27,7 +27,7 @@ const Button = styled.button`
 
 export default function EventList() {
   const {
-    isEditMode,
+    editMode,
     imageList,
     announceList,
     announcePresentList,
@@ -39,7 +39,7 @@ export default function EventList() {
 
   const wholeButtonStyle = {
     flex: 'none',
-    width: isEditMode ? '92%' : '99%',
+    width: editMode ? '92%' : '99%',
     margin: '16px 0px',
     outline: 'none',
     border: 'none',
@@ -206,7 +206,7 @@ export default function EventList() {
               deleteAnnouncePresentList(id);
               deleteAnnounceList(id);
             }}
-            style={{ display: isEditMode ? 'block' : 'none' }}
+            style={{ display: editMode ? 'block' : 'none' }}
           >
             <FontAwesomeIcon icon={solid('trash')} style={icon} />
           </Button>

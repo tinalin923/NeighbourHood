@@ -82,7 +82,7 @@ const Input = styled.input`
 `;
 
 const VillageImageBlock = () => {
-  const { isEditMode, chiefAvator, setChiefAvator } = useEditState();
+  const { editMode, chiefAvator, setChiefAvator } = useEditState();
   const [chiefAvatorError, setChiefAvatorError] = useState('');
   const fileInput = useRef();
   const handleImageUpload = async () => {
@@ -105,7 +105,7 @@ const VillageImageBlock = () => {
   return (
     <Wrapper>
       {chiefAvatorError && (
-        <Error style={{ display: isEditMode ? 'block' : 'none' }}>
+        <Error style={{ display: editMode ? 'block' : 'none' }}>
           {chiefAvatorError}
         </Error>
       )}
@@ -114,12 +114,12 @@ const VillageImageBlock = () => {
           backgroundImage: chiefAvator
             ? `url(${chiefAvator})`
             : 'linear-gradient(-45deg, #fcd856, #bdbbb1)',
-          opacity: isEditMode ? '0.7' : '1',
+          opacity: editMode ? '0.7' : '1',
           // top: isEditMode ? '80px' : '0px',
         }}
       />
 
-      <InputBlock style={{ display: isEditMode ? 'block' : 'none' }}>
+      <InputBlock style={{ display: editMode ? 'block' : 'none' }}>
         {chiefAvator ? <P>選擇其他圖片</P> : <P>點選以新增圖片</P>}
         <IconContainer>
           <FontAwesomeIcon icon={solid('plus')} style={icon} />

@@ -20,11 +20,11 @@ export default function TextInfoForEdit({
   value,
   setValue,
 }) {
-  const { isEditMode } = useEditState();
+  const { editMode } = useEditState();
   const commonStyle = {
     height: height || '60vh',
     width: width || '80%',
-    border: isEditMode ? '2px solid gray' : 'none',
+    border: editMode ? '2px solid gray' : 'none',
   };
   // let responsiveStyle;
   // if (window.innerWidth > 600) {
@@ -43,7 +43,7 @@ export default function TextInfoForEdit({
       value={value}
       onChange={(e) => setValue(e.target.value)}
       style={commonStyle}
-      readOnly={!isEditMode}
+      readOnly={!editMode}
     />
   );
 }

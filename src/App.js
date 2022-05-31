@@ -30,7 +30,7 @@ const App = () => (
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="total" element={<Total />} />
-          <Route path="total/:uid" element={<EachPresent />} />
+          <Route path="total/:villageId" element={<EachPresent />} />
 
           <Route path="*" element={<p>There is nothing here: 404!</p>} />
         </Routes>

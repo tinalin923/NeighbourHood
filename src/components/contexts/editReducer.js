@@ -1,6 +1,5 @@
 export const initialEditState = {
   published: false,
-  isEditMode: true,
   introductionTextData: [
     { chiefName: '' },
     { chiefInfo: '' },
@@ -33,8 +32,6 @@ const editReducer = (state, action) => {
   switch (type) {
     case 'SET_TEXT_INTRODUCTION':
       return { ...state, introductionTextData: payload.introductionTextData };
-    case 'TOGGLE_EDITMODE':
-      return { ...state, isEditMode: payload.isEditMode };
     case 'SET_SCROLL_LIST':
       return { ...state, scrollList: payload.scrollList };
     // case 'ADD_SCROLL_LIST':

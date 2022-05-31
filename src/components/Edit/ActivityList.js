@@ -33,7 +33,7 @@ const Image = styled.img`
 
 export default function ActivityList() {
   const {
-    isEditMode,
+    editMode,
     imageList,
     activityList,
     activityPresentList,
@@ -152,7 +152,7 @@ export default function ActivityList() {
                     deleteActivityPresentList(id);
                     deleteActivityList(id);
                   }}
-                  style={{ display: isEditMode ? 'block' : 'none' }}
+                  style={{ display: editMode ? 'block' : 'none' }}
                 >
                   <FontAwesomeIcon icon={solid('trash')} />
                 </Button>

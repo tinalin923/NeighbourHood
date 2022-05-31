@@ -2,8 +2,8 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { getStorageImages } from '../../hooks/firebase/useStorageData.js';
-import { Error } from '../../styles/styledComponents/blockComponents.js';
+import { getStorageImages } from '../../firebase/useStorage.js';
+import { ImageError } from '../../styles/styledComponents/blockComponents.js';
 import compressImage from '../../utils/imageCompress.js';
 import { useAuthState } from '../contexts/AuthContext.js';
 import { useEditState } from '../contexts/EditContext.js';
@@ -72,13 +72,8 @@ const icon = {
 
 const AvatorImageInput = () => {
   const { currentUid } = useAuthState();
-  const {
-    published,
-    isEditMode,
-    setImageList,
-    imagePathList,
-    setImagePathList,
-  } = useEditState();
+  const { published, editMode, setImageList, imagePathList, setImagePathList } =
+    useEditState();
   const [temporaryChiefAvator, setTemporaryChiefAvator] = useState();
   const [chiefAvatorError, setChiefAvatorError] = useState(null);
   const fileInput = useRef();
@@ -122,18 +117,18 @@ const AvatorImageInput = () => {
           backgroundImage: temporaryChiefAvator
             ? `url(${temporaryChiefAvator})`
             : 'linear-gradient(-45deg, #fcd856, #bdbbb1)',
-          opacity: isEditMode ? '0.7' : '1',
+          opacity: editMode ? '0.7' : '1',
           // top: isEditMode ? '80px' : '0px',
         }}
       >
         {chiefAvatorError && (
-          <Error style={{ display: isEditMode ? 'block' : 'none' }}>
+          <ImageError style={{ display: editMode ? 'block' : 'none' }}>
             {chiefAvatorError}
-          </Error>
+          </ImageError>
         )}
       </ChiefAvatorImage>
 
-      <InputBlock style={{ display: isEditMode ? 'block' : 'none' }}>
+      <InputBlock style={{ display: editMode ? 'block' : 'none' }}>
         {temporaryChiefAvator ? <P>選擇其他圖片</P> : <P>點選以新增圖片</P>}
         <IconContainer>
           <FontAwesomeIcon icon={solid('plus')} style={icon} />

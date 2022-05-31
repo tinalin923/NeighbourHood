@@ -21,7 +21,6 @@ const CardContainer = styled(motion.div)`
 `;
 
 const OpenImageContainer = styled(motion.div)`
-  // max-width: 100%;
   max-height: 45vh;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -125,9 +124,6 @@ export default function ActiveCard({ activity, setActive }) {
           zIndex: '2',
           width: '80%',
           maxWidth: '1100px',
-          // height: '85%',
-          // display: 'flex',
-          // alignItems: 'center',
         }}
       >
         <CardContainer // card-content

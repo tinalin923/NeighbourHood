@@ -70,7 +70,7 @@ const HeroImageBlock = ({ name }) => {
   const { currentVillageId } = useAuthState();
   const {
     published,
-    isEditMode,
+    editMode,
     setImageList,
     imagePathList,
     setImagePathList,
@@ -141,19 +141,19 @@ const HeroImageBlock = ({ name }) => {
             backgroundImage: temporaryHeroImageUrl
               ? `url(${temporaryHeroImageUrl})`
               : `linear-gradient(90deg, ${secondaryGray}, ${thirdGray})`,
-            opacity: isEditMode ? '0.7' : '1',
-            top: isEditMode ? '80px' : '0px',
+            opacity: editMode ? '0.7' : '1',
+            top: editMode ? '80px' : '0px',
           }}
         >
           {heroImageError && (
-            <ImageError style={{ display: isEditMode ? 'block' : 'none' }}>
+            <ImageError style={{ display: editMode ? 'block' : 'none' }}>
               {heroImageError}
             </ImageError>
           )}
         </HeroImage>
       </PlaceHolder>
-      <Title style={{ top: isEditMode ? '51%' : '50%' }}>{village}</Title>
-      <InputBlock style={{ display: isEditMode ? 'block' : 'none' }}>
+      <Title style={{ top: editMode ? '51%' : '50%' }}>{village}</Title>
+      <InputBlock style={{ display: editMode ? 'block' : 'none' }}>
         <IconContainer>
           <FontAwesomeIcon icon={solid('plus')} style={icon} />
         </IconContainer>
@@ -170,6 +170,6 @@ const HeroImageBlock = ({ name }) => {
   );
 };
 HeroImageBlock.propTypes = {
-  name: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
 };
 export default HeroImageBlock;

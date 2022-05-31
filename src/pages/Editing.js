@@ -8,7 +8,6 @@ import HeroImageBlock from '../blocks/HeroImageBlock.js';
 import VillageIntroBlock from '../blocks/VillageIntroBlock.js';
 import { useAuthState } from '../components/contexts/AuthContext.js';
 import { useEditState } from '../components/contexts/EditContext.js';
-// import Btn from '../components/Edit/Addblock.js';
 import ScrollList from '../components/Edit/ScrollList.js';
 import Switch from '../components/Edit/Switch.js';
 import UploadBtn from '../components/Edit/UploadBtn.js';
@@ -19,7 +18,7 @@ import {
 } from '../firebase/useFirestore.js';
 
 const Editing = () => {
-  const { isEditMode, getDatasToContext, published } = useEditState();
+  const { editMode, getDatasToContext, published } = useEditState();
   const { currentUid, setCurrentVillageId } = useAuthState();
   const [editPageLoading, setEditPageLoading] = useState(true);
 
@@ -43,19 +42,19 @@ const Editing = () => {
     <>
       <Header />
       {editPageLoading && <p>資料載入中...</p>}
-      <HeroImageBlock name="0" />
       <ScrollList />
       <Switch />
+      <HeroImageBlock name="0" />
       {published ? <BulletinBlock name="1" /> : <ChiefIntroBlock name="1" />}
-      {published && isEditMode && <EditBullitinBlock1 />}
+      {published && editMode && <EditBullitinBlock1 />}
       {published ? <ActivityBlock name="2" /> : <VillageIntroBlock name="2" />}
-      {published && isEditMode && <EditActivityBlock />}
+      {published && editMode && <EditActivityBlock />}
       {published ? <VillageIntroBlock name="3" /> : <BulletinBlock name="3" />}
-      {!published && isEditMode && <EditBullitinBlock1 />}
+      {!published && editMode && <EditBullitinBlock1 />}
       {published ? <ChiefIntroBlock name="4" /> : <ActivityBlock name="4" />}
-      {!published && isEditMode && <EditActivityBlock />}
+      {!published && editMode && <EditActivityBlock />}
       <hr />
-      {isEditMode && <UploadBtn />}
+      {editMode && <UploadBtn />}
     </>
   );
 };

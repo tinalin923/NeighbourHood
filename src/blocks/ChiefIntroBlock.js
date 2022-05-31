@@ -40,6 +40,6 @@ function ChiefIntroBlock({ name }) {
 }
 
 ChiefIntroBlock.propTypes = {
-  name: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
 };
 export default ChiefIntroBlock;

@@ -10,6 +10,7 @@ export const useEditState = () => useContext(EditContext);
 export const EditContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(editReducer, initialEditState);
   // for controlled input component(not in reducer)
+  const [editMode, setEditMode] = useState(true);
   const [introductionTextData, setIntroductionTextData] = useState([]);
   const [imagePathList, setImagePathList] = useState([]);
   const [published, setPublished] = useState('');
@@ -18,15 +19,6 @@ export const EditContextProvider = ({ children }) => {
   // for upload to firestorage
   const [imageList, setImageList] = useState([]);
 
-  const toggleEditMode = () => {
-    const editMode = !state.isEditMode;
-    dispatch({
-      type: 'TOGGLE_EDITMODE',
-      payload: {
-        isEditMode: editMode,
-      },
-    });
-  };
   const setScrollList = (array) => {
     if (!array) return;
     let newScrollList = [];
@@ -240,7 +232,7 @@ export const EditContextProvider = ({ children }) => {
 
   const value = {
     published,
-    isEditMode: state.isEditMode,
+    editMode,
     currentUserDatas,
     introductionTextData,
     imagePathList,
@@ -253,7 +245,7 @@ export const EditContextProvider = ({ children }) => {
     activityPresentList: state.activityPresentList,
     getDatasToContext,
     setPublished,
-    toggleEditMode,
+    setEditMode,
     setCurrentUserDatas,
     setVillage,
     setIntroductionTextData,

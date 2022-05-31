@@ -3,7 +3,7 @@ import React from 'react';
 import { useEditState } from '../contexts/EditContext.js';
 
 const InputInfo = ({ name, placeholder, value, setValue, width, top }) => {
-  const { isEditMode } = useEditState();
+  const { editMode } = useEditState();
 
   return (
     <input
@@ -23,10 +23,10 @@ const InputInfo = ({ name, placeholder, value, setValue, width, top }) => {
         textAlign: 'center',
         outline: 'none',
         width: width || '80%',
-        top: isEditMode ? `${top}` || '0vh' : '0vh',
-        border: isEditMode ? '2px solid gray' : 'none',
+        top: editMode ? `${top}` || '0vh' : '0vh',
+        border: editMode ? '2px solid gray' : 'none',
       }}
-      readOnly={!isEditMode}
+      readOnly={!editMode}
     />
   );
 };

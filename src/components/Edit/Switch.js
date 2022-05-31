@@ -2,13 +2,13 @@ import React from 'react';
 import { useEditState } from '../contexts/EditContext.js';
 
 const Switch = () => {
-  const { isEditMode, toggleEditMode } = useEditState();
+  const { editMode, setEditMode } = useEditState();
   const handleChange = () => {
-    toggleEditMode();
+    setEditMode((prev) => !prev);
   };
 
   return (
-    <div className={isEditMode ? 'switch' : 'switch_on'}>
+    <div className={editMode ? 'switch' : 'switch_on'}>
       <button className="switch_btn" type="button" onClick={handleChange} />
     </div>
   );

@@ -31,6 +31,6 @@ function VillageIntroBlock({ name }) {
   );
 }
 VillageIntroBlock.propTypes = {
-  name: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
 };
 export default VillageIntroBlock;
