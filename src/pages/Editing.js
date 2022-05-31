@@ -19,7 +19,7 @@ import {
 } from '../firebase/useFirestore.js';
 
 const Editing = () => {
-  const { isEditMode, getDatasToContext } = useEditState();
+  const { isEditMode, getDatasToContext, published } = useEditState();
   const { currentUid, setCurrentVillageId } = useAuthState();
   const [editPageLoading, setEditPageLoading] = useState(true);
 
@@ -46,12 +46,14 @@ const Editing = () => {
       <HeroImageBlock name="0" />
       <ScrollList />
       <Switch />
-      <BulletinBlock name="1" />
-      {isEditMode && <EditBullitinBlock1 />}
-      <ActivityBlock name="2" />
-      {isEditMode && <EditActivityBlock />}
-      <VillageIntroBlock name="3" />
-      <ChiefIntroBlock name="4" />
+      {published ? <BulletinBlock name="1" /> : <ChiefIntroBlock name="1" />}
+      {published && isEditMode && <EditBullitinBlock1 />}
+      {published ? <ActivityBlock name="2" /> : <VillageIntroBlock name="2" />}
+      {published && isEditMode && <EditActivityBlock />}
+      {published ? <VillageIntroBlock name="3" /> : <BulletinBlock name="3" />}
+      {!published && isEditMode && <EditBullitinBlock1 />}
+      {published ? <ChiefIntroBlock name="4" /> : <ActivityBlock name="4" />}
+      {!published && isEditMode && <EditActivityBlock />}
       <hr />
       {isEditMode && <UploadBtn />}
     </>

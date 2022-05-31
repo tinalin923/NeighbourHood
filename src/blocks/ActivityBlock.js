@@ -10,7 +10,7 @@ import ActivityList from '../components/Edit/ActivityList.js';
 function ActivityBlock({ name }) {
   return (
     <Block name={name}>
-      <Title>活動</Title>
+      <Title>活動訊息</Title>
       <Main>
         <ActivityList />
       </Main>

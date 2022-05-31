@@ -30,8 +30,8 @@ const createInitialUserDatas = async (uid, email, city, village) => {
       { id: '0', title: village },
       { id: '1', title: '里長介紹' },
       { id: '2', title: '村里介紹' },
-      { id: '3', title: '公佈欄' },
-      { id: '4', title: '活動' },
+      { id: '3', title: '最新消息' },
+      { id: '4', title: '活動訊息' },
     ],
     announceList: [
       {

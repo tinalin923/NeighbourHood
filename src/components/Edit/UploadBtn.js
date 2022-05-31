@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable function-paren-newline */
 import React, { useEffect, useState } from 'react';
 import { generatePath, useNavigate } from 'react-router-dom';
 import BeatLoader from 'react-spinners/BeatLoader';
@@ -17,6 +15,7 @@ export default function UploadBtn() {
   const { currentVillageId } = useAuthState();
   const {
     // currentUserDatas,
+    village,
     published,
     isEditMode,
     introductionTextData,
@@ -34,13 +33,22 @@ export default function UploadBtn() {
     activityList,
   };
 
+  const update = {
+    published: true,
+    scrollList: [
+      { id: '0', title: village },
+      { id: '1', title: '最新消息' },
+      { id: '2', title: '活動訊息' },
+      { id: '3', title: '村里介紹' },
+      { id: '4', title: '里長介紹' },
+    ],
+  };
+
   const handleClick = () => {
     console.log(imageList);
     console.log(villageDatas);
     console.log(introductionTextData);
-    const villagePath = generatePath('/total/:villageId', {
-      villageId: currentVillageId,
-    });
+
     if (!introductionTextData) {
       setUploadError('請至少填寫里長介紹');
       return;
@@ -49,8 +57,11 @@ export default function UploadBtn() {
       setUploadError('請選擇至少一張照片');
       return;
     }
-
     setUploading(true);
+    const villagePath = generatePath('/total/:villageId', {
+      villageId: currentVillageId,
+    });
+
     if (imageList.length === 0) {
       if (published) {
         console.log(villageDatas);
@@ -59,51 +70,48 @@ export default function UploadBtn() {
             console.log(result);
             setUploading(false);
             console.log(5);
-            // navigate(0);
-            navigate(villagePath);
+            navigate(`/total/${currentVillageId}`);
           }
         );
       } else {
         uploadFirestoreVillageData(currentVillageId, {
           ...villageDatas,
-          published: true,
+          ...update,
         }).then((result) => {
           console.log(result);
           setUploading(false);
           console.log(6);
-          // navigate(0);
           navigate(villagePath);
         });
       }
-    } else if (published) {
-      const promise1 = uploadFirestoreVillageData(
-        currentVillageId,
-        villageDatas
-      );
-      console.log(promise1);
-      const promise2 = upLoadStorageImages(currentVillageId, imageList);
-      console.log(promise2);
-      Promise.all([promise1, promise2]).then((result) => {
-        console.log(result);
-        setUploading(false);
-        // navigate(0);
-        console.log(3);
-        navigate(villagePath);
-      });
-    } else {
-      const promise1 = uploadFirestoreVillageData(currentVillageId, {
-        ...villageDatas,
-        published: true,
-      });
-      const promise2 = upLoadStorageImages(currentVillageId, imageList);
-      Promise.all([promise1, promise2]).then((result) => {
-        console.log(result);
-        setUploading(false);
-        // navigate(0);
-        console.log(4);
-        setUploading(false);
-        navigate(villagePath);
-      });
+    }
+    if (imageList.length !== 0) {
+      if (published) {
+        const promise1 = uploadFirestoreVillageData(
+          currentVillageId,
+          villageDatas
+        );
+        const promise2 = upLoadStorageImages(currentVillageId, imageList);
+        Promise.all([promise1, promise2]).then((result) => {
+          console.log(result);
+          setUploading(false);
+          console.log(3);
+          navigate(`/total/${currentVillageId}`);
+        });
+      } else {
+        const promise1 = uploadFirestoreVillageData(currentVillageId, {
+          ...villageDatas,
+          ...update,
+        });
+        const promise2 = upLoadStorageImages(currentVillageId, imageList);
+        Promise.all([promise1, promise2]).then((result) => {
+          console.log(result);
+          setUploading(false);
+          console.log(4);
+          setUploading(false);
+          navigate(villagePath);
+        });
+      }
     }
   };
   // for ui

@@ -10,7 +10,7 @@ import {
 function BulletinBlock({ name }) {
   return (
     <Block name={name}>
-      <Title>公佈欄</Title>
+      <Title>最新消息</Title>
       <Main>
         <AnnounceList />
       </Main>
