@@ -1,18 +1,19 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
-import { Link as RouteLink, Outlet, useNavigate } from 'react-router-dom';
+import { Link as RouteLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import '../../assets/fonts/fonts.scss';
 import { primaryGray } from '../../styles/styledComponents/color.js';
 import { useAuthState } from '../contexts/AuthContext.js';
 
 const Top = styled.div`
+  position: fixed;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: space-around;
   border-bottom: 1px solid #dddbd1;
   height: 80px;
-  opacity: 0.4;
+  background: white;
 `;
 const Title = styled.p`
   margin-left: 10px;
@@ -20,6 +21,7 @@ const Title = styled.p`
   font-family: 'TESLA Regular';
   font-size: 1.2rem;
   color: ${primaryGray};
+  opacity: 0.4;
   @media (max-width: 600px) {
     font-size: 1rem;
   }
@@ -32,12 +34,14 @@ const Button = styled.button`
   height: 40px;
   border: none;
   border-radius: 5px;
-  background-color: ${primaryGray};
+  background-color: white;
   text-decoration: none;
   color: white;
   cursor: pointer;
   &:hover {
-    box-shadow: 2px 2px 5px #556588;
+    background-color: ${primaryGray};
+
+    // box-shadow: 2px 2px 5px #556588;
   }
   @media (max-width: 600px) {
     font-size: 0.8rem;
@@ -56,29 +60,25 @@ const Header = () => {
     }
   };
   return (
-    <>
-      <Top>
-        <Title as={RouteLink} to="/">
-          NEIGHBoURHooD
-        </Title>
-        <div>
-          {currentUid ? (
-            // eslint-disable-next-line react/jsx-no-bind
-            <Button as={RouteLink} to="/" onClick={handleLogout}>
-              登出
-            </Button>
-          ) : (
-            <Button as={RouteLink} to="/login">
-              登入
-            </Button>
-          )}
-          <Button as={RouteLink} to="/signup">
-            註冊
+    <Top>
+      <Title as={RouteLink} to="/">
+        NEIGHBoURHooD
+      </Title>
+      <ul>
+        {currentUid ? (
+          <Button as={RouteLink} to="/" onClick={handleLogout}>
+            登出
           </Button>
-        </div>
-      </Top>
-      <Outlet />
-    </>
+        ) : (
+          <Button as={RouteLink} to="/login">
+            登入
+          </Button>
+        )}
+        <Button as={RouteLink} to="/signup">
+          註冊
+        </Button>
+      </ul>
+    </Top>
   );
 };
 

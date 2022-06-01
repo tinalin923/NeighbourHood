@@ -173,7 +173,7 @@ export default function EventList() {
             variants={containerVariants}
             animate={activeAnnounceItem === id ? 'visible' : 'hidden'}
             whileHover={{
-              background: '#edf2fb',
+              background: '#e6e7ea',
               transition: { duration: 0.1 },
             }}
             style={wholeButtonStyle}

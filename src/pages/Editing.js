@@ -11,11 +11,12 @@ import { useEditState } from '../components/contexts/EditContext.js';
 import ScrollList from '../components/Edit/ScrollList.js';
 import Switch from '../components/Edit/Switch.js';
 import UploadBtn from '../components/Edit/UploadBtn.js';
-import Header from '../components/Header/Header.js';
+import Header from '../components/Total/Header.js';
 import {
   getFirestoreUserData,
   getFirestoreVillageData,
 } from '../firebase/useFirestore.js';
+import { backgroundGray } from '../styles/styledComponents/color.js';
 
 const Editing = () => {
   const { editMode, getDatasToContext, published } = useEditState();
@@ -39,7 +40,7 @@ const Editing = () => {
   }, [currentUid]);
 
   return (
-    <>
+    <div style={{ background: editMode ? `${backgroundGray}` : 'none' }}>
       <Header />
       {editPageLoading && <p>資料載入中...</p>}
       <ScrollList />
@@ -55,7 +56,7 @@ const Editing = () => {
       {!published && editMode && <EditActivityBlock />}
       <hr />
       {editMode && <UploadBtn />}
-    </>
+    </div>
   );
 };
 

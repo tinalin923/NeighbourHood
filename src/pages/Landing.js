@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import { Link as RouteLink } from 'react-router-dom';
 import { useAuthState } from '../components/contexts/AuthContext.js';
-import Header from '../components/Header/Header.js';
+import LandingHeader from '../components/Landing/LandingHeader.js';
 import { Button } from '../styles/styledComponents/button.js';
 import {
   primaryGray,
@@ -13,7 +13,7 @@ const Landing = () => {
   const { currentUid } = useAuthState();
   return (
     <>
-      <Header />
+      <LandingHeader />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

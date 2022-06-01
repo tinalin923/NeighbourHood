@@ -6,7 +6,8 @@ import styled, { createGlobalStyle } from 'styled-components';
 import Background from '../assets/images/toa-heftiba-nrSzRUWqmoI-unsplash.jpg';
 import { useAuthState } from '../components/contexts/AuthContext.js';
 // import { useEditState } from '../components/contexts/EditContext.js';
-import Header from '../components/Header/Header.js';
+import LandingHeader from '../components/Landing/LandingHeader.js';
+
 import { Button } from '../styles/styledComponents/button.js';
 
 const GlobalStyle = createGlobalStyle`
@@ -104,7 +105,7 @@ const Login = () => {
   return (
     <>
       <GlobalStyle />
-      <Header />
+      <LandingHeader />
       <Form>
         <Block>
           <FontAwesomeIcon icon={solid('envelope')} style={icon} />

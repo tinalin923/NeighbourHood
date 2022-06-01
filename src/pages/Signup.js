@@ -5,7 +5,7 @@ import { Link as RouteLink, useNavigate } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import Background from '../assets/images/toa-heftiba-nrSzRUWqmoI-unsplash.jpg';
 import { useAuthState } from '../components/contexts/AuthContext.js';
-import Header from '../components/Header/Header.js';
+import LandingHeader from '../components/Landing/LandingHeader.js';
 import { Button } from '../styles/styledComponents/button.js';
 import cityOption from '../utils/city.js';
 
@@ -137,7 +137,7 @@ const Signup = () => {
   return (
     <>
       <GlobalStyle />
-      <Header />
+      <LandingHeader />
       <Form>
         <Block>
           <FontAwesomeIcon icon={solid('city')} style={icon} />

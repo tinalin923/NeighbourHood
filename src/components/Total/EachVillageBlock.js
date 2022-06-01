@@ -1,5 +1,5 @@
-import React from 'react';
 import propTypes from 'prop-types';
+import React from 'react';
 import { Link as RouteLink } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -8,6 +8,7 @@ const VillageButton = styled.button`
   background: #f5f5f5;
   width: 100%;
   height: 100%;
+  text-decoration: none;
   &: hover {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 10px;
   }
@@ -30,8 +31,23 @@ function EachVillageBlock({ id, cityName, villageName, heroImage }) {
           style={{ objectFit: 'fill', width: '100%', height: '100%' }}
         />
       </ImageContainer>
-      <div>{cityName}</div>
-      <div>{villageName}</div>
+      <div
+        style={{
+          margin: '8px',
+          fontSize: '1.1rem',
+        }}
+      >
+        {cityName}
+      </div>
+      <div
+        style={{
+          margin: '8px',
+          fontSize: '1.5rem',
+          fontWeight: 'bold',
+        }}
+      >
+        {villageName}
+      </div>
     </VillageButton>
   );
 }

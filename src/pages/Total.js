@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../components/Header/Header.js';
+import Header from '../components/Total/Header.js';
 import EachVillageBlock from '../components/Total/EachVillageBlock.js';
 import useFetchPublishedPage from '../firebase/hooks/useFetchPublishedPage.js';
 
 const Container = styled.div`
-  margin: 5vh auto;
+  margin: 0px auto;
   max-width: 80%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -13,14 +13,21 @@ const Container = styled.div`
   grid-auto-rows: minmax(200px, auto);
 `;
 
+const Title = styled.h2`
+  width: 150px;
+  margin: 130px 0px 50px 20vw;
+  border-bottom: 2px solid #363636;
+`;
+
 const Total = () => {
   const { publishedVillages, fetchError } = useFetchPublishedPage();
   return (
     <>
       <Header />
-
-      {fetchError && <p>存取資料錯誤:{fetchError}</p>}
+      <Title>鄉里總覽</Title>
       <Container>
+        {fetchError && <p>存取資料錯誤:{fetchError}</p>}
+
         {publishedVillages?.map(({ id, cityName, villageName, heroImage }) => (
           <EachVillageBlock
             key={id}
