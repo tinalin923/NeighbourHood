@@ -1,6 +1,6 @@
-/* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
-/* eslint-disable no-promise-executor-return */
+/* eslint-disable no-await-in-loop */
+
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { projectStorage } from './firebaseConfig.js';
 

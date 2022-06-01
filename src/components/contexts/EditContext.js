@@ -1,6 +1,11 @@
-/* eslint-disable function-paren-newline */
-/* eslint-disable react/jsx-no-constructed-context-values */
-import React, { createContext, useContext, useReducer, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {
+  createContext,
+  useContext,
+  useMemo,
+  useReducer,
+  useState,
+} from 'react';
 import editReducer, { initialEditState } from './editReducer.js';
 
 const EditContext = createContext(initialEditState);
@@ -230,42 +235,59 @@ export const EditContextProvider = ({ children }) => {
     setVillage(userDatasFromFirbase?.villageName);
   };
 
-  const value = {
-    published,
-    editMode,
-    currentUserDatas,
-    introductionTextData,
-    imagePathList,
-    imageList,
-    village,
-    scrollList: state.scrollList,
-    announceList: state.announceList,
-    announcePresentList: state.announcePresentList,
-    activityList: state.activityList,
-    activityPresentList: state.activityPresentList,
-    getDatasToContext,
-    setPublished,
-    setEditMode,
-    setCurrentUserDatas,
-    setVillage,
-    setIntroductionTextData,
-    setImagePathList,
-    setImageList,
-    setScrollList,
-    addScrollList,
-    setAnnounceList,
-    addAnnounceList,
-    deleteAnnounceList,
-    setAnnouncePresentList,
-    addAnnouncePresentList,
-    deleteAnnouncePresentList,
-    setActivityList,
-    addActivityList,
-    deleteActivityList,
-    setActivityPresentList,
-    addActivityPresentList,
-    deleteActivityPresentList,
-  };
+  const value = useMemo(
+    () => ({
+      published,
+      editMode,
+      currentUserDatas,
+      introductionTextData,
+      imagePathList,
+      imageList,
+      village,
+      scrollList: state.scrollList,
+      announceList: state.announceList,
+      announcePresentList: state.announcePresentList,
+      activityList: state.activityList,
+      activityPresentList: state.activityPresentList,
+      getDatasToContext,
+      setPublished,
+      setEditMode,
+      setCurrentUserDatas,
+      setVillage,
+      setIntroductionTextData,
+      setImagePathList,
+      setImageList,
+      setScrollList,
+      addScrollList,
+      setAnnounceList,
+      addAnnounceList,
+      deleteAnnounceList,
+      setAnnouncePresentList,
+      addAnnouncePresentList,
+      deleteAnnouncePresentList,
+      setActivityList,
+      addActivityList,
+      deleteActivityList,
+      setActivityPresentList,
+      addActivityPresentList,
+      deleteActivityPresentList,
+    }),
+    [
+      currentUserDatas,
+      editMode,
+      getDatasToContext,
+      imageList,
+      imagePathList,
+      introductionTextData,
+      published,
+      state.activityList,
+      state.activityPresentList,
+      state.announceList,
+      state.announcePresentList,
+      state.scrollList,
+      village,
+    ]
+  );
 
   return <EditContext.Provider value={value}>{children}</EditContext.Provider>;
 };

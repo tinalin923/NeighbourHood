@@ -20,12 +20,9 @@ const Button = styled.button`
   }
 `;
 
-const Image = styled.img`
+const ImageContainer = styled(motion.div)`
   overflow: hidden;
-  width: 100%;
   aspect-ratio: 560/500;
-  object-fit: cover;
-  object-position: 50% 10%;
   @media (max-width: 600px) {
     aspect-ratio: 345/400;
   }
@@ -129,15 +126,22 @@ export default function ActivityList() {
         {activityPresentList.map(({ id, title, picture }) => (
           <li key={id}>
             <motion.div layoutId={`activity-${id}`}>
-              <motion.div layoutId={`image-${id}`}>
-                <Image
+              <ImageContainer
+                layoutId={`image-${id}`}
+                onClick={() => {
+                  handleClick(id);
+                }}
+              >
+                <img
                   alt={title}
                   src={picture}
-                  onClick={() => {
-                    handleClick(id);
+                  style={{
+                    width: '100%',
+                    objectFit: 'cover',
+                    objectPosition: '50% 10%',
                   }}
                 />
-              </motion.div>
+              </ImageContainer>
 
               <motion.div
                 layoutId={`title-${id}`}

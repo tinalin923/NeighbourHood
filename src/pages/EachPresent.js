@@ -1,14 +1,13 @@
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import React, { useEffect } from 'react';
 import ActivityBlock from '../blocks/ActivityBlock.js';
 import BulletinBlock from '../blocks/BulletinBlock.js';
 import ChiefIntroBlock from '../blocks/ChiefIntroBlock.js';
 import HeroImageBlock from '../blocks/HeroImageBlock.js';
 import VillageIntroBlock from '../blocks/VillageIntroBlock.js';
-import Footer from '../components/Present/Footer.js';
-// import { useAuthState } from '../components/contexts/AuthContext.js';
 import { useEditState } from '../components/contexts/EditContext.js';
 import ScrollList from '../components/Edit/ScrollList.js';
+import Footer from '../components/Present/Footer.js';
 import { getFirestoreVillageData } from '../firebase/useFirestore.js';
 
 const EachPresent = () => {
@@ -23,9 +22,11 @@ const EachPresent = () => {
     setImagePathList,
     setVillage,
   } = useEditState();
+  const [presentPageLoading, setPresentPageLoading] = useState(true);
 
   async function presentData(vId) {
     const villageData = await getFirestoreVillageData(vId);
+    console.log(villageData);
     setPublished(villageData?.published);
     setAnnounceList(villageData?.announceList);
     setActivityList(villageData?.activityList);
@@ -33,21 +34,30 @@ const EachPresent = () => {
     setIntroductionTextData(villageData?.introductionTextData);
     setImagePathList(villageData?.imagePathList);
     setVillage(villageData?.villageName);
+    setPresentPageLoading(false);
   }
   console.log(villageId);
+
   useEffect(() => {
     setEditMode(false);
     presentData(villageId);
+    console.log(presentPageLoading);
   }, []);
+
   return (
     <>
-      <ScrollList />
-      <HeroImageBlock name="0" />
-      <BulletinBlock name="1" />
-      <ActivityBlock name="2" />
-      <VillageIntroBlock name="3" />
-      <ChiefIntroBlock name="4" />
-      <Footer />
+      {presentPageLoading && <div>資料讀取中...</div>}
+      {!presentPageLoading && (
+        <>
+          <ScrollList />
+          <HeroImageBlock name="0" />
+          <BulletinBlock name="1" />
+          <ActivityBlock name="2" />
+          <VillageIntroBlock name="3" />
+          <ChiefIntroBlock name="4" />
+          <Footer />
+        </>
+      )}
     </>
   );
 };
