@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import { useEditState } from '../contexts/EditContext.js';
 
 const Text = styled.textarea`
-  margin: 1vh 3vw;
+  margin: 4px 0;
   padding: 10px;
   overflow: auto;
   @media (max-width: 600px) {
-    margin-top: 5vh;
+    margin-top: 4px;
     width: 70vw;
   } ;
 `;

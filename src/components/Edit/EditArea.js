@@ -1,27 +1,36 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/prop-types */
-/* eslint-disable function-paren-newline */
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PropTypes from 'prop-types';
 import React, { useEffect, useReducer, useRef } from 'react';
 import styled from 'styled-components';
-import { useAuthState } from '../contexts/AuthContext.js';
-import { useEditState } from '../contexts/EditContext.js';
-import TextInfoForEdit from './TextInfoForEdit.js';
 import {
   Block,
   ImageError,
-  Main,
   SecondaryBtn,
   TextError,
 } from '../../styles/styledComponents/blockComponents.js';
-
 // for imageBlock
 import {
   secondaryGray,
   thirdGray,
 } from '../../styles/styledComponents/color.js';
 import compressImage from '../../utils/imageCompress.js';
+import { useAuthState } from '../contexts/AuthContext.js';
+import { useEditState } from '../contexts/EditContext.js';
+import TextInfoForEdit from './TextInfoForEdit.js';
+
+const Edit = styled.div`
+  width: 100%;
+  height: 35vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    height: 70vh;
+  }
+`;
 
 const Image = styled.div`
   margin: 0 auto;
@@ -29,14 +38,14 @@ const Image = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 50vh;
-  width: 30vw;
+  height: 30vh;
+  width: 20vw;
   aspect-ratio: 3/4;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   @media (max-width: 600px) {
-    width: 60vw;
+    width: 70vw;
   }
 `;
 const InputBtn = styled.label`
@@ -99,7 +108,7 @@ const editReducer = (state, action) => {
   }
 };
 
-export default function EditArea({
+function EditArea({
   name,
   addList,
   addPresentList,
@@ -143,7 +152,7 @@ export default function EditArea({
   // for imageBlock
   const fileInput = useRef();
   const { currentVillageId } = useAuthState();
-  const { editMode, setImageList } = useEditState();
+  const { setImageList } = useEditState();
 
   // 選擇照片
   const handleChange = async () => {
@@ -169,6 +178,7 @@ export default function EditArea({
     setImageError(null);
     setId((Math.floor(Math.random() * 10000) + 1).toString());
   };
+
   // for 上傳到總表
   useEffect(() => {
     if (!state.id) return;
@@ -202,7 +212,7 @@ export default function EditArea({
 
   return (
     <Block>
-      <Main>
+      <Edit>
         <div style={{ display: 'block', textAlign: 'center' }}>
           <TextInfoForEdit
             placeholder={`${name}標題`}
@@ -214,52 +224,60 @@ export default function EditArea({
             placeholder={`詳細${name}說明`}
             value={state.details}
             setValue={setDetails}
+            height="25vh"
           />
         </div>
-        <div
+        {/* <div
           style={{
-            display: 'block',
-            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'space-between',
+            height: '100%',
+          }}
+        > */}
+        <Image
+          style={{
+            backgroundImage: state.temporaryUrl
+              ? `url(${state.temporaryUrl})`
+              : `linear-gradient(90deg, ${secondaryGray}, ${thirdGray})`,
           }}
         >
-          <Image
-            style={{
-              backgroundImage: state.temporaryUrl
-                ? `url(${state.temporaryUrl})`
-                : `linear-gradient(90deg, ${secondaryGray}, ${thirdGray})`,
-              opacity: editMode ? '0.7' : '1',
-            }}
-          >
-            {state.imageError && (
-              <ImageError style={{ display: editMode ? 'block' : 'none' }}>
-                {state.imageError}
-              </ImageError>
-            )}
-            <InputBtn style={{ display: editMode ? 'block' : 'none' }}>
-              <IconContainer>
-                <FontAwesomeIcon icon={solid('plus')} style={icon} />
-              </IconContainer>
-              <input
-                ref={fileInput}
-                type="file"
-                accept=".jpg, .png, .jpeg"
-                // eslint-disable-next-line react/jsx-no-bind
-                onChange={handleChange}
-                style={{ display: 'none' }}
-              />
-              {state.temporaryUrl ? <P>選擇其他圖片</P> : <P>新增圖片</P>}
-            </InputBtn>
-          </Image>
-          {error && <TextError>{error}</TextError>}
-          <SecondaryBtn
-            // disabled={announceTitle === ''}
-            type="button"
-            onClick={() => handleClick()}
-          >
-            點擊新增{name}
-          </SecondaryBtn>
-        </div>
-      </Main>
+          {state.imageError && <ImageError>{state.imageError}</ImageError>}
+          <InputBtn>
+            <IconContainer>
+              <FontAwesomeIcon icon={solid('plus')} style={icon} />
+            </IconContainer>
+            <input
+              ref={fileInput}
+              type="file"
+              accept=".jpg, .png, .jpeg"
+              onChange={() => handleChange()}
+              style={{ display: 'none' }}
+            />
+            {state.temporaryUrl ? <P>選擇其他圖片</P> : <P>新增圖片</P>}
+          </InputBtn>
+        </Image>
+      </Edit>
+
+      <div style={{ textAlign: 'center' }}>
+        {error && <TextError>{error}</TextError>}
+        <SecondaryBtn type="button" onClick={() => handleClick()}>
+          點擊新增{name}
+        </SecondaryBtn>
+      </div>
     </Block>
   );
 }
+
+EditArea.propTypes = {
+  name: PropTypes.string.isRequired,
+  addList: PropTypes.func.isRequired,
+  addPresentList: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired,
+  setError: PropTypes.func.isRequired,
+  picture: PropTypes.string.isRequired,
+  setPicture: PropTypes.func.isRequired,
+};
+
+export default EditArea;

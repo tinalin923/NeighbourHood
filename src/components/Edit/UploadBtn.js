@@ -1,12 +1,35 @@
+import { serverTimestamp } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { generatePath, useNavigate } from 'react-router-dom';
 import BeatLoader from 'react-spinners/BeatLoader';
-import { serverTimestamp } from 'firebase/firestore';
+import styled from 'styled-components';
 import { uploadFirestoreVillageData } from '../../firebase/useFirestore.js';
 import { upLoadStorageImages } from '../../firebase/useStorage.js';
 import { TextError } from '../../styles/styledComponents/blockComponents.js';
+import {
+  primaryGray,
+  primaryYellow,
+} from '../../styles/styledComponents/color.js';
 import { useAuthState } from '../contexts/AuthContext.js';
 import { useEditState } from '../contexts/EditContext.js';
+
+const UploadButton = styled.button`
+  width: 40vw;
+  margin: 20px;
+  padding: 16px;
+  border: 4px solid ${primaryYellow};
+  border-radius: 8px;
+  background: white;
+  color: ${primaryGray};
+  font-size: 1.2rem;
+  font-weight: bold;
+  &:hover {
+    background: ${primaryYellow};
+  }
+  @media (max-width: 600px) {
+    font-size: 1rem;
+  }
+`;
 
 export default function UploadBtn() {
   const navigate = useNavigate();
@@ -143,16 +166,16 @@ export default function UploadBtn() {
             loading={uploading}
             speedMultiplier={0.5}
           />
-          <p>上傳中，完成後將重新導向頁面</p>
+          <p>上傳中，完成後將導向發佈頁面</p>
         </>
       ) : (
-        <button
+        <UploadButton
           disabled={uploading}
           type="button"
           onClick={() => handleClick()}
         >
-          儲存檔案
-        </button>
+          {published ? '發佈更新' : '儲存並發佈鄰里頁面'}
+        </UploadButton>
       )}
     </div>
   );

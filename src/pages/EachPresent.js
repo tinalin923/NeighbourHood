@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import BeatLoader from 'react-spinners/BeatLoader';
 import { useParams } from 'react-router-dom';
 import ActivityBlock from '../blocks/ActivityBlock.js';
 import BulletinBlock from '../blocks/BulletinBlock.js';
@@ -9,6 +10,7 @@ import { useEditState } from '../components/contexts/EditContext.js';
 import ScrollList from '../components/Edit/ScrollList.js';
 import Footer from '../components/Present/Footer.js';
 import { getFirestoreVillageData } from '../firebase/useFirestore.js';
+import { primaryYellow } from '../styles/styledComponents/color.js';
 
 const EachPresent = () => {
   const { villageId } = useParams();
@@ -50,7 +52,18 @@ const EachPresent = () => {
 
   return (
     <>
-      {presentPageLoading && <div>資料讀取中...</div>}
+      {presentPageLoading && (
+        <div
+          style={{ width: '20vw', margin: '50vh auto', textAlign: 'center' }}
+        >
+          <BeatLoader
+            size={20}
+            color={`${primaryYellow}`}
+            loading={presentPageLoading}
+            speedMultiplier={0.8}
+          />
+        </div>
+      )}
       {!presentPageLoading && (
         <>
           <ScrollList />

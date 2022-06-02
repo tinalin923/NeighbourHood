@@ -1,6 +1,6 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Link as RouteLink } from 'react-router-dom';
 import styled from 'styled-components';
@@ -60,10 +60,10 @@ function EachVillageBlock({ id, cityName, villageName, heroImage }) {
 }
 
 EachVillageBlock.propTypes = {
-  id: propTypes.string.isRequired,
-  cityName: propTypes.string.isRequired,
-  villageName: propTypes.string.isRequired,
-  heroImage: propTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  cityName: PropTypes.string.isRequired,
+  villageName: PropTypes.string.isRequired,
+  heroImage: PropTypes.string.isRequired,
 };
 
 export default EachVillageBlock;

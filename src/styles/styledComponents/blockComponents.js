@@ -8,7 +8,8 @@ export const Block = styled.div`
   height: auto;
 `;
 export const Title = styled.div`
-  margin-top: 24px;
+  width: 80%;
+  margin: 8vh auto 2vh;
   padding: 12px 0px;
   height: 10vh;
   text-align: center;
@@ -22,13 +23,11 @@ export const Main = styled.div`
   height: auto;
   justify-content: center;
   align-items: flex-start;
-  padding: 0 10px;
   @media (max-width: 600px) {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     min-height: 40vh;
-    padding: 0;
   }
 `;
 
@@ -45,15 +44,10 @@ export const ImgArea = styled.div`
 
 export const SecondaryBtn = styled.button`
   margin: 10px auto;
-  border: none;
-  border-radius: 5px;
-  padding: 5px;
   background-color: ${secondaryGray};
-  opacity: 0.8;
   text-align: center;
-  color: black;
-  cursor: pointer;
-  :hover {
+  opacity: 0.7;
+  &:hover {
     opacity: 1;
   }
 `;

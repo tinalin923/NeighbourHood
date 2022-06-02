@@ -40,7 +40,7 @@ const LandingHeader = () => {
     ? [
         { title: '鄉里總覽', to: '/total', onClick: '' },
         { title: '登出', to: '', onClick: () => handleLogout() },
-        { title: '編輯鄰里頁面', to: '/editing', onClick: '' },
+        { title: '編輯我的頁面', to: '/editing', onClick: '' },
       ]
     : [
         { title: '鄉里總覽', to: '/total', onClick: '' },
