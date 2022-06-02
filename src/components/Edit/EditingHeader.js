@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link as RouteLink, Outlet, useNavigate } from 'react-router-dom';
+import { Link as RouteLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import '../../assets/fonts/fonts.scss';
 import { primaryGray } from '../../styles/styledComponents/color.js';
@@ -24,9 +24,8 @@ const Title = styled.p`
   }
 `;
 
-const LandingHeader = () => {
-  const { currentUid, logout } = useAuthState();
-
+const EditingHeader = () => {
+  const { logout } = useAuthState();
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
@@ -36,33 +35,19 @@ const LandingHeader = () => {
       console.log(err);
     }
   };
-  const items = currentUid
-    ? [
-        { title: '鄉里總覽', to: '/total', onClick: '' },
-        { title: '登出', to: '', onClick: () => handleLogout() },
-        { title: '編輯鄰里頁面', to: '/editing', onClick: '' },
-      ]
-    : [
-        { title: '鄉里總覽', to: '/total', onClick: '' },
-        { title: '登入', to: '/login', onClick: '' },
-        {
-          title: '里長註冊',
-          to: '/signup',
-          onClick: '',
-        },
-      ];
+  const items = [
+    { title: '鄉里總覽', to: '/total', onClick: '' },
+    { title: '登出', to: '', onClick: () => handleLogout() },
+  ];
 
   return (
-    <>
-      <Top>
-        <Title as={RouteLink} to="/">
-          NEIGHBoURHooD
-        </Title>
-        <NavTab items={items} />
-      </Top>
-      <Outlet />
-    </>
+    <Top>
+      <Title as={RouteLink} to="/">
+        NEIGHBoURHooD
+      </Title>
+      <NavTab items={items} />
+    </Top>
   );
 };
 
-export default LandingHeader;
+export default EditingHeader;

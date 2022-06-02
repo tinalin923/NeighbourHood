@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { generatePath, useNavigate } from 'react-router-dom';
 import BeatLoader from 'react-spinners/BeatLoader';
+import { serverTimestamp } from 'firebase/firestore';
 import { uploadFirestoreVillageData } from '../../firebase/useFirestore.js';
 import { upLoadStorageImages } from '../../firebase/useStorage.js';
 import { TextError } from '../../styles/styledComponents/blockComponents.js';
@@ -31,6 +32,7 @@ export default function UploadBtn() {
     imagePathList,
     announceList,
     activityList,
+    lastEditTime: serverTimestamp(),
   };
 
   const update = {

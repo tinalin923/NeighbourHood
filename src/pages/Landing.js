@@ -49,7 +49,7 @@ const Landing = () => {
             padding: '20px',
           }}
         >
-          前往建立
+          {currentUid ? '開始編輯頁面' : '前往建立'}
         </Button>
       </motion.div>
     </>

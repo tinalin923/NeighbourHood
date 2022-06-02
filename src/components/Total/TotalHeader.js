@@ -4,51 +4,33 @@ import styled from 'styled-components';
 import '../../assets/fonts/fonts.scss';
 import { primaryGray } from '../../styles/styledComponents/color.js';
 import { useAuthState } from '../contexts/AuthContext.js';
+import NavTab from '../Header/NavTab.js';
 
 const Top = styled.div`
   position: fixed;
   top: 0;
+  width: 100%;
+  background: white;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  border-bottom: 1px solid #dddbd1;
+  justify-content: space-evenly;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px;
   height: 80px;
-  background: white;
+  z-index: 1;
 `;
 const Title = styled.p`
-  margin-left: 10px;
+  flex: 30vw;
   text-decoration: none;
+  text-align: center;
   font-family: 'TESLA Regular';
   font-size: 1.2rem;
   color: ${primaryGray};
-  opacity: 0.4;
   @media (max-width: 600px) {
     font-size: 1rem;
   }
 `;
-const Button = styled.button`
-  flex: auto;
-  margin-right: 20px;
-  padding: 5px;
-  width: 180px;
-  height: 40px;
-  border: none;
-  border-radius: 5px;
-  background-color: white;
-  text-decoration: none;
-  color: white;
-  cursor: pointer;
-  &:hover {
-    background-color: ${primaryGray};
 
-    // box-shadow: 2px 2px 5px #556588;
-  }
-  @media (max-width: 600px) {
-    font-size: 0.8rem;
-  }
-`;
-
-const Header = () => {
+const TotalHeader = () => {
   const { currentUid, logout } = useAuthState();
   const navigate = useNavigate();
   const handleLogout = async () => {
@@ -59,27 +41,25 @@ const Header = () => {
       console.log(err);
     }
   };
+  const items = currentUid
+    ? [
+        { title: '登出', to: '', onClick: () => handleLogout() },
+        { title: '編輯鄰里頁面', to: '/editing', onClick: '' },
+      ]
+    : [
+        { title: '登入', to: '/login', onClick: '' },
+        { title: '里長註冊', to: '/signup', onClick: '' },
+        { title: '前往建立', to: '/', onClick: '' },
+      ];
   return (
     <Top>
+      <div style={{ flex: '30vw' }} />
       <Title as={RouteLink} to="/">
         NEIGHBoURHooD
       </Title>
-      <ul>
-        {currentUid ? (
-          <Button as={RouteLink} to="/" onClick={handleLogout}>
-            登出
-          </Button>
-        ) : (
-          <Button as={RouteLink} to="/login">
-            登入
-          </Button>
-        )}
-        <Button as={RouteLink} to="/signup">
-          註冊
-        </Button>
-      </ul>
+      <NavTab items={items} flex="30vw" />
     </Top>
   );
 };
 
-export default Header;
+export default TotalHeader;

@@ -120,7 +120,6 @@ export default function ActivityList() {
           gridAutoRows: 'minmax(300px, auto)',
           gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
           width: '100%',
-          padding: '12px',
         }}
       >
         {activityPresentList.map(({ id, title, picture }) => (

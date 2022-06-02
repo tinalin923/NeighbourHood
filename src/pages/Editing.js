@@ -11,7 +11,7 @@ import { useEditState } from '../components/contexts/EditContext.js';
 import ScrollList from '../components/Edit/ScrollList.js';
 import Switch from '../components/Edit/Switch.js';
 import UploadBtn from '../components/Edit/UploadBtn.js';
-import Header from '../components/Total/Header.js';
+import EditingHeader from '../components/Edit/EditingHeader.js';
 import {
   getFirestoreUserData,
   getFirestoreVillageData,
@@ -41,7 +41,7 @@ const Editing = () => {
 
   return (
     <div style={{ background: editMode ? `${backgroundGray}` : 'none' }}>
-      <Header />
+      {editMode && <EditingHeader />}
       {editPageLoading && <p>資料載入中...</p>}
       <ScrollList />
       <Switch />

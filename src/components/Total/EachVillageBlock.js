@@ -1,14 +1,17 @@
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import propTypes from 'prop-types';
 import React from 'react';
 import { Link as RouteLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const VillageButton = styled.button`
-  border-radius: 20px;
+  border-radius: 8px;
   background: #f5f5f5;
   width: 100%;
   height: 100%;
   text-decoration: none;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 5px;
   &: hover {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 10px;
   }
@@ -16,8 +19,8 @@ const VillageButton = styled.button`
 
 const ImageContainer = styled.div`
   height: 60%;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   overflow: hidden;
 `;
 
@@ -33,20 +36,24 @@ function EachVillageBlock({ id, cityName, villageName, heroImage }) {
       </ImageContainer>
       <div
         style={{
-          margin: '8px',
+          margin: '16px',
           fontSize: '1.1rem',
         }}
       >
-        {cityName}
+        <FontAwesomeIcon
+          icon={solid('house-chimney-user')}
+          style={{ marginRight: '18px' }}
+        />
+        {villageName}
       </div>
       <div
         style={{
-          margin: '8px',
-          fontSize: '1.5rem',
-          fontWeight: 'bold',
+          margin: '16px',
+          fontSize: '0.9rem',
+          opacity: '0.8',
         }}
       >
-        {villageName}
+        {cityName}
       </div>
     </VillageButton>
   );

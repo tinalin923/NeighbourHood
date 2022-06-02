@@ -21,6 +21,7 @@ export const EditContextProvider = ({ children }) => {
   const [published, setPublished] = useState('');
   const [village, setVillage] = useState('');
   const [currentUserDatas, setCurrentUserDatas] = useState('');
+  const [lastEditTime, setLastEditTime] = useState('');
   // for upload to firestorage
   const [imageList, setImageList] = useState([]);
 
@@ -249,6 +250,7 @@ export const EditContextProvider = ({ children }) => {
       announcePresentList: state.announcePresentList,
       activityList: state.activityList,
       activityPresentList: state.activityPresentList,
+      lastEditTime,
       getDatasToContext,
       setPublished,
       setEditMode,
@@ -271,6 +273,7 @@ export const EditContextProvider = ({ children }) => {
       setActivityPresentList,
       addActivityPresentList,
       deleteActivityPresentList,
+      setLastEditTime,
     }),
     [
       currentUserDatas,

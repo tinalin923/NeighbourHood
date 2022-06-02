@@ -1,8 +1,10 @@
 import React from 'react';
+import BeatLoader from 'react-spinners/BeatLoader';
 import styled from 'styled-components';
-import Header from '../components/Total/Header.js';
 import EachVillageBlock from '../components/Total/EachVillageBlock.js';
+import TotalHeader from '../components/Total/TotalHeader.js';
 import useFetchPublishedPage from '../firebase/hooks/useFetchPublishedPage.js';
+import { primaryYellow } from '../styles/styledComponents/color.js';
 
 const Container = styled.div`
   margin: 0px auto;
@@ -13,18 +15,30 @@ const Container = styled.div`
   grid-auto-rows: minmax(200px, auto);
 `;
 
-const Title = styled.h2`
+const Title = styled.h3`
   width: 150px;
   margin: 130px 0px 50px 20vw;
   border-bottom: 2px solid #363636;
+  @media (max-width: 600px) {
+    font-size: 1rem;
+  }
 `;
 
 const Total = () => {
-  const { publishedVillages, fetchError } = useFetchPublishedPage();
+  const { publishedVillages, fetchError, fetchLoading } =
+    useFetchPublishedPage();
   return (
     <>
-      <Header />
+      <TotalHeader />
       <Title>鄉里總覽</Title>
+      <div style={{ width: '20vw', margin: '10px auto', textAlign: 'center' }}>
+        <BeatLoader
+          size={20}
+          color={`${primaryYellow}`}
+          loading={fetchLoading}
+          speedMultiplier={0.8}
+        />
+      </div>
       <Container>
         {fetchError && <p>存取資料錯誤:{fetchError}</p>}
 

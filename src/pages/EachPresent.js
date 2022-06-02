@@ -21,6 +21,7 @@ const EachPresent = () => {
     setIntroductionTextData,
     setImagePathList,
     setVillage,
+    setLastEditTime,
   } = useEditState();
   const [presentPageLoading, setPresentPageLoading] = useState(true);
 
@@ -35,6 +36,9 @@ const EachPresent = () => {
     setImagePathList(villageData?.imagePathList);
     setVillage(villageData?.villageName);
     setPresentPageLoading(false);
+    const date = villageData?.lastEditTime.toDate().toDateString();
+    const time = villageData?.lastEditTime.toDate().toLocaleTimeString();
+    setLastEditTime(`${date} - ${time}`);
   }
   console.log(villageId);
 

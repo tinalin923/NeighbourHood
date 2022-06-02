@@ -36,7 +36,7 @@ const useFetchPublishedPage = () => {
       setPublishedVillages(publishedArrayWithUrl);
       console.log(publishedArrayWithUrl);
     } catch (error) {
-      setFetchError(error);
+      setFetchError(error.message);
       console.log(error);
     }
     setFetchLoading(false);
@@ -48,7 +48,7 @@ const useFetchPublishedPage = () => {
     }
   }, []);
 
-  return { publishedVillages, fetchError };
+  return { publishedVillages, fetchError, fetchLoading };
 };
 
 export default useFetchPublishedPage;
