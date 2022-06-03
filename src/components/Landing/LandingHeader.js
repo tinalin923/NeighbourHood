@@ -47,7 +47,7 @@ const LandingHeader = () => {
         { title: '鄉里總覽', to: '/total', onClick: '' },
         { title: '登入', to: '/login', onClick: '' },
         {
-          title: '里長註冊',
+          title: '註冊',
           to: '/signup',
           onClick: '',
         },

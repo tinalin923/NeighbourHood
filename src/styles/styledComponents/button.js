@@ -1,21 +1,18 @@
 import styled from 'styled-components';
-import { primaryYellow } from './color.js';
 
 export const Button = styled.button`
   margin-top: 25px;
   width: 300px;
-  border-radius: 25px;
+  border-radius: 5px;
   height: 53px;
   padding: 10px;
-  border: none;
-  outline: none;
-  background: ${primaryYellow};
-  opacity: 0.7;
+  background: black;
+  // opacity: 0.9;
   color: white;
-  font-weight: bold;
-  cursor: pointer;
   :hover {
-    opacity: 1;
+    color: black;
+    background: white;
+    font-weight: bold;
   }
 `;
 

@@ -59,7 +59,7 @@ const TotalHeader = () => {
       ]
     : [
         { title: '登入', to: '/login', onClick: '' },
-        { title: '里長註冊', to: '/signup', onClick: '' },
+        { title: '註冊', to: '/signup', onClick: '' },
         { title: '前往建立', to: '/', onClick: '' },
       ];
   return (
