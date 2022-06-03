@@ -10,7 +10,7 @@ import Login from './pages/Login.js';
 // import Preview from './pages/Preview.js';
 import Signup from './pages/Signup.js';
 import Total from './pages/Total.js';
-import './styles/scss/style.scss';
+import './styles/scss/main.scss';
 
 const App = () => (
   <Router>

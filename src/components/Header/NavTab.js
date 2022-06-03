@@ -25,7 +25,7 @@ function NavTab({ items, flex }) {
   const [focused, setFocused] = useState();
   return (
     <div
-      style={{ display: 'flex', flex: `${flex}` }}
+      style={{ display: 'flex', flex: `${flex}`, justifyContent: 'flex-end' }}
       onMouseLeave={() => setFocused(null)}
     >
       {items.map((item) => (

@@ -26,6 +26,7 @@ const createInitialUserDatas = async (uid, email, city, village) => {
     villageName: village,
     cityName: city,
     introductionTextData: '',
+    lastEditTime: serverTimestamp(),
     scrollList: [
       { id: '0', title: village },
       { id: '1', title: '里長介紹' },

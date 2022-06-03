@@ -1,70 +1,24 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: PingFang TC;
-    color: #363b48;
+@import './reset.scss';
+@import './mixins.scss';
+@import './switch.scss';
+@import './upload.scss';
+
+
+#neighbour_cover{
+    @include w-h(100%,100vh);
 }
-
-div {
-    white-space: pre-line;
+.choose_cover{
+    position: absolute;
+    z-index: 1;
+    top: 40vh;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    @include d-flex(column, center,center);
+    
 }
-
-input, textarea {
-    border-radius: 4px;
-    white-space: pre-line;
-    overflow: auto;
-    resize : none;
-    &::-webkit-scrollbar {
-        width: 7px;
-    }
-
-    &::-webkit-scrollbar-button {
-    background: transparent;
-    border-radius: 4px;
-    }
-
-    &::-webkit-scrollbar-track-piece {
-    background: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgba(0, 0, 0, 0.4);
-    border: 1px solid #f5f5f5;
-    }
-
-    &::-webkit-scrollbar-track {
-    box-shadow: transparent;
-    }
+#input_file_btn{
+    margin-top: 10px;
+    @include d-flex(column, center,center);
 }
-
-button {
-    outline: none;
-    border: none;
-    border-radius: 8px;
-    padding: 8px;
-    text-align: center;
-    cursor: pointer;
-}
-
-ul, li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.container{
-    color: #8e8c7a ;
-    h1{
-        position:absolute;
-        margin: 20px;
-        padding:10px;
-    }
-}
-
-.cover{
-    @include d-flex(column, center, center);
-    @include w-h(100%, 100vh);
-}
-

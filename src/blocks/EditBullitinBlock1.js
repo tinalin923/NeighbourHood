@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useEditState } from '../components/contexts/EditContext.js';
 import EditArea from '../components/Edit/EditArea.js';
-import { Title } from '../styles/styledComponents/blockComponents.js';
+import {
+  EditBlock,
+  Title,
+} from '../styles/styledComponents/blockComponents.js';
 
 export default function EditBullitinBlock1() {
   const { addAnnounceList, addAnnouncePresentList } = useEditState();
@@ -10,7 +13,7 @@ export default function EditBullitinBlock1() {
   const [announcePicture, setAnnouncePicture] = useState('');
 
   return (
-    <>
+    <EditBlock>
       <Title>新增公告事項</Title>
       <EditArea
         name="公告"
@@ -21,6 +24,6 @@ export default function EditBullitinBlock1() {
         picture={announcePicture}
         setPicture={setAnnouncePicture}
       />
-    </>
+    </EditBlock>
   );
 }

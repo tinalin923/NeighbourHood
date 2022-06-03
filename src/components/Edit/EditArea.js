@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useReducer, useRef } from 'react';
 import styled from 'styled-components';
 import {
-  Block,
   ImageError,
   SecondaryBtn,
   TextError,
@@ -31,6 +30,16 @@ const Edit = styled.div`
     height: 70vh;
   }
 `;
+const Text = styled.div`
+  display: block;
+  width: 35vw;
+  height: 100%;
+  text-align: center;
+  @media (max-width: 600px) {
+    width: 70vw;
+    height: auto;
+  }
+`;
 
 const Image = styled.div`
   margin: 0 auto;
@@ -38,26 +47,27 @@ const Image = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 30vh;
   width: 20vw;
-  aspect-ratio: 3/4;
+  aspect-ratio: 3/3.5;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   @media (max-width: 600px) {
-    width: 70vw;
+    width: 60vw;
+    aspect-ratio: 3/4;
   }
 `;
 const InputBtn = styled.label`
-  margin: 30% auto;
+  margin: 0.5rem auto;
   width: 36%;
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  :hover > div {
+  font-size: 0.9rem;
+  &:hover > div {
     opacity: 0.9;
   }
-  :hover > p {
+  &:hover > p {
     color: white;
   }
 `;
@@ -152,7 +162,7 @@ function EditArea({
   // for imageBlock
   const fileInput = useRef();
   const { currentVillageId } = useAuthState();
-  const { setImageList } = useEditState();
+  const { imageList, setImageList } = useEditState();
 
   // 選擇照片
   const handleChange = async () => {
@@ -187,6 +197,7 @@ function EditArea({
       addList(state.id, state.title, state.details, '');
       console.log('沒圖片');
       addPresentList(state.id, state.title, state.details, '');
+      console.log(imageList);
     } else {
       console.log('有圖片');
       setImageList((prev) => [...prev, picture]);
@@ -197,6 +208,7 @@ function EditArea({
         `${currentVillageId}/${picture.name}`
       );
       addPresentList(state.id, state.title, state.details, state.temporaryUrl);
+      console.log(imageList);
     }
     // 輸入歸零
     setTitle('');
@@ -211,9 +223,9 @@ function EditArea({
   }, [state.title]);
 
   return (
-    <Block>
+    <>
       <Edit>
-        <div style={{ display: 'block', textAlign: 'center' }}>
+        <Text>
           <TextInfoForEdit
             placeholder={`${name}標題`}
             value={state.title}
@@ -224,18 +236,10 @@ function EditArea({
             placeholder={`詳細${name}說明`}
             value={state.details}
             setValue={setDetails}
-            height="25vh"
+            height="23vh"
           />
-        </div>
-        {/* <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'space-between',
-            height: '100%',
-          }}
-        > */}
+        </Text>
+
         <Image
           style={{
             backgroundImage: state.temporaryUrl
@@ -260,13 +264,13 @@ function EditArea({
         </Image>
       </Edit>
 
-      <div style={{ textAlign: 'center' }}>
+      <div style={{ margin: '8px', textAlign: 'center' }}>
         {error && <TextError>{error}</TextError>}
         <SecondaryBtn type="button" onClick={() => handleClick()}>
           點擊新增{name}
         </SecondaryBtn>
       </div>
-    </Block>
+    </>
   );
 }
 
@@ -276,8 +280,12 @@ EditArea.propTypes = {
   addPresentList: PropTypes.func.isRequired,
   error: PropTypes.string.isRequired,
   setError: PropTypes.func.isRequired,
-  picture: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  picture: PropTypes.any,
   setPicture: PropTypes.func.isRequired,
 };
 
+EditArea.defaultProps = {
+  picture: '',
+};
 export default EditArea;

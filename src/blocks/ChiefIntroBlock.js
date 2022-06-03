@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useEditState } from '../components/contexts/EditContext.js';
-import SingleImageInput from '../components/Edit/SingleImageBlock.js';
+import SingleImageInput from '../components/Edit/SingleImageInput.js';
 import TextInfo from '../components/Edit/TextInfo.js';
 import InputInfo from '../components/Edit/InputInfo.js';
 import {

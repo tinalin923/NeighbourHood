@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { useEditState } from '../contexts/EditContext.js';
 
 const Text = styled.textarea`
-  margin: 4px 0;
-  padding: 10px;
+  margin: 2px 0;
+  padding: 8px;
   overflow: auto;
   @media (max-width: 600px) {
     margin-top: 4px;
@@ -23,7 +23,7 @@ export default function TextInfoForEdit({
   const { editMode } = useEditState();
   const commonStyle = {
     height: height || '60vh',
-    width: width || '80%',
+    width: width || '90%',
     border: editMode ? '2px solid gray' : 'none',
   };
   // let responsiveStyle;

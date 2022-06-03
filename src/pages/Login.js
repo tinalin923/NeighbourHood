@@ -28,6 +28,10 @@ const Form = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media (max-width: 600px) {
+    width: 80%;
+    margin: 10vh auto;
+  }
 `;
 const Block = styled.div`
   margin-top: 20px;

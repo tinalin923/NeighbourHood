@@ -6,6 +6,7 @@ import { useEditState } from '../contexts/EditContext.js';
 const Text = styled.textarea`
   margin: 1vh 3vw;
   padding: 10px;
+  text-align: center;
   @media (max-width: 600px) {
     margin-top: 5vh;
     width: 70vw;
@@ -23,8 +24,8 @@ export default function TextInfo({
   const { editMode } = useEditState();
   // const []
   const commonStyle = {
-    height: height || '60vh',
-    width: width || '80%',
+    height: height || '50vh',
+    width: width || '60vw',
     border: editMode ? '2px solid gray' : 'none',
   };
   // let responsiveStyle;

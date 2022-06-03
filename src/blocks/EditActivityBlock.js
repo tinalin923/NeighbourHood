@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useEditState } from '../components/contexts/EditContext.js';
 import EditArea from '../components/Edit/EditArea.js';
-import { Title } from '../styles/styledComponents/blockComponents.js';
+import {
+  EditBlock,
+  Title,
+} from '../styles/styledComponents/blockComponents.js';
 
 export default function EditActivityBlock() {
   const { addActivityList, addActivityPresentList } = useEditState();
@@ -10,7 +13,7 @@ export default function EditActivityBlock() {
   const [activityPicture, setActivityPicture] = useState('');
 
   return (
-    <>
+    <EditBlock>
       <Title>新增活動事項</Title>
       <EditArea
         name="活動"
@@ -21,6 +24,6 @@ export default function EditActivityBlock() {
         picture={activityPicture}
         setPicture={setActivityPicture}
       />
-    </>
+    </EditBlock>
   );
 }

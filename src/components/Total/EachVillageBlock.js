@@ -18,7 +18,8 @@ const VillageButton = styled.button`
 `;
 
 const ImageContainer = styled.div`
-  height: 60%;
+  width: 100%;
+  aspect-ratio: 1/1;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   overflow: hidden;
@@ -31,7 +32,7 @@ function EachVillageBlock({ id, cityName, villageName, heroImage }) {
         <img
           src={heroImage}
           alt={villageName}
-          style={{ objectFit: 'fill', width: '100%', height: '100%' }}
+          style={{ objectFit: 'cover', width: '100%', height: '100%' }}
         />
       </ImageContainer>
       <div

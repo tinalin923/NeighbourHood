@@ -10,6 +10,7 @@ const Top = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
+  padding: 0 2px;
   background: white;
   display: flex;
   align-items: center;
@@ -17,6 +18,16 @@ const Top = styled.div`
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px;
   height: 80px;
   z-index: 1;
+  @media (max-width: 600px) {
+    justify-content: space-between;
+  }
+`;
+
+const TopHolder = styled.div`
+  flex: 33vw;
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 const Title = styled.p`
   flex: 30vw;
@@ -53,7 +64,7 @@ const TotalHeader = () => {
       ];
   return (
     <Top>
-      <div style={{ flex: '30vw' }} />
+      <TopHolder />
       <Title as={RouteLink} to="/">
         NEIGHBoURHooD
       </Title>

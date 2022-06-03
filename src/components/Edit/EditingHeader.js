@@ -7,6 +7,7 @@ import { useAuthState } from '../contexts/AuthContext.js';
 import NavTab from '../Header/NavTab.js';
 
 const Top = styled.div`
+  padding: 0 2px;
   display: flex;
   align-items: center;
   justify-content: space-around;

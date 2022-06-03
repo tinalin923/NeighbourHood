@@ -48,12 +48,12 @@ const icon = {
 };
 
 const PlaceHolder = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 `;
 const HeroImage = styled.div`
   position: absolute;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-size: cover;
   background-position: center;
@@ -115,9 +115,10 @@ const HeroImageBlock = ({ name }) => {
       setHeroImageError(null);
     } else {
       setHeroImageError('請選擇照片檔案(.jpeg 或 .png)');
+      return;
     }
     // compressedImage 為一Blob物件
-    const compressedImage = await compressImage(imageFile, 1960);
+    const compressedImage = await compressImage(imageFile, 1280);
     console.log(compressedImage);
     // 要上傳到firestorage需要blob檔
     setImageList((prev) => [...prev, compressedImage]);
@@ -134,7 +135,7 @@ const HeroImageBlock = ({ name }) => {
 
   return (
     <>
-      <PlaceHolder id="upload_output">
+      <PlaceHolder>
         <HeroImage
           name={name}
           style={{

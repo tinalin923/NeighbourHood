@@ -131,7 +131,6 @@ export default function UploadBtn() {
         const promise2 = upLoadStorageImages(currentVillageId, imageList);
         Promise.all([promise1, promise2]).then((result) => {
           console.log(result);
-          setUploading(false);
           console.log(4);
           setUploading(false);
           navigate(villagePath);

@@ -1,12 +1,14 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link as RouteLink, useNavigate } from 'react-router-dom';
+import BeatLoader from 'react-spinners/BeatLoader';
 import styled, { createGlobalStyle } from 'styled-components';
 import Background from '../assets/images/toa-heftiba-nrSzRUWqmoI-unsplash.jpg';
 import { useAuthState } from '../components/contexts/AuthContext.js';
 import LandingHeader from '../components/Landing/LandingHeader.js';
 import { Button } from '../styles/styledComponents/button.js';
+import { primaryGray } from '../styles/styledComponents/color.js';
 import cityOption from '../utils/city.js';
 
 const GlobalStyle = createGlobalStyle`
@@ -27,6 +29,10 @@ const Form = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media (max-width: 600px) {
+    width: 80%;
+    margin: 10vh auto;
+  }
 `;
 const Block = styled.div`
   margin-top: 20px;
@@ -79,7 +85,6 @@ const Select = styled.select`
   outline: none;
   background-color: transparent;
   color: #16181d;
-  // appearance: none;
 `;
 
 const Option = styled.option`
@@ -175,7 +180,16 @@ const Signup = () => {
         </Block>
         {signupError && <Err>{signupError}</Err>}
         <Button type="submit" onClick={handleSubmit} disabled={signupLoading}>
-          註冊
+          {signupLoading ? (
+            <BeatLoader
+              size={15}
+              color={`${primaryGray}`}
+              loading={signupLoading}
+              speedMultiplier={0.8}
+            />
+          ) : (
+            '註冊'
+          )}
         </Button>
         <P as={RouteLink} to="/login">
           已經有帳戶？前往登入

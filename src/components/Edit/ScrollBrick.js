@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-scroll';
 import styled from 'styled-components';
 import {
@@ -33,16 +33,23 @@ const BrickIcon = styled.div`
 `;
 
 const BrickText = styled.div`
-  width: 60px;
+  // width: 60px;
   font-size: 0.7rem;
   color: ${primaryGray};
   opacity: 0;
 `;
-export default function ScrollBrick({ to, title }) {
+function ScrollBrick({ to, title }) {
   return (
-    <Brick as={Link} to={to} spy smooth duration={400} isDynamic>
+    <Brick as={Link} to={to} spy smooth duration={400} offset={10} isDynamic>
       <BrickIcon />
       <BrickText>&nbsp;&nbsp;{title}</BrickText>
     </Brick>
   );
 }
+
+ScrollBrick.propTypes = {
+  to: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
+
+export default ScrollBrick;

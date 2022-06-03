@@ -8,7 +8,7 @@ import {
   ImgArea,
 } from '../styles/styledComponents/blockComponents.js';
 import { useEditState } from '../components/contexts/EditContext.js';
-import SingleImageBlock from '../components/Edit/SingleImageBlock.js';
+import SingleImageInput from '../components/Edit/SingleImageInput.js';
 
 function VillageIntroBlock({ name }) {
   const { introductionTextData, setIntroductionTextData } = useEditState();
@@ -24,7 +24,7 @@ function VillageIntroBlock({ name }) {
           setValue={setIntroductionTextData}
         />
         <ImgArea>
-          <SingleImageBlock name="villageImage" />
+          <SingleImageInput name="villageImage" />
         </ImgArea>
       </Main>
     </Block>

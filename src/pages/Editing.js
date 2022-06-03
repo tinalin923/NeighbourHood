@@ -86,8 +86,9 @@ const Editing = () => {
             <ActivityBlock name="4" />
           )}
           {!published && editMode && <EditActivityBlock />}
-          <hr style={{ width: '90%', margin: ' 0 auto' }} />
+          {editMode && <hr style={{ width: '90%', margin: ' 80px auto' }} />}
           {editMode && <UploadBtn />}
+          {!editMode && <div style={{ height: '300px' }} />}
         </div>
       )}
     </>

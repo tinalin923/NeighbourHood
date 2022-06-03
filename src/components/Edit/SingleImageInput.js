@@ -83,7 +83,7 @@ const imageReducer = (state, action) => {
 };
 
 // eslint-disable-next-line react/prop-types
-const SingleImageBlock = ({ name }) => {
+const SingleImageInput = ({ name }) => {
   const [state, dispatch] = useReducer(imageReducer, initialState);
   const fileInput = useRef();
   const { currentVillageId } = useAuthState();
@@ -124,6 +124,7 @@ const SingleImageBlock = ({ name }) => {
         type: 'SET_ERROR',
         payload: { error: '請選擇照片檔案(.jpeg 或 .png)' },
       });
+      return;
     }
     // compressedImage 為一Blob物件
     const compressedImage = await compressImage(imageFile, 1024);
@@ -142,7 +143,7 @@ const SingleImageBlock = ({ name }) => {
       type: 'SET_TEMPORARY',
       payload: { temporary: compressedImageURL },
     });
-    // URL.revokeObjectURL(compressedImageURL);  加了會讓我無法呈現出來
+    // URL.revokeObjectURL(compressedImageURL);  加了會無法呈現
   };
   return (
     <Image
@@ -166,8 +167,7 @@ const SingleImageBlock = ({ name }) => {
           ref={fileInput}
           type="file"
           accept=".jpg, .png, .jpeg"
-          // eslint-disable-next-line react/jsx-no-bind
-          onChange={handleChange}
+          onChange={() => handleChange()}
           style={{ display: 'none' }}
         />
         {state.temporary ? <P>選擇其他圖片</P> : <P>新增圖片</P>}
@@ -176,4 +176,4 @@ const SingleImageBlock = ({ name }) => {
   );
 };
 
-export default SingleImageBlock;
+export default SingleImageInput;

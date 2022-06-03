@@ -52,6 +52,7 @@ const Total = () => {
           />
         ))}
       </Container>
+      <div style={{ height: '300px' }} />
     </>
   );
 };
