@@ -19,28 +19,26 @@ export const EditBlock = styled(Block)`
 `;
 export const Title = styled.div`
   width: 80%;
-  margin: 4vh auto 2vh;
+  margin: 8vh auto 0px;
   padding: 12px 0px;
   height: 10vh;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
   @media (max-width: 600px) {
     margin: 2vh auto 1vh;
   }
 `;
 export const Main = styled.div`
+  height: auto;
   display: flex;
   flex-direction: row;
-  min-height: 50vh;
-  height: auto;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   @media (max-width: 600px) {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    min-height: 40vh;
   }
 `;
 
@@ -82,4 +80,14 @@ export const TextError = styled.p`
   text-align: center;
   color: #e87191;
   font-size: 0.9rem;
+`;
+
+export const ListTitle = styled.div`
+  font-size: 1.5rem;
+  font-weight: bold;
+`;
+
+export const ListDetails = styled.div`
+  font-size: 1.2rem;
+  line-height: 1.5rem;
 `;

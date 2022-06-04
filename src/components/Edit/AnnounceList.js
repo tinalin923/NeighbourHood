@@ -8,6 +8,10 @@ import { getStorageImages } from '../../firebase/useStorage.js';
 import { thirdGray } from '../../styles/styledComponents/color.js';
 import { useEditState } from '../contexts/EditContext.js';
 import ImagePresent from './ImagePresent.js';
+import {
+  ListTitle,
+  ListDetails,
+} from '../../styles/styledComponents/blockComponents.js';
 
 const icon = {
   position: 'relative',
@@ -46,7 +50,6 @@ export default function EventList() {
     borderRadius: '4px',
     padding: '8px 20px',
     background: `${thirdGray}`,
-    fontSize: '1.4rem',
     color: '#363b48',
   };
 
@@ -184,7 +187,7 @@ export default function EventList() {
                 textAlign: 'left',
               }}
             >
-              <h4>{title}</h4>
+              <ListTitle>{title}</ListTitle>
             </div>
             <motion.div
               variants={eventVariants}
@@ -195,7 +198,7 @@ export default function EventList() {
                 overflow: 'hidden',
               }}
             >
-              <h6 style={{ lineHeight: '1.5rem' }}>{details}</h6>
+              <ListDetails>{details}</ListDetails>
               <br />
               {picture && <ImagePresent name="announceImage" src={picture} />}
             </motion.div>

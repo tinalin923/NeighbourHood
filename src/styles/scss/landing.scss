@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@700&display=swap');
-p {
+.landing {
   animation-duration: 8s;
   animation-delay: 0s;
   animation-timing-function: ease;
@@ -11,10 +11,20 @@ p {
   background-clip: text;
   color: transparent;
   font-family: 'Kanit', sans-serif;
+  font-size: 8rem;
+  @media(max-width: 600px){
+    font-size: 4rem;
+  }
   
 }
 .pack {
   position: relative;
+  line-height: 9rem;
+  @media(max-width: 600px){
+  line-height: 4.5rem;
+
+  }
+  
 }
 
 .editing {
@@ -34,7 +44,7 @@ p {
 
 .preview {
   animation-name: breathing-2;
-  background-image: linear-gradient(to right, #56317a 0%, #3d99be 31%, #3ab5b0 100%);
+  background-image: linear-gradient(to right, #56317a 0%, #3ab5b0 100%);
 }
 .preview_base {
   color: black;

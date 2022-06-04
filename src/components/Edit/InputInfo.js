@@ -19,7 +19,7 @@ const InputInfo = ({ name, placeholder, value, setValue, width, top }) => {
         position: 'relative',
         padding: '8px',
         fontWeight: 'bold',
-        fontSize: '1.2rem',
+        fontSize: '1.5rem',
         textAlign: 'center',
         outline: 'none',
         width: width || '80%',

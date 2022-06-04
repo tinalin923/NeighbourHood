@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PropTypes from 'prop-types';
 import React, { useEffect, useReducer, useRef } from 'react';
 import styled from 'styled-components';
 import { getStorageImages } from '../../firebase/useStorage.js';
@@ -22,11 +23,15 @@ const Image = styled.div`
   height: 50vh;
   width: 30vw;
   aspect-ratio: 3/4;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   @media (max-width: 600px) {
+    margin-top: 4px;
     width: 60vw;
+  }
+  @media (max-width: 1000px) {
+    background-size: cover;
   }
 `;
 
@@ -82,7 +87,6 @@ const imageReducer = (state, action) => {
   }
 };
 
-// eslint-disable-next-line react/prop-types
 const SingleImageInput = ({ name }) => {
   const [state, dispatch] = useReducer(imageReducer, initialState);
   const fileInput = useRef();
@@ -150,7 +154,7 @@ const SingleImageInput = ({ name }) => {
       style={{
         backgroundImage: state.temporary
           ? `url(${state.temporary})`
-          : `linear-gradient(90deg, ${secondaryGray}, ${thirdGray})`,
+          : `linear-gradient(to right, ${secondaryGray}, ${thirdGray})`,
         opacity: editMode ? '0.7' : '1',
       }}
     >
@@ -174,6 +178,10 @@ const SingleImageInput = ({ name }) => {
       </InputBtn>
     </Image>
   );
+};
+
+SingleImageInput.propTypes = {
+  name: PropTypes.string.isRequired,
 };
 
 export default SingleImageInput;

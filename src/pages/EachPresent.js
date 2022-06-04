@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { useParams } from 'react-router-dom';
@@ -46,6 +47,7 @@ const EachPresent = () => {
   console.log(villageId);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setEditMode(false);
     presentData(villageId);
     console.log(presentPageLoading);
@@ -73,7 +75,7 @@ const EachPresent = () => {
           <ActivityBlock name="2" />
           <VillageIntroBlock name="3" />
           <ChiefIntroBlock name="4" />
-          <div style={{ height: '300px' }} />
+          <div style={{ height: '250px' }} />
           <Footer />
         </>
       )}

@@ -8,6 +8,8 @@ import styled from 'styled-components';
 import { getStorageImages } from '../../firebase/useStorage.js';
 import { useEditState } from '../contexts/EditContext.js';
 import ActiveCard from './ActiveCard.js';
+import { ListTitle } from '../../styles/styledComponents/blockComponents.js';
+
 // import ImagePresent from './ImagePresent.js';
 
 const Button = styled.button`
@@ -148,7 +150,7 @@ export default function ActivityList() {
                 style={{ display: 'flex', justifyContent: 'space-between' }}
               >
                 <div>
-                  <h4>{title}</h4>
+                  <ListTitle>{title}</ListTitle>
                 </div>
                 <Button
                   type="button"

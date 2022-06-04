@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import React from 'react';
 // import ImagePresent from './ImagePresent.js';
 import styled from 'styled-components';
+import { ListTitle } from '../../styles/styledComponents/blockComponents.js';
 
 const CardContainer = styled(motion.div)`
   width: 100%;
@@ -78,6 +79,7 @@ const Title = styled(motion.div)`
 const Text = styled(Title)`
   margin: 16px 8px;
   max-height: 24vh;
+  font-size: 1.2rem;
   line-height: 1.5rem;
 
   && {
@@ -143,7 +145,7 @@ export default function ActiveCard({ activity, setActive }) {
           </OpenImageContainer>
           <TextContainer>
             <Title layoutId={`title-${id}`}>
-              <h3 style={{ color: '#f5f5f5' }}>{title}</h3>
+              <ListTitle style={{ color: '#f5f5f5' }}>{title}</ListTitle>
             </Title>
             <Text animate>{details}</Text>
           </TextContainer>

@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import { useEditState } from '../contexts/EditContext.js';
 
 const Text = styled.textarea`
-  margin: 1vh 0;
-  padding: 10px;
+  margin: 4px 0;
+  padding: 20px;
   text-align: left;
   line-height: 1.5rem;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   max-width: 500px;
   @media (max-width: 600px) {
     width: 70vw;
@@ -26,7 +26,7 @@ export default function TextInfo({
   const { editMode } = useEditState();
   // const []
   const commonStyle = {
-    height: height || '50vh',
+    height: height || '60vh',
     width: width || '60vw',
     border: editMode ? '2px solid gray' : 'none',
   };

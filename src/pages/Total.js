@@ -15,12 +15,13 @@ const Container = styled.div`
   grid-auto-rows: minmax(200px, 300px);
 `;
 
-const Title = styled.h3`
+const TotalTitle = styled.h3`
   width: 150px;
   margin: 130px 0px 50px 20vw;
   border-bottom: 2px solid #363636;
+  font-size: 1.8rem;
   @media (max-width: 600px) {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 `;
 
@@ -30,7 +31,7 @@ const Total = () => {
   return (
     <>
       <TotalHeader />
-      <Title>鄉里總覽</Title>
+      <TotalTitle>鄉里總覽</TotalTitle>
       <div style={{ width: '20vw', margin: '10px auto', textAlign: 'center' }}>
         <BeatLoader
           size={20}

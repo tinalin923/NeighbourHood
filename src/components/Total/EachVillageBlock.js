@@ -34,8 +34,8 @@ function EachVillageBlock({ id, cityName, villageName, heroImage }) {
       <div>
         <div
           style={{
-            margin: '16px',
-            fontSize: '1.1rem',
+            margin: '16px 16px 8px 16px',
+            fontSize: '1.5rem',
           }}
         >
           <FontAwesomeIcon
@@ -46,8 +46,7 @@ function EachVillageBlock({ id, cityName, villageName, heroImage }) {
         </div>
         <div
           style={{
-            margin: '16px',
-            fontSize: '0.9rem',
+            margin: '0px 16px 8px 16px',
             opacity: '0.8',
           }}
         >

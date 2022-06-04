@@ -18,16 +18,16 @@ const BrickContainer = styled.div`
 `;
 
 export default function ScrollList() {
-  const { scrollList, addScrollList } = useEditState();
+  const { scrollList } = useEditState();
   return (
     <BrickContainer>
       {scrollList.map(({ id, title }) => (
         <ScrollBrick key={id} to={id} title={title} />
       ))}
-      <ScrollBrick
+      {/* <ScrollBrick
         onClick={() => addScrollList(scrollList.length)}
         to={scrollList.length.toString()}
-      />
+      /> */}
     </BrickContainer>
   );
 }

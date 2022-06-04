@@ -33,8 +33,7 @@ const BrickIcon = styled.div`
 `;
 
 const BrickText = styled.div`
-  // width: 60px;
-  font-size: 0.7rem;
+  font-size: 1rem;
   color: ${primaryGray};
   opacity: 0;
 `;
