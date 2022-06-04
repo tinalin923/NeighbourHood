@@ -12,7 +12,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 1.5em;
-  grid-auto-rows: minmax(200px, auto);
+  grid-auto-rows: minmax(200px, 300px);
 `;
 
 const Title = styled.h3`

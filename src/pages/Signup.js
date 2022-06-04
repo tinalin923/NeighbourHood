@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link as RouteLink, useNavigate } from 'react-router-dom';
 import BeatLoader from 'react-spinners/BeatLoader';
 import styled, { createGlobalStyle } from 'styled-components';
-import Background from '../assets/images/toa-heftiba-nrSzRUWqmoI-unsplash.jpg';
+import Background from '../assets/images/compress-toa-heftiba-nrSzRUWqmoI-unsplash-min.jpg';
 import { useAuthState } from '../components/contexts/AuthContext.js';
 import LandingHeader from '../components/Landing/LandingHeader.js';
 import { Button } from '../styles/styledComponents/button.js';

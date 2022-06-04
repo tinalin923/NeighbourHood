@@ -7,6 +7,8 @@ const Text = styled.textarea`
   margin: 2px 0;
   padding: 8px;
   overflow: auto;
+  line-height: 1.5rem;
+
   @media (max-width: 600px) {
     margin-top: 4px;
     width: 70vw;

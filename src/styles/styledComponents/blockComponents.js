@@ -9,7 +9,7 @@ export const Block = styled.div`
 `;
 
 export const EditBlock = styled(Block)`
-  margin: 20px auto;
+  margin: 3rem auto;
   width: 60%;
   border-radius: 8px;
   border: 8px solid white;

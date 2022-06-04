@@ -73,6 +73,7 @@ const EachPresent = () => {
           <ActivityBlock name="2" />
           <VillageIntroBlock name="3" />
           <ChiefIntroBlock name="4" />
+          <div style={{ height: '300px' }} />
           <Footer />
         </>
       )}

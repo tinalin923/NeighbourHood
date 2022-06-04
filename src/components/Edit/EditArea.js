@@ -47,14 +47,14 @@ const Image = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 20vw;
-  aspect-ratio: 3/3.5;
+  height: 100%;
+  width: 100%;
+  max-width: 20vw;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   @media (max-width: 600px) {
-    width: 60vw;
-    aspect-ratio: 3/4;
+    max-width: 60vw;
   }
 `;
 const InputBtn = styled.label`
@@ -171,7 +171,7 @@ function EditArea({
 
     if (imageFile && imageFileTypes.includes(imageFile.type)) {
       setImageError(null);
-      const compressedImage = await compressImage(imageFile, 1280);
+      const compressedImage = await compressImage(imageFile, 768);
       setPicture(compressedImage);
       const compressedImageURL = URL.createObjectURL(compressedImage);
       setTemporaryUrl(compressedImageURL);

@@ -195,7 +195,7 @@ export default function EventList() {
                 overflow: 'hidden',
               }}
             >
-              <h6>{details}</h6>
+              <h6 style={{ lineHeight: '1.5rem' }}>{details}</h6>
               <br />
               {picture && <ImagePresent name="announceImage" src={picture} />}
             </motion.div>

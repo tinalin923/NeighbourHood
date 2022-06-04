@@ -21,12 +21,14 @@ const CardContainer = styled(motion.div)`
 `;
 
 const OpenImageContainer = styled(motion.div)`
-  max-height: 45vh;
+  max-height: 50vh;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  overflow: hidden;
+  overflow: auto;
 
   @media (min-width: 600px) {
+    overflow: hidden;
+
     border-top-left-radius: 0px;
     border-bottom-right-radius: 20px;
     max-height: 100%;
@@ -34,10 +36,8 @@ const OpenImageContainer = styled(motion.div)`
   }
 `;
 const TextContainer = styled.div`
-  max-height: 50vh;
-  padding: 8px;
-  overflow: hidden;
-
+  max-height: 45vh;
+  padding: 4px;
   @media (min-width: 600px) {
     max-height: 100%;
     width: 40%;
@@ -46,10 +46,11 @@ const TextContainer = styled.div`
 
 const Title = styled(motion.div)`
   word-break: break-word;
-  max-height: 11vh;
+  max-height: 13vh;
+  padding: 4px;
   overflow: auto;
   @media (min-width: 600px) {
-    max-height: 12vh;
+    max-height: 13vh;
   }
   &::-webkit-scrollbar {
     width: 8px;
@@ -76,7 +77,9 @@ const Title = styled(motion.div)`
 `;
 const Text = styled(Title)`
   margin: 16px 8px;
-  max-height: 32vh;
+  max-height: 24vh;
+  line-height: 1.5rem;
+
   && {
     color: #f5f5f5;
   }

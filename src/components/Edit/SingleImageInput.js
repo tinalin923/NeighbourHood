@@ -127,7 +127,7 @@ const SingleImageInput = ({ name }) => {
       return;
     }
     // compressedImage 為一Blob物件
-    const compressedImage = await compressImage(imageFile, 1024);
+    const compressedImage = await compressImage(imageFile, 768);
     // 要上傳到firestorage需要blob檔
     setImageList((prev) => [...prev, compressedImage]);
     setImagePathList((prev) => ({

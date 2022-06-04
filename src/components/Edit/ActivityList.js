@@ -116,9 +116,9 @@ export default function ActivityList() {
       <ul
         style={{
           display: 'grid',
-          gridGap: '1em',
-          gridAutoRows: 'minmax(300px, auto)',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+          gridGap: '1.5em',
+          gridAutoRows: 'minmax(290px, auto)',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
           width: '100%',
         }}
       >

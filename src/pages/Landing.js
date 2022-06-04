@@ -5,18 +5,14 @@ import { useAuthState } from '../components/contexts/AuthContext.js';
 import LandingHeader from '../components/Landing/LandingHeader.js';
 import '../styles/scss/landing.scss';
 import { Button } from '../styles/styledComponents/button.js';
+import Section from '../components/Landing/Section.js';
 
 const Landing = () => {
   const { currentUid } = useAuthState();
   return (
     <>
       <LandingHeader />
-      <div
-        // initial={{ opacity: 0 }}
-        // animate={{ opacity: 1 }}
-        // transition={{ delay: 0.1 }}
-        style={{ width: '90%', margin: '90px auto', textAlign: 'center' }}
-      >
+      <div style={{ width: '90%', margin: '10vh auto', textAlign: 'center' }}>
         <div
           style={{
             width: '90%',
@@ -51,6 +47,9 @@ const Landing = () => {
         >
           {currentUid ? '開始編輯' : '前往建立'}
         </Button>
+      </div>
+      <div>
+        <Section title="編輯頁面" details="使用所見及所得的方式" />
       </div>
     </>
   );
