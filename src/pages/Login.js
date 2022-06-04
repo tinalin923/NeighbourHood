@@ -1,13 +1,13 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useRef, useState } from 'react';
+import BeatLoader from 'react-spinners/BeatLoader';
 import { Link as RouteLink, useNavigate } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import Background from '../assets/images/toa-heftiba-nrSzRUWqmoI-unsplash.jpg';
 import { useAuthState } from '../components/contexts/AuthContext.js';
-// import { useEditState } from '../components/contexts/EditContext.js';
 import LandingHeader from '../components/Landing/LandingHeader.js';
-
+import { primaryGray } from '../styles/styledComponents/color.js';
 import { Button } from '../styles/styledComponents/button.js';
 
 const GlobalStyle = createGlobalStyle`
@@ -69,7 +69,6 @@ const P = styled.p`
   padding: 4px;
   font-weight: bold;
   color: #0078bf;
-  font-size: 0.8rem;
   :hover {
     color: black;
   }
@@ -126,7 +125,16 @@ const Login = () => {
         </Block>
         {errorLogin && <Err>{errorLogin}</Err>}
         <Button type="submit" onClick={handleSubmit} disabled={loginLoading}>
-          登入
+          {loginLoading ? (
+            <BeatLoader
+              size={15}
+              color={`${primaryGray}`}
+              loading={loginLoading}
+              speedMultiplier={0.8}
+            />
+          ) : (
+            '登入'
+          )}
         </Button>
         <P as={RouteLink} to="/signup">
           還未有帳戶？前往註冊

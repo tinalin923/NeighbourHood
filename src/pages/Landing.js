@@ -4,7 +4,7 @@ import { useAuthState } from '../components/contexts/AuthContext.js';
 import LandingHeader from '../components/Landing/LandingHeader.js';
 import Section from '../components/Landing/Section.js';
 import '../styles/scss/landing.scss';
-import { Button } from '../styles/styledComponents/button.js';
+import { StartButton } from '../styles/styledComponents/button.js';
 
 const Landing = () => {
   const { currentUid } = useAuthState();
@@ -36,25 +36,17 @@ const Landing = () => {
             <p className="landing deploy_base">Deploy.</p>
           </div>
         </div>
-        <Button
-          as={RouteLink}
-          to={currentUid ? '/editing' : '/login'}
-          style={{
-            textDecoration: 'none',
-            marginTop: '50px',
-            padding: '20px',
-          }}
-        >
+        <StartButton as={RouteLink} to={currentUid ? '/editing' : '/login'}>
           {currentUid ? '開始編輯' : '前往建立'}
-        </Button>
+        </StartButton>
       </div>
       <div>
         <Section
           step="1"
           name="Editing"
-          title="編輯頁面"
-          details="使用所見及所得的方式使用所見及所得的方式使用所見及所得的方式使用所見及所得的方式使用所見及所得的方式使用所見及所得的方式使用所見及所得的方式使用所見及所得的方式"
-          url="https://streamable.com/5gi30m"
+          title="編輯新增"
+          details="可隨時新增刪減里內的公告和活動項目，並以動態方式即時呈現"
+          url="https://streamable.com/kkwe5q"
           startColor="#009efd"
           endColor="#2af598"
         />
@@ -62,8 +54,8 @@ const Landing = () => {
           step="2"
           name="Preview"
           title="預覽畫面"
-          details="使用所見及所得的方式"
-          url="https://streamable.com/5gi30m"
+          details="即時預覽編輯更新後的畫面，不用重複等待上傳時間"
+          url="https://streamable.com/fe1vp2"
           startColor="#56317a"
           endColor="#3d99be"
         />
@@ -71,8 +63,8 @@ const Landing = () => {
           step="3"
           name="Deploy"
           title="一鍵發佈"
-          details="使用所見及所得的方式"
-          url="https://streamable.com/5gi30m"
+          details="按下發佈後即有獨立網頁，輕鬆分享給里民"
+          url="https://streamable.com/bg8qm5"
           startColor="#fc6262"
           endColor="#ffd86f"
         />

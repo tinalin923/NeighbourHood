@@ -32,14 +32,18 @@ const Total = () => {
     <>
       <TotalHeader />
       <TotalTitle>鄉里總覽</TotalTitle>
-      <div style={{ width: '20vw', margin: '10px auto', textAlign: 'center' }}>
-        <BeatLoader
-          size={20}
-          color={`${primaryYellow}`}
-          loading={fetchLoading}
-          speedMultiplier={0.8}
-        />
-      </div>
+      {fetchLoading ? (
+        <div
+          style={{ width: '20vw', margin: '45vh auto', textAlign: 'center' }}
+        >
+          <BeatLoader
+            size={20}
+            color={`${primaryYellow}`}
+            loading={fetchLoading}
+            speedMultiplier={0.8}
+          />
+        </div>
+      ) : null}
       <Container>
         {fetchError && <p>存取資料錯誤:{fetchError}</p>}
 

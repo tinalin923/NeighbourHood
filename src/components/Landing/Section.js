@@ -124,7 +124,7 @@ function Section({ step, name, title, details, url, startColor, endColor }) {
             playing
             width="100%"
             height="100%"
-            control={false}
+            controls={false}
           />
         </Video>
         <Text>
