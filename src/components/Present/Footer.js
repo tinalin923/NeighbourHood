@@ -31,7 +31,7 @@ function Footer() {
       <div style={{ width: '60vw', margin: '16px auto', textAlign: 'center' }}>
         最近更新時間：{lastEditTime}
       </div>
-      <Tab href="/">前往建立自己的鄰里頁面</Tab>
+      <Tab href="/">前往建立/編輯自己的鄰里頁面</Tab>
     </FootBar>
   );
 }

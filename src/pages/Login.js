@@ -8,7 +8,7 @@ import Background from '../assets/images/toa-heftiba-nrSzRUWqmoI-unsplash.jpg';
 import { useAuthState } from '../components/contexts/AuthContext.js';
 import LandingHeader from '../components/Landing/LandingHeader.js';
 import { primaryGray } from '../styles/styledComponents/color.js';
-import { Button } from '../styles/styledComponents/button.js';
+import { AuthButton } from '../styles/styledComponents/button.js';
 
 const GlobalStyle = createGlobalStyle`
   html, body {
@@ -124,7 +124,11 @@ const Login = () => {
           />
         </Block>
         {errorLogin && <Err>{errorLogin}</Err>}
-        <Button type="submit" onClick={handleSubmit} disabled={loginLoading}>
+        <AuthButton
+          type="submit"
+          onClick={handleSubmit}
+          disabled={loginLoading}
+        >
           {loginLoading ? (
             <BeatLoader
               size={15}
@@ -135,7 +139,7 @@ const Login = () => {
           ) : (
             '登入'
           )}
-        </Button>
+        </AuthButton>
         <P as={RouteLink} to="/signup">
           還未有帳戶？前往註冊
         </P>

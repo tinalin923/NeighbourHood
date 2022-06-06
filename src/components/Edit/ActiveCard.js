@@ -46,6 +46,8 @@ const TextContainer = styled.div`
 `;
 
 const Title = styled(motion.div)`
+  margin: 1.5rem 8px 0px;
+
   word-break: break-word;
   max-height: 13vh;
   padding: 4px;
@@ -77,7 +79,7 @@ const Title = styled(motion.div)`
   }
 `;
 const Text = styled(Title)`
-  margin: 16px 8px;
+  margin: 1rem 8px 16px;
   max-height: 24vh;
   font-size: 1.2rem;
   line-height: 1.5rem;

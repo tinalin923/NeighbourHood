@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { primaryYellow } from './color.js';
+import { primaryGray, primaryYellow } from './color.js';
 
-export const Button = styled.button`
+export const AuthButton = styled.button`
   margin-top: 25px;
   width: 300px;
   border-radius: 25px;
@@ -34,5 +34,23 @@ export const StartButton = styled.a`
     color: black;
     background: white;
     font-weight: bold;
+  }
+`;
+
+export const UploadButton = styled.button`
+  width: 40vw;
+  margin: 20px;
+  padding: 16px;
+  border: 4px solid ${primaryYellow};
+  border-radius: 8px;
+  background: white;
+  color: ${primaryGray};
+  font-size: 1.2rem;
+  font-weight: bold;
+  &:hover {
+    background: ${primaryYellow};
+  }
+  @media (max-width: 600px) {
+    font-size: 1rem;
   }
 `;

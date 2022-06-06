@@ -1,4 +1,3 @@
-/* eslint-disable function-paren-newline */
 /* eslint-disable no-await-in-loop */
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,11 +5,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { getStorageImages } from '../../firebase/useStorage.js';
+import { ListTitle } from '../../styles/styledComponents/blockComponents.js';
 import { useEditState } from '../contexts/EditContext.js';
 import ActiveCard from './ActiveCard.js';
-import { ListTitle } from '../../styles/styledComponents/blockComponents.js';
-
-// import ImagePresent from './ImagePresent.js';
 
 const Button = styled.button`
   width: 28px;
@@ -118,7 +115,8 @@ export default function ActivityList() {
       <ul
         style={{
           display: 'grid',
-          gridGap: '1.5em',
+          gridColumnGap: '2rem',
+          gridRowGap: '3rem',
           gridAutoRows: 'minmax(290px, auto)',
           gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
           width: '100%',
@@ -126,7 +124,13 @@ export default function ActivityList() {
       >
         {activityPresentList.map(({ id, title, picture }) => (
           <li key={id}>
-            <motion.div layoutId={`activity-${id}`}>
+            <motion.div
+              layoutId={`activity-${id}`}
+              whileHover={{
+                y: -10,
+              }}
+              style={{ cursor: 'pointer' }}
+            >
               <ImageContainer
                 layoutId={`image-${id}`}
                 onClick={() => {

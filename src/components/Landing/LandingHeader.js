@@ -39,12 +39,12 @@ const LandingHeader = () => {
   };
   const items = currentUid
     ? [
-        { title: '鄉里總覽', to: '/total', onClick: '' },
+        { title: '鄰里總覽', to: '/total', onClick: '' },
         { title: '登出', to: '', onClick: () => handleLogout() },
         { title: '編輯我的頁面', to: '/editing', onClick: '' },
       ]
     : [
-        { title: '鄉里總覽', to: '/total', onClick: '' },
+        { title: '鄰里總覽', to: '/total', onClick: '' },
         { title: '登入', to: '/login', onClick: '' },
         {
           title: '註冊',

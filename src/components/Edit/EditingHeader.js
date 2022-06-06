@@ -37,7 +37,7 @@ const EditingHeader = () => {
     }
   };
   const items = [
-    { title: '鄉里總覽', to: '/total', onClick: '' },
+    { title: '鄰里總覽', to: '/total', onClick: '' },
     { title: '登出', to: '', onClick: () => handleLogout() },
   ];
 

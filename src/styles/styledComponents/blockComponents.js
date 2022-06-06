@@ -4,7 +4,7 @@ import { secondaryGray } from './color.js';
 export const Block = styled.div`
   display: block;
   width: 80%;
-  margin: 0 auto;
+  margin: 1.5rem auto;
   height: auto;
 `;
 
@@ -22,6 +22,7 @@ export const Title = styled.div`
   margin: 8vh auto 0px;
   padding: 12px 0px;
   height: 10vh;
+  line-height: 9vh;
   text-align: center;
   font-size: 1.8rem;
   font-weight: bold;

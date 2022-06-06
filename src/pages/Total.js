@@ -10,9 +10,10 @@ const Container = styled.div`
   margin: 0px auto;
   max-width: 80%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 1.5em;
-  grid-auto-rows: minmax(200px, 300px);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-row-gap: 3rem;
+  grid-column-gap: 3rem;
+  grid-auto-rows: minmax(200px, 250px);
 `;
 
 const TotalTitle = styled.h3`
@@ -31,7 +32,7 @@ const Total = () => {
   return (
     <>
       <TotalHeader />
-      <TotalTitle>鄉里總覽</TotalTitle>
+      <TotalTitle>鄰里總覽</TotalTitle>
       {fetchLoading ? (
         <div
           style={{ width: '20vw', margin: '45vh auto', textAlign: 'center' }}

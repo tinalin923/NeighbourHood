@@ -23,8 +23,8 @@ const VillageButton = styled.button`
 const ImageContainer = styled.div`
   width: 100%;
   aspect-ratio: 1/1;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   overflow: hidden;
 `;
 
@@ -38,10 +38,6 @@ function EachVillageBlock({ id, cityName, villageName, heroImage }) {
             fontSize: '1.5rem',
           }}
         >
-          <FontAwesomeIcon
-            icon={solid('house-chimney-user')}
-            style={{ marginRight: '18px' }}
-          />
           {villageName}
         </div>
         <div
@@ -50,6 +46,10 @@ function EachVillageBlock({ id, cityName, villageName, heroImage }) {
             opacity: '0.8',
           }}
         >
+          <FontAwesomeIcon
+            icon={solid('location-dot')}
+            style={{ marginRight: '18px' }}
+          />
           {cityName}
         </div>
       </div>

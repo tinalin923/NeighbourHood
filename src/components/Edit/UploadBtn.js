@@ -2,34 +2,12 @@ import { serverTimestamp } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { generatePath, useNavigate } from 'react-router-dom';
 import BeatLoader from 'react-spinners/BeatLoader';
-import styled from 'styled-components';
 import { uploadFirestoreVillageData } from '../../firebase/useFirestore.js';
 import { upLoadStorageImages } from '../../firebase/useStorage.js';
 import { TextError } from '../../styles/styledComponents/blockComponents.js';
-import {
-  primaryGray,
-  primaryYellow,
-} from '../../styles/styledComponents/color.js';
+import { UploadButton } from '../../styles/styledComponents/button.js';
 import { useAuthState } from '../contexts/AuthContext.js';
 import { useEditState } from '../contexts/EditContext.js';
-
-const UploadButton = styled.button`
-  width: 40vw;
-  margin: 20px;
-  padding: 16px;
-  border: 4px solid ${primaryYellow};
-  border-radius: 8px;
-  background: white;
-  color: ${primaryGray};
-  font-size: 1.2rem;
-  font-weight: bold;
-  &:hover {
-    background: ${primaryYellow};
-  }
-  @media (max-width: 600px) {
-    font-size: 1rem;
-  }
-`;
 
 export default function UploadBtn() {
   const navigate = useNavigate();
@@ -158,15 +136,34 @@ export default function UploadBtn() {
       )}
 
       {uploading ? (
-        <>
-          <BeatLoader
-            size={15}
-            color="#e87191"
-            loading={uploading}
-            speedMultiplier={0.5}
-          />
-          <p>上傳中，完成後將導向發佈頁面</p>
-        </>
+        <div
+          style={{
+            position: 'fixed',
+            zIndex: '99',
+            background: 'rgba(0,0,0,0.8)',
+            width: '100%',
+            top: '0',
+            bottom: '0',
+            left: '50%',
+            transform: 'translateX(-50%)',
+          }}
+        >
+          <div
+            style={{
+              marginTop: '50vh',
+            }}
+          >
+            <BeatLoader
+              size={25}
+              color="#e87191"
+              loading={uploading}
+              speedMultiplier={0.5}
+            />
+            <p style={{ color: '#f5f5f5', fontSize: '2.5rem' }}>
+              上傳中，完成後將導向發佈頁面
+            </p>
+          </div>
+        </div>
       ) : (
         <UploadButton
           disabled={uploading}

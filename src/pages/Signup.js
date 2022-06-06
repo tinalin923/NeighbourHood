@@ -7,7 +7,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import Background from '../assets/images/compress-toa-heftiba-nrSzRUWqmoI-unsplash-min.jpg';
 import { useAuthState } from '../components/contexts/AuthContext.js';
 import LandingHeader from '../components/Landing/LandingHeader.js';
-import { Button } from '../styles/styledComponents/button.js';
+import { AuthButton } from '../styles/styledComponents/button.js';
 import { primaryGray } from '../styles/styledComponents/color.js';
 import cityOption from '../utils/city.js';
 
@@ -179,7 +179,11 @@ const Signup = () => {
           />
         </Block>
         {signupError && <Err>{signupError}</Err>}
-        <Button type="submit" onClick={handleSubmit} disabled={signupLoading}>
+        <AuthButton
+          type="submit"
+          onClick={handleSubmit}
+          disabled={signupLoading}
+        >
           {signupLoading ? (
             <BeatLoader
               size={15}
@@ -190,7 +194,7 @@ const Signup = () => {
           ) : (
             '註冊'
           )}
-        </Button>
+        </AuthButton>
         <P as={RouteLink} to="/login">
           已經有帳戶？前往登入
         </P>
