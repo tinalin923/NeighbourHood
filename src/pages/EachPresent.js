@@ -12,10 +12,12 @@ import ScrollList from '../components/Edit/ScrollList.js';
 import Footer from '../components/Present/Footer.js';
 import { getFirestoreVillageData } from '../firebase/useFirestore.js';
 import { primaryYellow } from '../styles/styledComponents/color.js';
+import PresentHeader from '../components/Present/PresentHeader.js';
 
 const EachPresent = () => {
   const { villageId } = useParams();
   const {
+    village,
     setEditMode,
     setPublished,
     setAnnounceList,
@@ -69,6 +71,7 @@ const EachPresent = () => {
       )}
       {!presentPageLoading && (
         <>
+          <PresentHeader breadcrumb={village} />
           <ScrollList />
           <HeroImageBlock name="0" />
           <BulletinBlock name="1" />

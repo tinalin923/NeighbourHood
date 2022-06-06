@@ -5,6 +5,7 @@ import '../../assets/fonts/fonts.scss';
 import { primaryGray } from '../../styles/styledComponents/color.js';
 import { useAuthState } from '../contexts/AuthContext.js';
 import NavTab from '../Header/NavTab.js';
+import Favicon from '../Header/Favicon.js';
 
 const Top = styled.div`
   padding: 0 2px;
@@ -20,6 +21,8 @@ const Title = styled.p`
   font-family: 'TESLA Regular';
   font-size: 1.2rem;
   color: ${primaryGray};
+  display: flex;
+  align-items: center;
   @media (max-width: 600px) {
     font-size: 1rem;
   }
@@ -57,6 +60,7 @@ const LandingHeader = () => {
     <>
       <Top>
         <Title as={RouteLink} to="/">
+          <Favicon />
           NEIGHBoURHooD
         </Title>
         <NavTab items={items} />

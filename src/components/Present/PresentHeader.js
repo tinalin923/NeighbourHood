@@ -1,5 +1,6 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import propTypes from 'prop-types';
 import React from 'react';
 import { Link as RouteLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -39,7 +40,7 @@ const Title = styled.p`
   }
 `;
 
-const TotalHeader = () => {
+const PresentHeader = ({ breadcrumb }) => {
   const { currentUid, logout } = useAuthState();
   const navigate = useNavigate();
   const handleLogout = async () => {
@@ -52,7 +53,7 @@ const TotalHeader = () => {
   };
   const items = currentUid
     ? [
-        { title: '編輯我的頁面', to: '/editing', onClick: '' },
+        { title: '前往編輯我的頁面', to: '/editing', onClick: '' },
         { title: '登出', to: '', onClick: () => handleLogout() },
       ]
     : [
@@ -68,6 +69,10 @@ const TotalHeader = () => {
         <li>
           <RouteLink to="/total">鄰里總覽</RouteLink>
         </li>
+        <FontAwesomeIcon icon={solid('chevron-right')} />
+        <li>
+          <RouteLink to="/total">{breadcrumb}</RouteLink>
+        </li>
       </Breadcrumbs>
       <Title as={RouteLink} to="/">
         NEIGHBoURHooD
@@ -77,4 +82,8 @@ const TotalHeader = () => {
   );
 };
 
-export default TotalHeader;
+PresentHeader.propTypes = {
+  breadcrumb: propTypes.string.isRequired,
+};
+
+export default PresentHeader;

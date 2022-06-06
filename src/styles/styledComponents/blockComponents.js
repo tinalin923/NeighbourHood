@@ -92,3 +92,19 @@ export const ListDetails = styled.div`
   font-size: 1.2rem;
   line-height: 1.5rem;
 `;
+
+export const Breadcrumbs = styled.ol`
+  flex: 0 0 30vw;
+  display: flex;
+  justify-content: ;
+  align-items: center;
+  li {
+    margin: 0 16px;
+    a {
+      font-size: 1.2rem;
+    }
+  }
+  @media (max-width: 600px) {
+    display: none;
+  }
+`;

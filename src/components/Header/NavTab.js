@@ -1,12 +1,12 @@
 /* eslint-disable react/forbid-prop-types */
 import { motion } from 'framer-motion';
-import React, { useState } from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { Link as RouteLink } from 'react-router-dom';
+import styled from 'styled-components';
 import { primaryGray, thirdGray } from '../../styles/styledComponents/color.js';
 
-const Button = styled.button`
+const Li = styled.li`
   position: relative;
   margin: 8px;
   display: block;
@@ -24,12 +24,12 @@ const Button = styled.button`
 function NavTab({ items, flex }) {
   const [focused, setFocused] = useState();
   return (
-    <div
+    <ul
       style={{ display: 'flex', flex: `${flex}`, justifyContent: 'flex-end' }}
       onMouseLeave={() => setFocused(null)}
     >
       {items.map((item) => (
-        <Button
+        <Li
           key={item.title}
           as={RouteLink}
           to={item.to}
@@ -70,9 +70,9 @@ function NavTab({ items, flex }) {
               }}
             />
           ) : null}
-        </Button>
+        </Li>
       ))}
-    </div>
+    </ul>
   );
 }
 

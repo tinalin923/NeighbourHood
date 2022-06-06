@@ -61,6 +61,7 @@ module.exports = {
       filename: 'index.html',
       template: 'src/template.html',
       base: '/',
+      favicon: './src/assets/images/favicon.png',
     }),
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(dotenv.parsed),
