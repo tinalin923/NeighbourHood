@@ -31,12 +31,11 @@ function NavTab({ items, flex }) {
       {items.map((item) => (
         <Li
           key={item.title}
-          as={RouteLink}
-          to={item.to}
           onClick={item.onClick}
           onMouseEnter={() => setFocused(item.title)}
         >
-          <span
+          <RouteLink
+            to={item.to}
             style={{
               position: 'absolute',
               left: '50%',
@@ -48,7 +47,7 @@ function NavTab({ items, flex }) {
             }}
           >
             {item.title}
-          </span>
+          </RouteLink>
           {focused === item.title ? (
             <motion.div
               layoutId="highlight"

@@ -21,6 +21,7 @@ import {
   backgroundGray,
   primaryYellow,
 } from '../styles/styledComponents/color.js';
+import PhoneAddIcon from '../styles/styledComponents/PhoneAddIcon.js';
 
 const Editing = () => {
   const { editMode, getDatasToContext, published } = useEditState();
@@ -86,6 +87,7 @@ const Editing = () => {
             <ActivityBlock name="4" />
           )}
           {!published && editMode && <EditActivityBlock />}
+          {editMode && <PhoneAddIcon />}
           {editMode && <hr style={{ width: '90%', margin: ' 80px auto' }} />}
           {editMode && <UploadBtn />}
           {!editMode && <div style={{ height: '300px' }} />}

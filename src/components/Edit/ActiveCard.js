@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 import React from 'react';
 // import ImagePresent from './ImagePresent.js';
 import styled from 'styled-components';
@@ -34,6 +34,28 @@ const OpenImageContainer = styled(motion.div)`
     border-bottom-right-radius: 20px;
     max-height: 100%;
     max-width: 60%;
+  }
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-button {
+    background: transparent;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-track-piece {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid #f5f5f5;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: transparent;
   }
 `;
 const TextContainer = styled.div`
@@ -93,7 +115,7 @@ const Text = styled(Title)`
   }
 `;
 
-export default function ActiveCard({ activity, setActive }) {
+function ActiveCard({ activity, setActive }) {
   // filter出來的是一array
   const { id, title, details, picture } = activity[0];
   const backgroundVariants = {
@@ -156,3 +178,9 @@ export default function ActiveCard({ activity, setActive }) {
     </>
   );
 }
+
+ActiveCard.propTypes = {
+  activity: PropTypes.string.isRequired,
+  setActive: PropTypes.string.isRequired,
+};
+export default ActiveCard;
