@@ -8,7 +8,7 @@ import { Breadcrumbs } from '../../styles/styledComponents/blockComponents.js';
 import { primaryGray } from '../../styles/styledComponents/color.js';
 import { useAuthState } from '../contexts/AuthContext.js';
 import Favicon from '../Header/Favicon.js';
-import NavTab from '../Header/NavUl.js';
+import NavUl from '../Header/NavUl.js';
 
 const Top = styled.nav`
   position: fixed;
@@ -17,6 +17,9 @@ const Top = styled.nav`
   padding: 0 2px;
   background: white;
   display: flex;
+
+  flex-wrap: wrap;
+
   align-items: center;
   justify-content: space-evenly;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px;
@@ -72,7 +75,7 @@ const TotalHeader = () => {
       <Title as={RouteLink} to="/">
         NEIGHBoURHooD
       </Title>
-      <NavTab items={items} flex="0 1 30vw" />
+      <NavUl items={items} flex="0 1 30vw" />
     </Top>
   );
 };

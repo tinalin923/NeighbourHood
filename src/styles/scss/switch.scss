@@ -16,11 +16,11 @@ $br:15px;
     border-radius: 100%;
     background-color: $btn;
     cursor:pointer;
-    z-index: 99;
+    z-index: 10;
 }
 
 .switch{
-    z-index: 99;
+    z-index: 10;
     position: $position;
     top: $top;
     right: $right;
@@ -52,7 +52,7 @@ $br:15px;
     }
 }
 .switch_on{
-    z-index: 99;
+    z-index: 10;
     position: $position;
     top: $top;
     right: $right;

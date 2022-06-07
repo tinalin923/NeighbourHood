@@ -12,7 +12,7 @@ const Switch = () => {
       <span
         style={{
           position: 'fixed',
-          zIndex: '99',
+          zIndex: '10',
           top: '95px',
           right: '20px',
           color: 'black',

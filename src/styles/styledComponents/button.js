@@ -37,6 +37,9 @@ export const StartButton = styled.a`
     background: white;
     font-weight: bold;
   }
+  @media (max-width: 600px) {
+    width: 200px;
+  }
 `;
 
 export const UploadButton = styled.button`

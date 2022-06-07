@@ -4,7 +4,7 @@ import ActivityBlock from '../blocks/ActivityBlock.js';
 import BulletinBlock from '../blocks/BulletinBlock.js';
 import ChiefIntroBlock from '../blocks/ChiefIntroBlock.js';
 import EditActivityBlock from '../blocks/EditActivityBlock.js';
-import EditBullitinBlock1 from '../blocks/EditBullitinBlock1.js';
+import EditBullitinBlock from '../blocks/EditBullitinBlock.js';
 import HeroImageBlock from '../blocks/HeroImageBlock.js';
 import VillageIntroBlock from '../blocks/VillageIntroBlock.js';
 import { useAuthState } from '../components/contexts/AuthContext.js';
@@ -68,7 +68,7 @@ const Editing = () => {
           ) : (
             <ChiefIntroBlock name="1" />
           )}
-          {published && editMode && <EditBullitinBlock1 />}
+          {published && editMode && <EditBullitinBlock />}
           {published ? (
             <ActivityBlock name="2" />
           ) : (
@@ -80,7 +80,7 @@ const Editing = () => {
           ) : (
             <BulletinBlock name="3" />
           )}
-          {!published && editMode && <EditBullitinBlock1 />}
+          {!published && editMode && <EditBullitinBlock />}
           {published ? (
             <ChiefIntroBlock name="4" />
           ) : (
