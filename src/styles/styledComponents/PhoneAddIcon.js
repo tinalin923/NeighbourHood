@@ -67,7 +67,7 @@ function PhoneAddIcon() {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="#f5f5f5"
-                strokeWidth="2"
+                strokeWidth="1"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 className="feather feather-minus"

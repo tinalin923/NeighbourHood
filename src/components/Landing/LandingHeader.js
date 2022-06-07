@@ -1,13 +1,21 @@
-import React from 'react';
-import { Link as RouteLink, Outlet, useNavigate } from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import '../../assets/fonts/fonts.scss';
 import { primaryGray } from '../../styles/styledComponents/color.js';
+import { slideDown } from '../../styles/styledComponents/keyframes.js';
 import { useAuthState } from '../contexts/AuthContext.js';
-import NavUl from '../Header/NavUl.js';
 import Favicon from '../Header/Favicon.js';
+import NavUl from '../Header/NavUl.js';
 
 const Top = styled.div`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: white;
+  z-index: 11;
+  animation: ${slideDown} 0.2s;
+
   padding: 0 2px;
   display: flex;
   align-items: center;
@@ -30,6 +38,30 @@ const Title = styled.p`
 
 const LandingHeader = () => {
   const { currentUid, logout } = useAuthState();
+  const [show, setShow] = useState(true);
+  const [nowY, setNowY] = useState('');
+  const controlNavBar = useCallback(
+    (e) => {
+      const window = e.currentTarget;
+      if (nowY > window.scrollY) {
+        setShow(true);
+      } else if (nowY < window.scrollY) {
+        setShow(false);
+      }
+      setNowY(window.scrollY);
+    },
+    [nowY]
+  );
+  useEffect(() => {
+    window.addEventListener('scroll', controlNavBar);
+    return () => {
+      window.removeEventListener('scroll', controlNavBar);
+    };
+  });
+
+  useEffect(() => {
+    setNowY(window.scrollY);
+  }, [controlNavBar]);
 
   const navigate = useNavigate();
   const handleLogout = async () => {
@@ -43,8 +75,8 @@ const LandingHeader = () => {
   const items = currentUid
     ? [
         { title: '鄰里總覽', to: '/total', onClick: null },
-        { title: '登出', to: '', onClick: () => handleLogout() },
         { title: '編輯我的頁面', to: '/editing', onClick: null },
+        { title: '登出', to: '', onClick: () => handleLogout() },
       ]
     : [
         { title: '鄰里總覽', to: '/total', onClick: null },
@@ -58,13 +90,15 @@ const LandingHeader = () => {
 
   return (
     <>
-      <Top>
-        <Title as={RouteLink} to="/">
-          <Favicon />
-          NEIGHBoURHooD
-        </Title>
-        <NavUl items={items} />
-      </Top>
+      {show && (
+        <Top>
+          <Title>
+            <Favicon />
+            NEIGHBoURHooD
+          </Title>
+          <NavUl items={items} />
+        </Top>
+      )}
       <Outlet />
     </>
   );

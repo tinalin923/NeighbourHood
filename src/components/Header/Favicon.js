@@ -19,9 +19,17 @@ function Favicon({ breadcrumb, to, cursor }) {
       </a>
     </li>
   ) : (
-    <div>
+    <div
+      style={{
+        display: 'block',
+        height: '55px',
+        width: '55px',
+        // margin: 'auto 4px',
+        cursor: `${cursor}`,
+      }}
+    >
       <img
-        style={{ height: '40px', width: '40px', margin: '10px' }}
+        style={{ height: '35px', width: '35px', margin: '10px' }}
         alt=""
         src={favicon}
       />

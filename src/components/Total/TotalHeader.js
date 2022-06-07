@@ -1,11 +1,12 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link as RouteLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import '../../assets/fonts/fonts.scss';
 import { Breadcrumbs } from '../../styles/styledComponents/blockComponents.js';
 import { primaryGray } from '../../styles/styledComponents/color.js';
+import { slideDown } from '../../styles/styledComponents/keyframes.js';
 import { useAuthState } from '../contexts/AuthContext.js';
 import Favicon from '../Header/Favicon.js';
 import NavUl from '../Header/NavUl.js';
@@ -16,15 +17,14 @@ const Top = styled.nav`
   width: 100%;
   padding: 0 2px;
   background: white;
+  animation: ${slideDown} 0.2s;
+  z-index: 11;
+
   display: flex;
-
-  flex-wrap: wrap;
-
   align-items: center;
   justify-content: space-evenly;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px;
   height: 80px;
-  z-index: 1;
   @media (max-width: 600px) {
     justify-content: space-between;
   }
@@ -44,6 +44,31 @@ const Title = styled.p`
 
 const TotalHeader = () => {
   const { currentUid, logout } = useAuthState();
+  const [show, setShow] = useState(true);
+  const [nowY, setNowY] = useState();
+  const controlNavBar = useCallback(
+    (e) => {
+      const window = e.currentTarget;
+
+      if (nowY > window.scrollY) {
+        setShow(true);
+      } else if (nowY < window.scrollY) {
+        setShow(false);
+      }
+      setNowY(window.scrollY);
+    },
+    [nowY]
+  );
+  useEffect(() => {
+    window.addEventListener('scroll', controlNavBar);
+    return () => {
+      window.removeEventListener('scroll', controlNavBar);
+    };
+  });
+  useEffect(() => {
+    setNowY(window.scrollY);
+  }, [controlNavBar]);
+
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
@@ -64,19 +89,21 @@ const TotalHeader = () => {
         { title: '前往建立', to: '/', onClick: null },
       ];
   return (
-    <Top>
-      <Breadcrumbs>
-        <Favicon breadcrumb to="/" cursor="pointer" />
-        <FontAwesomeIcon icon={solid('chevron-right')} />
-        <li>
-          <RouteLink to="/total">鄰里總覽</RouteLink>
-        </li>
-      </Breadcrumbs>
-      <Title as={RouteLink} to="/">
-        NEIGHBoURHooD
-      </Title>
-      <NavUl items={items} flex="0 1 30vw" />
-    </Top>
+    show && (
+      <Top>
+        <Breadcrumbs>
+          <Favicon breadcrumb to="/" cursor="pointer" />
+          <FontAwesomeIcon icon={solid('chevron-right')} />
+          <li>
+            <RouteLink to="/total">鄰里總覽</RouteLink>
+          </li>
+        </Breadcrumbs>
+        <Title as={RouteLink} to="/">
+          NEIGHBoURHooD
+        </Title>
+        <NavUl items={items} flex="0 1 20vw" />
+      </Top>
+    )
   );
 };
 

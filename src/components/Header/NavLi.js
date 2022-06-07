@@ -3,22 +3,14 @@ import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import '../../styles/scss/header.scss';
 import {
   backgroundGray,
   primaryGray,
   thirdGray,
 } from '../../styles/styledComponents/color.js';
-
-const slideIn = keyframes`
-  from{
-    transform: translateX(100%);
-  }
-  to{
-    transform: translateX(0px);
-  }
-`;
+import { slideIn } from '../../styles/styledComponents/keyframes.js';
 
 const LiContainer = styled.div`
   position: absolute;
@@ -93,10 +85,7 @@ function NavLi({ items, focused, setFocused, hambur }) {
       {Lis}
     </LiContainer>
   ) : (
-    <>
-      <div />
-      {Lis}
-    </>
+    Lis
   );
   return NavLis;
 }
