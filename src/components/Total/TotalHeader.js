@@ -8,7 +8,7 @@ import { Breadcrumbs } from '../../styles/styledComponents/blockComponents.js';
 import { primaryGray } from '../../styles/styledComponents/color.js';
 import { useAuthState } from '../contexts/AuthContext.js';
 import Favicon from '../Header/Favicon.js';
-import NavTab from '../Header/NavTab.js';
+import NavTab from '../Header/NavUl.js';
 
 const Top = styled.nav`
   position: fixed;
@@ -52,13 +52,13 @@ const TotalHeader = () => {
   };
   const items = currentUid
     ? [
-        { title: '編輯我的頁面', to: '/editing', onClick: '' },
+        { title: '編輯我的頁面', to: '/editing', onClick: null },
         { title: '登出', to: '', onClick: () => handleLogout() },
       ]
     : [
-        { title: '登入', to: '/login', onClick: '' },
-        { title: '註冊', to: '/signup', onClick: '' },
-        { title: '前往建立', to: '/', onClick: '' },
+        { title: '登入', to: '/login', onClick: null },
+        { title: '註冊', to: '/signup', onClick: null },
+        { title: '前往建立', to: '/', onClick: null },
       ];
   return (
     <Top>

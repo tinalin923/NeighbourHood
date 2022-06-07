@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import '../../assets/fonts/fonts.scss';
 import { primaryGray } from '../../styles/styledComponents/color.js';
 import { useAuthState } from '../contexts/AuthContext.js';
-import NavTab from '../Header/NavTab.js';
+import NavTab from '../Header/NavUl.js';
 import Favicon from '../Header/Favicon.js';
 
 const Top = styled.div`

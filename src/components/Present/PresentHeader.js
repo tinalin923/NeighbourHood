@@ -9,7 +9,7 @@ import { Breadcrumbs } from '../../styles/styledComponents/blockComponents.js';
 import { primaryGray } from '../../styles/styledComponents/color.js';
 import { useAuthState } from '../contexts/AuthContext.js';
 import Favicon from '../Header/Favicon.js';
-import NavTab from '../Header/NavTab.js';
+import NavTab from '../Header/NavUl.js';
 
 const Top = styled.nav`
   position: fixed;

@@ -1,7 +1,7 @@
 /* eslint-disable react/forbid-prop-types */
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
 import { Link as RouteLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { primaryGray, thirdGray } from '../../styles/styledComponents/color.js';
@@ -9,7 +9,9 @@ import { primaryGray, thirdGray } from '../../styles/styledComponents/color.js';
 const Li = styled.li`
   position: relative;
   margin: 8px;
-  display: block;
+  display: flex;
+  flexdirection: ${({ flexDirection }) =>
+    flexDirection === 'column' ? 'column' : 'row'};
   width: 8vw;
   height: 48px;
   border: none;
@@ -21,15 +23,12 @@ const Li = styled.li`
   }
 `;
 
-function NavTab({ items, flex }) {
-  const [focused, setFocused] = useState();
+function NavLi({ items, flexDirection, focused, setFocused }) {
   return (
-    <ul
-      style={{ display: 'flex', flex: `${flex}`, justifyContent: 'flex-end' }}
-      onMouseLeave={() => setFocused(null)}
-    >
+    <>
       {items.map((item) => (
         <Li
+          flexDirection={flexDirection}
           key={item.title}
           onClick={item.onClick}
           onMouseEnter={() => setFocused(item.title)}
@@ -42,6 +41,8 @@ function NavTab({ items, flex }) {
               top: '50%',
               transform: 'translate(-50%, -50%)',
               width: '100%',
+              height: '100%',
+              lineHeight: '3rem',
               textAlign: 'center',
               zIndex: 2,
             }}
@@ -71,17 +72,19 @@ function NavTab({ items, flex }) {
           ) : null}
         </Li>
       ))}
-    </ul>
+    </>
   );
 }
 
-NavTab.propTypes = {
+NavLi.propTypes = {
   items: PropTypes.array.isRequired,
-  flex: PropTypes.string,
+  flexDirection: PropTypes.string.isRequired,
+  focused: PropTypes.string,
+  setFocused: PropTypes.func.isRequired,
 };
 
-NavTab.defaultProps = {
-  flex: 'none',
+NavLi.defaultProps = {
+  focused: null,
 };
 
-export default NavTab;
+export default NavLi;
