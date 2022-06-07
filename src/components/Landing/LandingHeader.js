@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import '../../assets/fonts/fonts.scss';
 import { primaryGray } from '../../styles/styledComponents/color.js';
 import { useAuthState } from '../contexts/AuthContext.js';
-import NavTab from '../Header/NavUl.js';
+import NavUl from '../Header/NavUl.js';
 import Favicon from '../Header/Favicon.js';
 
 const Top = styled.div`
@@ -42,17 +42,17 @@ const LandingHeader = () => {
   };
   const items = currentUid
     ? [
-        { title: '鄰里總覽', to: '/total', onClick: '' },
+        { title: '鄰里總覽', to: '/total', onClick: null },
         { title: '登出', to: '', onClick: () => handleLogout() },
-        { title: '編輯我的頁面', to: '/editing', onClick: '' },
+        { title: '編輯我的頁面', to: '/editing', onClick: null },
       ]
     : [
-        { title: '鄰里總覽', to: '/total', onClick: '' },
-        { title: '登入', to: '/login', onClick: '' },
+        { title: '鄰里總覽', to: '/total', onClick: null },
+        { title: '登入', to: '/login', onClick: null },
         {
           title: '註冊',
           to: '/signup',
-          onClick: '',
+          onClick: null,
         },
       ];
 
@@ -63,7 +63,7 @@ const LandingHeader = () => {
           <Favicon />
           NEIGHBoURHooD
         </Title>
-        <NavTab items={items} />
+        <NavUl items={items} />
       </Top>
       <Outlet />
     </>

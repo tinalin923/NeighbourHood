@@ -30,6 +30,8 @@ export const StartButton = styled.a`
   line-height: 1.5rem;
   background: black;
   color: white;
+  border: 1px solid black;
+
   :hover {
     color: black;
     background: white;

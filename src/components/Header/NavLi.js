@@ -2,8 +2,9 @@
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link as RouteLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import '../../styles/scss/header.scss';
 import { primaryGray, thirdGray } from '../../styles/styledComponents/color.js';
 
 const Li = styled.li`
@@ -33,22 +34,12 @@ function NavLi({ items, flexDirection, focused, setFocused }) {
           onClick={item.onClick}
           onMouseEnter={() => setFocused(item.title)}
         >
-          <RouteLink
+          <NavLink
+            className={(navData) => (navData.isActive ? 'active' : 'notActive')}
             to={item.to}
-            style={{
-              position: 'absolute',
-              left: '50%',
-              top: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: '100%',
-              height: '100%',
-              lineHeight: '3rem',
-              textAlign: 'center',
-              zIndex: 2,
-            }}
           >
             {item.title}
-          </RouteLink>
+          </NavLink>
           {focused === item.title ? (
             <motion.div
               layoutId="highlight"

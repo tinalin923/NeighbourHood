@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import BeatLoader from 'react-spinners/BeatLoader';
 import styled from 'styled-components';
@@ -33,7 +34,7 @@ const Total = () => {
     <>
       <TotalHeader />
       <TotalTitle>鄰里總覽</TotalTitle>
-      {fetchLoading ? (
+      {/* {fetchLoading ? (
         <div
           style={{ width: '20vw', margin: '45vh auto', textAlign: 'center' }}
         >
@@ -56,8 +57,8 @@ const Total = () => {
             villageName={villageName}
             heroImage={heroImage}
           />
-        ))}
-      </Container>
+        ))} */}
+      {/* </Container> */}
       <div style={{ height: '300px' }} />
     </>
   );

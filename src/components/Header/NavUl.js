@@ -22,9 +22,9 @@ function NavUl({ items, flex }) {
   const [navOpen, setNavOpen] = useState(false);
   const [focused, setFocused] = useState('');
 
-  const handleCLick = () => {
-    setNavOpen((prev) => !prev);
-  };
+  // const handleCLick = () => {
+  //   setNavOpen((prev) => !prev);
+  // };
   return (
     <>
       <Ul style={{ flex: `${flex}` }} onMouseLeave={() => setFocused(null)}>
@@ -35,7 +35,48 @@ function NavUl({ items, flex }) {
           setFocused={setFocused}
         />
       </Ul>
-      <HamUl onClick={() => handleCLick()}>123</HamUl>
+      <HamUl
+        onMouseOver={() => setNavOpen(true)}
+        onMouseLeave={() => setNavOpen(false)}
+      >
+        <svg
+          id="burgericon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="60"
+          height="60"
+          viewBox="0 0 100 100"
+        >
+          <g className="icon">
+            <rect
+              className="frstbar"
+              x="10"
+              y="10"
+              width="90"
+              height="12"
+              rx="7"
+              ry="7"
+            />
+            <rect
+              className="scndbar"
+              x="10"
+              y="35"
+              width="90"
+              height="12"
+              rx="7"
+              ry="7"
+            />
+            <rect
+              className="thrdbar"
+              x="10"
+              y="60"
+              width="90"
+              height="12"
+              rx="7"
+              ry="7"
+            />
+          </g>
+        </svg>
+      </HamUl>
       {navOpen && (
         <NavLi
           items={items}
