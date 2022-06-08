@@ -183,7 +183,7 @@ export default function EventList() {
           >
             <div
               style={{
-                marginTop: '12px',
+                margin: '12px 0px',
                 textAlign: 'left',
               }}
             >
@@ -193,7 +193,6 @@ export default function EventList() {
               variants={eventVariants}
               animate={activeAnnounceItem === id ? 'visible' : 'hidden'}
               style={{
-                margin: '12px',
                 textAlign: 'left',
                 overflow: 'hidden',
               }}

@@ -10,7 +10,7 @@ const Container = styled.div`
   margin: 0px auto;
   max-width: 80%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-row-gap: 3rem;
   grid-column-gap: 3rem;
   grid-auto-rows: minmax(200px, 250px);

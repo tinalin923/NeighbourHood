@@ -99,7 +99,7 @@ export const Breadcrumbs = styled.ol`
   justify-content: ;
   align-items: center;
   li {
-    margin: 0 16px;
+    margin: 0 1vw;
     a {
       font-size: 1.2rem;
     }

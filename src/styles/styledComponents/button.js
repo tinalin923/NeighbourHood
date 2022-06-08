@@ -3,26 +3,25 @@ import { primaryGray, primaryYellow } from './color.js';
 
 export const AuthButton = styled.button`
   margin-top: 25px;
-  width: 300px;
+  width: 80%;
   border-radius: 25px;
   height: 53px;
   padding: 10px;
   border: none;
   outline: none;
   background: ${primaryYellow};
-  opacity: 0.7;
   color: white;
   font-weight: bold;
   cursor: pointer;
   :hover {
-    opacity: 1;
+    color: black;
   }
 `;
 
 export const StartButton = styled.a`
   display: block;
-  margin: 52px auto 8px;
-  width: 300px;
+  margin: auto;
+  width: 200px;
   border-radius: 5px;
   height: auto;
   padding: 20px;
@@ -38,7 +37,7 @@ export const StartButton = styled.a`
     font-weight: bold;
   }
   @media (max-width: 600px) {
-    width: 200px;
+    width: 120px;
   }
 `;
 

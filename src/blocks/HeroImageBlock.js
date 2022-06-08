@@ -52,7 +52,6 @@ const PlaceHolder = styled.div`
   height: 100vh;
 `;
 const HeroImage = styled.div`
-  position: absolute;
   width: 100%;
   height: 100vh;
   background-size: cover;

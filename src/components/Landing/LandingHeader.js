@@ -96,7 +96,7 @@ const LandingHeader = () => {
             <Favicon />
             NEIGHBoURHooD
           </Title>
-          <NavUl items={items} />
+          <NavUl items={items} flex="0 1 20vw" />
         </Top>
       )}
       <Outlet />

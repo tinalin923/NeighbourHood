@@ -9,6 +9,7 @@ const Explanation = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  margin-bottom: 10vh;
   @media (max-width: 600px) {
     height: 80vw;
     flex-direction: column-reverse;
@@ -35,7 +36,7 @@ const Video = styled(Text)`
 `;
 
 const Title = styled.div`
-  margin: 4px auto;
+  margin: 12px auto;
   text-align: left;
   font-size: 2rem;
   font-weight: bold;

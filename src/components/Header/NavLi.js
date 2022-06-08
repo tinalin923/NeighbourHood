@@ -17,8 +17,6 @@ const LiContainer = styled.div`
   top: 80px;
   right: 0px;
   height: auto;
-  flex: 0 0 100%;
-  flex-wrap: wrap;
   background: ${backgroundGray};
   box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.3);
   z-index: 11;
@@ -30,9 +28,9 @@ const LiContainer = styled.div`
 `;
 
 const Li = styled.li`
+  flex: 1 1 8vw;
   position: relative;
-  margin: 8px;
-  width: 8vw;
+  margin: 1px;
   height: 48px;
   border: none;
   text-decoration: none;
@@ -40,8 +38,7 @@ const Li = styled.li`
   cursor: pointer;
   @media (max-width: 600px) {
     width: 120px;
-    height: 40px;
-    padding: 8px;
+    height: 48px;
   }
 `;
 
@@ -67,10 +64,10 @@ function NavLi({ items, focused, setFocused, hambur }) {
           }}
           style={{
             position: 'absolute',
-            top: '-5%',
-            left: '-5%',
-            width: '110%',
-            height: '110%',
+            // top: '-5%',
+            // left: '-5%',
+            width: '100%',
+            height: '100%',
             background: `${thirdGray}`,
             borderRadius: '16px',
             zIndex: 1,

@@ -26,7 +26,7 @@ const Top = styled.nav`
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px;
   height: 80px;
   @media (max-width: 600px) {
-    justify-content: space-between;
+    justify-content: space-around;
   }
 `;
 
@@ -36,9 +36,18 @@ const Title = styled.p`
   text-align: center;
   font-family: 'TESLA Regular';
   font-size: 1.2rem;
+
   color: ${primaryGray};
   @media (max-width: 600px) {
+    display: flex;
+    align-items: center;
     font-size: 1rem;
+  }
+`;
+
+const Icon = styled.div`
+  @media (min-width: 600px) {
+    display: none;
   }
 `;
 
@@ -99,9 +108,12 @@ const TotalHeader = () => {
           </li>
         </Breadcrumbs>
         <Title as={RouteLink} to="/">
+          <Icon>
+            <Favicon />
+          </Icon>
           NEIGHBoURHooD
         </Title>
-        <NavUl items={items} flex="0 1 20vw" />
+        <NavUl items={items} flex="0 1 30vw" />
       </Top>
     )
   );

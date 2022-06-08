@@ -6,6 +6,7 @@ import NavLi from './NavLi.js';
 
 const Ul = styled.ul`
   display: flex;
+  jusitfy-content: space-around;
   align-items: flex-end;
   @media (max-width: 600px) {
     display: none;

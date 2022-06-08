@@ -36,9 +36,21 @@ const Landing = () => {
             <p className="landing deploy_base">Deploy.</p>
           </div>
         </div>
-        <StartButton as={RouteLink} to={currentUid ? '/editing' : '/login'}>
-          {currentUid ? '開始編輯' : '前往建立'}
-        </StartButton>
+        <div
+          style={{
+            width: '600px',
+            maxWidth: '80vw',
+            margin: '0 auto',
+            display: 'flex',
+          }}
+        >
+          <StartButton as={RouteLink} to={currentUid ? '/editing' : '/login'}>
+            {currentUid ? '開始編輯' : '前往建立'}
+          </StartButton>
+          <StartButton as={RouteLink} to="/total">
+            鄰里總覽
+          </StartButton>
+        </div>
       </div>
       <div>
         <Section
