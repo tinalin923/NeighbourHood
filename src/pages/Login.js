@@ -1,6 +1,6 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link as RouteLink, useNavigate } from 'react-router-dom';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { useAuthState } from '../components/contexts/AuthContext.js';
@@ -15,7 +15,7 @@ import {
   icon,
   Err,
   P,
-} from '../styles/styledComponents/AuthComponent.js';
+} from '../styles/styledComponents/authComponent.js';
 
 const Login = () => {
   const [loginLoading, setLoginLoading] = useState(false);
@@ -24,6 +24,10 @@ const Login = () => {
   const [passwordLogin, setPasswordLogin] = useState('');
   const navigate = useNavigate();
   const { login } = useAuthState();
+
+  useEffect(() => {
+    setErrorLogin('');
+  }, [emailLogin, passwordLogin]);
 
   async function handleSubmit() {
     if (!emailLogin || !passwordLogin) {

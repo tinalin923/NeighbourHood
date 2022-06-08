@@ -51,6 +51,7 @@ export default function EventList() {
     padding: '8px 20px',
     background: `${thirdGray}`,
     color: '#363b48',
+    cursor: 'pointer',
   };
 
   const containerVariants = {
@@ -170,8 +171,7 @@ export default function EventList() {
             alignItems: 'flex-end',
           }}
         >
-          <motion.button
-            type="button"
+          <motion.div
             onClick={() => handleClick(id)}
             variants={containerVariants}
             animate={activeAnnounceItem === id ? 'visible' : 'hidden'}
@@ -201,7 +201,7 @@ export default function EventList() {
               <br />
               {picture && <ImagePresent name="announceImage" src={picture} />}
             </motion.div>
-          </motion.button>
+          </motion.div>
           <Button
             type="button"
             onClick={() => {

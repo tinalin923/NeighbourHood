@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Link as RouteLink, Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import '../../assets/fonts/fonts.scss';
 import { primaryGray } from '../../styles/styledComponents/color.js';
@@ -24,7 +24,7 @@ const Top = styled.div`
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px;
   height: 80px;
 `;
-const Title = styled.p`
+const Title = styled.div`
   text-decoration: none;
   font-family: 'TESLA Regular';
   font-size: 1.2rem;
@@ -92,11 +92,11 @@ const LandingHeader = () => {
     <>
       {show && (
         <Top>
-          <Title>
+          <Title as={RouteLink} to="/">
             <Favicon />
             NEIGHBoURHooD
           </Title>
-          <NavUl items={items} flex="0 1 20vw" />
+          <NavUl items={items} flex="0 1 25vw" />
         </Top>
       )}
       <Outlet />

@@ -57,7 +57,6 @@ const Details = styled(Title)`
 function Section({ step, name, title, details, url, startColor, endColor }) {
   const type = `#${name}`;
   const id = `url(${type})`;
-  console.log(type);
   return (
     <div
       style={{

@@ -4,23 +4,30 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import PropTypes from 'prop-types';
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import createInitialUserDatas from '../../firebase/createUser.js';
-import { auth } from '../../firebase/firebaseConfig.js';
-
-// import { useEditState } from './EditContext.js';
+import createInitialUserDatas, {
+  checkCityVillage,
+} from '../../firebase/createUser.js';
+import { auth, db } from '../../firebase/firebaseConfig.js';
 
 export const AuthContext = createContext();
 export const useAuthState = () => useContext(AuthContext);
 
-// eslint-disable-next-line react/prop-types
 export const AuthContextProvider = ({ children }) => {
   const [currentUid, setCurrentUid] = useState();
   const [currentVillageId, setCurrentVillageId] = useState();
+  const [currentVillageName, setCurrentVillageName] = useState();
   const [load, setLoad] = useState(true);
 
   const signup = async (email, password, city, village) => {
-    // write into firebase auth
+    // check if repeated
+    const checkResult = await checkCityVillage(city, village);
+    if (checkResult === 'repeated') {
+      throw new Error(`此縣市的${village}已被註冊`);
+    }
+    // write into firebase-authentication if not repeated
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
@@ -28,13 +35,12 @@ export const AuthContextProvider = ({ children }) => {
     );
     const { uid } = userCredential.user;
     // write into firestore
-    const newVillageId = await createInitialUserDatas(
+    const { newVillageId } = await createInitialUserDatas(
       uid,
       email,
       city,
       village
     );
-    console.log(newVillageId);
     setCurrentVillageId(newVillageId);
     return { uid, newVillageId };
   };
@@ -44,38 +50,11 @@ export const AuthContextProvider = ({ children }) => {
 
   const logout = () => signOut(auth);
 
-  // async function restoreAnnounceList(announceList) {
-  //   let array = [];
-  //   // eslint-disable-next-line no-restricted-syntax
-  //   for (const announce of announceList) {
-  //     // eslint-disable-next-line no-await-in-loop
-  //     const storedUrl = await getStorageImages(announce.picture);
-  //     if (!storedUrl) {
-  //       array = array.concat({
-  //         id: announce.id,
-  //         title: announce.title,
-  //         details: announce.details,
-  //         picture: '',
-  //       });
-  //     } else {
-  //       array = array.concat({
-  //         id: announce.id,
-  //         title: announce.title,
-  //         details: announce.details,
-  //         picture: storedUrl,
-  //       });
-  //     }
-  //   }
-  //   console.log(array);
-  //   return array;
-  // }
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid } = user;
         setCurrentUid(uid);
-        setLoad(false);
       } else {
         setCurrentUid(null);
         console.log('you logged out');
@@ -86,10 +65,25 @@ export const AuthContextProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // 不懂為何會建議我要放setUserDatas；如果都不放[]，則會一直get firebase
 
+  useEffect(() => {
+    if (!currentUid) {
+      return;
+    }
+    const userRef = doc(db, 'users', currentUid);
+    async function getVillageName() {
+      const docSnap = await getDoc(userRef);
+      const nowVillageName = docSnap.data().villageName;
+      setCurrentVillageName(nowVillageName);
+      setLoad(false);
+    }
+    getVillageName();
+  }, [currentUid]);
+
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const value = {
     currentUid,
     currentVillageId,
+    currentVillageName,
     setCurrentVillageId,
     signup,
     login,
@@ -101,4 +95,8 @@ export const AuthContextProvider = ({ children }) => {
       {!load && children}
     </AuthContext.Provider>
   );
+};
+
+AuthContextProvider.propTypes = {
+  children: PropTypes.element.isRequired,
 };

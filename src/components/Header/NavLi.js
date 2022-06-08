@@ -21,9 +21,23 @@ const LiContainer = styled.div`
   box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.3);
   z-index: 11;
   animation: ${slideIn} 0.5s;
-
   @media (min-width: 600px) {
     display: none;
+  }
+`;
+
+const AuthLiContainer = styled.div`
+  position: absolute;
+  top: 80px;
+  right: 0px;
+  height: auto;
+  background: ${backgroundGray};
+  box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.3);
+  z-index: 11;
+  animation: ${slideIn} 0.5s;
+  li {
+    width: 120px;
+    height: 48px;
   }
 `;
 
@@ -42,7 +56,7 @@ const Li = styled.li`
   }
 `;
 
-function NavLi({ items, focused, setFocused, hambur }) {
+function NavLi({ items, focused, setFocused, hambur, authed }) {
   const Lis = items.map((item) => (
     <Li
       key={item.title}
@@ -64,8 +78,6 @@ function NavLi({ items, focused, setFocused, hambur }) {
           }}
           style={{
             position: 'absolute',
-            // top: '-5%',
-            // left: '-5%',
             width: '100%',
             height: '100%',
             background: `${thirdGray}`,
@@ -76,14 +88,20 @@ function NavLi({ items, focused, setFocused, hambur }) {
       ) : null}
     </Li>
   ));
-
-  const NavLis = hambur ? (
-    <LiContainer hambur={hambur} onMouseLeave={() => setFocused(null)}>
-      {Lis}
-    </LiContainer>
-  ) : (
-    Lis
-  );
+  let NavLis;
+  if (authed) {
+    NavLis = (
+      <AuthLiContainer onMouseLeave={() => setFocused(null)}>
+        {Lis}
+      </AuthLiContainer>
+    );
+  } else {
+    NavLis = hambur ? (
+      <LiContainer onMouseLeave={() => setFocused(null)}>{Lis}</LiContainer>
+    ) : (
+      Lis
+    );
+  }
   return NavLis;
 }
 

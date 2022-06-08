@@ -81,7 +81,7 @@ const EditingHeader = () => {
         <Title as={RouteLink} to="/">
           <Favicon />
         </Title>
-        <NavTab items={items} />
+        <NavTab items={items} flex="0 1 20vw" />
       </Top>
     )
   );

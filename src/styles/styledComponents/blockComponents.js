@@ -96,13 +96,9 @@ export const ListDetails = styled.div`
 export const Breadcrumbs = styled.ol`
   flex: 0 0 30vw;
   display: flex;
-  justify-content: ;
   align-items: center;
   li {
     margin: 0 1vw;
-    a {
-      font-size: 1.2rem;
-    }
   }
   @media (max-width: 600px) {
     display: none;

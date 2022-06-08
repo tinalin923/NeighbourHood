@@ -18,17 +18,16 @@ import {
   P,
   Select,
   Option,
-} from '../styles/styledComponents/AuthComponent.js';
+} from '../styles/styledComponents/authComponent.js';
 
 const Signup = () => {
   const [signupLoading, setSignupLoading] = useState(false);
   const [signupError, setSignupError] = useState('');
   const [city, setCity] = useState('基隆市');
-  const navigate = useNavigate();
   const [village, setVillage] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const navigate = useNavigate();
   const { signup } = useAuthState();
 
   useEffect(() => {
@@ -60,7 +59,7 @@ const Signup = () => {
       } else if (error.code === 'auth/email-already-exists') {
         setSignupError('此信箱已被註冊');
       } else if (error.code === 'auth/email-already-in-use') {
-        setSignupError('此帳戶已被使用');
+        setSignupError('此信箱已被註冊');
       } else {
         setSignupError(error.message);
       }

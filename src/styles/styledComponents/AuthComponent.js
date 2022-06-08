@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import Background from '../../assets/images/compress-toa-heftiba-nrSzRUWqmoI-unsplash-min.jpg';
+import Background from '../../assets/images/auth-background.jpg';
 
 export const GlobalStyle = createGlobalStyle`
   html {

@@ -1,13 +1,50 @@
-import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import {
+  doc,
+  serverTimestamp,
+  setDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+} from 'firebase/firestore';
 import { db } from './firebaseConfig.js';
 import {
   getFirestoreTotalCount,
   updateFirestoreTotalCount,
 } from './useFirestore.js';
 
+export const checkCityVillage = (city, village) => {
+  const cityVillageRef = collection(db, 'villages');
+  const villageQuery = query(
+    cityVillageRef,
+    where('villageName', 'in', [`${village}`])
+  );
+  const cityQuery = query(cityVillageRef, where('cityName', 'in', [`${city}`]));
+
+  async function checkVillageCity(villageQ, cityQ) {
+    const villageSnapshot = await getDocs(villageQ);
+    if (villageSnapshot.empty === false) {
+      const citySnapshot = await getDocs(cityQ);
+      if (villageSnapshot.docs[0].id === citySnapshot.docs[0]?.id) {
+        console.log(1);
+        return 'repeated';
+      }
+      console.log(2);
+
+      return 'not repeated';
+    }
+    console.log(3);
+
+    return 'not repeated';
+  }
+
+  const checkResult = checkVillageCity(villageQuery, cityQuery);
+
+  return checkResult;
+};
+
 const createInitialUserDatas = async (uid, email, city, village) => {
   const { totalVillageCount } = await getFirestoreTotalCount();
-  console.log(totalVillageCount);
   let newVillageId = totalVillageCount + 1;
   await updateFirestoreTotalCount(newVillageId);
 
@@ -53,7 +90,6 @@ const createInitialUserDatas = async (uid, email, city, village) => {
   };
   console.log(newVillageId.toString());
   newVillageId = newVillageId.toString();
-  console.log(newVillageId);
   await setDoc(doc(db, 'users', uid), initialUserDatas);
   await setDoc(doc(db, 'villages', newVillageId), initialVillageDatas);
   return newVillageId;
