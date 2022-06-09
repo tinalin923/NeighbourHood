@@ -5,13 +5,14 @@ import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { getStorageImages } from '../../firebase/useStorage.js';
+import {
+  ListDetails,
+  ListTitle,
+} from '../../styles/styledComponents/blockComponents.js';
 import { thirdGray } from '../../styles/styledComponents/color.js';
 import { useEditState } from '../contexts/EditContext.js';
 import ImagePresent from './ImagePresent.js';
-import {
-  ListTitle,
-  ListDetails,
-} from '../../styles/styledComponents/blockComponents.js';
+import AddAnnounceButton from './AddAnnounceButton.js';
 
 const icon = {
   position: 'relative',
@@ -19,7 +20,7 @@ const icon = {
   color: '#939393',
 };
 
-const Button = styled.button`
+const DeleteButton = styled.button`
   width: 28px;
   height: 28px;
   background: none;
@@ -104,7 +105,6 @@ export default function EventList() {
 
   useEffect(() => {
     // 防止還未上傳到storage的圖片被讀取
-    console.log(imageList.length);
     if (imageList.length !== 0) {
       console.log('不要讀取未上傳的圖片');
       return;
@@ -126,7 +126,6 @@ export default function EventList() {
           });
         } else {
           const storedUrl = await getStorageImages(announce.picture);
-          console.log(storedUrl);
           array = array.concat({
             id: announce.id,
             title: announce.title,
@@ -135,11 +134,8 @@ export default function EventList() {
           });
         }
       }
-      console.log(array);
-      console.log('1');
       setAnnouncePresentList(array);
     }
-    console.log(announceList);
     changeAnnounceListToPresent(announceList);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [announceList]);
@@ -202,7 +198,7 @@ export default function EventList() {
               {picture && <ImagePresent name="announceImage" src={picture} />}
             </motion.div>
           </motion.div>
-          <Button
+          <DeleteButton
             type="button"
             onClick={() => {
               deleteAnnouncePresentList(id);
@@ -211,9 +207,10 @@ export default function EventList() {
             style={{ display: editMode ? 'block' : 'none' }}
           >
             <FontAwesomeIcon icon={solid('trash')} style={icon} />
-          </Button>
+          </DeleteButton>
         </div>
       ))}
+      {editMode && <AddAnnounceButton />}
     </div>
   );
 }

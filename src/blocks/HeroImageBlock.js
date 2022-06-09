@@ -78,11 +78,9 @@ const HeroImageBlock = ({ name }) => {
   const [temporaryHeroImageUrl, setTemporaryHeroImageUrl] = useState();
   const [heroImageError, setHeroImageError] = useState(null);
   const fileInput = useRef();
-  console.log('hero refresh');
 
   // 載入時要觸發的效果
   useEffect(() => {
-    console.log('hero');
     if (!published) {
       console.log('還沒上傳過不用讀取');
       return;
@@ -95,10 +93,8 @@ const HeroImageBlock = ({ name }) => {
       console.log('已經有照片了');
       return;
     }
-    console.log('want to get url');
     getStorageImages(imagePathList.heroImage)
       .then((storedUrl) => {
-        console.log('get from firestorage');
         setTemporaryHeroImageUrl(storedUrl);
       })
       .catch((e) => {
@@ -118,7 +114,6 @@ const HeroImageBlock = ({ name }) => {
     }
     // compressedImage 為一Blob物件
     const compressedImage = await compressImage(imageFile, 1280);
-    console.log(compressedImage);
     // 要上傳到firestorage需要blob檔
     setImageList((prev) => [...prev, compressedImage]);
     setImagePathList((prev) => ({

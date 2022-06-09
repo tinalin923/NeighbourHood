@@ -3,8 +3,6 @@ import BeatLoader from 'react-spinners/BeatLoader';
 import ActivityBlock from '../blocks/ActivityBlock.js';
 import BulletinBlock from '../blocks/BulletinBlock.js';
 import ChiefIntroBlock from '../blocks/ChiefIntroBlock.js';
-import EditActivityBlock from '../blocks/EditActivityBlock.js';
-import EditBullitinBlock from '../blocks/EditBullitinBlock.js';
 import HeroImageBlock from '../blocks/HeroImageBlock.js';
 import VillageIntroBlock from '../blocks/VillageIntroBlock.js';
 import { useAuthState } from '../components/contexts/AuthContext.js';
@@ -68,25 +66,21 @@ const Editing = () => {
           ) : (
             <ChiefIntroBlock name="1" />
           )}
-          {published && editMode && <EditBullitinBlock />}
           {published ? (
             <ActivityBlock name="2" />
           ) : (
             <VillageIntroBlock name="2" />
           )}
-          {published && editMode && <EditActivityBlock />}
           {published ? (
             <VillageIntroBlock name="3" />
           ) : (
             <BulletinBlock name="3" />
           )}
-          {!published && editMode && <EditBullitinBlock />}
           {published ? (
             <ChiefIntroBlock name="4" />
           ) : (
             <ActivityBlock name="4" />
           )}
-          {!published && editMode && <EditActivityBlock />}
           {editMode && <PhoneAddIcon />}
           {editMode && <hr style={{ width: '90%', margin: ' 80px auto' }} />}
           {editMode && <UploadBtn />}

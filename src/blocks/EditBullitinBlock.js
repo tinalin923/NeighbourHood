@@ -6,7 +6,7 @@ import {
   Title,
 } from '../styles/styledComponents/blockComponents.js';
 
-export default function EditBullitinBlock1() {
+export default function EditBullitinBlock() {
   const { addAnnounceList, addAnnouncePresentList } = useEditState();
   const [announceError, setAnnounceError] = useState('');
   // 暫時圖片的blob檔

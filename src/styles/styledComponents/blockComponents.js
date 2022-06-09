@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Element } from 'react-scroll';
 import { secondaryGray } from './color.js';
 
 export const Block = styled.div`
@@ -17,6 +18,7 @@ export const EditBlock = styled(Block)`
     width: 80%;
   }
 `;
+
 export const Title = styled.div`
   width: 80%;
   margin: 8vh auto 0px;
@@ -83,7 +85,7 @@ export const TextError = styled.p`
   font-size: 0.9rem;
 `;
 
-export const ListTitle = styled.div`
+export const ListTitle = styled(Element)`
   font-size: 1.5rem;
   font-weight: bold;
 `;

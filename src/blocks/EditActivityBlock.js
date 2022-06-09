@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useEditState } from '../components/contexts/EditContext.js';
 import EditArea from '../components/Edit/EditArea.js';
@@ -6,14 +7,14 @@ import {
   Title,
 } from '../styles/styledComponents/blockComponents.js';
 
-export default function EditActivityBlock() {
+function EditActivityBlock({ setShow }) {
   const { addActivityList, addActivityPresentList } = useEditState();
   const [activityError, setActivityError] = useState('');
   // 暫時圖片的blob檔
   const [activityPicture, setActivityPicture] = useState('');
 
   return (
-    <EditBlock>
+    <EditBlock onClick={setShow}>
       <Title>新增活動事項</Title>
       <EditArea
         name="活動"
@@ -27,3 +28,8 @@ export default function EditActivityBlock() {
     </EditBlock>
   );
 }
+EditActivityBlock.propTypes = {
+  setShow: PropTypes.string.isRequired,
+  // height: PropTypes.string.isRequired,
+};
+export default EditActivityBlock;

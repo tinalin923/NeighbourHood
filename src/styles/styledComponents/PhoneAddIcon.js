@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import addIcon from '../../assets/images/post-add.png';
+import EditActivityModal from '../../components/Edit/EditActivityModal.js';
+import EditAnnounceModal from '../../components/Edit/EditAnnounceModal.js';
 import { primaryGray, primaryYellow } from './color.js';
 
 const Choose = styled.ul`
   position: fixed;
-  bottom: 95px;
-  right: 55px;
+  bottom: 105px;
+  right: 30px;
   width: 120px;
   height: auto;
   border-radius: 4px;
@@ -26,6 +28,9 @@ const Choose = styled.ul`
     :hover {
       font-size: 1.3rem;
     }
+  }
+  @media (min-width: 600px) {
+    display: none;
   }
 `;
 
@@ -50,6 +55,9 @@ const Icon = styled.div`
 
 function PhoneAddIcon() {
   const [blockDisplay, setBlockDisplay] = useState(false);
+  const [editAnShow, setEditAnShow] = useState(false);
+  const [editAcShow, setEditAcShow] = useState(false);
+
   const handleClick = () => {
     setBlockDisplay((prev) => !prev);
   };
@@ -58,7 +66,7 @@ function PhoneAddIcon() {
     <>
       {blockDisplay && (
         <Choose>
-          <li>
+          <li onClick={() => setEditAnShow(true)} aria-hidden>
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +85,7 @@ function PhoneAddIcon() {
             </div>
             最新消息
           </li>
-          <li>
+          <li onClick={() => setEditAcShow(true)} aria-hidden>
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -101,6 +109,21 @@ function PhoneAddIcon() {
       <Icon onClick={handleClick}>
         <img alt="" src={addIcon} />
       </Icon>
+      {editAnShow && (
+        <EditAnnounceModal
+          setShow={() => {
+            setEditAnShow(false);
+          }}
+        />
+      )}
+
+      {editAcShow && (
+        <EditActivityModal
+          setShow={() => {
+            setEditAcShow(false);
+          }}
+        />
+      )}
     </>
   );
 }

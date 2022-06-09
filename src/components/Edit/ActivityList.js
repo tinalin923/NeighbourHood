@@ -8,6 +8,7 @@ import { getStorageImages } from '../../firebase/useStorage.js';
 import { ListTitle } from '../../styles/styledComponents/blockComponents.js';
 import { useEditState } from '../contexts/EditContext.js';
 import ActiveCard from './ActiveCard.js';
+import AddActivityButton from './AddActivityButton.js';
 
 const Button = styled.button`
   width: 28px;
@@ -39,13 +40,9 @@ export default function ActivityList() {
     deleteActivityPresentList,
   } = useEditState();
   const [selectedId, setSelectedId] = useState(null);
-  console.log('activity1');
-  console.log(activityPresentList);
   useEffect(() => {
     // 防止還未上傳到storage的圖片被讀取
-    console.log('activity2');
 
-    console.log(imageList.length);
     if (imageList.length !== 0) {
       console.log('不要讀取未上傳的圖片');
       return;
@@ -75,11 +72,9 @@ export default function ActivityList() {
           });
         }
       }
-      console.log(array);
       console.log('1');
       setActivityPresentList(array);
     }
-    console.log(activityList);
     changeActivityListToPresent(activityList);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activityList]);
@@ -194,6 +189,7 @@ export default function ActivityList() {
             </motion.div>
           </li>
         ))}
+        {editMode && <AddActivityButton />}
       </ul>
       <AnimatePresence initial={false}>
         {selectedId && (
