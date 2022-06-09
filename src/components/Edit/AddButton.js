@@ -10,10 +10,10 @@ import {
 } from '../../styles/styledComponents/color.js';
 
 const Div = styled.div`
-  margin: 12px;
-  // width: ${(prop) => prop.width};
-  // height: ${(prop) => prop.height};
-
+  margin-top: 12px;
+  width: 100%;
+  height: 100%;
+  min-height: 10vh;
   border: 4px solid ${primaryGray};
   border-radius: 8px;
   display: flex;
@@ -30,6 +30,13 @@ const Button = styled.button`
 
   svg path {
     fill: ${primaryYellow};
+  }
+  &: hover {
+    background: ${secondaryYellow};
+    color: ${primaryGray};
+    svg path {
+      fill: ${primaryGray};
+    }
   }
 `;
 

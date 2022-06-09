@@ -17,10 +17,9 @@ const Landing = () => {
         <div
           style={{
             width: '90%',
-            margin: '90px auto',
+            margin: '150px auto 90px',
             textAlign: 'center',
-            fontWeight: 'bold',
-            letterSpacing: '-0.08rem',
+            letterSpacing: '-0.1rem',
           }}
         >
           <div className="pack">

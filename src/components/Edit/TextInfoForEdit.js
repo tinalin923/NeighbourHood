@@ -2,17 +2,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useEditState } from '../contexts/EditContext.js';
+import { backgroundGray } from '../../styles/styledComponents/color.js';
 
 const Text = styled.textarea`
   margin: 2px 0;
   padding: 8px;
   overflow: auto;
   line-height: 1.5rem;
-
-  @media (max-width: 600px) {
-    margin-top: 4px;
-    width: 70vw;
-  } ;
+  border: none;
+  border-bottom: 2px solid ${backgroundGray};
+  background: transparent;
+  color: ${backgroundGray};
+  // @media (max-width: 600px) {
+  //   width: 70vw;
+  // } ;
 `;
 // 此RWD方式只根據第一次載入時的螢幕大小
 export default function TextInfoForEdit({
@@ -26,7 +29,6 @@ export default function TextInfoForEdit({
   const commonStyle = {
     height: height || '60vh',
     width: width || '90%',
-    border: editMode ? '2px solid gray' : 'none',
   };
   // let responsiveStyle;
   // if (window.innerWidth > 600) {

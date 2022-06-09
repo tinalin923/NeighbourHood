@@ -5,20 +5,20 @@ import { Link as RouteLink, useNavigate } from 'react-router-dom';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { useAuthState } from '../components/contexts/AuthContext.js';
 import LandingHeader from '../components/Landing/LandingHeader.js';
+import {
+  Block,
+  Err,
+  Form,
+  GlobalStyle,
+  icon,
+  Input,
+  Option,
+  P,
+  Select,
+} from '../styles/styledComponents/authComponent.js';
 import { AuthButton } from '../styles/styledComponents/button.js';
 import { primaryGray } from '../styles/styledComponents/color.js';
 import cityOption from '../utils/city.js';
-import {
-  GlobalStyle,
-  Form,
-  Block,
-  Input,
-  icon,
-  Err,
-  P,
-  Select,
-  Option,
-} from '../styles/styledComponents/authComponent.js';
 
 const Signup = () => {
   const [signupLoading, setSignupLoading] = useState(false);
@@ -71,6 +71,16 @@ const Signup = () => {
       <GlobalStyle />
       <LandingHeader />
       <Form>
+        <div
+          style={{
+            margin: '1rem',
+            fontSize: '1.5rem',
+            borderBottom: '2px solid',
+          }}
+        >
+          註冊會員
+        </div>
+
         <Block>
           <FontAwesomeIcon icon={solid('city')} style={icon} />
           <Select

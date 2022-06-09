@@ -21,6 +21,9 @@ const icon = {
 };
 
 const DeleteButton = styled.button`
+  position: absolute;
+  top: 1rem;
+  right: 0;
   width: 28px;
   height: 28px;
   background: none;
@@ -43,9 +46,10 @@ export default function EventList() {
   const [activeAnnounceItem, setActiveAnnounceItem] = useState(0);
 
   const wholeButtonStyle = {
-    flex: 'none',
-    width: editMode ? '92%' : '99%',
+    flex: '1 1 auto',
+    position: 'relative',
     margin: '16px 0px',
+    width: '100%',
     outline: 'none',
     border: 'none',
     borderRadius: '4px',
@@ -162,6 +166,7 @@ export default function EventList() {
         <div
           key={id}
           style={{
+            position: 'relative',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'flex-end',

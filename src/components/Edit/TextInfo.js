@@ -1,7 +1,8 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import { useEditState } from '../contexts/EditContext.js';
+import { thirdGray } from '../../styles/styledComponents/color.js';
 
 const Text = styled.textarea`
   margin: 4px 0;
@@ -10,37 +11,18 @@ const Text = styled.textarea`
   line-height: 1.5rem;
   font-size: 1.2rem;
   max-width: 500px;
+  border-radius: 4px;
   @media (max-width: 600px) {
     width: 70vw;
   } ;
 `;
-// 此RWD方式只根據第一次載入時的螢幕大小
-export default function TextInfo({
-  name,
-  placeholder,
-  width,
-  height,
-  value,
-  setValue,
-}) {
+function TextInfo({ name, placeholder, width, height, value, setValue }) {
   const { editMode } = useEditState();
-  // const []
   const commonStyle = {
     height: height || '60vh',
     width: width || '60vw',
-    border: editMode ? '2px solid gray' : 'none',
+    border: editMode ? `1px solid ${thirdGray}` : 'none',
   };
-  // let responsiveStyle;
-  // if (window.innerWidth > 600) {
-  //   responsiveStyle = {
-  //     width: width || '35%',
-  //   };
-  // } else {
-  //   responsiveStyle = {
-  //     width: width || '70%',
-  //   };
-  // }
-  // const style = { ...commonStyle, ...responsiveStyle };
   return (
     <Text
       name={name}
@@ -54,3 +36,19 @@ export default function TextInfo({
     />
   );
 }
+
+TextInfo.propTypes = {
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  value: PropTypes.object.isRequired,
+  setValue: PropTypes.func.isRequired,
+  width: PropTypes.string,
+  height: PropTypes.string,
+};
+
+TextInfo.defaultProps = {
+  width: '60vw',
+  height: '60vh',
+};
+
+export default TextInfo;

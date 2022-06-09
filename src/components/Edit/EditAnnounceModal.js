@@ -38,7 +38,6 @@ function EditActivityModal({ setShow }) {
           left: '50%',
           transform: 'translate(-50%,-50%)',
           width: '60vw',
-          height: '60vh',
         }}
       >
         <Dialog.Panel
@@ -103,7 +102,7 @@ function EditActivityModal({ setShow }) {
 }
 
 EditActivityModal.propTypes = {
-  setShow: PropTypes.string.isRequired,
+  setShow: PropTypes.func.isRequired,
 };
 
 export default EditActivityModal;

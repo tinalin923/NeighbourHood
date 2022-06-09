@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useEditState } from '../components/contexts/EditContext.js';
@@ -42,4 +41,5 @@ function ChiefIntroBlock({ name }) {
 ChiefIntroBlock.propTypes = {
   name: PropTypes.string.isRequired,
 };
+
 export default ChiefIntroBlock;

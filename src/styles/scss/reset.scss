@@ -17,10 +17,10 @@ div {
 }
 
 input, textarea {
-    border-radius: 4px;
     white-space: pre-line;
     resize : none;
     overflow: auto;
+    outline: none;
     &::-webkit-scrollbar {
         width: 7px;
     }

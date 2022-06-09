@@ -1,21 +1,21 @@
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link as RouteLink, useNavigate } from 'react-router-dom';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { useAuthState } from '../components/contexts/AuthContext.js';
 import LandingHeader from '../components/Landing/LandingHeader.js';
-import { AuthButton } from '../styles/styledComponents/button.js';
-import { primaryGray } from '../styles/styledComponents/color.js';
 import {
-  GlobalStyle,
-  Form,
   Block,
-  Input,
-  icon,
   Err,
+  Form,
+  GlobalStyle,
+  icon,
+  Input,
   P,
 } from '../styles/styledComponents/authComponent.js';
+import { AuthButton } from '../styles/styledComponents/button.js';
+import { primaryGray } from '../styles/styledComponents/color.js';
 
 const Login = () => {
   const [loginLoading, setLoginLoading] = useState(false);
@@ -57,7 +57,18 @@ const Login = () => {
     <>
       <GlobalStyle />
       <LandingHeader />
+
       <Form>
+        <div
+          style={{
+            margin: '1rem',
+            fontSize: '1.5rem',
+            borderBottom: '2px solid',
+          }}
+        >
+          會員登入
+        </div>
+
         <Block>
           <FontAwesomeIcon icon={solid('envelope')} style={icon} />
           <Input

@@ -44,6 +44,14 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'max-classes-per-file': ['error', 3],
     'no-console': 'off',
+    'react/forbid-prop-types': [
+      1,
+      {
+        forbid: ['any'],
+        checkContextTypes: false,
+        checkChildContextTypes: false,
+      },
+    ],
     'react/jsx-no-bind': [
       1,
       {

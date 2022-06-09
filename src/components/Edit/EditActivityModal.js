@@ -38,7 +38,6 @@ function EditActivityModal({ setShow }) {
           left: '50%',
           transform: 'translate(-50%,-50%)',
           width: '60vw',
-          height: '60vh',
         }}
       >
         <Dialog.Panel
@@ -84,7 +83,7 @@ function EditActivityModal({ setShow }) {
             <line x1="9" y1="9" x2="15" y2="15" />
             <line x1="15" y1="9" x2="9" y2="15" />
           </svg>
-          <Dialog.Description style={{ marginTop: '1rem' }}>
+          <Dialog.Description style={{ display: 'block', marginTop: '1rem' }}>
             <EditArea
               name="活動"
               addList={addActivityList}
@@ -103,7 +102,7 @@ function EditActivityModal({ setShow }) {
 }
 
 EditActivityModal.propTypes = {
-  setShow: PropTypes.string.isRequired,
+  setShow: PropTypes.func.isRequired,
 };
 
 export default EditActivityModal;

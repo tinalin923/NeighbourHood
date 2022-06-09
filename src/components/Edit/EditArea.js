@@ -25,19 +25,12 @@ const Edit = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  @media (max-width: 600px) {
-    height: 70vh;
-  }
 `;
 const Text = styled.div`
   display: block;
-  width: 35vw;
+  width: 80%;
   height: 100%;
   text-align: center;
-  @media (max-width: 600px) {
-    width: 70vw;
-    height: auto;
-  }
 `;
 
 const Image = styled.div`
@@ -46,19 +39,14 @@ const Image = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 100%;
-  max-width: 20vw;
+  height: 20%;
+  width: 70%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  @media (max-width: 600px) {
-    max-width: 60vw;
-  }
 `;
 const InputBtn = styled.label`
   margin: 0.5rem auto;
-  width: 36%;
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -231,13 +219,13 @@ function EditArea({
             placeholder={`${name}標題`}
             value={state.title}
             setValue={setTitle}
-            height="10vh"
+            height="8vh"
           />
           <TextInfoForEdit
             placeholder={`詳細${name}說明`}
             value={state.details}
             setValue={setDetails}
-            height="23vh"
+            height="16vh"
           />
         </Text>
 
@@ -284,7 +272,7 @@ EditArea.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   picture: PropTypes.any,
   setPicture: PropTypes.func.isRequired,
-  setShow: PropTypes.string.isRequired,
+  setShow: PropTypes.func.isRequired,
 };
 
 EditArea.defaultProps = {
