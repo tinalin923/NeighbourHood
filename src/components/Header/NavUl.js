@@ -36,7 +36,7 @@ const icon = {
   margin: '4px',
 };
 
-function NavUl({ items, flex }) {
+function NavUl({ items, flex, right }) {
   const { currentUid, currentVillageName } = useAuthState();
   // for hambur icon
   const [clicked, setClicked] = useState(false);
@@ -129,6 +129,7 @@ function NavUl({ items, flex }) {
           </AuthedUl>
           {navOpen && (
             <NavLi
+              right={right}
               items={items}
               hambur
               authed
@@ -145,6 +146,7 @@ function NavUl({ items, flex }) {
 NavUl.propTypes = {
   items: PropTypes.array.isRequired,
   flex: PropTypes.string,
+  right: PropTypes.string.isRequired,
 };
 
 NavUl.defaultProps = {

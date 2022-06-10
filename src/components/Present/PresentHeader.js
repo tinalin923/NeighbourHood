@@ -112,7 +112,7 @@ const PresentHeader = ({ breadcrumb }) => {
         <Title as={RouteLink} to="/">
           NEIGHBoURHooD
         </Title>
-        <NavUl items={items} flex="0 1 30vw" />
+        <NavUl items={items} flex="0 1 30vw" right="2vw" />
       </Top>
     )
   );

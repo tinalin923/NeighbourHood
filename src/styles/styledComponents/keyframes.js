@@ -2,7 +2,7 @@ import { keyframes } from 'styled-components';
 
 export const slideDown = keyframes`
   from {
-    transform: translateY(-100%);
+    transform: translateY(-5%);
   }
   to {
     transform: translateY(0);

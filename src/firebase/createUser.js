@@ -26,15 +26,10 @@ export const checkCityVillage = (city, village) => {
     if (villageSnapshot.empty === false) {
       const citySnapshot = await getDocs(cityQ);
       if (villageSnapshot.docs[0].id === citySnapshot.docs[0]?.id) {
-        console.log(1);
         return 'repeated';
       }
-      console.log(2);
-
       return 'not repeated';
     }
-    console.log(3);
-
     return 'not repeated';
   }
 
@@ -83,7 +78,7 @@ const createInitialUserDatas = async (uid, email, city, village) => {
       {
         id: '0',
         title: '活動範例',
-        picture: '',
+        picture: 'https://i.imgur.com/IpNWGBp.jpeg',
         details: '歡迎共襄盛舉',
       },
     ],

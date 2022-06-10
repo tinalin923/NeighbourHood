@@ -9,7 +9,7 @@ import {
   primaryGray,
   thirdGray,
 } from '../../styles/styledComponents/color.js';
-import { slideIn } from '../../styles/styledComponents/keyframes.js';
+import { slideIn, slideDown } from '../../styles/styledComponents/keyframes.js';
 
 const LiContainer = styled.div`
   position: absolute;
@@ -28,15 +28,19 @@ const LiContainer = styled.div`
 const AuthLiContainer = styled.div`
   position: absolute;
   top: 80px;
-  right: 0px;
+  right: ${(prop) => prop.right};
   height: auto;
   background: ${backgroundGray};
   box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.3);
   z-index: 11;
-  animation: ${slideIn} 0.5s;
+  animation: ${slideDown} 0.5s;
   li {
     width: 120px;
     height: 48px;
+  }
+  @media (max-width: 600px) {
+    right: 0px;
+    animation: ${slideIn} 0.5s;
   }
 `;
 
@@ -55,7 +59,7 @@ const Li = styled.li`
   }
 `;
 
-function NavLi({ items, focused, setFocused, hambur, authed }) {
+function NavLi({ items, focused, setFocused, hambur, authed, right }) {
   const Lis = items.map((item) => (
     <Li
       key={item.title}
@@ -90,7 +94,7 @@ function NavLi({ items, focused, setFocused, hambur, authed }) {
   let NavLis;
   if (authed) {
     NavLis = (
-      <AuthLiContainer onMouseLeave={() => setFocused(null)}>
+      <AuthLiContainer right={right} onMouseLeave={() => setFocused(null)}>
         {Lis}
       </AuthLiContainer>
     );
@@ -109,6 +113,7 @@ NavLi.propTypes = {
   hambur: PropTypes.bool.isRequired,
   focused: PropTypes.string,
   setFocused: PropTypes.func.isRequired,
+  right: PropTypes.string.isRequired,
 };
 
 NavLi.defaultProps = {

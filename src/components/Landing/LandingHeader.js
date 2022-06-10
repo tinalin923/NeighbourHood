@@ -13,7 +13,7 @@ const Top = styled.div`
   top: 0;
   width: 100%;
   background: white;
-  z-index: 11;
+  z-index: 12;
   animation: ${slideDown} 0.2s;
 
   padding: 0 2px;
@@ -96,7 +96,7 @@ const LandingHeader = () => {
             <Favicon />
             NEIGHBoURHooD
           </Title>
-          <NavUl items={items} flex="0 1 25vw" />
+          <NavUl items={items} flex="0 1 25vw" right="13vw" />
         </Top>
       )}
       <Outlet />

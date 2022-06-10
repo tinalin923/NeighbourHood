@@ -25,7 +25,7 @@ function ChiefIntroBlock({ name }) {
         <TextArea>
           <InputInfo
             name="chiefName"
-            placeholder="里長姓名"
+            placeholder="請輸入里長姓名"
             value={introductionTextData}
             setValue={setIntroductionTextData}
           />
