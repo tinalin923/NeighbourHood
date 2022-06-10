@@ -2,9 +2,7 @@ import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { db, totalRef } from './firebaseConfig.js';
 
 export const getFirestoreTotalCount = async () => {
-  console.log(totalRef);
   const docSnap = await getDoc(totalRef);
-  console.log(docSnap);
   return docSnap.data();
 };
 

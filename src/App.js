@@ -7,7 +7,6 @@ import EachPresent from './pages/EachPresent.js';
 import Editing from './pages/Editing.js';
 import Landing from './pages/Landing.js';
 import Login from './pages/Login.js';
-// import Preview from './pages/Preview.js';
 import Signup from './pages/Signup.js';
 import Total from './pages/Total.js';
 import './styles/scss/main.scss';
@@ -26,12 +25,10 @@ const App = () => (
               </PrivateRoute>
             }
           />
-          {/* <Route path="preview" element={<Preview />} /> */}
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="total" element={<Total />} />
           <Route path="total/:villageId" element={<EachPresent />} />
-
           <Route path="*" element={<p>There is nothing here: 404!</p>} />
         </Routes>
       </AuthContextProvider>

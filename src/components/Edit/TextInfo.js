@@ -35,13 +35,14 @@ function TextInfo({ name, placeholder, width, height, value, setValue }) {
 TextInfo.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  value: PropTypes.object.isRequired,
+  value: PropTypes.object,
   setValue: PropTypes.func.isRequired,
   width: PropTypes.string,
   height: PropTypes.string,
 };
 
 TextInfo.defaultProps = {
+  value: null,
   width: '100%',
   height: '100%',
 };

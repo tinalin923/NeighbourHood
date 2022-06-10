@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -51,10 +52,12 @@ export const AuthContextProvider = ({ children }) => {
   const logout = () => signOut(auth);
 
   useEffect(() => {
+    console.log('auth');
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid } = user;
         setCurrentUid(uid);
+        console.log(uid);
       } else {
         setCurrentUid(null);
         console.log('you logged out');
@@ -79,7 +82,6 @@ export const AuthContextProvider = ({ children }) => {
     getVillageName();
   }, [currentUid]);
 
-  // eslint-disable-next-line react/jsx-no-constructed-context-values
   const value = {
     currentUid,
     currentVillageId,

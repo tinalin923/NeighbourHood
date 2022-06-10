@@ -57,7 +57,7 @@ const createInitialUserDatas = async (uid, email, city, village) => {
     published: false,
     villageName: village,
     cityName: city,
-    introductionTextData: '',
+    introductionTextData: null,
     lastEditTime: serverTimestamp(),
     scrollList: [
       { id: '0', title: village },
@@ -78,7 +78,7 @@ const createInitialUserDatas = async (uid, email, city, village) => {
       {
         id: '0',
         title: '活動範例',
-        picture: 'https://i.imgur.com/IpNWGBp.jpeg',
+        picture: '0/defaultActivityPicture.png',
         details: '歡迎共襄盛舉',
       },
     ],

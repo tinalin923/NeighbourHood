@@ -26,17 +26,16 @@ const Editing = () => {
   const { currentUid, setCurrentVillageId } = useAuthState();
   const [editPageLoading, setEditPageLoading] = useState(true);
 
-  async function getVillageId(uid) {
-    const data = await getFirestoreUserData(uid);
-    console.log(data);
-    const { villageId } = data;
-    setCurrentVillageId(villageId);
-    const villageDatas = await getFirestoreVillageData(villageId);
-    await getDatasToContext(villageDatas);
-    setEditPageLoading(false);
-  }
-
   useEffect(() => {
+    async function getVillageId(uid) {
+      const data = await getFirestoreUserData(uid);
+      console.log(data);
+      const { villageId } = data;
+      setCurrentVillageId(villageId);
+      const villageDatas = await getFirestoreVillageData(villageId);
+      await getDatasToContext(villageDatas);
+      setEditPageLoading(false);
+    }
     getVillageId(currentUid);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUid]);

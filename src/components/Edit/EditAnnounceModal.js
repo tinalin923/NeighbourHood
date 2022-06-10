@@ -83,7 +83,7 @@ function EditActivityModal({ setShow }) {
             <line x1="9" y1="9" x2="15" y2="15" />
             <line x1="15" y1="9" x2="9" y2="15" />
           </svg>
-          <Dialog.Description style={{ marginTop: '1rem' }}>
+          <div style={{ marginTop: '1rem' }}>
             <EditArea
               name="公告"
               addList={addAnnounceList}
@@ -94,7 +94,7 @@ function EditActivityModal({ setShow }) {
               setPicture={setAnnouncePicture}
               setShow={setShow}
             />
-          </Dialog.Description>
+          </div>
         </Dialog.Panel>
       </div>
     </Dialog>

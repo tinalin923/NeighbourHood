@@ -30,6 +30,5 @@ function EditActivityBlock({ setShow }) {
 }
 EditActivityBlock.propTypes = {
   setShow: PropTypes.string.isRequired,
-  // height: PropTypes.string.isRequired,
 };
 export default EditActivityBlock;

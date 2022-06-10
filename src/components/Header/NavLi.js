@@ -113,11 +113,12 @@ NavLi.propTypes = {
   hambur: PropTypes.bool.isRequired,
   focused: PropTypes.string,
   setFocused: PropTypes.func.isRequired,
-  right: PropTypes.string.isRequired,
+  right: PropTypes.string,
 };
 
 NavLi.defaultProps = {
   focused: null,
+  right: null,
 };
 
 export default NavLi;

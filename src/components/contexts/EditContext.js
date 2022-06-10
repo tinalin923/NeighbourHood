@@ -6,12 +6,13 @@ import React, {
   useReducer,
   useState,
 } from 'react';
+import PropTypes from 'prop-types';
+
 import editReducer, { initialEditState } from './editReducer.js';
 
 const EditContext = createContext(initialEditState);
 export const useEditState = () => useContext(EditContext);
 
-// eslint-disable-next-line react/prop-types
 export const EditContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(editReducer, initialEditState);
   // for controlled input component(not in reducer)
@@ -39,16 +40,6 @@ export const EditContextProvider = ({ children }) => {
     });
   };
 
-  const addScrollList = (id, title) => {
-    const newScrollList = state.scrollList.concat({ id, title });
-    console.log(newScrollList);
-    dispatch({
-      type: 'ADD_SCROLL_LIST',
-      payload: {
-        scrollList: newScrollList,
-      },
-    });
-  };
   const setAnnounceList = (array) => {
     if (!array) return;
     let newAnnounceList = [];
@@ -116,7 +107,6 @@ export const EditContextProvider = ({ children }) => {
       details,
       picture,
     });
-    console.log(newAnnouncePresentList);
     dispatch({
       type: 'ADD_ANNOUNCE_PRESENT_LIST',
       payload: {
@@ -157,7 +147,6 @@ export const EditContextProvider = ({ children }) => {
       details,
       picture,
     });
-    console.log(newActivityList);
     dispatch({
       type: 'ADD_ACTIVITY_LIST',
       payload: {
@@ -204,7 +193,6 @@ export const EditContextProvider = ({ children }) => {
       details,
       picture,
     });
-    console.log(newActivityPresentList);
     dispatch({
       type: 'ADD_ACTIVITY_PRESENT_LIST',
       payload: {
@@ -260,7 +248,6 @@ export const EditContextProvider = ({ children }) => {
       setImagePathList,
       setImageList,
       setScrollList,
-      addScrollList,
       setAnnounceList,
       addAnnounceList,
       deleteAnnounceList,
@@ -293,4 +280,8 @@ export const EditContextProvider = ({ children }) => {
   );
 
   return <EditContext.Provider value={value}>{children}</EditContext.Provider>;
+};
+
+EditContextProvider.propTypes = {
+  children: PropTypes.element.isRequired,
 };

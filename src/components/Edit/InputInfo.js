@@ -35,11 +35,12 @@ const InputInfo = ({ name, placeholder, value, setValue, width }) => {
 InputInfo.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  value: PropTypes.object.isRequired,
+  value: PropTypes.object,
   setValue: PropTypes.func.isRequired,
   width: PropTypes.string,
 };
 InputInfo.defaultProps = {
+  value: null,
   width: '100%',
 };
 

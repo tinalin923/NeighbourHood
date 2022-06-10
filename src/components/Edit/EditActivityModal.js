@@ -83,7 +83,7 @@ function EditActivityModal({ setShow }) {
             <line x1="9" y1="9" x2="15" y2="15" />
             <line x1="15" y1="9" x2="9" y2="15" />
           </svg>
-          <Dialog.Description style={{ display: 'block', marginTop: '1rem' }}>
+          <div style={{ display: 'block', marginTop: '1rem' }}>
             <EditArea
               name="活動"
               addList={addActivityList}
@@ -94,7 +94,7 @@ function EditActivityModal({ setShow }) {
               setPicture={setActivityPicture}
               setShow={setShow}
             />
-          </Dialog.Description>
+          </div>
         </Dialog.Panel>
       </div>
     </Dialog>
