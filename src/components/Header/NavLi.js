@@ -1,4 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';

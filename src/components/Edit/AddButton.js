@@ -10,7 +10,7 @@ import {
 } from '../../styles/styledComponents/color.js';
 
 const Div = styled.div`
-  margin-top: 12px;
+  margin: ${(prop) => prop.margin};
   width: 100%;
   height: 100%;
   min-height: 10vh;
@@ -44,12 +44,12 @@ const icon = {
   margin: '8px',
 };
 
-const AddButton = ({ name, setShow }) => {
+const AddButton = ({ name, setShow, margin }) => {
   const handleClick = () => {
     setShow(true);
   };
   return (
-    <Div>
+    <Div margin={margin}>
       <Button type="button" onClick={() => handleClick()}>
         <FontAwesomeIcon icon={solid('square-plus')} style={icon} />
         新增{name}
@@ -61,6 +61,11 @@ const AddButton = ({ name, setShow }) => {
 AddButton.propTypes = {
   name: PropTypes.string.isRequired,
   setShow: PropTypes.func.isRequired,
+  margin: PropTypes.string,
   // height: PropTypes.string.isRequire,
 };
+AddButton.defaultProps = {
+  margin: '12px 0',
+};
+
 export default AddButton;

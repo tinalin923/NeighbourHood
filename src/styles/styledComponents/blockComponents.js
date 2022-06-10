@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Element } from 'react-scroll';
-import { secondaryGray } from './color.js';
+import { primaryGray, secondaryGray } from './color.js';
 
 export const Block = styled.div`
   display: block;
@@ -34,6 +34,7 @@ export const Title = styled.div`
 `;
 export const Main = styled.div`
   height: auto;
+  min-height: 20vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -45,13 +46,27 @@ export const Main = styled.div`
   }
 `;
 
+export const TextArea = styled.div`
+  height: 45vh;
+  width: 50%;
+  border: 3px solid transparent;
+  border-image: linear-gradient(to right, ${primaryGray}, rgba(0, 0, 0, 0)) 1 0%;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    margin: 1rem 0;
+    border-image: linear-gradient(to bottom, ${primaryGray}, rgba(0, 0, 0, 0)) 1
+      100%;
+  }
+`;
+
 export const ImgArea = styled.div`
-  width: 35vw;
-  aspect-ratio: 560/500;
+  width: 50%;
+  height: 45vh;
   display: block;
   text-align: center;
   @media (max-width: 600px) {
-    width: 80vw;
+    width: 100%;
   } ;
 `;
 

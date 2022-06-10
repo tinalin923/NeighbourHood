@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import EditActivityBlock from '../../blocks/EditActivityBlock.js';
 import AddButton from './AddButton.js';
 import EditActivityModal from './EditActivityModal.js';
 
@@ -8,6 +7,7 @@ function AddActivityButton() {
   return (
     <>
       <AddButton
+        margin="0px"
         name="活動"
         setShow={() => {
           setEditShow(true);

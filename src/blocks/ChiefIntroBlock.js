@@ -1,11 +1,12 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { useEditState } from '../components/contexts/EditContext.js';
+import InputInfo from '../components/Edit/InputInfo.js';
 import SingleImageInput from '../components/Edit/SingleImageInput.js';
 import TextInfo from '../components/Edit/TextInfo.js';
-import InputInfo from '../components/Edit/InputInfo.js';
 import {
   Block,
+  TextArea,
   ImgArea,
   Main,
   Title,
@@ -20,19 +21,22 @@ function ChiefIntroBlock({ name }) {
       <Main>
         <ImgArea>
           <SingleImageInput name="chiefAvator" />
+        </ImgArea>
+        <TextArea>
           <InputInfo
             name="chiefName"
             placeholder="里長姓名"
             value={introductionTextData}
             setValue={setIntroductionTextData}
           />
-        </ImgArea>
-        <TextInfo
-          name="chiefInfo"
-          placeholder="請輸入介紹內容"
-          value={introductionTextData}
-          setValue={setIntroductionTextData}
-        />
+          <TextInfo
+            name="chiefInfo"
+            placeholder="請輸入介紹內容"
+            value={introductionTextData}
+            setValue={setIntroductionTextData}
+            height="35vh"
+          />
+        </TextArea>
       </Main>
     </Block>
   );

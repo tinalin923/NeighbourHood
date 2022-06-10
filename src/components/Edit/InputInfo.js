@@ -3,7 +3,7 @@ import React from 'react';
 import { useEditState } from '../contexts/EditContext.js';
 import { thirdGray } from '../../styles/styledComponents/color.js';
 
-const InputInfo = ({ name, placeholder, value, setValue, width, top }) => {
+const InputInfo = ({ name, placeholder, value, setValue, width }) => {
   const { editMode } = useEditState();
 
   return (
@@ -16,15 +16,14 @@ const InputInfo = ({ name, placeholder, value, setValue, width, top }) => {
         setValue((prev) => ({ ...prev, [name]: e.target.value }))
       }
       style={{
-        margin: '8px auto',
-        position: 'relative',
+        display: 'block',
+        margin: '0px auto',
         padding: '1rem',
         fontWeight: 'bold',
         fontSize: '1.5rem',
         textAlign: 'center',
         outline: 'none',
         width: `${width}`,
-        top: editMode ? `${top}` : '0vh',
         border: editMode ? `1px solid ${thirdGray}` : 'none',
         borderRadius: '4px',
       }}
@@ -39,11 +38,9 @@ InputInfo.propTypes = {
   value: PropTypes.object.isRequired,
   setValue: PropTypes.func.isRequired,
   width: PropTypes.string,
-  top: PropTypes.string,
 };
 InputInfo.defaultProps = {
-  width: '80%',
-  top: '0vh',
+  width: '100%',
 };
 
 export default InputInfo;

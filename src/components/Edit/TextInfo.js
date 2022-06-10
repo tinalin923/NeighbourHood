@@ -5,22 +5,17 @@ import { useEditState } from '../contexts/EditContext.js';
 import { thirdGray } from '../../styles/styledComponents/color.js';
 
 const Text = styled.textarea`
-  margin: 4px 0;
   padding: 20px;
   text-align: left;
   line-height: 1.5rem;
   font-size: 1.2rem;
-  max-width: 500px;
   border-radius: 4px;
-  @media (max-width: 600px) {
-    width: 70vw;
-  } ;
 `;
 function TextInfo({ name, placeholder, width, height, value, setValue }) {
   const { editMode } = useEditState();
   const commonStyle = {
-    height: height || '60vh',
-    width: width || '60vw',
+    height: `${height}`,
+    width: `${width}`,
     border: editMode ? `1px solid ${thirdGray}` : 'none',
   };
   return (
@@ -47,8 +42,8 @@ TextInfo.propTypes = {
 };
 
 TextInfo.defaultProps = {
-  width: '60vw',
-  height: '60vh',
+  width: '100%',
+  height: '100%',
 };
 
 export default TextInfo;

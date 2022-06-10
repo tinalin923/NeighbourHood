@@ -20,15 +20,13 @@ const Image = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 50vh;
-  width: 30vw;
-  aspect-ratio: 3/4;
-  background-size: contain;
-  background-position: center;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: revert;
   background-repeat: no-repeat;
   @media (max-width: 600px) {
     margin-top: 4px;
-    width: 60vw;
   }
   @media (max-width: 1000px) {
     background-size: cover;
