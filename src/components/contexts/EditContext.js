@@ -222,6 +222,7 @@ export const EditContextProvider = ({ children }) => {
     setIntroductionTextData(userDatasFromFirbase?.introductionTextData);
     setImagePathList(userDatasFromFirbase?.imagePathList);
     setVillage(userDatasFromFirbase?.villageName);
+    return false;
   };
 
   const value = useMemo(

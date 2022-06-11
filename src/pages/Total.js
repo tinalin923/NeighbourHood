@@ -1,6 +1,6 @@
-import React from 'react';
 import BeatLoader from 'react-spinners/BeatLoader';
 import styled from 'styled-components';
+import React from 'react';
 import EachVillageBlock from '../components/Total/EachVillageBlock.js';
 import TotalHeader from '../components/Total/TotalHeader.js';
 import useFetchPublishedPage from '../firebase/hooks/useFetchPublishedPage.js';
@@ -29,6 +29,7 @@ const TotalTitle = styled.h3`
 const Total = () => {
   const { publishedVillages, fetchError, fetchLoading } =
     useFetchPublishedPage();
+  console.log(publishedVillages);
   return (
     <>
       <TotalHeader />
@@ -48,15 +49,16 @@ const Total = () => {
       <Container>
         {fetchError && <p>存取資料錯誤:{fetchError}</p>}
 
-        {publishedVillages?.map(({ id, cityName, villageName, heroImage }) => (
-          <EachVillageBlock
-            key={id}
-            id={id}
-            cityName={cityName}
-            villageName={villageName}
-            heroImage={heroImage}
-          />
-        ))}
+        {!fetchLoading &&
+          publishedVillages?.map(({ id, cityName, villageName, heroImage }) => (
+            <EachVillageBlock
+              key={id}
+              id={id}
+              cityName={cityName}
+              villageName={villageName}
+              heroImage={heroImage}
+            />
+          ))}
       </Container>
       <div style={{ height: '300px' }} />
     </>

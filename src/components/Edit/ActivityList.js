@@ -39,18 +39,15 @@ export default function ActivityList() {
     deleteActivityList,
     deleteActivityPresentList,
   } = useEditState();
+
   const [selectedId, setSelectedId] = useState(null);
   useEffect(() => {
     // 防止還未上傳到storage的圖片被讀取
-
     if (imageList.length !== 0) {
       console.log('不要讀取未上傳的圖片');
       return;
     }
-    if (!activityList[0]?.id) {
-      console.log('bye');
-      return;
-    }
+
     async function changeActivityListToPresent(List) {
       let array = [];
       // eslint-disable-next-line no-restricted-syntax

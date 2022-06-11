@@ -113,10 +113,6 @@ export default function EventList() {
       console.log('不要讀取未上傳的圖片');
       return;
     }
-    if (!announceList[0]?.id) {
-      console.log('bye');
-      return;
-    }
     async function changeAnnounceListToPresent(List) {
       let array = [];
       // eslint-disable-next-line no-restricted-syntax
@@ -159,7 +155,7 @@ export default function EventList() {
         display: 'flex',
         flexDirection: 'column',
         width: '85%',
-        height: 'auto',
+        // height: 'auto',
       }}
     >
       {announcePresentList.map(({ id, title, details, picture }) => (

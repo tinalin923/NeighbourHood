@@ -39,6 +39,7 @@ export const checkCityVillage = (city, village) => {
 };
 
 const createInitialUserDatas = async (uid, email, city, village) => {
+  console.log(`createInitialUserDatas${uid}`);
   const { totalVillageCount } = await getFirestoreTotalCount();
   let newVillageId = totalVillageCount + 1;
   await updateFirestoreTotalCount(newVillageId);
@@ -78,7 +79,7 @@ const createInitialUserDatas = async (uid, email, city, village) => {
       {
         id: '0',
         title: '活動範例',
-        picture: '0/defaultActivityPicture.png',
+        picture: '0/defaultActivityPicture.jpg',
         details: '歡迎共襄盛舉',
       },
     ],

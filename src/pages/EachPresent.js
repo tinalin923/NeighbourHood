@@ -53,7 +53,7 @@ const EachPresent = () => {
     setEditMode(false);
     presentData(villageId);
     console.log(presentPageLoading);
-  }, []);
+  }, [villageId]);
 
   return (
     <>

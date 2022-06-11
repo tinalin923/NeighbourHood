@@ -8,6 +8,7 @@ import {
 import { doc, getDoc } from 'firebase/firestore';
 import PropTypes from 'prop-types';
 import React, { createContext, useContext, useEffect, useState } from 'react';
+
 import createInitialUserDatas, {
   checkCityVillage,
 } from '../../firebase/createUser.js';
@@ -43,6 +44,9 @@ export const AuthContextProvider = ({ children }) => {
       village
     );
     setCurrentVillageId(newVillageId);
+    setCurrentVillageName(village);
+    setLoad(false);
+
     return { uid, newVillageId };
   };
 
@@ -52,7 +56,6 @@ export const AuthContextProvider = ({ children }) => {
   const logout = () => signOut(auth);
 
   useEffect(() => {
-    console.log('auth');
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid } = user;

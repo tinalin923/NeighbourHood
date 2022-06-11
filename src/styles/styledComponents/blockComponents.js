@@ -51,10 +51,15 @@ export const TextArea = styled.div`
   width: 50%;
   border: 3px solid transparent;
   border-image: linear-gradient(to right, ${primaryGray}, rgba(0, 0, 0, 0)) 1 0%;
-
+  border-left: none;
+  border-right: none;
   @media (max-width: 600px) {
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: none;
+    border-bottom: none;
     width: 100%;
-    margin: 1rem 0;
+    margin: 0.1rem 0;
     border-image: linear-gradient(to bottom, ${primaryGray}, rgba(0, 0, 0, 0)) 1
       100%;
   }
