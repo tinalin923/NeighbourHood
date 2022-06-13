@@ -1,26 +1,54 @@
-import React, {
-  useState,
-  useEffect,
-  useMemo,
-  useContext,
-  createContext,
-} from 'react';
+/* eslint-disable react/jsx-no-constructed-context-values */
 import {
-  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  signOut,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
-import { auth } from '../../firebase/firebaseConfig.js';
+import { doc, getDoc } from 'firebase/firestore';
+import PropTypes from 'prop-types';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+
+import createInitialUserDatas, {
+  checkCityVillage,
+} from '../../firebase/createUser.js';
+import { auth, db } from '../../firebase/firebaseConfig.js';
 
 export const AuthContext = createContext();
 export const useAuthState = () => useContext(AuthContext);
 
-// eslint-disable-next-line react/prop-types
 export const AuthContextProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState();
-  const signup = (email, password) =>
-    createUserWithEmailAndPassword(auth, email, password);
+  const [currentUid, setCurrentUid] = useState();
+  const [currentVillageId, setCurrentVillageId] = useState();
+  const [currentVillageName, setCurrentVillageName] = useState();
+  const [load, setLoad] = useState(true);
+
+  const signup = async (email, password, city, village) => {
+    // check if repeated
+    const checkResult = await checkCityVillage(city, village);
+    if (checkResult === 'repeated') {
+      throw new Error(`此縣市的${village}已被註冊`);
+    }
+    // write into firebase-authentication if not repeated
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const { uid } = userCredential.user;
+    // write into firestore
+    const { newVillageId } = await createInitialUserDatas(
+      uid,
+      email,
+      city,
+      village
+    );
+    setCurrentVillageId(newVillageId);
+    setCurrentVillageName(village);
+    setLoad(false);
+
+    return { uid, newVillageId };
+  };
 
   const login = (email, password) =>
     signInWithEmailAndPassword(auth, email, password);
@@ -30,26 +58,48 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setCurrentUser(user);
         const { uid } = user;
-        console.log(uid);
+        setCurrentUid(uid);
       } else {
-        setCurrentUser();
-        console.log('you logged out');
+        setCurrentUid(null);
+        setLoad(false);
       }
     });
     return unsubscribe;
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // 為何會建議我要放setUserDatas；如果都不放[]，則會一直get firebase
 
-  const value = useMemo(
-    () => ({
-      currentUser,
-      signup,
-      login,
-      logout,
-    }),
-    [currentUser]
+  useEffect(() => {
+    if (!currentUid) {
+      return;
+    }
+    const userRef = doc(db, 'users', currentUid);
+    async function getVillageName() {
+      const docSnap = await getDoc(userRef);
+      const nowVillageName = docSnap.data().villageName;
+      setCurrentVillageName(nowVillageName);
+      setLoad(false);
+    }
+    getVillageName();
+  }, [currentUid]);
+
+  const value = {
+    currentUid,
+    currentVillageId,
+    currentVillageName,
+    setCurrentVillageId,
+    signup,
+    login,
+    logout,
+  };
+
+  return (
+    <AuthContext.Provider value={value}>
+      {!load && children}
+    </AuthContext.Provider>
   );
+};
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+AuthContextProvider.propTypes = {
+  children: PropTypes.element.isRequired,
 };

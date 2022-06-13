@@ -1,0 +1,81 @@
+@import './mixins.scss';
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-size: 16px;
+    text-size-adjust: 100%;
+    font-family: PingFang TC, math;
+    color: #363b48;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+div {
+    white-space: pre-line;
+}
+
+input, textarea {
+    white-space: pre-line;
+    resize : none;
+    overflow: auto;
+    outline: none;
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-button {
+    background: transparent;
+    border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-track-piece {
+    background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    &::-webkit-scrollbar-track {
+    box-shadow: transparent;
+    }
+    
+}
+
+button {
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+    cursor: pointer;
+}
+
+ul, li, ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    color: #8e8c7a ;
+    h1{
+        position:absolute;
+        margin: 20px;
+        padding:10px;
+    }
+}
+
+.cover{
+    @include d-flex(column, center, center);
+    @include w-h(100%, 100vh);
+}
+

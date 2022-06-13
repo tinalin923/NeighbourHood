@@ -1,30 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { useEditState } from '../contexts/EditContext.js';
 
-class Switch extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { on: false };
-  }
+const Switch = () => {
+  const { editMode, setEditMode } = useEditState();
+  const handleChange = () => {
+    setEditMode((prev) => !prev);
+  };
 
-  handleBtn() {
-    this.setState((currentState) => ({ on: !currentState.on }));
-  }
-
-  render() {
-    let styleName = 'switch';
-    const { on } = this.state;
-    if (on) {
-      styleName = 'switch_on';
-    }
-    return (
-      <div className={styleName}>
-        <button
-          className="switch_btn"
-          type="submit"
-          onClick={this.handleBtn.bind(this)}
-        />
+  return (
+    <>
+      <span
+        style={{
+          position: 'fixed',
+          zIndex: '10',
+          top: '95px',
+          right: '20px',
+          color: 'black',
+        }}
+      >
+        編輯 / 預覽
+      </span>
+      <div className={editMode ? 'switch' : 'switch_on'}>
+        <button className="switch_btn" type="button" onClick={handleChange} />
       </div>
-    );
-  }
-}
+    </>
+  );
+};
+
 export default Switch;

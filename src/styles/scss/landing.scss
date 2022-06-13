@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@700&display=swap');
+.landing {
+  animation-duration: 8s;
+  animation-delay: 0s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: none;
+  animation-play-state: running;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: 'Kanit', sans-serif;
+  font-size: 7rem;
+  @media(max-width: 600px){
+    font-size: 4rem;
+  }
+  
+}
+.pack {
+  position: relative;
+  line-height: 8rem;
+  @media(max-width: 600px){
+  line-height: 4.5rem;
+
+  }
+  
+}
+
+.editing {
+  animation-name: breathing-1;
+  background-image: linear-gradient(to right, #009efd 0%, #2af598 100%);
+}
+.editing_base {
+  color: black;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  animation-name: breathing-1_base;
+
+}
+
+.preview {
+  animation-name: breathing-2;
+  background-image: linear-gradient(to right, #56317a 0%, #3ab5b0 100%);
+}
+.preview_base {
+  color: black;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  animation-name: breathing-2_base;
+
+}
+
+.deploy {
+  animation-name: breathing-3;
+  background-image: linear-gradient(to right, #fc6262 0%, #ffd86f 100%);
+}
+.deploy_base {
+  color: black;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  animation-name: breathing-3_base;
+
+}
+
+
+@keyframes breathing-1 {
+  0% {
+    opacity: 1;
+  }
+  16% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 0;
+  }
+  83% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+
+}
+
+@keyframes breathing-2 {
+  0% {
+    opacity: 0;
+  }
+  16% {
+    opacity: 0;
+  }
+  33% {
+    opacity: 1;
+  }
+  50%{
+    opacity: 1;
+  }
+  67% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+
+}
+
+@keyframes breathing-3 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  67% {
+    opacity: 1;
+  }
+  83% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+
+}
+
+@keyframes breathing-1_base {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+
+}
+
+@keyframes breathing-2_base {
+  0% {
+    opacity: 1;
+  }
+  16% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 0;
+  }
+  50%{
+    opacity: 0;
+  }
+  67%{
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+
+}
+
+@keyframes breathing-3_base {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  
+  67% {
+    opacity: 0;
+  }
+  83%{
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+
+}

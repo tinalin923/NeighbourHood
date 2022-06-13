@@ -30,21 +30,34 @@ module.exports = {
     'react/function-component-definition': [
       1,
       {
-        namedComponents: 'arrow-function',
+        namedComponents: [
+          'function-declaration',
+          'function-expression',
+          'arrow-function',
+        ],
         unnamedComponents: 'arrow-function',
       },
     ],
-    'function-paren-newline': ['error', 'multiline'],
+    'function-paren-newline': ['error', 'multiline-arguments'],
     'react/jsx-one-expression-per-line': [0, { allow: 'single-child' }],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'max-classes-per-file': ['error', 3],
     'no-console': 'off',
+    'react/forbid-prop-types': [
+      1,
+      {
+        forbid: ['any'],
+        checkContextTypes: false,
+        checkChildContextTypes: false,
+      },
+    ],
     'react/jsx-no-bind': [
       1,
       {
         ignoreDOMComponents: true,
         allowFunctions: true,
+        allowArrowFunctions: true,
       },
     ],
   },

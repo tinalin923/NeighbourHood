@@ -1,11 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Navigate } from 'react-router-dom';
 import { useAuthState } from './contexts/AuthContext.js';
 
-// eslint-disable-next-line react/prop-types
 const PrivateRoute = ({ children }) => {
-  const { currentUser } = useAuthState();
-  return currentUser ? children : <Navigate to="/login" replace />;
+  const { currentUid } = useAuthState();
+  return currentUid ? children : <Navigate to="/login" replace />;
+};
+
+PrivateRoute.propTypes = {
+  children: PropTypes.element.isRequired,
 };
 
 export default PrivateRoute;

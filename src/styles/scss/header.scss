@@ -1,0 +1,58 @@
+.tab{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border: 4px solid transparent;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 2;
+}
+
+.icon {
+  stroke: none;
+  fill: #363945;
+
+  .frstbar {
+    transition: transform 0.5s;
+    transform-origin: 35px 28px;
+
+  }
+  
+  .scndbar{
+    transition: opacity 0.5s;
+  }
+  
+  .thrdbar{
+    transition: transform 0.5s;
+    transform-origin: 38px 76px;
+
+  }
+  
+}
+
+.icon-active {
+  .frstbar {
+    transition: transform 0.5s;
+    transform-origin: 35px 28px;
+    transform: rotate(45deg);
+  }
+  
+  .scndbar{
+    transition: opacity 0.5s;
+    opacity: 0;
+  }
+  
+  .thrdbar{
+    transition: transform 0.5s;
+    transform-origin: 38px 76px;
+    transform: rotate(-45deg);
+  }
+
+}
+
