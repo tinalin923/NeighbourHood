@@ -32,7 +32,6 @@ const EachPresent = () => {
 
   async function presentData(vId) {
     const villageData = await getFirestoreVillageData(vId);
-    console.log(villageData);
     setPublished(villageData?.published);
     setAnnounceList(villageData?.announceList);
     setActivityList(villageData?.activityList);
@@ -46,13 +45,11 @@ const EachPresent = () => {
     const time = villageData?.lastEditTime.toDate().toLocaleTimeString();
     setLastEditTime(`${date} - ${time}`);
   }
-  console.log(villageId);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     setEditMode(false);
     presentData(villageId);
-    console.log(presentPageLoading);
   }, [villageId]);
 
   return (

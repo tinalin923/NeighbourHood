@@ -11,12 +11,10 @@ import { useEditState } from '../contexts/EditContext.js';
 
 export default function UploadBtn() {
   const navigate = useNavigate();
-
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
   const { currentVillageId } = useAuthState();
   const {
-    // currentUserDatas,
     village,
     published,
     editMode,
@@ -48,10 +46,6 @@ export default function UploadBtn() {
   };
 
   const handleClick = () => {
-    console.log(imageList);
-    console.log(villageDatas);
-    console.log(introductionTextData);
-
     if (!introductionTextData) {
       setUploadError('請至少填寫里長介紹');
       return;
@@ -68,22 +62,16 @@ export default function UploadBtn() {
     if (imageList.length === 0) {
       if (published) {
         console.log(villageDatas);
-        uploadFirestoreVillageData(currentVillageId, villageDatas).then(
-          (result) => {
-            console.log(result);
-            setUploading(false);
-            console.log(5);
-            navigate(`/total/${currentVillageId}`);
-          }
-        );
+        uploadFirestoreVillageData(currentVillageId, villageDatas).then(() => {
+          setUploading(false);
+          navigate(`/total/${currentVillageId}`);
+        });
       } else {
         uploadFirestoreVillageData(currentVillageId, {
           ...villageDatas,
           ...update,
-        }).then((result) => {
-          console.log(result);
+        }).then(() => {
           setUploading(false);
-          console.log(6);
           navigate(villagePath);
         });
       }
@@ -95,10 +83,8 @@ export default function UploadBtn() {
           villageDatas
         );
         const promise2 = upLoadStorageImages(currentVillageId, imageList);
-        Promise.all([promise1, promise2]).then((result) => {
-          console.log(result);
+        Promise.all([promise1, promise2]).then(() => {
           setUploading(false);
-          console.log(3);
           navigate(`/total/${currentVillageId}`);
         });
       } else {
@@ -107,9 +93,7 @@ export default function UploadBtn() {
           ...update,
         });
         const promise2 = upLoadStorageImages(currentVillageId, imageList);
-        Promise.all([promise1, promise2]).then((result) => {
-          console.log(result);
-          console.log(4);
+        Promise.all([promise1, promise2]).then(() => {
           setUploading(false);
           navigate(villagePath);
         });

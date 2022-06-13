@@ -21,14 +21,17 @@ const Image = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
-  background-size: cover;
-  background-position: revert;
+  background-size: contain;
+  background-position: center;
   background-repeat: no-repeat;
-  @media (max-width: 600px) {
-    margin-top: 4px;
-  }
   @media (max-width: 1000px) {
     background-size: cover;
+    background-position: top;
+  }
+  @media (max-width: 600px) {
+    background-size: cover;
+    background-position: top;
+    margin-top: 4px;
   }
 `;
 

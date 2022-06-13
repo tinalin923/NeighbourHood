@@ -60,7 +60,7 @@ const Editing = () => {
       )}
       {!editPageLoading && (
         <div style={{ background: editMode ? `${backgroundGray}` : 'none' }}>
-          {editMode && <EditingHeader />}
+          <EditingHeader />
           <ScrollList />
           <Switch />
           <HeroImageBlock name="0" />
@@ -85,9 +85,9 @@ const Editing = () => {
             <ActivityBlock name="4" />
           )}
           {editMode && <PhoneAddIcon />}
-          {editMode && <hr style={{ width: '90%', margin: ' 80px auto' }} />}
+          {editMode && <hr style={{ width: '90%', margin: ' 110px auto' }} />}
           {editMode && <UploadBtn />}
-          {!editMode && <div style={{ height: '300px' }} />}
+          {!editMode && <div style={{ height: '350px' }} />}
         </div>
       )}
     </>
