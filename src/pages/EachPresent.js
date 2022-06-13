@@ -9,7 +9,7 @@ import HeroImageBlock from '../blocks/HeroImageBlock.js';
 import VillageIntroBlock from '../blocks/VillageIntroBlock.js';
 import { useEditState } from '../components/contexts/EditContext.js';
 import ScrollList from '../components/Edit/ScrollList.js';
-import Footer from '../components/Present/Footer.js';
+import PresentFooter from '../components/Present/PresentFooter.js';
 import { getFirestoreVillageData } from '../firebase/useFirestore.js';
 import { primaryYellow } from '../styles/styledComponents/color.js';
 import PresentHeader from '../components/Present/PresentHeader.js';
@@ -79,7 +79,7 @@ const EachPresent = () => {
           <VillageIntroBlock name="3" />
           <ChiefIntroBlock name="4" />
           <div style={{ height: '250px' }} />
-          <Footer />
+          <PresentFooter />
         </>
       )}
     </>

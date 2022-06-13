@@ -1,15 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
-import { thirdGray } from '../../styles/styledComponents/color.js';
+import {
+  secondaryGray,
+  thirdGray,
+} from '../../styles/styledComponents/color.js';
 import { useEditState } from '../contexts/EditContext.js';
 
 const FootBar = styled.footer`
   height: auto;
   padding: 8px 0;
   border-top: 2px solid ${thirdGray};
+  background: ${secondaryGray};
   font-size: 1rem;
 `;
-
+const EditTime = styled.div`
+  width: 60vw;
+  margin: 16px auto;
+  text-align: center;
+  font-size: 1.2rem;
+`;
 const Tab = styled.a`
   display: block;
   width: 60vw;
@@ -23,17 +32,15 @@ const Tab = styled.a`
   }
 `;
 
-function Footer() {
+function PresentFooter() {
   const { lastEditTime } = useEditState();
   console.log(lastEditTime.toString());
   return (
     <FootBar>
-      <div style={{ width: '60vw', margin: '16px auto', textAlign: 'center' }}>
-        最近更新時間：{lastEditTime}
-      </div>
+      <EditTime>最近更新時間：{lastEditTime}</EditTime>
       <Tab href="/">前往建立/編輯自己的鄰里頁面</Tab>
     </FootBar>
   );
 }
 
-export default Footer;
+export default PresentFooter;

@@ -84,25 +84,6 @@ export default function ActivityList() {
       setSelectedId(id);
     }
   };
-  // const eventVariants = {
-  //   hidden: {
-  //     height: '0px',
-  //     opacity: 0,
-  //     transition: {
-  //       type: 'tween',
-  //       duration: 0.1,
-  //     },
-  //   },
-  //   visible: {
-  //     height: 'auto',
-  //     opacity: 1,
-  //     transition: {
-  //       type: 'tween',
-  //       duration: 0.2,
-  //       delay: 0.2,
-  //     },
-  //   },
-  // };
   return (
     <>
       <ul

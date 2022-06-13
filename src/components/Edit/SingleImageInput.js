@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
@@ -97,7 +96,6 @@ const SingleImageInput = ({ name }) => {
       return;
     }
     if (!imagePathList?.[name]) {
-      console.log('bye');
       return;
     }
     if (state.temporary) {
@@ -114,8 +112,8 @@ const SingleImageInput = ({ name }) => {
       .catch((e) => {
         console.log(e);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentVillageId, published]);
-
   const handleChange = async () => {
     const imageFile = fileInput.current.files[0];
     const imageFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];

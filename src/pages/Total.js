@@ -5,6 +5,7 @@ import EachVillageBlock from '../components/Total/EachVillageBlock.js';
 import TotalHeader from '../components/Total/TotalHeader.js';
 import useFetchPublishedPage from '../firebase/hooks/useFetchPublishedPage.js';
 import { primaryYellow } from '../styles/styledComponents/color.js';
+import Footer from '../components/Footer/Footer.js';
 
 const Container = styled.div`
   margin: 0px auto;
@@ -61,6 +62,7 @@ const Total = () => {
           ))}
       </Container>
       <div style={{ height: '300px' }} />
+      <Footer />
     </>
   );
 };

@@ -3,6 +3,7 @@ import { Link as RouteLink } from 'react-router-dom';
 import { useAuthState } from '../components/contexts/AuthContext.js';
 import LandingHeader from '../components/Landing/LandingHeader.js';
 import Section from '../components/Landing/Section.js';
+import Footer from '../components/Footer/Footer.js';
 import '../styles/scss/landing.scss';
 import { StartButton } from '../styles/styledComponents/button.js';
 
@@ -81,6 +82,7 @@ const Landing = () => {
         />
       </div>
       <div style={{ height: '150px' }} />
+      <Footer />
     </>
   );
 };

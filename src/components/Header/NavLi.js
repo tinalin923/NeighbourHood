@@ -28,7 +28,7 @@ const LiContainer = styled.div`
 const AuthLiContainer = styled.div`
   position: absolute;
   top: 80px;
-  right: ${(prop) => prop.right};
+  right: 2vw;
   height: auto;
   background: ${backgroundGray};
   box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.3);
@@ -59,7 +59,16 @@ const Li = styled.li`
   }
 `;
 
-function NavLi({ items, focused, setFocused, hambur, authed, right }) {
+const HoverAnimation = styled(motion.div)`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: ${thirdGray};
+  border-radius: 16px;
+  z-index: 1;
+`;
+
+function NavLi({ items, focused, setFocused, hambur, authed }) {
   const Lis = items.map((item) => (
     <Li
       key={item.title}
@@ -71,7 +80,7 @@ function NavLi({ items, focused, setFocused, hambur, authed, right }) {
         {item.title}
       </NavLink>
       {focused === item.title ? (
-        <motion.div
+        <HoverAnimation
           layoutId="highlight"
           transition={{
             layout: {
@@ -79,22 +88,15 @@ function NavLi({ items, focused, setFocused, hambur, authed, right }) {
               ease: 'easeOut',
             },
           }}
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            background: `${thirdGray}`,
-            borderRadius: '16px',
-            zIndex: 1,
-          }}
         />
       ) : null}
     </Li>
   ));
+
   let NavLis;
   if (authed) {
     NavLis = (
-      <AuthLiContainer right={right} onMouseLeave={() => setFocused(null)}>
+      <AuthLiContainer onMouseLeave={() => setFocused(null)}>
         {Lis}
       </AuthLiContainer>
     );
@@ -113,12 +115,10 @@ NavLi.propTypes = {
   hambur: PropTypes.bool.isRequired,
   focused: PropTypes.string,
   setFocused: PropTypes.func.isRequired,
-  right: PropTypes.string,
 };
 
 NavLi.defaultProps = {
   focused: null,
-  right: null,
 };
 
 export default NavLi;

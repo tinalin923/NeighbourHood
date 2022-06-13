@@ -5,11 +5,16 @@
     margin: 0;
     padding: 0;
     text-decoration: none;
-    // outline: none;
     font-size: 16px;
     text-size-adjust: 100%;
     font-family: PingFang TC, math;
     color: #363b48;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
 }
 
 div {

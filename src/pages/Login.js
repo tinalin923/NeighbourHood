@@ -75,7 +75,7 @@ const Login = () => {
             onChange={(e) => {
               setEmailLogin(e.target.value);
             }}
-            placeholder="電子信箱"
+            placeholder="電子信箱 / test@mail.com"
             required
           />
         </Block>
@@ -86,7 +86,7 @@ const Login = () => {
             onChange={(e) => {
               setPasswordLogin(e.target.value);
             }}
-            placeholder="帳戶密碼"
+            placeholder="帳戶密碼 / test123"
             required
           />
         </Block>

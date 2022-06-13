@@ -1,4 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
@@ -9,6 +8,7 @@ import NavLi from './NavLi.js';
 
 const Ul = styled.ul`
   display: flex;
+  flex: 0 1 30vw;
   jusitfy-content: space-around;
   align-items: flex-end;
   @media (max-width: 600px) {
@@ -17,12 +17,14 @@ const Ul = styled.ul`
 `;
 
 const HamUl = styled.ul`
+  flex: 0 1 10vw;
   @media (min-width: 600px) {
     display: none;
   }
 `;
 
 const AuthedUl = styled.ul`
+  flex: 0 1 30vw;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -36,7 +38,7 @@ const icon = {
   margin: '4px',
 };
 
-function NavUl({ items, flex, right }) {
+function NavUl({ items }) {
   const { currentUid, currentVillageName } = useAuthState();
   // for hambur icon
   const [clicked, setClicked] = useState(false);
@@ -58,7 +60,7 @@ function NavUl({ items, flex, right }) {
     <>
       {!currentUid && (
         <>
-          <Ul onMouseLeave={() => setFocused(null)} style={{ flex: `${flex}` }}>
+          <Ul onMouseLeave={() => setFocused(null)}>
             <NavLi
               items={items}
               hambur={false}
@@ -67,7 +69,7 @@ function NavUl({ items, flex, right }) {
             />
           </Ul>
 
-          <HamUl onClick={() => handleCLick()} style={{ flex: '0 1 10vw' }}>
+          <HamUl onClick={() => handleCLick()}>
             <svg
               id="burgericon"
               xmlns="http://www.w3.org/2000/svg"
@@ -118,18 +120,12 @@ function NavUl({ items, flex, right }) {
       )}
       {currentUid && (
         <>
-          <AuthedUl
-            onClick={() => handleCLick()}
-            style={{
-              flex: '0 1 30vw',
-            }}
-          >
+          <AuthedUl onClick={() => handleCLick()}>
             <FontAwesomeIcon icon={solid('house-chimney-user')} style={icon} />
             歡迎，{currentVillageName}
           </AuthedUl>
           {navOpen && (
             <NavLi
-              right={right}
               items={items}
               hambur
               authed
@@ -145,12 +141,6 @@ function NavUl({ items, flex, right }) {
 
 NavUl.propTypes = {
   items: PropTypes.array.isRequired,
-  flex: PropTypes.string,
-  right: PropTypes.string.isRequired,
-};
-
-NavUl.defaultProps = {
-  flex: 'none',
 };
 
 export default NavUl;
