@@ -34,7 +34,6 @@ const Tab = styled.a`
 
 function PresentFooter() {
   const { lastEditTime } = useEditState();
-  console.log(lastEditTime.toString());
   return (
     <FootBar>
       <EditTime>最近更新時間：{lastEditTime}</EditTime>

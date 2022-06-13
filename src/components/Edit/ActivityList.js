@@ -44,7 +44,6 @@ export default function ActivityList() {
   useEffect(() => {
     // 防止還未上傳到storage的圖片被讀取
     if (imageList.length !== 0) {
-      console.log('不要讀取未上傳的圖片');
       return;
     }
 
@@ -69,7 +68,6 @@ export default function ActivityList() {
           });
         }
       }
-      console.log('1');
       setActivityPresentList(array);
     }
     changeActivityListToPresent(activityList);
@@ -77,7 +75,6 @@ export default function ActivityList() {
   }, [activityList]);
 
   const handleClick = (id) => {
-    console.log(id);
     if (id === selectedId) {
       setSelectedId(null);
     } else {

@@ -61,7 +61,6 @@ export default function UploadBtn() {
 
     if (imageList.length === 0) {
       if (published) {
-        console.log(villageDatas);
         uploadFirestoreVillageData(currentVillageId, villageDatas).then(() => {
           setUploading(false);
           navigate(`/total/${currentVillageId}`);

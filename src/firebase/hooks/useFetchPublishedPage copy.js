@@ -11,11 +11,8 @@ const useFetchPublishedPage = () => {
     publishedVillages,
     setPublishedVillages,
     fetchError,
-    // setFetchError,
     fetchLoading,
     setFetchLoading,
-    // publishedNumber,
-    // setPublishedNumber,
     snap,
     setSnap,
   } = useTotalState();
@@ -61,7 +58,6 @@ const useFetchPublishedPage = () => {
         const querySnapshot = await getDocs(q);
         if (querySnapshot !== snap) {
           setSnap(querySnapshot);
-          // setPublishedNumber(querySnapshot.size);
         }
       }
     }
@@ -72,17 +68,3 @@ const useFetchPublishedPage = () => {
 };
 
 export default useFetchPublishedPage;
-
-// async function getPublishedVillageData() {
-//   const q = query(villageCollection, where('published', '==', true));
-//   try {
-//     const querySnapshot = await getDocs(q);
-//     setPublishedNumber(querySnapshot.size);
-//     const publishedVillagesDatas = await Loop(querySnapshot);
-//     setPublishedVillages(publishedVillagesDatas);
-//     console.log(publishedVillagesDatas);
-//   } catch (error) {
-//     setFetchError(error.message);
-//     console.log(error);
-//   }
-// }

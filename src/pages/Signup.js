@@ -42,13 +42,7 @@ const Signup = () => {
     setSignupLoading(true);
     setSignupError('');
     try {
-      const { uid, newVillageId } = await signup(
-        email,
-        password,
-        city,
-        village
-      );
-      console.log(`${uid}, ${newVillageId}`);
+      await signup(email, password, city, village);
       navigate('/');
     } catch (error) {
       console.log(error.code);

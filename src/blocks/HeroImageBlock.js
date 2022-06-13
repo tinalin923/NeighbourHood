@@ -82,15 +82,12 @@ const HeroImageBlock = ({ name }) => {
   // 載入時要觸發的效果
   useEffect(() => {
     if (!published) {
-      console.log('還沒上傳過不用讀取');
       return;
     }
     if (!imagePathList?.heroImage) {
-      console.log('有上傳過但沒有照片');
       return;
     }
     if (temporaryHeroImageUrl) {
-      console.log('已經有照片了');
       return;
     }
     getStorageImages(imagePathList.heroImage)

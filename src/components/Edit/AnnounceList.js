@@ -110,7 +110,6 @@ export default function EventList() {
   useEffect(() => {
     // 防止還未上傳到storage的圖片被讀取
     if (imageList.length !== 0) {
-      console.log('不要讀取未上傳的圖片');
       return;
     }
     async function changeAnnounceListToPresent(List) {

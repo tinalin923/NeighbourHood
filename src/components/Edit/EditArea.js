@@ -150,7 +150,7 @@ function EditArea({
   // for imageBlock
   const fileInput = useRef();
   const { currentVillageId } = useAuthState();
-  const { imageList, setImageList } = useEditState();
+  const { setImageList } = useEditState();
 
   // 選擇照片
   const handleChange = async () => {
@@ -183,11 +183,8 @@ function EditArea({
     // 沒有選擇照片就不加入路徑
     if (!picture) {
       addList(state.id, state.title, state.details, '');
-      console.log('沒圖片');
       addPresentList(state.id, state.title, state.details, '');
-      console.log(imageList);
     } else {
-      console.log('有圖片');
       setImageList((prev) => [...prev, picture]);
       addList(
         state.id,
@@ -196,7 +193,6 @@ function EditArea({
         `${currentVillageId}/${picture.name}`
       );
       addPresentList(state.id, state.title, state.details, state.temporaryUrl);
-      console.log(imageList);
     }
     // 輸入歸零
     setTitle('');

@@ -31,16 +31,13 @@ const Editing = () => {
     setEditMode(true);
     async function getVillageId(uid) {
       const data = await getFirestoreUserData(uid);
-      console.log(data);
       const { villageId } = data;
       setCurrentVillageId(villageId);
       const villageDatas = await getFirestoreVillageData(villageId);
       const result = await getDatasToContext(villageDatas);
-      console.log('getDatasToContext3');
       setEditPageLoading(result);
     }
     getVillageId(currentUid);
-    console.log('進入編輯頁');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUid]);
 

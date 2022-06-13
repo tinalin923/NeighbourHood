@@ -61,7 +61,6 @@ export const EditContextProvider = ({ children }) => {
       details,
       picture,
     });
-    console.log(newAnnounceList);
     dispatch({
       type: 'ADD_ANNOUNCE_LIST',
       payload: {

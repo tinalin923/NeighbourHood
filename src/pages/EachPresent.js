@@ -40,7 +40,6 @@ const EachPresent = () => {
     setImagePathList(villageData?.imagePathList);
     setVillage(villageData?.villageName);
     setPresentPageLoading(false);
-    console.log(villageData?.lastEditTime);
     const date = villageData?.lastEditTime.toDate().toDateString();
     const time = villageData?.lastEditTime.toDate().toLocaleTimeString();
     setLastEditTime(`${date} - ${time}`);

@@ -34,7 +34,6 @@ const useFetchPublishedPage = () => {
         });
       }
       setPublishedVillages(publishedArrayWithUrl);
-      console.log(publishedArrayWithUrl);
     } catch (error) {
       setFetchError(error.message);
       console.log(error);
@@ -46,6 +45,7 @@ const useFetchPublishedPage = () => {
       setFetchLoading(true);
       getPublishedVillageData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { publishedVillages, fetchError, fetchLoading };

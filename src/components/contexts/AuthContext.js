@@ -60,16 +60,14 @@ export const AuthContextProvider = ({ children }) => {
       if (user) {
         const { uid } = user;
         setCurrentUid(uid);
-        console.log(uid);
       } else {
         setCurrentUid(null);
-        console.log('you logged out');
         setLoad(false);
       }
     });
     return unsubscribe;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // 不懂為何會建議我要放setUserDatas；如果都不放[]，則會一直get firebase
+  }, []); // 為何會建議我要放setUserDatas；如果都不放[]，則會一直get firebase
 
   useEffect(() => {
     if (!currentUid) {

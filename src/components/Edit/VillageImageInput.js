@@ -95,7 +95,6 @@ const VillageImageBlock = () => {
     }
     // compressedImage 為一Blob物件
     const compressedImage = await compressImage(imageFile, 1080);
-    console.log(compressedImage);
     const compressedImageURL = URL.createObjectURL(compressedImage);
     //  compressedImageURL為一 blob+localhost開頭的url
     setChiefAvator(compressedImageURL);

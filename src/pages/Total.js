@@ -30,7 +30,6 @@ const TotalTitle = styled.h3`
 const Total = () => {
   const { publishedVillages, fetchError, fetchLoading } =
     useFetchPublishedPage();
-  console.log(publishedVillages);
   return (
     <>
       <TotalHeader />

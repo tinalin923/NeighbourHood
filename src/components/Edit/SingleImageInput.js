@@ -106,7 +106,6 @@ const SingleImageInput = ({ name }) => {
     }
     getStorageImages(imagePathList[name])
       .then((storedUrl) => {
-        console.log('get');
         dispatch({
           type: 'SET_TEMPORARY',
           payload: { temporary: storedUrl },

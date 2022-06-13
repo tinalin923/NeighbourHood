@@ -80,7 +80,6 @@ const AvatorImageInput = () => {
 
   useEffect(() => {
     if (!imagePathList?.chiefAvator) {
-      console.log('bye2');
       return;
     }
     if (!published) return;
@@ -99,7 +98,6 @@ const AvatorImageInput = () => {
     }
     // compressedImage 為一Blob物件
     const compressedImage = await compressImage(imageFile, 1280);
-    console.log(compressedImage.name);
     setImageList((prev) => ({ ...prev, chiefAvator: compressedImage }));
     setImagePathList((prev) => ({
       ...prev,

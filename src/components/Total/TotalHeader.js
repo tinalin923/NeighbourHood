@@ -40,8 +40,8 @@ const TotalHeader = () => {
     try {
       await logout();
       navigate('/');
-    } catch (err) {
-      console.log(err);
+    } catch (e) {
+      console.log(e);
     }
   };
   const items = currentUid

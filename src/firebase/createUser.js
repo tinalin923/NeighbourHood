@@ -39,7 +39,6 @@ export const checkCityVillage = (city, village) => {
 };
 
 const createInitialUserDatas = async (uid, email, city, village) => {
-  console.log(`createInitialUserDatas${uid}`);
   const { totalVillageCount } = await getFirestoreTotalCount();
   let newVillageId = totalVillageCount + 1;
   await updateFirestoreTotalCount(newVillageId);
@@ -84,7 +83,6 @@ const createInitialUserDatas = async (uid, email, city, village) => {
       },
     ],
   };
-  console.log(newVillageId.toString());
   newVillageId = newVillageId.toString();
   await setDoc(doc(db, 'users', uid), initialUserDatas);
   await setDoc(doc(db, 'villages', newVillageId), initialVillageDatas);
