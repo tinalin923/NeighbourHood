@@ -112,7 +112,7 @@ export const ListTitle = styled(Element)`
 
 export const ListDetails = styled.div`
   font-size: 1.2rem;
-  line-height: 1.5rem;
+  line-height: 1.5;
 `;
 
 export const Breadcrumbs = styled.ol`

@@ -62,7 +62,6 @@ AddButton.propTypes = {
   name: PropTypes.string.isRequired,
   setShow: PropTypes.func.isRequired,
   margin: PropTypes.string,
-  // height: PropTypes.string.isRequire,
 };
 AddButton.defaultProps = {
   margin: '12px 0',

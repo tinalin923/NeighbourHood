@@ -8,7 +8,7 @@ const Text = styled.textarea`
   margin: 2px 0;
   padding: 8px;
   overflow: auto;
-  line-height: 1.5rem;
+  line-height: 1.5;
   border: none;
   border-bottom: 2px solid ${backgroundGray};
   background: transparent;
@@ -36,7 +36,7 @@ TextInfoForEdit.propTypes = {
   placeholder: PropTypes.string.isRequired,
   width: PropTypes.string,
   height: PropTypes.string,
-  value: PropTypes.object.isRequired,
+  value: PropTypes.string.isRequired,
   setValue: PropTypes.func.isRequired,
 };
 TextInfoForEdit.defaultProps = {

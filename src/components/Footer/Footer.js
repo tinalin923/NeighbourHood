@@ -52,7 +52,7 @@ function Footer() {
     <Footerbar>
       <LinkArea>
         <A href="/">Home</A>
-        <A href="/total">Total Villages</A>
+        <A href="/totalvillages">Total Villages</A>
         <A href="/signup">Sign up</A>
         <A href="/login">Login in</A>
       </LinkArea>

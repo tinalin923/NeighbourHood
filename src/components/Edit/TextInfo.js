@@ -7,7 +7,7 @@ import { thirdGray } from '../../styles/styledComponents/color.js';
 const Text = styled.textarea`
   padding: 20px;
   text-align: left;
-  line-height: 1.5rem;
+  line-height: 1.5;
   font-size: 1.2rem;
   border-radius: 4px;
 `;

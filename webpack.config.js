@@ -1,4 +1,3 @@
-/* eslint-disable function-paren-newline */
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');

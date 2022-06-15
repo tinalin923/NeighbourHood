@@ -63,7 +63,7 @@ export default function UploadBtn() {
       if (published) {
         uploadFirestoreVillageData(currentVillageId, villageDatas).then(() => {
           setUploading(false);
-          navigate(`/total/${currentVillageId}`);
+          navigate(`/totalvillages/${currentVillageId}`);
         });
       } else {
         uploadFirestoreVillageData(currentVillageId, {
@@ -84,7 +84,7 @@ export default function UploadBtn() {
         const promise2 = upLoadStorageImages(currentVillageId, imageList);
         Promise.all([promise1, promise2]).then(() => {
           setUploading(false);
-          navigate(`/total/${currentVillageId}`);
+          navigate(`/totalvillages/${currentVillageId}`);
         });
       } else {
         const promise1 = uploadFirestoreVillageData(currentVillageId, {

@@ -8,7 +8,7 @@ import Editing from './pages/Editing.js';
 import Landing from './pages/Landing.js';
 import Login from './pages/Login.js';
 import Signup from './pages/Signup.js';
-import Total from './pages/Total.js';
+import TotalVillages from './pages/TotalVillages.js';
 import './styles/scss/main.scss';
 
 const App = () => (
@@ -27,8 +27,8 @@ const App = () => (
           />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
-          <Route path="total" element={<Total />} />
-          <Route path="total/:villageId" element={<EachPresent />} />
+          <Route path="totalvillages" element={<TotalVillages />} />
+          <Route path="totalvillages/:villageId" element={<EachPresent />} />
           <Route path="*" element={<p>There is nothing here: 404!</p>} />
         </Routes>
       </AuthContextProvider>

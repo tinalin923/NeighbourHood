@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Img = styled.img`
-  margin: 52px 0px;
-  width: 100%;
+  display: block;
+  margin: 52px auto;
   border: 2px solid white;
 `;
 

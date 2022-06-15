@@ -47,7 +47,7 @@ const Landing = () => {
           <StartButton as={RouteLink} to={currentUid ? '/editing' : '/login'}>
             {currentUid ? '開始編輯' : '前往建立'}
           </StartButton>
-          <StartButton as={RouteLink} to="/total">
+          <StartButton as={RouteLink} to="/totalvillages">
             鄰里總覽
           </StartButton>
         </div>

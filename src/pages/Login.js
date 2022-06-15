@@ -38,7 +38,7 @@ const Login = () => {
     setErrorLogin('');
     try {
       const userCredential = await login(emailLogin, passwordLogin);
-      if (userCredential) navigate('/');
+      if (userCredential) navigate('/editing');
     } catch (error) {
       if (error.code === 'auth/invalid-email') {
         setErrorLogin('請輸入正確信箱格式');

@@ -26,7 +26,7 @@ export const StartButton = styled.a`
   height: auto;
   padding: 20px;
   font-size: 1.2rem;
-  line-height: 1.5rem;
+  line-height: 1.5;
   background: black;
   color: white;
   border: 1px solid black;

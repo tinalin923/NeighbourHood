@@ -19,12 +19,7 @@
 }
 .pack {
   position: relative;
-  line-height: 8rem;
-  @media(max-width: 600px){
-  line-height: 4.5rem;
-
-  }
-  
+  line-height: 1.1;
 }
 
 .editing {

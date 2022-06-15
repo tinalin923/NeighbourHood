@@ -1,8 +1,8 @@
 import BeatLoader from 'react-spinners/BeatLoader';
 import styled from 'styled-components';
 import React from 'react';
-import EachVillageBlock from '../components/Total/EachVillageBlock.js';
-import TotalHeader from '../components/Total/TotalHeader.js';
+import EachVillageBlock from '../components/TotalVillages/EachVillageBlock.js';
+import TotalHeader from '../components/TotalVillages/TotalHeader.js';
 import useFetchPublishedPage from '../firebase/hooks/useFetchPublishedPage.js';
 import { primaryYellow } from '../styles/styledComponents/color.js';
 import Footer from '../components/Footer/Footer.js';
@@ -27,7 +27,7 @@ const TotalTitle = styled.h3`
   }
 `;
 
-const Total = () => {
+const TotalVillages = () => {
   const { publishedVillages, fetchError, fetchLoading } =
     useFetchPublishedPage();
   return (
@@ -65,4 +65,4 @@ const Total = () => {
     </>
   );
 };
-export default Total;
+export default TotalVillages;

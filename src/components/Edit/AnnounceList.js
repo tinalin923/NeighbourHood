@@ -11,7 +11,6 @@ import {
 } from '../../styles/styledComponents/blockComponents.js';
 import { thirdGray } from '../../styles/styledComponents/color.js';
 import { useEditState } from '../contexts/EditContext.js';
-import ImagePresent from './ImagePresent.js';
 import AddAnnounceButton from './AddAnnounceButton.js';
 
 const icon = {
@@ -31,6 +30,12 @@ const DeleteButton = styled.button`
   &: hover {
     opacity: 1;
   }
+`;
+const ImagePresent = styled.img`
+  display: block;
+  margin: 52px auto;
+  max-width: 100%;
+  border: 2px solid white;
 `;
 
 export default function EventList() {
@@ -139,12 +144,23 @@ export default function EventList() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [announceList]);
 
-  // for 動畫
-  const handleClick = (id) => {
+  // for 動畫 + scroll bar
+  const handleClick = (e, id) => {
     if (id === activeAnnounceItem) {
       setActiveAnnounceItem(null);
     } else {
       setActiveAnnounceItem(id);
+      if (window.pageYOffset / window.innerHeight > 1) {
+        window.scrollTo({
+          top: window.pageYOffset - (e.pageY - window.pageYOffset),
+          behavior: 'smooth',
+        });
+      } else if (window.pageYOffset / window.innerHeight <= 1) {
+        window.scrollTo({
+          top: e.pageY - 100,
+          behavior: 'smooth',
+        });
+      }
     }
   };
 
@@ -153,8 +169,7 @@ export default function EventList() {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        width: '85%',
-        // height: 'auto',
+        width: '100%',
       }}
     >
       {announcePresentList.map(({ id, title, details, picture }) => (
@@ -162,13 +177,16 @@ export default function EventList() {
           key={id}
           style={{
             position: 'relative',
+            marginTop: '1rem',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'flex-end',
           }}
         >
           <motion.div
-            onClick={() => handleClick(id)}
+            onClick={(e) => {
+              handleClick(e, id);
+            }}
             variants={containerVariants}
             animate={activeAnnounceItem === id ? 'visible' : 'hidden'}
             whileHover={{
@@ -195,7 +213,7 @@ export default function EventList() {
             >
               <ListDetails>{details}</ListDetails>
               <br />
-              {picture && <ImagePresent name="announceImage" src={picture} />}
+              {picture && <ImagePresent alt="announceImage" src={picture} />}
             </motion.div>
           </motion.div>
           <DeleteButton

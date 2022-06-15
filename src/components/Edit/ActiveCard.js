@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React from 'react';
-// import ImagePresent from './ImagePresent.js';
 import styled from 'styled-components';
 import { ListTitle } from '../../styles/styledComponents/blockComponents.js';
 
@@ -104,7 +103,7 @@ const Text = styled(Title)`
   margin: 1rem 8px 16px;
   max-height: 24vh;
   font-size: 1.2rem;
-  line-height: 1.5rem;
+  line-height: 1.5;
 
   && {
     color: #f5f5f5;
@@ -180,7 +179,7 @@ function ActiveCard({ activity, setActive }) {
 }
 
 ActiveCard.propTypes = {
-  activity: PropTypes.string.isRequired,
-  setActive: PropTypes.string.isRequired,
+  activity: PropTypes.array.isRequired,
+  setActive: PropTypes.func.isRequired,
 };
 export default ActiveCard;

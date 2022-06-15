@@ -61,7 +61,7 @@ const TotalHeader = () => {
           <Favicon breadcrumb to="/" cursor="pointer" />
           <FontAwesomeIcon icon={solid('chevron-right')} />
           <li>
-            <RouteLink to="/total">鄰里總覽</RouteLink>
+            <RouteLink to="/totalvillages">鄰里總覽</RouteLink>
           </li>
         </Breadcrumbs>
         <Title as={RouteLink} to="/">

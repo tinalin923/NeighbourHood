@@ -30,7 +30,7 @@ const ImageContainer = styled.div`
 
 function EachVillageBlock({ id, cityName, villageName, heroImage }) {
   return (
-    <VillageButton as={RouteLink} to={`/total/${id}`}>
+    <VillageButton as={RouteLink} to={`/totalvillages/${id}`}>
       <div>
         <div
           style={{
