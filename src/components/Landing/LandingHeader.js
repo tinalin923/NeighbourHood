@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Link as RouteLink, Outlet, useNavigate } from 'react-router-dom';
+import { Link as RouteLink, useNavigate } from 'react-router-dom';
 import '../../assets/fonts/fonts.scss';
 import { Breadcrumbs } from '../../styles/styledComponents/blockComponents.js';
 
@@ -61,23 +61,20 @@ const LandingHeader = () => {
       ];
 
   return (
-    <>
-      {show && (
-        <Top>
-          <Breadcrumbs>
+    show && (
+      <Top>
+        <Breadcrumbs>
+          <Favicon />
+        </Breadcrumbs>
+        <Title as={RouteLink} to="/">
+          <Icon>
             <Favicon />
-          </Breadcrumbs>
-          <Title as={RouteLink} to="/">
-            <Icon>
-              <Favicon />
-            </Icon>
-            NEIGHBoURHooD
-          </Title>
-          <NavUl items={items} />
-        </Top>
-      )}
-      <Outlet />
-    </>
+          </Icon>
+          NEIGHBoURHooD
+        </Title>
+        <NavUl items={items} />
+      </Top>
+    )
   );
 };
 

@@ -2,7 +2,7 @@ import BeatLoader from 'react-spinners/BeatLoader';
 import styled from 'styled-components';
 import React from 'react';
 import EachVillageBlock from '../components/TotalVillages/EachVillageBlock.js';
-import TotalHeader from '../components/TotalVillages/TotalHeader.js';
+import TotalVillagesHeader from '../components/TotalVillages/TotalVillagesHeader.js';
 import useFetchPublishedPage from '../firebase/hooks/useFetchPublishedPage.js';
 import { primaryYellow } from '../styles/styledComponents/color.js';
 import Footer from '../components/Footer/Footer.js';
@@ -32,7 +32,7 @@ const TotalVillages = () => {
     useFetchPublishedPage();
   return (
     <>
-      <TotalHeader />
+      <TotalVillagesHeader />
       <TotalTitle>鄰里總覽</TotalTitle>
       {fetchLoading ? (
         <div

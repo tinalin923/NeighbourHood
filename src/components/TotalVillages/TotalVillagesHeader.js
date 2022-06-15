@@ -9,7 +9,7 @@ import Favicon from '../Header/Favicon.js';
 import NavUl from '../Header/NavUl.js';
 import { Top, Title, Icon } from '../Header/HeaderDisplay.js';
 
-const TotalHeader = () => {
+const TotalVillagesHeader = () => {
   const { currentUid, logout } = useAuthState();
   const [show, setShow] = useState(true);
   const [nowY, setNowY] = useState('');
@@ -76,4 +76,4 @@ const TotalHeader = () => {
   );
 };
 
-export default TotalHeader;
+export default TotalVillagesHeader;
