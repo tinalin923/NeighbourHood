@@ -18,6 +18,9 @@ import compressImage from '../../utils/imageCompress.js';
 import { useAuthState } from '../contexts/AuthContext.js';
 import { useEditState } from '../contexts/EditContext.js';
 import TextInfoForEdit from './TextInfoForEdit.js';
+import editItemReducer, {
+  initialEditState,
+} from '../contexts/editItemReducer.js';
 
 const Edit = styled.div`
   width: 100%;
@@ -77,34 +80,6 @@ const icon = {
   opacity: '0.8',
 };
 
-const initialEditState = {
-  temporaryUrl: '',
-  imageError: '',
-  id: '',
-  title: '',
-  details: '',
-};
-
-const editReducer = (state, action) => {
-  const { type, payload } = action;
-  switch (type) {
-    case 'SET_TEMPORARY_URL':
-      return { ...state, temporaryUrl: payload.temporaryUrl };
-    case 'SET_IMAGE_ERROR':
-      return { ...state, imageError: payload.imageError };
-
-    case 'SET_ID':
-      return { ...state, id: payload.id };
-    case 'SET_TITLE':
-      return { ...state, title: payload.title };
-    case 'SET_DETAILS':
-      return { ...state, details: payload.details };
-
-    default:
-      throw new Error();
-  }
-};
-
 function EditArea({
   name,
   addList,
@@ -115,7 +90,7 @@ function EditArea({
   setPicture,
   setShow,
 }) {
-  const [state, dispatch] = useReducer(editReducer, initialEditState);
+  const [state, dispatch] = useReducer(editItemReducer, initialEditState);
   const setTemporaryUrl = (temporaryUrl) => {
     dispatch({
       type: 'SET_TEMPORARY_URL',
