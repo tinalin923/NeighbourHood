@@ -34,12 +34,6 @@ const editReducer = (state, action) => {
       return { ...state, introductionTextData: payload.introductionTextData };
     case 'SET_SCROLL_LIST':
       return { ...state, scrollList: payload.scrollList };
-    // case 'ADD_SCROLL_LIST':
-    //   return { ...state, scrollList: payload.scrollList };
-    // case 'ADD_BLOCK_LIST':
-    //   return { ...state, isEditMode: !payload };
-    // case 'DELETE_BLOCK_LIST':
-    //   return { ...state, isEditMode: !payload };
     case 'SET_ANNOUNCE_LIST':
       return { ...state, announceList: payload.announceList };
     case 'ADD_ANNOUNCE_LIST':
