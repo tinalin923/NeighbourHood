@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Element } from 'react-scroll';
 import { primaryGray, secondaryGray } from './color.js';
 
 export const Block = styled.div`
@@ -105,7 +104,7 @@ export const TextError = styled.p`
   font-size: 0.9rem;
 `;
 
-export const ListTitle = styled(Element)`
+export const ListTitle = styled.div`
   font-size: 1.5rem;
   font-weight: bold;
 `;

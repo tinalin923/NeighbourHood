@@ -24,10 +24,6 @@ export default function ScrollList() {
       {scrollList.map(({ id, title }) => (
         <ScrollBrick key={id} to={id} title={title} />
       ))}
-      {/* <ScrollBrick
-        onClick={() => addScrollList(scrollList.length)}
-        to={scrollList.length.toString()}
-      /> */}
     </BrickContainer>
   );
 }

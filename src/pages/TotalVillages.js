@@ -1,6 +1,6 @@
 import BeatLoader from 'react-spinners/BeatLoader';
 import styled from 'styled-components';
-import React from 'react';
+import React, { useEffect } from 'react';
 import EachVillageBlock from '../components/TotalVillages/EachVillageBlock.js';
 import TotalVillagesHeader from '../components/TotalVillages/TotalVillagesHeader.js';
 import useFetchPublishedPage from '../firebase/hooks/useFetchPublishedPage.js';
@@ -30,6 +30,10 @@ const TotalTitle = styled.h3`
 const TotalVillages = () => {
   const { publishedVillages, fetchError, fetchLoading } =
     useFetchPublishedPage();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <TotalVillagesHeader />

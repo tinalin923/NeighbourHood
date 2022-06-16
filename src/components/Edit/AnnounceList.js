@@ -48,7 +48,7 @@ export default function EventList() {
     deleteAnnounceList,
     deleteAnnouncePresentList,
   } = useEditState();
-  const [activeAnnounceItem, setActiveAnnounceItem] = useState(0);
+  const [activeAnnounceItem, setActiveAnnounceItem] = useState(null);
 
   const wholeButtonStyle = {
     flex: '1 1 auto',
@@ -150,14 +150,10 @@ export default function EventList() {
       setActiveAnnounceItem(null);
     } else {
       setActiveAnnounceItem(id);
-      if (window.pageYOffset / window.innerHeight > 1) {
+      // prevent to scroll to other place
+      if (activeAnnounceItem !== null) {
         window.scrollTo({
           top: window.pageYOffset - (e.pageY - window.pageYOffset),
-          behavior: 'smooth',
-        });
-      } else if (window.pageYOffset / window.innerHeight <= 1) {
-        window.scrollTo({
-          top: e.pageY - 100,
           behavior: 'smooth',
         });
       }
