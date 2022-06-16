@@ -11,6 +11,7 @@ import EditingHeader from '../components/Edit/EditingHeader.js';
 import ScrollList from '../components/Edit/ScrollList.js';
 import Switch from '../components/Edit/Switch.js';
 import UploadBtn from '../components/Edit/UploadBtn.js';
+import AddEditionIcon from '../components/Edit/AddEditionIcon.js';
 import {
   getFirestoreUserData,
   getFirestoreVillageData,
@@ -19,7 +20,6 @@ import {
   backgroundGray,
   primaryYellow,
 } from '../styles/styledComponents/color.js';
-import PhoneAddIcon from '../styles/styledComponents/PhoneAddIcon.js';
 
 const Editing = () => {
   const { editMode, setEditMode, getDatasToContext, published } =
@@ -81,7 +81,7 @@ const Editing = () => {
           ) : (
             <ActivityBlock name="4" />
           )}
-          {editMode && <PhoneAddIcon />}
+          {editMode && <AddEditionIcon />}
           {editMode && <hr style={{ width: '90%', margin: ' 110px auto' }} />}
           {editMode && <UploadBtn />}
           {!editMode && <div style={{ height: '350px' }} />}
