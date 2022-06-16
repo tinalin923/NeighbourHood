@@ -55,7 +55,7 @@ export default function UploadBtn() {
       return;
     }
     setUploading(true);
-    const villagePath = generatePath('/total/:villageId', {
+    const villagePath = generatePath('/totalvillages/:villageId', {
       villageId: currentVillageId,
     });
 
