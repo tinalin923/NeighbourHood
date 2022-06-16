@@ -5,13 +5,11 @@ import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { getStorageImages } from '../../firebase/useStorage.js';
-import {
-  ListDetails,
-  ListTitle,
-} from '../../styles/styledComponents/blockComponents.js';
+import { ListTitle } from '../../styles/styledComponents/blockComponents.js';
 import { thirdGray } from '../../styles/styledComponents/color.js';
 import { useEditState } from '../contexts/EditContext.js';
 import AddAnnounceButton from './AddAnnounceButton.js';
+import TextInfo from './TextInfo.js';
 
 const icon = {
   position: 'relative',
@@ -46,9 +44,12 @@ const AnnounceItem = styled(motion.div)`
   border: none;
   border-radius: 4px;
   padding: 8px 20px;
-  background: ${thirdGray};
+  background: #e6e7ea;
   color: #363b48;
   cursor: pointer;
+  &: hover {
+    background: ${thirdGray};
+  }
 `;
 
 export default function EventList() {
@@ -184,10 +185,6 @@ export default function EventList() {
             }}
             variants={containerVariants}
             animate={activeAnnounceItem === id ? 'visible' : 'hidden'}
-            whileHover={{
-              background: '#e6e7ea',
-              transition: { duration: 0.1 },
-            }}
           >
             <div
               style={{
@@ -205,7 +202,13 @@ export default function EventList() {
                 overflow: 'hidden',
               }}
             >
-              <ListDetails>{details}</ListDetails>
+              <TextInfo
+                name={`${id}-AC`}
+                placeholder="請輸入變更"
+                value={details}
+              >
+                {details}
+              </TextInfo>
               <br />
               {picture && <ImagePresent alt="announceImage" src={picture} />}
             </motion.div>

@@ -10,14 +10,12 @@ const Text = styled.textarea`
   line-height: 1.5;
   font-size: 1.2rem;
   border-radius: 4px;
+  border: ${(props) => (props.editMode ? `1px solid ${thirdGray}` : 'none')};
+  height: ${(props) => props.height};
+  width: ${(props) => props.width};
 `;
 function TextInfo({ name, placeholder, width, height, value, setValue }) {
   const { editMode } = useEditState();
-  const commonStyle = {
-    height: `${height}`,
-    width: `${width}`,
-    border: editMode ? `1px solid ${thirdGray}` : 'none',
-  };
   return (
     <Text
       name={name}
@@ -26,7 +24,9 @@ function TextInfo({ name, placeholder, width, height, value, setValue }) {
       onChange={(e) =>
         setValue((prev) => ({ ...prev, [name]: e.target.value }))
       }
-      style={commonStyle}
+      editMode={editMode}
+      height={height}
+      width={width}
       readOnly={!editMode}
     />
   );
