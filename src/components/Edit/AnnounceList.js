@@ -37,6 +37,19 @@ const ImagePresent = styled.img`
   max-width: 100%;
   border: 2px solid white;
 `;
+const AnnounceItem = styled(motion.div)`
+  flex: 1 1 auto;
+  position: relative;
+  margin: 16px 0px;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 20px;
+  background: ${thirdGray};
+  color: #363b48;
+  cursor: pointer;
+`;
 
 export default function EventList() {
   const {
@@ -49,20 +62,6 @@ export default function EventList() {
     deleteAnnouncePresentList,
   } = useEditState();
   const [activeAnnounceItem, setActiveAnnounceItem] = useState(null);
-
-  const wholeButtonStyle = {
-    flex: '1 1 auto',
-    position: 'relative',
-    margin: '16px 0px',
-    width: '100%',
-    outline: 'none',
-    border: 'none',
-    borderRadius: '4px',
-    padding: '8px 20px',
-    background: `${thirdGray}`,
-    color: '#363b48',
-    cursor: 'pointer',
-  };
 
   const containerVariants = {
     hidden: {
@@ -179,7 +178,7 @@ export default function EventList() {
             alignItems: 'flex-end',
           }}
         >
-          <motion.div
+          <AnnounceItem
             onClick={(e) => {
               handleClick(e, id);
             }}
@@ -189,7 +188,6 @@ export default function EventList() {
               background: '#e6e7ea',
               transition: { duration: 0.1 },
             }}
-            style={wholeButtonStyle}
           >
             <div
               style={{
@@ -211,7 +209,7 @@ export default function EventList() {
               <br />
               {picture && <ImagePresent alt="announceImage" src={picture} />}
             </motion.div>
-          </motion.div>
+          </AnnounceItem>
           <DeleteButton
             type="button"
             onClick={() => {

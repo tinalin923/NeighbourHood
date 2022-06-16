@@ -9,7 +9,7 @@ import { useAuthState } from '../components/contexts/AuthContext.js';
 import { useEditState } from '../components/contexts/EditContext.js';
 import EditingHeader from '../components/Edit/EditingHeader.js';
 import ScrollList from '../components/Edit/ScrollList.js';
-import Switch from '../components/Edit/Switch.js';
+import ToggleMode from '../components/Edit/ToggleMode.js';
 import UploadBtn from '../components/Edit/UploadBtn.js';
 import AddEditionIcon from '../components/Edit/AddEditionIcon.js';
 import {
@@ -59,7 +59,7 @@ const Editing = () => {
         <div style={{ background: editMode ? `${backgroundGray}` : 'none' }}>
           <EditingHeader />
           <ScrollList />
-          <Switch />
+          <ToggleMode />
           <HeroImageBlock name="0" />
           {published ? (
             <BulletinBlock name="1" />
