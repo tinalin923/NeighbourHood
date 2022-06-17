@@ -42,11 +42,14 @@ const Image = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 20%;
-  width: 70%;
+  height: 30vh;
+  width: 60%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  @media (max-width: 600px) {
+    width: 70%;
+  }
 `;
 const InputBtn = styled.label`
   margin: 0.5rem auto;
@@ -196,7 +199,7 @@ function EditArea({
             placeholder={`詳細${name}說明`}
             value={state.details}
             setValue={setDetails}
-            height="16vh"
+            height="20vh"
           />
         </Text>
 
