@@ -1,13 +1,13 @@
 # NeighbourHood
 
-<p align="center">NeighbourHood is a web-page-builder for chiefs of village to publish their own page, featuring real-time edit/preview mode toggle switch, adding announcements and activities anytime anywhere and publishing with one-click. </p>
+><p>NeighbourHood is a web-page-builder for chiefs of village to publish their own page, featuring real-time edit/preview mode toggle switch, adding announcements and activities anytime anywhere and publishing with one-click. </p>
 <div align="center">
   <kbd><img src="https://user-images.githubusercontent.com/94776718/174310804-1e513ec7-ece4-4d55-844d-455f03ad62cc.png" width=800/> </kbd>
 </div>
 
 
   
-:link: Website URL: https://neighbourhood-2022.web.app/    
+>:link: Website URL: https://neighbourhood-2022.web.app/    
 >   
 >  
 > :raising_hand: **Test account**   
@@ -27,7 +27,6 @@
 | Prettier            | Help code formatting                                                                                                                 |
 | Third-Party Modules | [Browser Image Compression](https://www.npmjs.com/package/browser-image-compression), [Headless Ul](https://headlessui.dev/react/dialog),  [React Scroll](https://www.npmjs.com/package/react-scroll), [React Spinners](https://www.npmjs.com/package/react-spinners)                                                                                                                                                    |
 
-                                                                               |
 
 
 
