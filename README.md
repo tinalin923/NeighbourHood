@@ -1,6 +1,6 @@
 # NeighbourHood
 
-<p align="center">NeighbourHood is a web-page-builder for chiefs of village to publish their own page. The features of NeighbourHood are real-time edit/preview mode toggle switch, adding announcements and activities anytime anywhere and publishing with one-click. </p>
+<p align="center">NeighbourHood is a web-page-builder for chiefs of village to publish their own page, featuring real-time edit/preview mode toggle switch, adding announcements and activities anytime anywhere and publishing with one-click. </p>
 <div align="center">
   <kbd><img src="https://user-images.githubusercontent.com/94776718/174310804-1e513ec7-ece4-4d55-844d-455f03ad62cc.png" width=800/> </kbd>
 </div>
