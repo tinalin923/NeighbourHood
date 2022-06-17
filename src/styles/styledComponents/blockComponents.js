@@ -85,6 +85,11 @@ export const SecondaryBtn = styled.button`
 `;
 
 export const ImageError = styled.p`
+  position: absolute;
+  display: block;
+  top: 6rem;
+  left: 50%;
+  transform: translateX(-50%);
   margin: 0.5rem auto;
   padding: 2px;
   width: 50%;

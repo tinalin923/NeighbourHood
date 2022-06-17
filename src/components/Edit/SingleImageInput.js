@@ -14,6 +14,7 @@ import { useAuthState } from '../contexts/AuthContext.js';
 import { useEditState } from '../contexts/EditContext.js';
 
 const Image = styled.div`
+  position: relative;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
