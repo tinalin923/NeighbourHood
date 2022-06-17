@@ -29,6 +29,7 @@ const Tab = styled.a`
   font-size: 1.2rem;
   &: hover {
     color: #0087bf;
+    text-decoration: underline;
   }
 `;
 

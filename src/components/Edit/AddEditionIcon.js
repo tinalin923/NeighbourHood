@@ -4,8 +4,9 @@ import addIcon from '../../assets/images/post-add.png';
 import EditActivityModal from './EditActivityModal.js';
 import EditAnnounceModal from './EditAnnounceModal.js';
 import {
-  primaryGray,
+  secondaryGray,
   primaryYellow,
+  primaryGray,
 } from '../../styles/styledComponents/color.js';
 
 const Choose = styled.ul`
@@ -15,21 +16,20 @@ const Choose = styled.ul`
   width: 120px;
   height: auto;
   border-radius: 4px;
-  background: ${primaryGray};
+  background: ${secondaryGray};
   z-index: 3;
   cursor: pointer;
+  box-shadow: inset 0 0 8px 1px rgba(0, 0, 0, 0.2);
+
   li {
     display: flex;
     align-items: center;
     padding: 8px;
     text-align: center;
     font-size: 1.2rem;
-    color: #f5f5f5;
+    color: ${primaryGray};
     div {
       margin-right: 4px;
-    }
-    :hover {
-      font-size: 1.3rem;
     }
   }
   @media (min-width: 600px) {
@@ -49,8 +49,8 @@ const Icon = styled.div`
   height: 50px;
   z-index: 2;
   cursor: pointer;
-
   background: ${primaryYellow};
+  box-shadow: inset 0 0 8px 1px rgba(0, 0, 0, 0.2);
   @media (min-width: 600px) {
     display: none;
   }
@@ -69,7 +69,13 @@ function AddEditionIcon() {
     <>
       {blockDisplay && (
         <Choose>
-          <li onClick={() => setEditAnShow(true)} aria-hidden>
+          <li
+            onClick={() => {
+              setEditAnShow(true);
+              setBlockDisplay(false);
+            }}
+            aria-hidden
+          >
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +83,7 @@ function AddEditionIcon() {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#f5f5f5"
+                stroke={primaryGray}
                 strokeWidth="1"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -88,7 +94,13 @@ function AddEditionIcon() {
             </div>
             最新消息
           </li>
-          <li onClick={() => setEditAcShow(true)} aria-hidden>
+          <li
+            onClick={() => {
+              setEditAcShow(true);
+              setBlockDisplay(false);
+            }}
+            aria-hidden
+          >
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -96,8 +108,8 @@ function AddEditionIcon() {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#f5f5f5"
-                strokeWidth="2.5"
+                stroke={primaryGray}
+                strokeWidth="1"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 className="feather feather-activity"

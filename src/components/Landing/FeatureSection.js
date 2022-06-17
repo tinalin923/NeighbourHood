@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactPlayer from 'react-player';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 const Explanation = styled.div`
   height: 40vh;
@@ -16,7 +17,6 @@ const Explanation = styled.div`
     align-items: center;
   }
 `;
-
 const Text = styled.div`
   width: 40vw;
   margin: auto;
@@ -34,7 +34,6 @@ const Video = styled(Text)`
     height: auto;
   }
 `;
-
 const Title = styled.div`
   margin: 12px auto;
   text-align: left;
@@ -54,7 +53,31 @@ const Details = styled(Title)`
   }
 `;
 
-function Section({ step, name, title, details, url, startColor, endColor }) {
+const stepVariants = {
+  offscreen: {
+    y: 300,
+    opacity: 0,
+  },
+  onscreen: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      bounce: 0.1,
+      duration: 0.8,
+    },
+  },
+};
+
+function FeatureSection({
+  step,
+  name,
+  title,
+  details,
+  url,
+  startColor,
+  endColor,
+}) {
   const type = `#${name}`;
   const id = `url(${type})`;
   return (
@@ -67,7 +90,11 @@ function Section({ step, name, title, details, url, startColor, endColor }) {
         justifyContent: 'space-between',
       }}
     >
-      <div
+      <motion.div
+        variants={stepVariants}
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: true, amount: 0.2 }}
         style={{
           width: '150px',
           display: 'flex',
@@ -115,7 +142,7 @@ function Section({ step, name, title, details, url, startColor, endColor }) {
         >
           {name}
         </div>
-      </div>
+      </motion.div>
       <Explanation>
         <Video>
           <ReactPlayer
@@ -136,7 +163,7 @@ function Section({ step, name, title, details, url, startColor, endColor }) {
   );
 }
 
-Section.propTypes = {
+FeatureSection.propTypes = {
   step: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
@@ -146,4 +173,4 @@ Section.propTypes = {
   endColor: PropTypes.string.isRequired,
 };
 
-export default Section;
+export default FeatureSection;

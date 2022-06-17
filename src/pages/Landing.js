@@ -2,7 +2,7 @@ import React from 'react';
 import { Link as RouteLink } from 'react-router-dom';
 import { useAuthState } from '../components/contexts/AuthContext.js';
 import LandingHeader from '../components/Landing/LandingHeader.js';
-import Section from '../components/Landing/Section.js';
+import FeatureSection from '../components/Landing/FeatureSection.js';
 import Footer from '../components/Footer/Footer.js';
 import '../styles/scss/landing.scss';
 import { StartButton } from '../styles/styledComponents/button.js';
@@ -53,7 +53,7 @@ const Landing = () => {
         </div>
       </div>
       <div>
-        <Section
+        <FeatureSection
           step="1"
           name="Editing"
           title="編輯新增"
@@ -62,7 +62,7 @@ const Landing = () => {
           startColor="#009efd"
           endColor="#2af598"
         />
-        <Section
+        <FeatureSection
           step="2"
           name="Preview"
           title="預覽畫面"
@@ -71,7 +71,7 @@ const Landing = () => {
           startColor="#56317a"
           endColor="#3d99be"
         />
-        <Section
+        <FeatureSection
           step="3"
           name="Deploy"
           title="一鍵發佈"

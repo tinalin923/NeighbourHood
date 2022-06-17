@@ -5,11 +5,13 @@ import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { getStorageImages } from '../../firebase/useStorage.js';
-import { ListTitle } from '../../styles/styledComponents/blockComponents.js';
+import {
+  ListTitle,
+  ListDetails,
+} from '../../styles/styledComponents/blockComponents.js';
 import { thirdGray } from '../../styles/styledComponents/color.js';
 import { useEditState } from '../contexts/EditContext.js';
 import AddAnnounceButton from './AddAnnounceButton.js';
-import TextInfo from './TextInfo.js';
 
 const icon = {
   position: 'relative',
@@ -202,13 +204,7 @@ export default function EventList() {
                 overflow: 'hidden',
               }}
             >
-              <TextInfo
-                name={`${id}-AC`}
-                placeholder="請輸入變更"
-                value={details}
-              >
-                {details}
-              </TextInfo>
+              <ListDetails>{details}</ListDetails>
               <br />
               {picture && <ImagePresent alt="announceImage" src={picture} />}
             </motion.div>

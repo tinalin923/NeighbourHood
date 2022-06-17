@@ -1,6 +1,8 @@
 import { Dialog } from '@headlessui/react';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import { EditPresentBlock } from '../../styles/styledComponents/blockComponents.js';
+
 import {
   backgroundGray,
   primaryGray,
@@ -31,15 +33,7 @@ function EditActivityModal({ setShow }) {
         }}
         arial-hidden="true"
       />
-      <div
-        style={{
-          position: 'fixed',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%,-50%)',
-          width: '60vw',
-        }}
-      >
+      <EditPresentBlock>
         <Dialog.Panel
           style={{
             width: '100%',
@@ -96,7 +90,7 @@ function EditActivityModal({ setShow }) {
             />
           </div>
         </Dialog.Panel>
-      </div>
+      </EditPresentBlock>
     </Dialog>
   );
 }

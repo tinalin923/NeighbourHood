@@ -28,6 +28,9 @@ const A = styled.a`
   margin: 0.5rem 0rem 0.5rem 1.5rem;
   text-decoration: none;
   color: ${backgroundGray};
+  :hover {
+    text-decoration: underline;
+  }
 `;
 
 const Infromation = styled.div`
