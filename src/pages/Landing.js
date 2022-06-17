@@ -58,7 +58,7 @@ const Landing = () => {
           name="Editing"
           title="編輯新增"
           details="可隨時新增刪減里內的公告和活動項目，並以動態方式即時呈現"
-          url="https://streamable.com/kkwe5q"
+          url="https://streamable.com/0wia0j"
           startColor="#009efd"
           endColor="#2af598"
         />
@@ -66,8 +66,8 @@ const Landing = () => {
           step="2"
           name="Preview"
           title="預覽畫面"
-          details="即時預覽編輯更新後的畫面，不用重複等待上傳時間"
-          url="https://streamable.com/fe1vp2"
+          details="即時預覽更新後的畫面，不用重複等待上傳時間"
+          url="https://streamable.com/xk3fve"
           startColor="#56317a"
           endColor="#3d99be"
         />
@@ -76,7 +76,7 @@ const Landing = () => {
           name="Deploy"
           title="一鍵發佈"
           details="按下發佈後即有獨立網頁，輕鬆分享給里民"
-          url="https://streamable.com/bg8qm5"
+          url="https://streamable.com/jhij2g"
           startColor="#fc6262"
           endColor="#ffd86f"
         />
