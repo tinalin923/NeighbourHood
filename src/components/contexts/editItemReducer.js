@@ -1,4 +1,4 @@
-export const initialEditState = {
+export const initialEditItemState = {
   temporaryUrl: '',
   imageError: '',
   id: '',

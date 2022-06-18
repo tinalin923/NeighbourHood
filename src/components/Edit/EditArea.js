@@ -19,7 +19,7 @@ import { useAuthState } from '../contexts/AuthContext.js';
 import { useEditState } from '../contexts/EditContext.js';
 import TextInfoForEdit from './TextInfoForEdit.js';
 import editItemReducer, {
-  initialEditState,
+  initialEditItemState,
 } from '../contexts/editItemReducer.js';
 
 const Edit = styled.div`
@@ -93,7 +93,7 @@ function EditArea({
   setPicture,
   setShow,
 }) {
-  const [state, dispatch] = useReducer(editItemReducer, initialEditState);
+  const [state, dispatch] = useReducer(editItemReducer, initialEditItemState);
   const setTemporaryUrl = (temporaryUrl) => {
     dispatch({
       type: 'SET_TEMPORARY_URL',
