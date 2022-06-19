@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   doc,
   serverTimestamp,
@@ -6,35 +7,36 @@ import {
   query,
   where,
   getDocs,
-} from 'firebase/firestore';
-import { db } from './firebaseConfig.js';
+} from "firebase/firestore";
+import { db } from "./firebaseConfig.js";
 import {
   getFirestoreTotalCount,
   updateFirestoreTotalCount,
-} from './useFirestore.js';
+} from "./useFirestore.js";
 
-export const checkCityVillage = (city, village) => {
-  const cityVillageRef = collection(db, 'villages');
+export const checkCityVillage = async (registerCity, registerVillage) => {
+  const cityVillageRef = collection(db, "villages");
   const villageQuery = query(
     cityVillageRef,
-    where('villageName', 'in', [`${village}`])
+    where("villageName", "in", [`${registerVillage}`])
   );
-  const cityQuery = query(cityVillageRef, where('cityName', 'in', [`${city}`]));
+  const cityQuery = query(
+    cityVillageRef,
+    where("cityName", "in", [`${registerCity}`])
+  );
 
-  async function checkVillageCity(villageQ, cityQ) {
+  async function getTheSame(villageQ, cityQ) {
     const villageSnapshot = await getDocs(villageQ);
-    if (villageSnapshot.empty === false) {
-      const citySnapshot = await getDocs(cityQ);
-      if (villageSnapshot.docs[0].id === citySnapshot.docs[0]?.id) {
-        return 'repeated';
-      }
-      return 'not repeated';
-    }
-    return 'not repeated';
+
+    if (villageSnapshot.empty === true) return "not repeated";
+    const citySnapshot = await getDocs(cityQ);
+    const result = villageSnapshot.docs.filter((village) =>
+      citySnapshot.docs.some((city) => village.id === city.id));
+    if (result.length === 0) return "not repeated";
+    return "repeated";
   }
 
-  const checkResult = checkVillageCity(villageQuery, cityQuery);
-
+  const checkResult = await getTheSame(villageQuery, cityQuery);
   return checkResult;
 };
 
@@ -60,32 +62,32 @@ const createInitialUserDatas = async (uid, email, city, village) => {
     introductionTextData: null,
     lastEditTime: serverTimestamp(),
     scrollList: [
-      { id: '0', title: village },
-      { id: '1', title: '里長介紹' },
-      { id: '2', title: '村里介紹' },
-      { id: '3', title: '最新消息' },
-      { id: '4', title: '活動訊息' },
+      { id: "0", title: village },
+      { id: "1", title: "里長介紹" },
+      { id: "2", title: "村里介紹" },
+      { id: "3", title: "最新消息" },
+      { id: "4", title: "活動訊息" },
     ],
     announceList: [
       {
-        id: '0',
-        title: '公告範例',
-        picture: '',
-        details: '區域路段將有為期一週的道路施工，行經請小心。',
+        id: "0",
+        title: "公告範例",
+        picture: "",
+        details: "區域路段將有為期一週的道路施工，行經請小心。",
       },
     ],
     activityList: [
       {
-        id: '0',
-        title: '活動範例',
-        picture: '0/defaultActivityPicture.jpg',
-        details: '歡迎共襄盛舉',
+        id: "0",
+        title: "活動範例",
+        picture: "0/defaultActivityPicture.jpg",
+        details: "歡迎共襄盛舉",
       },
     ],
   };
   newVillageId = newVillageId.toString();
-  await setDoc(doc(db, 'users', uid), initialUserDatas);
-  await setDoc(doc(db, 'villages', newVillageId), initialVillageDatas);
+  await setDoc(doc(db, "users", uid), initialUserDatas);
+  await setDoc(doc(db, "villages", newVillageId), initialVillageDatas);
   return newVillageId;
 };
 

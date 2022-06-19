@@ -1,18 +1,17 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
-} from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
-import PropTypes from 'prop-types';
-import React, { createContext, useContext, useEffect, useState } from 'react';
+} from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import PropTypes from "prop-types";
+import { createContext, useContext, useEffect, useState } from "react";
 
 import createInitialUserDatas, {
   checkCityVillage,
-} from '../../firebase/createUser.js';
-import { auth, db } from '../../firebase/firebaseConfig.js';
+} from "../../firebase/createUser.js";
+import { auth, db } from "../../firebase/firebaseConfig.js";
 
 export const AuthContext = createContext();
 export const useAuthState = () => useContext(AuthContext);
@@ -26,7 +25,7 @@ export const AuthContextProvider = ({ children }) => {
   const signup = async (email, password, city, village) => {
     // check if repeated
     const checkResult = await checkCityVillage(city, village);
-    if (checkResult === 'repeated') {
+    if (checkResult === "repeated") {
       throw new Error(`此縣市的${village}已被註冊`);
     }
     // write into firebase-authentication if not repeated
@@ -67,16 +66,16 @@ export const AuthContextProvider = ({ children }) => {
     });
     return unsubscribe;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // 為何會建議我要放setUserDatas；如果都不放[]，則會一直get firebase
+  }, []);
 
   useEffect(() => {
     if (!currentUid) {
       return;
     }
-    const userRef = doc(db, 'users', currentUid);
+    const userRef = doc(db, "users", currentUid);
     async function getVillageName() {
       const docSnap = await getDoc(userRef);
-      const nowVillageName = docSnap.data().villageName;
+      const nowVillageName = docSnap.data()?.villageName;
       setCurrentVillageName(nowVillageName);
       setLoad(false);
     }
