@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {
+import React, {
   createContext,
   useContext,
   useMemo,
   useReducer,
   useState,
-} from "react";
-import PropTypes from "prop-types";
+} from 'react';
+import PropTypes from 'prop-types';
 
-import editReducer, { initialEditState } from "./editReducer.js";
+import editReducer, { initialEditState } from './editReducer.js';
 
 const EditContext = createContext(initialEditState);
 export const useEditState = () => useContext(EditContext);
@@ -19,10 +19,10 @@ export const EditContextProvider = ({ children }) => {
   const [editMode, setEditMode] = useState(true);
   const [introductionTextData, setIntroductionTextData] = useState([]);
   const [imagePathList, setImagePathList] = useState([]);
-  const [published, setPublished] = useState("");
-  const [village, setVillage] = useState("");
-  const [currentUserDatas, setCurrentUserDatas] = useState("");
-  const [lastEditTime, setLastEditTime] = useState("");
+  const [published, setPublished] = useState('');
+  const [village, setVillage] = useState('');
+  const [currentUserDatas, setCurrentUserDatas] = useState('');
+  const [lastEditTime, setLastEditTime] = useState('');
   // for upload to firestorage
   const [imageList, setImageList] = useState([]);
 
@@ -33,7 +33,7 @@ export const EditContextProvider = ({ children }) => {
       newScrollList = newScrollList.concat({ id, title });
     });
     dispatch({
-      type: "SET_SCROLL_LIST",
+      type: 'SET_SCROLL_LIST',
       payload: {
         scrollList: newScrollList,
       },
@@ -47,7 +47,7 @@ export const EditContextProvider = ({ children }) => {
       newAnnounceList = newAnnounceList.concat({ id, title, details, picture });
     });
     dispatch({
-      type: "SET_ANNOUNCE_LIST",
+      type: 'SET_ANNOUNCE_LIST',
       payload: {
         announceList: newAnnounceList,
       },
@@ -62,7 +62,7 @@ export const EditContextProvider = ({ children }) => {
       picture,
     });
     dispatch({
-      type: "ADD_ANNOUNCE_LIST",
+      type: 'ADD_ANNOUNCE_LIST',
       payload: {
         announceList: newAnnounceList,
       },
@@ -74,7 +74,7 @@ export const EditContextProvider = ({ children }) => {
       (announce) => announce.id !== id
     );
     dispatch({
-      type: "DELETE_ANNOUNCE_LIST",
+      type: 'DELETE_ANNOUNCE_LIST',
       payload: {
         announceList,
       },
@@ -92,7 +92,7 @@ export const EditContextProvider = ({ children }) => {
       });
     });
     dispatch({
-      type: "SET_ANNOUNCE_PRESENT_LIST",
+      type: 'SET_ANNOUNCE_PRESENT_LIST',
       payload: {
         announcePresentList: newAnnouncePresentList,
       },
@@ -107,7 +107,7 @@ export const EditContextProvider = ({ children }) => {
       picture,
     });
     dispatch({
-      type: "ADD_ANNOUNCE_PRESENT_LIST",
+      type: 'ADD_ANNOUNCE_PRESENT_LIST',
       payload: {
         announcePresentList: newAnnouncePresentList,
       },
@@ -119,7 +119,7 @@ export const EditContextProvider = ({ children }) => {
       (announce) => announce.id !== id
     );
     dispatch({
-      type: "DELETE_ANNOUNCE_PRESENT_LIST",
+      type: 'DELETE_ANNOUNCE_PRESENT_LIST',
       payload: {
         announcePresentList,
       },
@@ -132,7 +132,7 @@ export const EditContextProvider = ({ children }) => {
       newActivityList = newActivityList.concat({ id, title, details, picture });
     });
     dispatch({
-      type: "SET_ACTIVITY_LIST",
+      type: 'SET_ACTIVITY_LIST',
       payload: {
         activityList: newActivityList,
       },
@@ -147,7 +147,7 @@ export const EditContextProvider = ({ children }) => {
       picture,
     });
     dispatch({
-      type: "ADD_ACTIVITY_LIST",
+      type: 'ADD_ACTIVITY_LIST',
       payload: {
         activityList: newActivityList,
       },
@@ -159,7 +159,7 @@ export const EditContextProvider = ({ children }) => {
       (activity) => activity.id !== id
     );
     dispatch({
-      type: "DELETE_ACTIVITY_LIST",
+      type: 'DELETE_ACTIVITY_LIST',
       payload: {
         activityList,
       },
@@ -178,7 +178,7 @@ export const EditContextProvider = ({ children }) => {
       });
     });
     dispatch({
-      type: "SET_ACTIVITY_PRESENT_LIST",
+      type: 'SET_ACTIVITY_PRESENT_LIST',
       payload: {
         activityPresentList: newActivityPresentList,
       },
@@ -193,7 +193,7 @@ export const EditContextProvider = ({ children }) => {
       picture,
     });
     dispatch({
-      type: "ADD_ACTIVITY_PRESENT_LIST",
+      type: 'ADD_ACTIVITY_PRESENT_LIST',
       payload: {
         activityPresentList: newActivityPresentList,
       },
@@ -205,7 +205,7 @@ export const EditContextProvider = ({ children }) => {
       (activity) => activity.id !== id
     );
     dispatch({
-      type: "DELETE_ACTIVITY_PRESENT_LIST",
+      type: 'DELETE_ACTIVITY_PRESENT_LIST',
       payload: {
         activityPresentList,
       },
