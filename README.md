@@ -37,7 +37,7 @@
 | Skill               | Description                                                                                                                        | 
 |---------------------|------------------------------------------------------------------------------------------------------------------------------------|
 | React ( hook )      | SPA, create reusable functional components & custom hooks                                                                          |
-| React Router        | Create public & private route in SPA                                                                                               |
+| React Router        | Create public & private route in SPA (Navigate, Link, NavLink, useNavigate, generatePath, useParams)                               |
 | React Context       | Share state & data globally to avoid prop drilling                                                                                 |
 | styled-components   | Style with CSS-In-JS library                                                                                                       |
 | PropTypes           | Check type of props & set default value                                                                                            |
@@ -52,9 +52,18 @@
 </div>
 
 #### Responsive Website Design
+
+  <p>Hamburger Menu presented with animated bars in mobiles</p>   
+ 
   <img
-  src="https://user-images.githubusercontent.com/94776718/174295384-4b419528-e115-4a0a-910d-6f9bfaff6f17.gif"
-  height=500/>
+   src="https://user-images.githubusercontent.com/94776718/174295384-4b419528-e115-4a0a-910d-6f9bfaff6f17.gif"
+  height=300px />   
+  <br/>
+ <p>Breadcrumbs disappeared in mobiles, Total villages layout with grid</p>   
+ <img
+   src="https://user-images.githubusercontent.com/94776718/174656183-2820d260-83d9-4aba-b976-7749082c3be1.png"
+  height=300px />  
+ 
 
 ### Backend Technique 
 
