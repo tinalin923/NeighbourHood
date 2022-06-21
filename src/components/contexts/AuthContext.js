@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -7,7 +8,6 @@ import {
 } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import PropTypes from 'prop-types';
-import React, { createContext, useContext, useEffect, useState } from 'react';
 
 import createInitialUserDatas, {
   checkCityVillage,
