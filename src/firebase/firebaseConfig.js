@@ -1,5 +1,4 @@
 import { initializeApp } from 'firebase/app';
-import { getAnalytics } from 'firebase/analytics';
 // auth
 import { getAuth } from 'firebase/auth';
 // import { connectAuthEmulator, getAuth } from 'firebase/auth';
@@ -24,7 +23,6 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 const auth = getAuth(app);
 
@@ -44,5 +42,4 @@ export {
   usersCollection,
   villageCollection,
   projectStorage,
-  analytics,
 };
