@@ -37,7 +37,7 @@
 | Skill               | Description                                                                                                                        | 
 |---------------------|------------------------------------------------------------------------------------------------------------------------------------|
 | React ( hook )      | SPA, create reusable functional components & custom hooks                                                                          |
-| React Router        | Create public & private route in SPA                                                                                               |
+| React Router        | Create public & private route in SPA (Navigate, Link, NavLink, useNavigate, generatePath, useParams)                               |
 | React Context       | Share state & data globally to avoid prop drilling                                                                                 |
 | styled-components   | Style with CSS-In-JS library                                                                                                       |
 | PropTypes           | Check type of props & set default value                                                                                            |
