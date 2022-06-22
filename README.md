@@ -45,9 +45,11 @@
 | Framer-motion       | Create animation easily & vividly                                                                                                  |
 | ESLint              | Help debugging, check coding style                                                                                                 |
 | Prettier            | Help code formatting                                                                                                               |
-| Third-Party Modules | [Browser Image Compression](https://www.npmjs.com/package/browser-image-compression), [Headless Ul] https://headlessui.dev/react/dialog), [React Scroll](https://www.npmjs.com/package/react-scroll), [React Spinners](https://www.npmjs.com/package/react-spinners)                                                                                                                                                  | 
+| Third-Party Modules | [Browser Image Compression](https://www.npmjs.com/package/browser-image-compression), [Headless Ul](https://headlessui.dev/react/dialog), [React Scroll](https://www.npmjs.com/package/react-scroll), [React Spinners](https://www.npmjs.com/package/react-spinners)                                                                                                                                                  | 
 
-#### React components structure 
+- React components structure 
+  - Five pages' header share the NavUl and  NavLi components
+  - 
 <div align="center">  
   <kbd> <img src="https://user-images.githubusercontent.com/94776718/174304135-583eb62f-db69-4631-8af2-ba5505240146.png" /></kbd>
 </div>
