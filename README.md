@@ -8,10 +8,9 @@
 ## Table of Content
 
 - [About the project](#about-the-project)
+- [Main Features](#main-features)
 - [Frontend Technique](#frontend-technique)
 - [Backend Technique](#backend-technique)
-- [Main Features](#main-features)
-- [Usage](#usage)
 - [Contact](#contact)
   
 ## About the project
@@ -33,6 +32,17 @@
 :house_with_garden: **Test account**
 - Email: test@mail.com 
 - Password: test123  
+
+
+### Main Features
+
+1. Change Edit / Preview mode in real-time
+
+2. Add & Delete announcements & activities anytime anywhere
+
+3. One-Click publishing
+
+4. Dynamic layout
 
 ### Frontend Technique 
 | Skill               | Description                                                                                                                        | 
@@ -56,13 +66,14 @@
 
 #### Responsive Website Design
 
-  <p>Hamburger Menu presented with animated bars in mobiles</p>   
+  1. Hamburger Menu presented with animated bars in mobiles  
  
   <img
    src="https://user-images.githubusercontent.com/94776718/174295384-4b419528-e115-4a0a-910d-6f9bfaff6f17.gif"
   height=300px />   
   <br/>
- <p>Breadcrumbs disappeared in mobiles, Total villages layout with grid</p>   
+  2. Breadcrumbs disappeared in mobiles, Total villages layout with grid 
+  
  <img
    src="https://user-images.githubusercontent.com/94776718/174656183-2820d260-83d9-4aba-b976-7749082c3be1.png"
   height=300px />  
@@ -78,7 +89,6 @@
 | Storage | Store user pictures after villages published                                                                                              |
 | Authentication | Manage Member system                                                                                                               |
 | Hosting | Build my website                                                                                                                          |
-
 ## Contact  
  - **林怡君 Yi-Jun, Lin**
  - Email: tinalin923@gmail.com 
