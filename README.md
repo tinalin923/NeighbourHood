@@ -34,7 +34,7 @@
 - Password: test123  
 
 
-### Main Features
+## Main Features
 
 1. Change Edit / Preview mode in real-time
 
@@ -44,7 +44,7 @@
 
 4. Dynamic layout
 
-### Frontend Technique 
+## Frontend Technique 
 | Skill               | Description                                                                                                                        | 
 |---------------------|------------------------------------------------------------------------------------------------------------------------------------|
 | React ( hook )      | SPA, create reusable functional components & custom hooks                                                                          |
@@ -82,7 +82,7 @@
   height=300px />  
  
 
-### Backend Technique 
+## Backend Technique 
 
 - Firebase V9
 
