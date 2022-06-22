@@ -58,13 +58,15 @@
 | Third-Party Modules | [Browser Image Compression](https://www.npmjs.com/package/browser-image-compression), [Headless Ul](https://headlessui.dev/react/dialog), [React Scroll](https://www.npmjs.com/package/react-scroll), [React Spinners](https://www.npmjs.com/package/react-spinners)                                                                                                                                                  | 
 
 - React components structure 
-  - Five pages' header share the NavUl and  NavLi components
-  - 
+  - Five pages' header share the NavUl & NavLi components
+  - EachPresent page and Editing page share the same components with different edit-mode
+  - ActivityBlock and BulletinBlock share the AddButton & EditArea components
+
 <div align="center">  
   <kbd> <img src="https://user-images.githubusercontent.com/94776718/174304135-583eb62f-db69-4631-8af2-ba5505240146.png" /></kbd>
 </div>
 
-#### Responsive Website Design
+- Responsive Website Design
 
   1. Hamburger Menu presented with animated bars in mobiles  
  
@@ -72,8 +74,9 @@
    src="https://user-images.githubusercontent.com/94776718/174295384-4b419528-e115-4a0a-910d-6f9bfaff6f17.gif"
   height=300px />   
   <br/>
+
   2. Breadcrumbs disappeared in mobiles, Total villages layout with grid 
-  
+
  <img
    src="https://user-images.githubusercontent.com/94776718/174656183-2820d260-83d9-4aba-b976-7749082c3be1.png"
   height=300px />  
