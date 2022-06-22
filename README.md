@@ -19,7 +19,7 @@
 <div  align="center">
 
   <kbd>
-    <img src="https://user-images.githubusercontent.com/94776718/174310804-1e513ec7-ece4-4d55-844d-455f03ad62cc.png" width=800/> 
+    <img src="https://user-images.githubusercontent.com/94776718/174310804-1e513ec7-ece4-4d55-844d-455f03ad62cc.png" width=600px/> 
   </kbd>
 
 </div>  
