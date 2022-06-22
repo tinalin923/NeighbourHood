@@ -5,7 +5,7 @@
   <p>A web-page-builder for chiefs of villages to publish their own pages. </p>
 </div>
   
-## Table of Content
+## Table of Content  
 
 - [About the project](#about-the-project)
 - [Main Features](#main-features)
@@ -13,7 +13,7 @@
 - [Backend Technique](#backend-technique)
 - [Contact](#contact)
   
-## About the project
+## About the project  
   
 <div  align="center">
 
@@ -34,7 +34,7 @@
 - Password: test123  
 
 
-## Main Features
+## Main Features  
 
 1. Change Edit / Preview mode in real-time
 
@@ -45,6 +45,7 @@
 4. Dynamic layout
 
 ## Frontend Technique 
+
 | Skill               | Description                                                                                                                        | 
 |---------------------|------------------------------------------------------------------------------------------------------------------------------------|
 | React ( hook )      | SPA, create reusable functional components & custom hooks                                                                          |
@@ -82,7 +83,7 @@
   height=300px />  
  
 
-## Backend Technique 
+## Backend Technique  
 
 - Firebase V9
 
@@ -92,7 +93,9 @@
 | Storage | Store user pictures after villages published                                                                                              |
 | Authentication | Manage Member system                                                                                                               |
 | Hosting | Build my website                                                                                                                          |
+
 ## Contact  
+
  - **林怡君 Yi-Jun, Lin**
  - Email: tinalin923@gmail.com 
  - Find me on [LinkedIn](https://www.linkedin.com/in/yi-jun-lin-353a14226/)
