@@ -1,4 +1,4 @@
-# NeighbourHood
+## NeighbourHood
 
 <div align="center">
  
@@ -25,8 +25,8 @@
 ### Table of Content  
 
 - [Main Features](#main-features)
-- [Frontend Tech Stack](#frontend-technique)
-- [Backend Tech Stack](#backend-technique)
+- [Frontend Tech Stack](#frontend-tech-stack)
+- [Backend Tech Stack](#backend-tech-stack)
 - [Contact](#contact)
 
 
@@ -46,7 +46,7 @@
 
 
 
-## Frontend Tech Stack  
+### Frontend Tech Stack  
 
 - React (Hook)  
   - Single-page-application (SPA)
@@ -102,7 +102,7 @@
   <br/>
  
 
-## Backend Tech Stack 
+### Backend Tech Stack 
 
 - Firebase V9
   - FireStore: store user data after villages published, prevent repeated city & village when register
@@ -110,7 +110,7 @@
   - Authentication: manage member system 
   - Hosting: build my website
 
-## Contact  
+### Contact  
 
  - **林怡君 Yi-Jun, Lin**
  - Email: tinalin923@gmail.com 
