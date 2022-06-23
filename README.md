@@ -32,7 +32,7 @@
 
 ### Main Features  
 
-1. Change Edit / Preview mode in real-time
+1. Change Edit / Preview mode in real-time to accomplish WYSIWYG user experience
   <img src="./readmedata/toggle.gif" alt="toggle" width="500px">
   <br/>
 
@@ -40,7 +40,7 @@
   <img src="./readmedata/addItem.gif" alt="addItem" width="500px">
   <br/>
 
-3. One-Click publishing
+3. Create own village webpage in a second
   <img src="./readmedata/publish.gif" alt="publish" width="500px">
   <br/>
 
