@@ -60,13 +60,14 @@
 - React Context： share state & data globally to avoid prop drilling 
 - styled-components： utilize CSS-In-JS library 
 - PropTypes： check type of props & set default value 
-- [Framer-motion](https://www.framer.com/motion/)： create layout animation easily & vividly 
-  - `motion`, `AnimatePresence`
-- NPM： package management 
-- Webpack： modules and project bundler 
-- Babel： compile and transform ES6+ and JSX to ES5 
-- ESLint： help debugging, check coding style 
-- Prettier： help code formatting
+- [Framer-motion](https://www.framer.com/motion/)
+  - `motion`
+  - `AnimatePresence`
+- NPM
+- Webpack
+- Babel
+- ESLint
+- Prettier
 - Third-Party Modules： 
   - [Browser Image Compression](https://www.npmjs.com/package/browser-image-compression)
   - [Headless Ul](https://headlessui.dev/react/dialog)
