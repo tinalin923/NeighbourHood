@@ -87,9 +87,7 @@
 
   1. Hamburger Menu presented with animated bars in mobiles  
  
-  <img
-    src="https://user-images.githubusercontent.com/94776718/174295384-4b419528-e115-4a0a-910d-6f9bfaff6f17.gif"
-  height=350px />   
+  <img src="https://user-images.githubusercontent.com/94776718/174295384-4b419528-e115-4a0a-910d-6f9bfaff6f17.gif" width=300px />   
 
   <br/>
 
@@ -97,7 +95,7 @@
 
  <img
    src="https://user-images.githubusercontent.com/94776718/174656183-2820d260-83d9-4aba-b976-7749082c3be1.png"
-  height=350px />  
+  width=500px />  
 
   <br/>
  
