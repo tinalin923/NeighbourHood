@@ -45,17 +45,23 @@
 4. Dynamic layout
 
 ## Frontend Technique 
-| Skill               | Description                                                                                                                        | 
-|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| React ( hook )      | SPA, create reusable functional components & custom hooks                                                                          |
-| React Router        | Create public & private route in SPA (Navigate, Link, NavLink, useNavigate, generatePath, useParams)                               |
-| React Context       | Share state & data globally to avoid prop drilling                                                                                 |
-| styled-components   | Style with CSS-In-JS library                                                                                                       |
-| PropTypes           | Check type of props & set default value                                                                                            |
-| Framer-motion       | Create animation easily & vividly                                                                                                  |
-| ESLint              | Help debugging, check coding style                                                                                                 |
-| Prettier            | Help code formatting                                                                                                               |
-| Third-Party Modules | [Browser Image Compression](https://www.npmjs.com/package/browser-image-compression), [Headless Ul](https://headlessui.dev/react/dialog), [React Scroll](https://www.npmjs.com/package/react-scroll), [React Spinners](https://www.npmjs.com/package/react-spinners)                                                                                                                                                  | 
+
+- skills table
+
+| Skill | Description | 
+|-------|-------------|
+| React ( hook ) | SPA, create reusable functional components & custom hooks ( `useState`,`useEffect`, `useReducer`, `useFetchPublishedPage`) |
+| React Router | Create public & private route in SPA (`Navigate`, `Link`, `NavLink`, `useNavigate`, `generatePath`, `useParams`) |
+| React Context | Share state & data globally to avoid prop drilling |
+| styled-components | Style with CSS-In-JS library |
+| PropTypes | Check type of props & set default value |
+| Framer-motion | Create layout animation easily & vividly (`motion`, `AnimatePresence`) |
+| NPM | Package management |
+| Webpack |Modules and project bundler |
+| Babel | Compile and transform ES6+ and JSX to ES5 |
+| ESLint | Help debugging, check coding style |
+| Prettier | Help code formatting |
+| Third-Party Modules | [Browser Image Compression](https://www.npmjs.com/package/browser-image-compression), [Headless Ul](https://headlessui.dev/react/dialog), [React Scroll](https://www.npmjs.com/package/react-scroll), [React Spinners](https://www.npmjs.com/package/react-spinners) | 
 
 - React components structure 
   - Five pages' header share the NavUl & NavLi components
@@ -63,7 +69,7 @@
   - ActivityBlock and BulletinBlock share the AddButton & EditArea components
 
 <div align="center">  
-  <kbd> <img src="https://user-images.githubusercontent.com/94776718/174304135-583eb62f-db69-4631-8af2-ba5505240146.png" /></kbd>
+  <kbd> <img src="https://user-images.githubusercontent.com/94776718/174304135-583eb62f-db69-4631-8af2-ba5505240146.png" width=500px/></kbd>
 </div>
 
 - Responsive Website Design
@@ -86,12 +92,12 @@
 
 - Firebase V9
 
-| Skill              | Description                                                                                                                    |  
-|------------------- |--------------------------------------------------------------------------------------------------------------------------------|
-| FireStore | Store user data after villages published, Prevent repeated city & village when register                                                 | 
-| Storage | Store user pictures after villages published                                                                                              |
-| Authentication | Manage Member system                                                                                                               |
-| Hosting | Build my website                                                                                                                          |
+| Skill | Description |  
+| ----- | ----------- |
+| FireStore | Store user data after villages published, Prevent repeated city & village when register | 
+| Storage | Store user pictures after villages published |
+| Authentication | Manage Member system |
+| Hosting | Build my website |
 ## Contact  
  - **林怡君 Yi-Jun, Lin**
  - Email: tinalin923@gmail.com 
