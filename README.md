@@ -1,3 +1,5 @@
+# NeighbourHood
+
 <div align="center">
  
   ![image](https://user-images.githubusercontent.com/94776718/174472542-9b1bd2c4-6269-41d5-b487-f717c8fbdf29.png) 
@@ -5,16 +7,7 @@
   <p>A web-page-builder for chiefs of villages to publish their own pages. </p>
 </div>
   
-## Table of Content  
-
-- [About the project](#about-the-project)
-- [Main Features](#main-features)
-- [Frontend Technique](#frontend-technique)
-- [Backend Technique](#backend-technique)
-- [Contact](#contact)
-  
-## About the project  
-  
+### Live Demo
 <div  align="center">
 
   <kbd>
@@ -22,10 +15,6 @@
   </kbd>
 
 </div>  
-<p>NeighbourHodd  is a web-page-builder for chiefs of villages to publish their own pages.  </p>
-<p>It features a real-time edit/preview mode toggle switch, the ability to add announcements and activities anytime anywhere, and easy publishing with
-  one-click. 
-</p>
 
 :link: Website URL：https://neighbourhood-2022.web.app/    
 <br />  
@@ -33,35 +22,56 @@
 - Email: test@mail.com 
 - Password: test123  
 
+### Table of Content  
 
-## Main Features  
+- [Main Features](#main-features)
+- [Frontend Tech Stack](#frontend-technique)
+- [Backend Tech Stack](#backend-technique)
+- [Contact](#contact)
+
+
+### Main Features  
 
 1. Change Edit / Preview mode in real-time
+  <img src="./readmedata/toggle.gif" alt="toggle" width="500px">
+  <br/>
 
-2. Add & Delete announcements & activities anytime anywhere
+2. Add and Delete announcements & activities items anytime anywhere
+  <img src="./readmedata/addItem.gif" alt="addItem" width="500px">
+  <br/>
 
 3. One-Click publishing
+  <img src="./readmedata/publish.gif" alt="publish" width="500px">
+  <br/>
 
-4. Dynamic layout
 
-## Frontend Technique 
 
-- skills table
+## Frontend Tech Stack  
 
-| Skill | Description | 
-|-------|-------------|
-| React ( hook ) | SPA, create reusable functional components & custom hooks ( `useState`,`useEffect`, `useReducer`, `useFetchPublishedPage`) |
-| React Router | Create public & private route in SPA (`Navigate`, `Link`, `NavLink`, `useNavigate`, `generatePath`, `useParams`) |
-| React Context | Share state & data globally to avoid prop drilling |
-| styled-components | Style with CSS-In-JS library |
-| PropTypes | Check type of props & set default value |
-| Framer-motion | Create layout animation easily & vividly (`motion`, `AnimatePresence`) |
-| NPM | Package management |
-| Webpack |Modules and project bundler |
-| Babel | Compile and transform ES6+ and JSX to ES5 |
-| ESLint | Help debugging, check coding style |
-| Prettier | Help code formatting |
-| Third-Party Modules | [Browser Image Compression](https://www.npmjs.com/package/browser-image-compression), [Headless Ul](https://headlessui.dev/react/dialog), [React Scroll](https://www.npmjs.com/package/react-scroll), [React Spinners](https://www.npmjs.com/package/react-spinners) | 
+- React (Hook)  
+  - Single-page-application (SPA)
+  - Hook API: `useState`,`useEffect`, `useReducer`
+  - Custom Hook: `useFetchPublishedPage`
+- React Router 
+  - Create public & private route in SPA 
+  - Components: `Navigate`, `Link`, `NavLink`
+  - Hooks:  `useNavigate`, `useParams`
+  - function: `generatePath`
+- React Context: share state & data globally to avoid prop drilling 
+- styled-components: utilize CSS-In-JS library 
+- PropTypes: check type of props & set default value 
+- [Framer-motion](https://www.framer.com/motion/): create layout animation easily & vividly 
+  - `motion`, `AnimatePresence`
+- NPM: package management 
+- Webpack: modules and project bundler 
+- Babel: compile and transform ES6+ and JSX to ES5 
+- ESLint: help debugging, check coding style 
+- Prettier: help code formatting
+- Third-Party Modules
+  - [Browser Image Compression](https://www.npmjs.com/package/browser-image-compression)
+  - [Headless Ul](https://headlessui.dev/react/dialog)
+  - [React Scroll](https://www.npmjs.com/package/react-scroll)
+  - [React Spinners](https://www.npmjs.com/package/react-spinners) 
 
 
 - React components structure 
@@ -78,27 +88,27 @@
   1. Hamburger Menu presented with animated bars in mobiles  
  
   <img
-   src="https://user-images.githubusercontent.com/94776718/174295384-4b419528-e115-4a0a-910d-6f9bfaff6f17.gif"
+    src="https://user-images.githubusercontent.com/94776718/174295384-4b419528-e115-4a0a-910d-6f9bfaff6f17.gif"
   height=300px />   
+
   <br/>
 
-  2. Breadcrumbs disappeared in mobiles, Total villages layout with grid 
+  2. Breadcrumbs disappeared in mobiles, Total villages layout with CSS Grid 
 
  <img
    src="https://user-images.githubusercontent.com/94776718/174656183-2820d260-83d9-4aba-b976-7749082c3be1.png"
   height=300px />  
+
+  <br/>
  
 
-## Backend Technique  
+## Backend Tech Stack 
 
 - Firebase V9
-
-| Skill | Description |  
-| ----- | ----------- |
-| FireStore | Store user data after villages published, Prevent repeated city & village when register | 
-| Storage | Store user pictures after villages published |
-| Authentication | Manage Member system |
-| Hosting | Build my website |
+  - FireStore: store user data after villages published, prevent repeated city & village when register
+  - Storage: store user pictures after villages published
+  - Authentication: manage member system 
+  - Hosting: build my website
 
 ## Contact  
 
