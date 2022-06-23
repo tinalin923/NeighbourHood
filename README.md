@@ -18,7 +18,7 @@
 <br />
 
 :link: Website URL： https://neighbourhood-2022.web.app/  
-:house_with_garden: **Test account**：
+:house_with_garden: Test account：
   - Email： test@mail.com 
   - Password： test123  
 
