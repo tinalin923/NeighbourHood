@@ -16,13 +16,10 @@
 
 </div>  
 <br />
-:link: Website URL：https://neighbourhood-2022.web.app/  
-
-<br />   
-
-:house_with_garden: **Test account**
-- Email: test@mail.com 
-- Password: test123  
+- :link: Website URL： https://neighbourhood-2022.web.app/  
+-:house_with_garden: **Test account**：
+  - Email： test@mail.com 
+  - Password： test123  
 
 ### Table of Content  
 
@@ -38,7 +35,7 @@
   <img src="./readmedata/toggle.gif" alt="toggle" width="500px">
   <br/>
 
-2. Add and Delete announcements & activities items anytime anywhere
+2. Add and Delete announcements & activities items anytime anywhere with RWD
   <img src="./readmedata/addItem.gif" alt="addItem" width="500px">
   <br/>
 
@@ -52,24 +49,24 @@
 
 - React (Hook)  
   - Single-page-application (SPA)
-  - Hook API: `useState`,`useEffect`, `useReducer`
-  - Custom Hook: `useFetchPublishedPage`
+  - Hook API： `useState`, `useEffect`, `useReducer`
+  - Custom Hook： `useFetchPublishedPage`
 - React Router 
   - Create public & private route in SPA 
-  - Components: `Navigate`, `Link`, `NavLink`
-  - Hooks:  `useNavigate`, `useParams`
-  - function: `generatePath`
-- React Context: share state & data globally to avoid prop drilling 
-- styled-components: utilize CSS-In-JS library 
-- PropTypes: check type of props & set default value 
-- [Framer-motion](https://www.framer.com/motion/): create layout animation easily & vividly 
+  - Components： `Navigate`, `Link`, `NavLink`
+  - Hooks： `useNavigate`, `useParams`
+  - function： `generatePath`
+- React Context： share state & data globally to avoid prop drilling 
+- styled-components： utilize CSS-In-JS library 
+- PropTypes： check type of props & set default value 
+- [Framer-motion](https://www.framer.com/motion/)： create layout animation easily & vividly 
   - `motion`, `AnimatePresence`
-- NPM: package management 
-- Webpack: modules and project bundler 
-- Babel: compile and transform ES6+ and JSX to ES5 
-- ESLint: help debugging, check coding style 
-- Prettier: help code formatting
-- Third-Party Modules
+- NPM： package management 
+- Webpack： modules and project bundler 
+- Babel： compile and transform ES6+ and JSX to ES5 
+- ESLint： help debugging, check coding style 
+- Prettier： help code formatting
+- Third-Party Modules： 
   - [Browser Image Compression](https://www.npmjs.com/package/browser-image-compression)
   - [Headless Ul](https://headlessui.dev/react/dialog)
   - [React Scroll](https://www.npmjs.com/package/react-scroll)
@@ -82,7 +79,7 @@
   - ActivityBlock and BulletinBlock share the AddButton & EditArea components
 
 <div align="center">  
-  <kbd> <img src="https://user-images.githubusercontent.com/94776718/174304135-583eb62f-db69-4631-8af2-ba5505240146.png" width=500px/></kbd>
+  <kbd> <img src="https://user-images.githubusercontent.com/94776718/174304135-583eb62f-db69-4631-8af2-ba5505240146.png" /></kbd>
 </div>
 
 - Responsive Website Design
@@ -91,7 +88,7 @@
  
   <img
     src="https://user-images.githubusercontent.com/94776718/174295384-4b419528-e115-4a0a-910d-6f9bfaff6f17.gif"
-  height=300px />   
+  height=350px />   
 
   <br/>
 
@@ -99,7 +96,7 @@
 
  <img
    src="https://user-images.githubusercontent.com/94776718/174656183-2820d260-83d9-4aba-b976-7749082c3be1.png"
-  height=300px />  
+  height=350px />  
 
   <br/>
  
@@ -107,10 +104,10 @@
 ### Backend Tech Stack 
 
 - Firebase V9
-  - FireStore: store user data after villages published, prevent repeated city & village when register
-  - Storage: store user pictures after villages published
-  - Authentication: manage member system 
-  - Hosting: build my website
+  - FireStore： store user data after villages published, prevent repeated city & village when register
+  - Storage： store user pictures after villages published
+  - Authentication： manage member system 
+  - Hosting： build my website
 
 ### Contact  
 
